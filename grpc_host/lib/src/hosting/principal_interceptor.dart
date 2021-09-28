@@ -10,7 +10,7 @@ abstract class PrincipalInterceptor {
 
   /// Creates a principal that contains user identity and authorization
   /// from a JWT payload.
-  Future<Principal> createPrincipal(JwtPayload payload, String tokenId);
+  Future<Principal> createPrincipal(JwtPayload payload);
 
   FutureOr<GrpcError?> interceptor(
     ServiceCall call,

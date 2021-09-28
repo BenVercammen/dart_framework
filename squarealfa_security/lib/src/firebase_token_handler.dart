@@ -33,6 +33,7 @@ class FirebaseTokenHandler {
       subject: claims.getTyped('sub'),
       email: claims.getTyped('email'),
       emailVerified: claims.getTyped('email_verified'),
+      tenantId: claims.getTyped('tenantId'),
       isVerified: true,
     );
     return payload;

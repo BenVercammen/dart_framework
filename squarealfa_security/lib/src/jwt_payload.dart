@@ -10,6 +10,7 @@ class JwtPayload {
   final DateTime expires;
   final bool emailVerified;
   final bool isVerified;
+  final String tenantId;
 
   /// any other extra fields that are
   /// not represented in the available properties
@@ -26,6 +27,7 @@ class JwtPayload {
     required this.expires,
     this.emailVerified = false,
     this.isVerified = false,
+    this.tenantId = '',
     this.extra = const <String, dynamic>{},
   });
 
@@ -33,6 +35,7 @@ class JwtPayload {
     var name = '';
     var subject = '';
     var email = '';
+    var tenantId = '';
     var issuer = '';
     var audience = '';
     var nbf = DateTime.now();
@@ -50,6 +53,9 @@ class JwtPayload {
           break;
         case 'email':
           email = entry.value;
+          break;
+        case 'tenantId':
+          tenantId = entry.value;
           break;
         case 'iss':
           issuer = entry.value;
@@ -83,6 +89,7 @@ class JwtPayload {
       expires: exp,
       extra: extra,
       emailVerified: emailVerified,
+      tenantId: tenantId,
     );
     return payload;
   }

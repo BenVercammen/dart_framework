@@ -23,7 +23,7 @@ dependencies:
     path: ../../defaults_provider/defaults_provider_generator
   squarealfa_entity_generator: #^1.1.0
     path: ../../entity/entity_generator
-  analyzer: ^1.2.0
+  analyzer: ^2.0.0
   build: ^2.0.0
 
 
