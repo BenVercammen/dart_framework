@@ -20,4 +20,4 @@ dev_dependencies:
   map_mapper_generator: #^1.0.0
     path: ../map_mapper_generator
 
-  build_runner: ^1.12.2
+  build_runner: ^2.0.0

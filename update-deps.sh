@@ -8,7 +8,7 @@ paths=(
 './proto_mapper/test/ '
 './map_mapper/map_mapper_annotations'
 './map_mapper/map_mapper_generator'
-'./map_mapper/map_mapper_example'
+'./map_mapper/example'
 './map_mapper/test'
 './defaults_provider/defaults_provider_annotations'
 './defaults_provider/defaults_provider_generator'
@@ -23,7 +23,7 @@ paths=(
 './entity_adapter/example'
 './example_model'
 './arango_driver'
-'./security'
+'./squarealfa_security'
 './nosql_repository'
 './arango_repository'
 )
