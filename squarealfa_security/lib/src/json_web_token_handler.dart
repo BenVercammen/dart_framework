@@ -60,6 +60,7 @@ class JsonWebTokenHandler {
     return signature;
   }
 
+
   static JwtPayload deserializeJwtPayload(String payloadBase64, bool isVerified) {
     final json = decodeB64Json(payloadBase64);
     final map = jsonDecode(json);
