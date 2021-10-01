@@ -4,10 +4,10 @@ dart:
 
 stages:
 - analyze_format:
-  - analyze
-  
+  - analyze: --fatal-infos
+
 - unit_test:
-  - test  
+  - test
 
 
 cache:
