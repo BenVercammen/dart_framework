@@ -4,8 +4,9 @@ dart:
 
 stages:
 - analyze_format:
-  - analyze: --fatal-infos
-  - format
+  - group:
+    - analyze: --fatal-infos
+    - format
 
 - unit_test:
   - test
