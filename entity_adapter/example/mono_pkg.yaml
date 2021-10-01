@@ -5,6 +5,7 @@ dart:
 stages:
 - analyze_format:
   - analyze: --fatal-infos
+  - format
 
 cache:
   directories:
