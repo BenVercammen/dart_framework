@@ -8,15 +8,24 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use gRecipeDescriptor instead')
-const GRecipe$json = const {
+const GRecipe$json = {
   '1': 'GRecipe',
-  '2': const [
-    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'ptitle', '3': 2, '4': 1, '5': 9, '10': 'ptitle'},
-    const {'1': 'ingredients', '3': 3, '4': 3, '5': 11, '6': '.GIngredient', '10': 'ingredients'},
+  '2': [
+    {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    {'1': 'ptitle', '3': 2, '4': 1, '5': 9, '10': 'ptitle'},
+    {
+      '1': 'ingredients',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.GIngredient',
+      '10': 'ingredients'
+    },
   ],
 };
 
 /// Descriptor for `GRecipe`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gRecipeDescriptor = $convert.base64Decode('CgdHUmVjaXBlEhAKA2tleRgBIAEoCVIDa2V5EhYKBnB0aXRsZRgCIAEoCVIGcHRpdGxlEi4KC2luZ3JlZGllbnRzGAMgAygLMgwuR0luZ3JlZGllbnRSC2luZ3JlZGllbnRz');
+final $typed_data.Uint8List gRecipeDescriptor = $convert.base64Decode(
+    'CgdHUmVjaXBlEhAKA2tleRgBIAEoCVIDa2V5EhYKBnB0aXRsZRgCIAEoCVIGcHRpdGxlEi4KC2luZ3JlZGllbnRzGAMgAygLMgwuR0luZ3JlZGllbnRSC2luZ3JlZGllbnRz');

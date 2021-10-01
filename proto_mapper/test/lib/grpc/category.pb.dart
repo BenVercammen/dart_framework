@@ -12,16 +12,59 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import 'component.pb.dart' as $5;
 
 class GCategory extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GCategory', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'title')
-    ..aOM<$5.GComponent>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainComponent', protoName: 'mainComponent', subBuilder: $5.GComponent.create)
-    ..aOM<$5.GComponent>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'alternativeComponent', protoName: 'alternativeComponent', subBuilder: $5.GComponent.create)
-    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'alternativeComponentHasValue', protoName: 'alternativeComponentHasValue')
-    ..pc<$5.GComponent>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'otherComponents', $pb.PbFieldType.PM, protoName: 'otherComponents', subBuilder: $5.GComponent.create)
-    ..pc<$5.GComponent>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'secondaryComponents', $pb.PbFieldType.PM, protoName: 'secondaryComponents', subBuilder: $5.GComponent.create)
-    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'secondaryComponentsHasValue', protoName: 'secondaryComponentsHasValue')
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GCategory',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'title')
+    ..aOM<$5.GComponent>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mainComponent',
+        protoName: 'mainComponent',
+        subBuilder: $5.GComponent.create)
+    ..aOM<$5.GComponent>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'alternativeComponent',
+        protoName: 'alternativeComponent',
+        subBuilder: $5.GComponent.create)
+    ..aOB(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'alternativeComponentHasValue',
+        protoName: 'alternativeComponentHasValue')
+    ..pc<$5.GComponent>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'otherComponents',
+        $pb.PbFieldType.PM,
+        protoName: 'otherComponents',
+        subBuilder: $5.GComponent.create)
+    ..pc<$5.GComponent>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'secondaryComponents',
+        $pb.PbFieldType.PM,
+        protoName: 'secondaryComponents',
+        subBuilder: $5.GComponent.create)
+    ..aOB(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'secondaryComponentsHasValue',
+        protoName: 'secondaryComponentsHasValue')
+    ..hasRequiredFields = false;
 
   GCategory._() : super();
   factory GCategory({
@@ -57,31 +100,39 @@ class GCategory extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GCategory.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GCategory.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory GCategory.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GCategory.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   GCategory clone() => GCategory()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  GCategory copyWith(void Function(GCategory) updates) => super.copyWith((message) => updates(message as GCategory)) as GCategory; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GCategory copyWith(void Function(GCategory) updates) =>
+      super.copyWith((message) => updates(message as GCategory))
+          as GCategory; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GCategory create() => GCategory._();
   GCategory createEmptyInstance() => create();
   static $pb.PbList<GCategory> createRepeated() => $pb.PbList<GCategory>();
   @$core.pragma('dart2js:noInline')
-  static GCategory getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GCategory>(create);
+  static GCategory getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GCategory>(create);
   static GCategory? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get title => $_getSZ(0);
   @$pb.TagNumber(1)
-  set title($core.String v) { $_setString(0, v); }
+  set title($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasTitle() => $_has(0);
   @$pb.TagNumber(1)
@@ -90,7 +141,10 @@ class GCategory extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $5.GComponent get mainComponent => $_getN(1);
   @$pb.TagNumber(2)
-  set mainComponent($5.GComponent v) { setField(2, v); }
+  set mainComponent($5.GComponent v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasMainComponent() => $_has(1);
   @$pb.TagNumber(2)
@@ -101,7 +155,10 @@ class GCategory extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $5.GComponent get alternativeComponent => $_getN(2);
   @$pb.TagNumber(3)
-  set alternativeComponent($5.GComponent v) { setField(3, v); }
+  set alternativeComponent($5.GComponent v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasAlternativeComponent() => $_has(2);
   @$pb.TagNumber(3)
@@ -112,7 +169,10 @@ class GCategory extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool get alternativeComponentHasValue => $_getBF(3);
   @$pb.TagNumber(4)
-  set alternativeComponentHasValue($core.bool v) { $_setBool(3, v); }
+  set alternativeComponentHasValue($core.bool v) {
+    $_setBool(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasAlternativeComponentHasValue() => $_has(3);
   @$pb.TagNumber(4)
@@ -127,7 +187,10 @@ class GCategory extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.bool get secondaryComponentsHasValue => $_getBF(6);
   @$pb.TagNumber(7)
-  set secondaryComponentsHasValue($core.bool v) { $_setBool(6, v); }
+  set secondaryComponentsHasValue($core.bool v) {
+    $_setBool(6, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasSecondaryComponentsHasValue() => $_has(6);
   @$pb.TagNumber(7)
@@ -135,10 +198,19 @@ class GCategory extends $pb.GeneratedMessage {
 }
 
 class GListOfCategory extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GListOfCategory', createEmptyInstance: create)
-    ..pc<GCategory>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: GCategory.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GListOfCategory',
+      createEmptyInstance: create)
+    ..pc<GCategory>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'items',
+        $pb.PbFieldType.PM,
+        subBuilder: GCategory.create)
+    ..hasRequiredFields = false;
 
   GListOfCategory._() : super();
   factory GListOfCategory({
@@ -150,28 +222,33 @@ class GListOfCategory extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GListOfCategory.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GListOfCategory.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory GListOfCategory.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GListOfCategory.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   GListOfCategory clone() => GListOfCategory()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  GListOfCategory copyWith(void Function(GListOfCategory) updates) => super.copyWith((message) => updates(message as GListOfCategory)) as GListOfCategory; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GListOfCategory copyWith(void Function(GListOfCategory) updates) =>
+      super.copyWith((message) => updates(message as GListOfCategory))
+          as GListOfCategory; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GListOfCategory create() => GListOfCategory._();
   GListOfCategory createEmptyInstance() => create();
-  static $pb.PbList<GListOfCategory> createRepeated() => $pb.PbList<GListOfCategory>();
+  static $pb.PbList<GListOfCategory> createRepeated() =>
+      $pb.PbList<GListOfCategory>();
   @$core.pragma('dart2js:noInline')
-  static GListOfCategory getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GListOfCategory>(create);
+  static GListOfCategory getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GListOfCategory>(create);
   static GListOfCategory? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<GCategory> get items => $_getList(0);
 }
-

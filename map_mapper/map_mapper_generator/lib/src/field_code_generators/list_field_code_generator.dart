@@ -45,5 +45,5 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fromNullableMapExpression =>
-      '''map[\'$fieldName\'] == null ? null : ${fromMapExpression('map[\'$fieldName\']')}''';
+      '''map['$fieldName'] == null ? null : ${fromMapExpression('map[\'$fieldName\']')}''';
 }

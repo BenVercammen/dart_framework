@@ -23,7 +23,7 @@ abstract class FieldCodeGenerator {
   bool get usesKh => false;
 
   String get toMapMap =>
-      '''map[\'$mapName\'] = ${fieldDescriptor.isNullable ? toNullableMapExpression : toMapExpression} ;''';
+      '''map['$mapName'] = ${fieldDescriptor.isNullable ? toNullableMapExpression : toMapExpression} ;''';
 
   String get _defaultsProviderExpression {
     var ret = '''getValueOrDefault(
@@ -54,7 +54,7 @@ abstract class FieldCodeGenerator {
   }
 
   String get fromNullableMapExpression =>
-      '''map[\'$mapName\'] == null ? null : ${fromMapExpression('map[\'$mapName\']')}''';
+      '''map['$mapName'] == null ? null : ${fromMapExpression('map[\'$mapName\']')}''';
 
   String get fieldName => fieldDescriptor.fieldElement.name;
 

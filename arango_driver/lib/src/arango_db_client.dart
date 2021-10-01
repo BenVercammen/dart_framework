@@ -53,7 +53,7 @@ class ArangoDBClient {
       'user': user,
       'pass': pass,
       'realm': realm,
-    }).forEach((k, v) => ArgumentError.checkNotNull(v, k));
+    });
 
     dbUrl =
         Uri(scheme: scheme, host: host, port: port, pathSegments: ['_db', db]);

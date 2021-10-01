@@ -71,9 +71,6 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
   }
 
   @override
-  String get fromProtoExpression => super.fromProtoExpression;
-
-  @override
   String get fromProtoNonNullableExpression =>
       '''List<${fieldDescriptor.parameterTypeName}>.unmodifiable(instance.$protoFieldName.map((e) => $_protoToValue))''';
 }

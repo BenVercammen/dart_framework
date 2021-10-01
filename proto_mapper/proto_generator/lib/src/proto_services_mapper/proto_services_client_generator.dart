@@ -20,13 +20,13 @@ class ProtoServicesClientGenerator
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var annotation = _hydrateAnnotation(reader, prefix: _prefix);
+    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
 
     final classElement = element.asClassElement();
-    var methodDescriptors = _getMethodDescriptors(classElement, annotation);
+    var methodDescriptors = _getMethodDescriptors(classElement, readAnnotation);
 
     var ret = _generateForClass(
       classElement,

@@ -7,7 +7,7 @@ abstract class MapMapper<TEntity> {
   TEntity fromMap(Map<String, dynamic> map);
 
   /// Converts an instance of [TEntity] into a new Map<String, dynamic>
-  Map<String, dynamic> toMap(TEntity entity);
+  Map<String, dynamic> toMap(TEntity instance);
 
   T getValueOrDefault<T>(dynamic source, T Function() getDefault,
           T Function(dynamic) getFromSource) =>

@@ -44,9 +44,9 @@ class RegularExpressionValidator extends PropertyValidator {
         ? 'value != null && '
         : '';
     buffer.writeln('''
-          if ($nullEscape RegExp(r\'$expression\').stringMatch(value) != value) {
-            return RegularExpressionValidationError(\'${fieldDescriptor.name}\', 
-              expression: r\'$expression\');
+          if ($nullEscape RegExp(r'$expression').stringMatch(value) != value) {
+            return RegularExpressionValidationError('${fieldDescriptor.name}', 
+              expression: r'$expression');
           }
       ''');
     return createResult(buffer.toString());

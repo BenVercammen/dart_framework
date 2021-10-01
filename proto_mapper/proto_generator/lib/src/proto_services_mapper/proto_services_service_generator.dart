@@ -21,16 +21,19 @@ class ProtoServicesServiceGenerator
 
   @override
   String generateForAnnotatedElement(
-      Element element, ConstantReader reader, BuildStep buildStep) {
-    var annotation = _hydrateAnnotation(reader, prefix: _prefix);
+    Element element,
+    ConstantReader annotation,
+    BuildStep buildStep,
+  ) {
+    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
 
     final classElement = element.asClassElement();
-    final packageName = annotation.packageName != '' ? '' : _defaultPackage;
+    final packageName = readAnnotation.packageName != '' ? '' : _defaultPackage;
 
     final packageDeclaration = packageName != '' ? 'package $packageName;' : '';
-    final withAuthenticator = annotation.withAuthenticator;
+    final withAuthenticator = readAnnotation.withAuthenticator;
 
-    var methodDescriptors = _getMethodDescriptors(classElement, annotation);
+    var methodDescriptors = _getMethodDescriptors(classElement, readAnnotation);
 
     var ret = _generateForClass(
       classElement,

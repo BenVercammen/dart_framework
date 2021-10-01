@@ -26,7 +26,7 @@ extension AuthenticationExtensions on ServiceCall {
     required Future<JwtPayload> Function(String token) getTokenPayload,
     required Future<Principal> Function(JwtPayload payload) createPrincipal,
   }) async {
-    Principal? local_principal;
+    Principal? localPrincipal;
     try {
       final authHeader = clientMetadata?['authorization'];
 
@@ -46,11 +46,11 @@ extension AuthenticationExtensions on ServiceCall {
         throw 'Expired token';
       }
       _extra.jwtPayload = payload;
-      local_principal = await createPrincipal(payload);
+      localPrincipal = await createPrincipal(payload);
     } catch (e) {
       throw GrpcError.unauthenticated();
     } finally {
-      _extra.principal = local_principal;
+      _extra.principal = localPrincipal;
     }
     return;
   }

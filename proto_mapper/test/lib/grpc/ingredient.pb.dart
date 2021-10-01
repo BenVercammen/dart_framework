@@ -12,19 +12,77 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import 'component.pb.dart' as $5;
 
 class GIngredient extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GIngredient', createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'description')
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'quantity')
-    ..a<$core.double>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'precision', $pb.PbFieldType.OD)
-    ..a<$core.double>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cookingDuration', $pb.PbFieldType.OD, protoName: 'cookingDuration')
-    ..aOM<$5.GComponent>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainComponent', protoName: 'mainComponent', subBuilder: $5.GComponent.create)
-    ..pc<$5.GComponent>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'otherComponents', $pb.PbFieldType.PM, protoName: 'otherComponents', subBuilder: $5.GComponent.create)
-    ..aOM<$5.GComponent>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'alternativeComponent', protoName: 'alternativeComponent', subBuilder: $5.GComponent.create)
-    ..aOB(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'alternativeComponentHasValue', protoName: 'alternativeComponentHasValue')
-    ..pc<$5.GComponent>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'secondaryComponents', $pb.PbFieldType.PM, protoName: 'secondaryComponents', subBuilder: $5.GComponent.create)
-    ..aOB(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'secondaryComponentsHasValue', protoName: 'secondaryComponentsHasValue')
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GIngredient',
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'description')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'quantity')
+    ..a<$core.double>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'precision',
+        $pb.PbFieldType.OD)
+    ..a<$core.double>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cookingDuration',
+        $pb.PbFieldType.OD,
+        protoName: 'cookingDuration')
+    ..aOM<$5.GComponent>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mainComponent',
+        protoName: 'mainComponent',
+        subBuilder: $5.GComponent.create)
+    ..pc<$5.GComponent>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'otherComponents',
+        $pb.PbFieldType.PM,
+        protoName: 'otherComponents',
+        subBuilder: $5.GComponent.create)
+    ..aOM<$5.GComponent>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'alternativeComponent',
+        protoName: 'alternativeComponent',
+        subBuilder: $5.GComponent.create)
+    ..aOB(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'alternativeComponentHasValue',
+        protoName: 'alternativeComponentHasValue')
+    ..pc<$5.GComponent>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'secondaryComponents',
+        $pb.PbFieldType.PM,
+        protoName: 'secondaryComponents',
+        subBuilder: $5.GComponent.create)
+    ..aOB(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'secondaryComponentsHasValue',
+        protoName: 'secondaryComponentsHasValue')
+    ..hasRequiredFields = false;
 
   GIngredient._() : super();
   factory GIngredient({
@@ -72,31 +130,39 @@ class GIngredient extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GIngredient.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GIngredient.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory GIngredient.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GIngredient.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   GIngredient clone() => GIngredient()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  GIngredient copyWith(void Function(GIngredient) updates) => super.copyWith((message) => updates(message as GIngredient)) as GIngredient; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GIngredient copyWith(void Function(GIngredient) updates) =>
+      super.copyWith((message) => updates(message as GIngredient))
+          as GIngredient; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GIngredient create() => GIngredient._();
   GIngredient createEmptyInstance() => create();
   static $pb.PbList<GIngredient> createRepeated() => $pb.PbList<GIngredient>();
   @$core.pragma('dart2js:noInline')
-  static GIngredient getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GIngredient>(create);
+  static GIngredient getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GIngredient>(create);
   static GIngredient? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get description => $_getSZ(0);
   @$pb.TagNumber(1)
-  set description($core.String v) { $_setString(0, v); }
+  set description($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasDescription() => $_has(0);
   @$pb.TagNumber(1)
@@ -105,7 +171,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get quantity => $_getSZ(1);
   @$pb.TagNumber(2)
-  set quantity($core.String v) { $_setString(1, v); }
+  set quantity($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasQuantity() => $_has(1);
   @$pb.TagNumber(2)
@@ -114,7 +183,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.double get precision => $_getN(2);
   @$pb.TagNumber(3)
-  set precision($core.double v) { $_setDouble(2, v); }
+  set precision($core.double v) {
+    $_setDouble(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasPrecision() => $_has(2);
   @$pb.TagNumber(3)
@@ -123,7 +195,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.double get cookingDuration => $_getN(3);
   @$pb.TagNumber(4)
-  set cookingDuration($core.double v) { $_setDouble(3, v); }
+  set cookingDuration($core.double v) {
+    $_setDouble(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasCookingDuration() => $_has(3);
   @$pb.TagNumber(4)
@@ -132,7 +207,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $5.GComponent get mainComponent => $_getN(4);
   @$pb.TagNumber(5)
-  set mainComponent($5.GComponent v) { setField(5, v); }
+  set mainComponent($5.GComponent v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasMainComponent() => $_has(4);
   @$pb.TagNumber(5)
@@ -146,7 +224,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $5.GComponent get alternativeComponent => $_getN(6);
   @$pb.TagNumber(7)
-  set alternativeComponent($5.GComponent v) { setField(7, v); }
+  set alternativeComponent($5.GComponent v) {
+    setField(7, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasAlternativeComponent() => $_has(6);
   @$pb.TagNumber(7)
@@ -157,7 +238,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $core.bool get alternativeComponentHasValue => $_getBF(7);
   @$pb.TagNumber(8)
-  set alternativeComponentHasValue($core.bool v) { $_setBool(7, v); }
+  set alternativeComponentHasValue($core.bool v) {
+    $_setBool(7, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasAlternativeComponentHasValue() => $_has(7);
   @$pb.TagNumber(8)
@@ -169,7 +253,10 @@ class GIngredient extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   $core.bool get secondaryComponentsHasValue => $_getBF(9);
   @$pb.TagNumber(10)
-  set secondaryComponentsHasValue($core.bool v) { $_setBool(9, v); }
+  set secondaryComponentsHasValue($core.bool v) {
+    $_setBool(9, v);
+  }
+
   @$pb.TagNumber(10)
   $core.bool hasSecondaryComponentsHasValue() => $_has(9);
   @$pb.TagNumber(10)
@@ -177,10 +264,19 @@ class GIngredient extends $pb.GeneratedMessage {
 }
 
 class GListOfIngredient extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GListOfIngredient', createEmptyInstance: create)
-    ..pc<GIngredient>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'items', $pb.PbFieldType.PM, subBuilder: GIngredient.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GListOfIngredient',
+      createEmptyInstance: create)
+    ..pc<GIngredient>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'items',
+        $pb.PbFieldType.PM,
+        subBuilder: GIngredient.create)
+    ..hasRequiredFields = false;
 
   GListOfIngredient._() : super();
   factory GListOfIngredient({
@@ -192,28 +288,33 @@ class GListOfIngredient extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory GListOfIngredient.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GListOfIngredient.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory GListOfIngredient.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GListOfIngredient.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   GListOfIngredient clone() => GListOfIngredient()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  GListOfIngredient copyWith(void Function(GListOfIngredient) updates) => super.copyWith((message) => updates(message as GListOfIngredient)) as GListOfIngredient; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GListOfIngredient copyWith(void Function(GListOfIngredient) updates) =>
+      super.copyWith((message) => updates(message as GListOfIngredient))
+          as GListOfIngredient; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GListOfIngredient create() => GListOfIngredient._();
   GListOfIngredient createEmptyInstance() => create();
-  static $pb.PbList<GListOfIngredient> createRepeated() => $pb.PbList<GListOfIngredient>();
+  static $pb.PbList<GListOfIngredient> createRepeated() =>
+      $pb.PbList<GListOfIngredient>();
   @$core.pragma('dart2js:noInline')
-  static GListOfIngredient getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GListOfIngredient>(create);
+  static GListOfIngredient getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GListOfIngredient>(create);
   static GListOfIngredient? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<GIngredient> get items => $_getList(0);
 }
-

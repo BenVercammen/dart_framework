@@ -33,7 +33,9 @@ class FirebaseTokenHandler {
       subject: claims.getTyped('sub'),
       email: claims.getTyped('email'),
       emailVerified: claims.getTyped('email_verified'),
-      tenantId: claims.getTyped('tenantId'),
+      tenantId: claims.getTyped('tenantId') ?? '',
+      permissions: claims.getTypedList<String>('scp') ?? const <String>[],
+      isAdministrator: claims.getTyped('adm') ?? false,
       isVerified: true,
     );
     return payload;

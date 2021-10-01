@@ -27,17 +27,18 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader constantReader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var annotation = _hydrateAnnotation(constantReader, prefix: _prefix);
-    if (annotation == null) return '';
-    _prefix = annotation.prefix ?? _prefix;
+    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
+    if (readAnnotation == null) return '';
+    _prefix = readAnnotation.prefix ?? _prefix;
 
     _classElement = element.asClassElement();
     if (_classElement!.kind.name == 'ENUM') return renderEnumMapper();
 
-    final fieldDescriptors = _getFieldDescriptors(_classElement!, annotation);
+    final fieldDescriptors =
+        _getFieldDescriptors(_classElement!, readAnnotation);
 
     var toProtoFieldBuffer = StringBuffer();
     var fromProtoFieldBuffer = StringBuffer();

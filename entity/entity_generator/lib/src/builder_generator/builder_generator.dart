@@ -15,10 +15,10 @@ class BuilderGenerator extends GeneratorForAnnotation<BuildBuilder> {
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final annotation = _hydrateAnnotation(reader);
+    final readAnnotation = _hydrateAnnotation(annotation);
     var classElement = element.asClassElement();
     if (classElement.kind.name == 'ENUM') return '';
     _className = classElement.name;
@@ -31,7 +31,7 @@ class BuilderGenerator extends GeneratorForAnnotation<BuildBuilder> {
 
     var renderBuffer = StringBuffer();
 
-    renderBuffer.writeln(_renderBuilder(annotation, fieldDescriptors));
+    renderBuffer.writeln(_renderBuilder(readAnnotation, fieldDescriptors));
 
     return renderBuffer.toString();
   }

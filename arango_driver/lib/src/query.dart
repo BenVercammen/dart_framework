@@ -35,9 +35,7 @@ class Query {
   /// Returns binded vars from query object.
   Map<String, dynamic> get bindedVars => bindVarsMap;
 
-  Query(this.fragments, {List<BindNameValuePair> bindVars = const []}) {
-    this.bindVars = bindVars;
-  }
+  Query(this.fragments, {this.bindVars = const []});
 
   /// Like Query() but named constructor.
   Query.create(fragments, {List<BindNameValuePair> bindVars = const []}) {

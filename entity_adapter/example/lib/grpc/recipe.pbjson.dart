@@ -8,25 +8,34 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use gRecipeDescriptor instead')
-const GRecipe$json = const {
+const GRecipe$json = {
   '1': 'GRecipe',
-  '2': const [
-    const {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
-    const {'1': 'description', '3': 2, '4': 1, '5': 9, '10': 'description'},
-    const {'1': 'descriptionHasValue', '3': 3, '4': 1, '5': 8, '10': 'descriptionHasValue'},
+  '2': [
+    {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
+    {'1': 'description', '3': 2, '4': 1, '5': 9, '10': 'description'},
+    {
+      '1': 'descriptionHasValue',
+      '3': 3,
+      '4': 1,
+      '5': 8,
+      '10': 'descriptionHasValue'
+    },
   ],
 };
 
 /// Descriptor for `GRecipe`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gRecipeDescriptor = $convert.base64Decode('CgdHUmVjaXBlEhQKBXRpdGxlGAEgASgJUgV0aXRsZRIgCgtkZXNjcmlwdGlvbhgCIAEoCVILZGVzY3JpcHRpb24SMAoTZGVzY3JpcHRpb25IYXNWYWx1ZRgDIAEoCFITZGVzY3JpcHRpb25IYXNWYWx1ZQ==');
+final $typed_data.Uint8List gRecipeDescriptor = $convert.base64Decode(
+    'CgdHUmVjaXBlEhQKBXRpdGxlGAEgASgJUgV0aXRsZRIgCgtkZXNjcmlwdGlvbhgCIAEoCVILZGVzY3JpcHRpb24SMAoTZGVzY3JpcHRpb25IYXNWYWx1ZRgDIAEoCFITZGVzY3JpcHRpb25IYXNWYWx1ZQ==');
 @$core.Deprecated('Use gListOfRecipeDescriptor instead')
-const GListOfRecipe$json = const {
+const GListOfRecipe$json = {
   '1': 'GListOfRecipe',
-  '2': const [
-    const {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GRecipe', '10': 'items'},
+  '2': [
+    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GRecipe', '10': 'items'},
   ],
 };
 
 /// Descriptor for `GListOfRecipe`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gListOfRecipeDescriptor = $convert.base64Decode('Cg1HTGlzdE9mUmVjaXBlEh4KBWl0ZW1zGAEgAygLMgguR1JlY2lwZVIFaXRlbXM=');
+final $typed_data.Uint8List gListOfRecipeDescriptor = $convert.base64Decode(
+    'Cg1HTGlzdE9mUmVjaXBlEh4KBWl0ZW1zGAEgAygLMgguR1JlY2lwZVIFaXRlbXM=');

@@ -1,6 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:build/src/builder/build_step.dart';
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
@@ -10,7 +9,7 @@ import 'field_descriptor.dart';
 
 class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
   final BuilderOptions options;
-  late final _keyHandler;
+  late final String _keyHandler;
   ClassElement? _classElement;
   String? _className;
 
@@ -22,10 +21,10 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
   @override
   String? generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final annotation = _hydrateAnnotation(reader);
+    final readAnnotation = _hydrateAnnotation(annotation);
 
     if (element is! ClassElement) return null;
     _classElement = element;
@@ -40,9 +39,9 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
     var constructorFieldBuffer = StringBuffer();
     var fieldNamesBuffer = StringBuffer();
 
-    var fieldDescriptors = _getFieldDescriptors(_classElement!, annotation);
+    var fieldDescriptors = _getFieldDescriptors(_classElement!, readAnnotation);
     var defaultsProviderClassName =
-        getDefaultsProvider(_classElement, annotation, fieldDescriptors);
+        getDefaultsProvider(_classElement, readAnnotation, fieldDescriptors);
     var hasDefaultsProvider = defaultsProviderClassName != null;
     var declareKh = false;
 

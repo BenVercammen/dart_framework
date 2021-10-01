@@ -10,11 +10,11 @@ class KeyFieldCodeGenerator extends FieldCodeGenerator {
   bool get usesKh => true;
 
   @override
-  String get mapValue => '''\$kh.fieldNameToMapKey(\'$fieldName\')''';
+  String get mapValue => '''\$kh.fieldNameToMapKey('$fieldName')''';
 
   @override
   String get toMapMap =>
-      '''\$kh.keyToMap(map, instance.$fieldName ${fieldDescriptor.isNullable ? '?? \'\' ' : ''}, \'$fieldName\');''';
+      '''\$kh.keyToMap(map, instance.$fieldName ${fieldDescriptor.isNullable ? '?? \'\' ' : ''}, '$fieldName');''';
 
   @override
   String fromMapExpression(String sourceExpression) =>

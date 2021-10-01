@@ -21,23 +21,26 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
 
   @override
   String generateForAnnotatedElement(
-      Element element, ConstantReader reader, BuildStep buildStep) {
-    var annotation = _hydrateAnnotation(reader, prefix: _prefix);
+    Element element,
+    ConstantReader annotation,
+    BuildStep buildStep,
+  ) {
+    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
 
     var classElement = element.asClassElement();
-    var packageName = annotation.packageName != '' ? '' : _defaultPackage;
+    var packageName = readAnnotation.packageName != '' ? '' : _defaultPackage;
 
     final packageDeclaration = packageName != '' ? 'package $packageName;' : '';
 
     var ret = classElement.kind.name == 'ENUM'
         ? _generateForEnum(
             classElement,
-            annotation,
+            readAnnotation,
             packageDeclaration,
           )
         : _generateForClass(
             classElement,
-            annotation,
+            readAnnotation,
             packageDeclaration,
           );
 

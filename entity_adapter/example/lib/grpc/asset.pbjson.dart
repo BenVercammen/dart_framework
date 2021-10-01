@@ -8,24 +8,27 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use gAssetDescriptor instead')
-const GAsset$json = const {
+const GAsset$json = {
   '1': 'GAsset',
-  '2': const [
-    const {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  '2': [
+    {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
+    {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
   ],
 };
 
 /// Descriptor for `GAsset`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gAssetDescriptor = $convert.base64Decode('CgZHQXNzZXQSIAoLZGVzY3JpcHRpb24YASABKAlSC2Rlc2NyaXB0aW9uEhQKBXZhbHVlGAIgASgJUgV2YWx1ZQ==');
+final $typed_data.Uint8List gAssetDescriptor = $convert.base64Decode(
+    'CgZHQXNzZXQSIAoLZGVzY3JpcHRpb24YASABKAlSC2Rlc2NyaXB0aW9uEhQKBXZhbHVlGAIgASgJUgV2YWx1ZQ==');
 @$core.Deprecated('Use gListOfAssetDescriptor instead')
-const GListOfAsset$json = const {
+const GListOfAsset$json = {
   '1': 'GListOfAsset',
-  '2': const [
-    const {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GAsset', '10': 'items'},
+  '2': [
+    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GAsset', '10': 'items'},
   ],
 };
 
 /// Descriptor for `GListOfAsset`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gListOfAssetDescriptor = $convert.base64Decode('CgxHTGlzdE9mQXNzZXQSHQoFaXRlbXMYASADKAsyBy5HQXNzZXRSBWl0ZW1z');
+final $typed_data.Uint8List gListOfAssetDescriptor = $convert.base64Decode(
+    'CgxHTGlzdE9mQXNzZXQSHQoFaXRlbXMYASADKAsyBy5HQXNzZXRSBWl0ZW1z');

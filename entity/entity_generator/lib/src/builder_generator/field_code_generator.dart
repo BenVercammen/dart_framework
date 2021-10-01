@@ -15,7 +15,7 @@ abstract class FieldCodeGenerator {
 
   FieldCodeGenerator(this.fieldDescriptor, this.buildBuilder);
 
-  String get fieldType => '${fieldDescriptor.fieldElementTypeName}';
+  String get fieldType => fieldDescriptor.fieldElementTypeName;
 
   String get fieldDeclaration => fieldDescriptor.isNullable
       ? '  $fieldType? ${fieldDescriptor.name};'
@@ -49,7 +49,7 @@ abstract class FieldCodeGenerator {
   String get entityConstructorMap =>
       '${fieldDescriptor.name}: $constructorExpression,';
 
-  String get constructorExpression => '${fieldDescriptor.name}';
+  String get constructorExpression => fieldDescriptor.name;
 
   factory FieldCodeGenerator.fromFieldDescriptor(
       FieldDescriptor fieldDescriptor, BuildBuilder buildBuilder) {

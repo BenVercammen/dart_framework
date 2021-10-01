@@ -22,8 +22,8 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fromNullableMapExpression => '''
-  (map[\'$mapName\'] != null
-      ? const \$${fieldDescriptor.fieldElementTypeName}MapMapper().fromMap(map[\'$mapName\'])
+  (map['$mapName'] != null
+      ? const \$${fieldDescriptor.fieldElementTypeName}MapMapper().fromMap(map['$mapName'])
       : null)''';
 
   @override

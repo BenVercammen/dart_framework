@@ -13,14 +13,14 @@ class EntityAdapterGenerator extends GeneratorForAnnotation<EntityAdapted> {
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
     final classElement = element.asClassElement();
 
     if (classElement.kind.name == 'ENUM') return '';
 
-    final type = reader.read('rootEntityType').typeValue;
+    final type = annotation.read('rootEntityType').typeValue;
     if (!classElement.allSupertypes.any((st) => st.element == type.element)) {
       return '';
     }

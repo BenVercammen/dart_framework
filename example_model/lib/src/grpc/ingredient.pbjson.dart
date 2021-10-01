@@ -8,14 +8,16 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use gIngredientDescriptor instead')
-const GIngredient$json = const {
+const GIngredient$json = {
   '1': 'GIngredient',
-  '2': const [
-    const {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
-    const {'1': 'quantity', '3': 2, '4': 1, '5': 1, '10': 'quantity'},
+  '2': [
+    {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
+    {'1': 'quantity', '3': 2, '4': 1, '5': 1, '10': 'quantity'},
   ],
 };
 
 /// Descriptor for `GIngredient`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gIngredientDescriptor = $convert.base64Decode('CgtHSW5ncmVkaWVudBIgCgtkZXNjcmlwdGlvbhgBIAEoCVILZGVzY3JpcHRpb24SGgoIcXVhbnRpdHkYAiABKAFSCHF1YW50aXR5');
+final $typed_data.Uint8List gIngredientDescriptor = $convert.base64Decode(
+    'CgtHSW5ncmVkaWVudBIgCgtkZXNjcmlwdGlvbhgBIAEoCVILZGVzY3JpcHRpb24SGgoIcXVhbnRpdHkYAiABKAFSCHF1YW50aXR5');

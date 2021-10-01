@@ -43,7 +43,7 @@ class IterableFieldCodeGenerator extends FieldCodeGenerator {
               .parameterTypeHasEntityMapAnnotation &&
           !fieldDescriptor.parameterTypeIsEnum
       ? '''${fieldDescriptor.isNullable ? '${fieldDescriptor.name} == null ? null : ' : ''} List.unmodifiable(${fieldDescriptor.valueName}.map((e) => e.build()))'''
-      : '${fieldDescriptor.name}';
+      : fieldDescriptor.name;
 
   @override
   String get defaultProvided => '?.toList() ?? []';

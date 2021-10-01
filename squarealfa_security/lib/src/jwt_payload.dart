@@ -1,7 +1,6 @@
 /// Represents the payload content of a JWT token.
 class JwtPayload {
   final String subject;
-  //final String username;
   final String email;
   final String name;
   final String issuer;
@@ -11,6 +10,8 @@ class JwtPayload {
   final bool emailVerified;
   final bool isVerified;
   final String tenantId;
+  final bool isAdministrator;
+  final List<String> permissions;
 
   /// any other extra fields that are
   /// not represented in the available properties
@@ -28,6 +29,8 @@ class JwtPayload {
     this.emailVerified = false,
     this.isVerified = false,
     this.tenantId = '',
+    this.permissions = const [],
+    this.isAdministrator = false,
     this.extra = const <String, dynamic>{},
   });
 
@@ -38,6 +41,8 @@ class JwtPayload {
     var tenantId = '';
     var issuer = '';
     var audience = '';
+    var permissions = const <String>[];
+    var isAdministrator = false;
     var nbf = DateTime.now();
     var exp = DateTime.now();
     var emailVerified = false;
@@ -69,6 +74,12 @@ class JwtPayload {
         case 'exp':
           exp = _getDateTime(entry.value.toString());
           break;
+        case 'scp':
+          permissions = entry.value as List<String>;
+          break;
+        case 'adm':
+          isAdministrator = entry.value;
+          break;
         case 'email_verified':
           emailVerified =
               (entry.value.toString()).toLowerCase().trim() == 'true';
@@ -80,17 +91,18 @@ class JwtPayload {
     }
 
     var payload = JwtPayload(
-      name: name,
-      subject: subject,
-      email: email,
-      issuer: issuer,
-      audience: audience,
-      notBefore: nbf,
-      expires: exp,
-      extra: extra,
-      emailVerified: emailVerified,
-      tenantId: tenantId,
-    );
+        name: name,
+        subject: subject,
+        email: email,
+        issuer: issuer,
+        audience: audience,
+        notBefore: nbf,
+        expires: exp,
+        extra: extra,
+        emailVerified: emailVerified,
+        tenantId: tenantId,
+        permissions: permissions,
+        isAdministrator: isAdministrator);
     return payload;
   }
 
@@ -136,6 +148,8 @@ class JwtPayload {
     _addClaimIfNotNull(map, 'aud', audience);
     _addClaimIfNotNull(map, 'nbf', nbf);
     _addClaimIfNotNull(map, 'exp', exp);
+    _addClaimIfNotNull(map, 'adm', isAdministrator);
+    _addClaimIfNotNull(map, 'scp', permissions);
     for (var claim in extra.entries) {
       _addClaimIfNotNull(map, claim.key, claim.value);
     }

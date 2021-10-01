@@ -12,10 +12,10 @@ class DefaultsProviderGenerator
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var validatable = _hydrateAnnotation(reader);
+    var validatable = _hydrateAnnotation(annotation);
     var createBaseClass = validatable.createDefaultsProviderBaseClass;
 
     try {

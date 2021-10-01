@@ -29,7 +29,7 @@ class RequiredValidator extends PropertyValidator {
       return createResult('''
           if (${fieldDescriptor.isNullable ? 'value?.isEmpty ?? true' : 'value.isEmpty'} )
           { 
-            return RequiredValidationError(\'${fieldDescriptor.name}\');
+            return RequiredValidationError('${fieldDescriptor.name}');
           }
         ''');
     }
@@ -39,7 +39,7 @@ class RequiredValidator extends PropertyValidator {
     return createResult('''
           if (value == null) 
           {
-            return RequiredValidationError(\'${fieldDescriptor.name}\');        
+            return RequiredValidationError('${fieldDescriptor.name}');   
           }
          ''', true);
   }

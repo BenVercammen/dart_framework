@@ -16,10 +16,10 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final validatable = _hydrateAnnotation(reader);
+    final validatable = _hydrateAnnotation(annotation);
     final createBaseClass = validatable.createValidatableBaseClass;
 
     try {
@@ -203,7 +203,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
       }).where((p) => p.errorList.validationErrors.isNotEmpty).toList();
       
       if (errorLists.isNotEmpty) {
-        return ListPropertyValidation(\'${fieldDescriptor.name}\', errorLists);
+        return ListPropertyValidation('${fieldDescriptor.name}', errorLists);
       }
 
 
@@ -224,7 +224,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
 
         var errors = 
           \$${fieldDescriptor.fieldElementType.getDisplayString(withNullability: false)}Validator().validate(value);
-        var errorListValidation = PropertyValidation(\'${fieldDescriptor.name}\', errors);
+        var errorListValidation = PropertyValidation('${fieldDescriptor.name}', errors);
 
         if (errorListValidation.errorList.validationErrors.isNotEmpty) {
           return errorListValidation;

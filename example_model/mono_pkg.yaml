@@ -1,0 +1,11 @@
+# https://github.com/google/mono_repo.dart
+dart:
+- stable
+
+stages:
+- analyze_format:
+  - analyze
+
+cache:
+  directories:
+  - .dart_tool/build

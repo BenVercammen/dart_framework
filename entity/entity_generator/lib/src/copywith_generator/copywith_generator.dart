@@ -13,7 +13,7 @@ class CopyWithGenerator extends GeneratorForAnnotation<CopyWith> {
   @override
   String generateForAnnotatedElement(
     Element element,
-    ConstantReader reader,
+    ConstantReader annotation,
     BuildStep buildStep,
   ) {
     var classElement = element.asClassElement();

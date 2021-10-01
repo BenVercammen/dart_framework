@@ -110,12 +110,12 @@ class MongoRepository<TEntity> extends Repository<TEntity> {
 
   @override
   Future delete(
-    String id,
+    String key,
     DbPrincipal principal, {
     DeletePolicy? deletePolicy,
     RepositoryTransaction? transaction,
   }) async {
-    var map = await _getFromId(id, principal);
+    var map = await _getFromId(key, principal);
 
     deletePolicy ??= this.deletePolicy;
     _handleMeta(map, principal, deletePolicy);
@@ -123,7 +123,7 @@ class MongoRepository<TEntity> extends Repository<TEntity> {
 
     try {
       final collection = await entityDb.collection;
-      await collection.remove(where.eq('_id', ObjectId.fromHexString(id)));
+      await collection.remove(where.eq('_id', ObjectId.fromHexString(key)));
     } on DbException {
       rethrow;
     } catch (ex) {
@@ -133,12 +133,12 @@ class MongoRepository<TEntity> extends Repository<TEntity> {
 
   @override
   Future<Map<String, dynamic>> get(
-    String id,
+    String key,
     DbPrincipal principal, {
     SearchPolicy? searchPolicy,
     RepositoryTransaction? transaction,
   }) async {
-    final map = await _getFromId(id, principal);
+    final map = await _getFromId(key, principal);
     searchPolicy ??= this.searchPolicy;
 
     _handleMeta(map, principal, searchPolicy);

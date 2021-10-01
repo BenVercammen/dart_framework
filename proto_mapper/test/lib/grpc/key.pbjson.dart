@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use gKeyDescriptor instead')
 const GKey$json = const {
   '1': 'GKey',
@@ -17,7 +18,8 @@ const GKey$json = const {
 };
 
 /// Descriptor for `GKey`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gKeyDescriptor = $convert.base64Decode('CgRHS2V5EhAKA2tleRgBIAEoCVIDa2V5');
+final $typed_data.Uint8List gKeyDescriptor =
+    $convert.base64Decode('CgRHS2V5EhAKA2tleRgBIAEoCVIDa2V5');
 @$core.Deprecated('Use gListOfKeyDescriptor instead')
 const GListOfKey$json = const {
   '1': 'GListOfKey',
@@ -27,4 +29,5 @@ const GListOfKey$json = const {
 };
 
 /// Descriptor for `GListOfKey`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List gListOfKeyDescriptor = $convert.base64Decode('CgpHTGlzdE9mS2V5EhsKBWl0ZW1zGAEgAygLMgUuR0tleVIFaXRlbXM=');
+final $typed_data.Uint8List gListOfKeyDescriptor = $convert
+    .base64Decode('CgpHTGlzdE9mS2V5EhsKBWl0ZW1zGAEgAygLMgUuR0tleVIFaXRlbXM=');

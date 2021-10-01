@@ -12,5 +12,5 @@ dev_dependencies:
   squarealfa_entity_generator: ^1.0.1
   build_runner: ^1.10.2
   build_verify: ^2.0.0
-  pedantic: ^1.11.0
+  lints: ^1.0.1
   test: ^1.16.8

@@ -11,7 +11,5 @@ import 'query_text_fragment.dart';
 /// ])
 /// ```
 class LineIfThen extends QueryTextFragment {
-  LineIfThen(bool cond, String whenTrue) {
-    line = cond ? whenTrue : '';
-  }
+  LineIfThen(bool cond, String whenTrue) : super(cond ? whenTrue : '');
 }
