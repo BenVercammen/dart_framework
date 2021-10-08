@@ -13,3 +13,7 @@
 ## 1.2.1
 
 - Added reference to integrating framework.
+
+## 2.0.0
+
+- Removed KeyHandler as a dependency and added as build generator (and many other breaking changes).

@@ -25,3 +25,7 @@
 ## 1.0.3
 
 - Added reference to integrating framework.
+
+## 2.0.0
+
+- KeyHandler is no longer a dependency, but a build configuration.

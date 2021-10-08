@@ -57,3 +57,7 @@
 ## 1.1.1
 
 - Added reference to integrating framework.
+
+## 2.0.0
+
+- Updated dependencies

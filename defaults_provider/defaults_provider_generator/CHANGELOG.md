@@ -14,3 +14,6 @@
 
 - Fixed bug with target classes without a non-nullable field
 
+## 2.0.0
+
+- Generated defaults provider prefixed with $. Replaced singleton with const class. (Breaking changes).

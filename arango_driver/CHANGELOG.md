@@ -191,3 +191,7 @@ Fix pedantic warning again
 ## 1.1.2
 
 - Updated dev dependencies
+
+## 2.0.0
+
+- Collection and Index maintenance multiple parameters replaced by single criteria parameter (breaking change)

@@ -21,3 +21,7 @@
 ## 1.1.2
 
 - Removed local variable causing warning in generated validator for empty classes
+
+## 2.0.0
+
+- No longer using builder and validator singletons, but const classes (and other breaking changes).

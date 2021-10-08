@@ -33,3 +33,7 @@
 ## 1.0.5
 
 - Updated dev dependencies
+
+## 2.0.0
+
+- Added support for Firebase generated JWT token validation

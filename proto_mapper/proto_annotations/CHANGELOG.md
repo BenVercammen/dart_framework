@@ -29,3 +29,7 @@
 ## 1.1.6
 
 - Added reference to integrating framework.
+
+## 2.0.0
+
+- Added @ProtoServices and @MapProtoServices

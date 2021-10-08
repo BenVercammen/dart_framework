@@ -17,3 +17,8 @@
 ## 1.1.2
 
 - Added reference to integrating framework.
+
+
+## 2.0.0
+
+- Made DoubleRange redundant.

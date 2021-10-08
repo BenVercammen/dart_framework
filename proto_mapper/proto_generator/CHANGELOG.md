@@ -1,3 +1,7 @@
+## 2.0.0
+
+- Generating services (with breaking changes).
+
 ## 1.2.2-dev
 
 - Update dependencies
@@ -33,3 +37,4 @@
 ## 1.0.0
 
 - Initial version
+
