@@ -5,7 +5,6 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   final fieldSet = classElement.getSortedFieldSet();
   final fieldDescriptors = fieldSet
       .map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
             fieldElement,
             annotation,
           ))

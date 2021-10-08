@@ -4,24 +4,16 @@ import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {
-  FieldDescriptor._(
-    ClassElement classElement,
-    FieldElement fieldElement,
-  ) : super(classElement, fieldElement);
+  FieldDescriptor._(FieldElement fieldElement)
+      : super.fromFieldElement(fieldElement);
 
-  factory FieldDescriptor.fromFieldElement(
-    ClassElement classElement,
-    FieldElement fieldElement,
-  ) {
-    return FieldDescriptor._(
-      classElement,
-      fieldElement,
-    );
+  factory FieldDescriptor.fromFieldElement(FieldElement fieldElement) {
+    return FieldDescriptor._(fieldElement);
   }
 
   bool get typeHasDefaultsProvider {
     var annotation = TypeChecker.fromRuntime(DefaultsProvider)
-        .firstAnnotationOf(fieldElement.type.element!);
+        .firstAnnotationOf(fieldElementType.element!);
     return annotation != null;
   }
 }

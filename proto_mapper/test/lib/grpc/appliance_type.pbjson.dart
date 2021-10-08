@@ -10,24 +10,24 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gApplianceTypeDescriptor instead')
-const GApplianceType$json = const {
+const GApplianceType$json = {
   '1': 'GApplianceType',
-  '2': const [
-    const {'1': 'Heat', '2': 0},
-    const {'1': 'Cold', '2': 1},
-    const {'1': 'Cutlery', '2': 2},
+  '2': [
+    {'1': 'heat', '2': 0},
+    {'1': 'cold', '2': 1},
+    {'1': 'cutlery', '2': 2},
   ],
 };
 
 /// Descriptor for `GApplianceType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List gApplianceTypeDescriptor = $convert.base64Decode(
-    'Cg5HQXBwbGlhbmNlVHlwZRIICgRIZWF0EAASCAoEQ29sZBABEgsKB0N1dGxlcnkQAg==');
+    'Cg5HQXBwbGlhbmNlVHlwZRIICgRoZWF0EAASCAoEY29sZBABEgsKB2N1dGxlcnkQAg==');
 @$core.Deprecated('Use nullableGApplianceTypeDescriptor instead')
-const NullableGApplianceType$json = const {
+const NullableGApplianceType$json = {
   '1': 'NullableGApplianceType',
-  '2': const [
-    const {'1': 'hasValue', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
-    const {
+  '2': [
+    {'1': 'hasValue', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
+    {
       '1': 'value',
       '3': 2,
       '4': 1,

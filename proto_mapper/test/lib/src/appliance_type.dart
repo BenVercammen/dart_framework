@@ -6,7 +6,7 @@ part 'appliance_type.g.dart';
 @proto
 @mapProto
 enum ApplianceType {
-  Heat,
-  Cold,
-  Cutlery,
+  heat,
+  cold,
+  cutlery,
 }

@@ -31,7 +31,7 @@ class NullableGApplianceType extends $pb.GeneratedMessage {
             ? ''
             : 'value',
         $pb.PbFieldType.OE,
-        defaultOrMaker: GApplianceType.Heat,
+        defaultOrMaker: GApplianceType.heat,
         valueOf: GApplianceType.valueOf,
         enumValues: GApplianceType.values)
     ..hasRequiredFields = false;

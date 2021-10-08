@@ -23,7 +23,6 @@ message GIngredient
   bool alternativeComponentHasValue = 8;
   repeated GComponent secondaryComponents = 9;
   bool secondaryComponentsHasValue = 10;
-
 }   
 
 message GListOfIngredient

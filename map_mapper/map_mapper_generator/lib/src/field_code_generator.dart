@@ -56,7 +56,7 @@ abstract class FieldCodeGenerator {
   String get fromNullableMapExpression =>
       '''map['$mapName'] == null ? null : ${fromMapExpression('map[\'$mapName\']')}''';
 
-  String get fieldName => fieldDescriptor.fieldElement.name;
+  String get fieldName => fieldDescriptor.displayName;
 
   factory FieldCodeGenerator.fromFieldDescriptor(
     FieldDescriptor fieldDescriptor,
@@ -80,11 +80,11 @@ abstract class FieldCodeGenerator {
     if (fieldDescriptor.typeHasMapMapAnnotation) {
       return EntityFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreSet) {
+    if (fieldDescriptor.fieldElementType.isDartCoreSet) {
       return SetFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreList ||
-        fieldDescriptor.fieldElement.type.isDartCoreIterable) {
+    if (fieldDescriptor.fieldElementType.isDartCoreList ||
+        fieldDescriptor.fieldElementType.isDartCoreIterable) {
       return ListFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
     }
     return GenericFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);

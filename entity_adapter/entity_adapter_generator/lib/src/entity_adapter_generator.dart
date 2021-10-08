@@ -18,7 +18,7 @@ class EntityAdapterGenerator extends GeneratorForAnnotation<EntityAdapted> {
   ) {
     final classElement = element.asClassElement();
 
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
 
     final type = annotation.read('rootEntityType').typeValue;
     if (!classElement.allSupertypes.any((st) => st.element == type.element)) {

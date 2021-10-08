@@ -13,7 +13,6 @@ syntax = "proto3";
 message GComponent
 {
   string description = 1;
-
 }   
 
 message GListOfComponent

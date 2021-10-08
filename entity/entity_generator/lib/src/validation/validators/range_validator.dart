@@ -66,14 +66,14 @@ class RangeValidator extends PropertyValidator {
     if (annotation.minValue != null) {
       buffer.writeln('''
           if ($nullEscape value < $minFieldLiteral) {
-            return RangeValidationError('${fieldDescriptor.name}', value: value, minValue: $minFieldLiteral, maxValue: $maxFieldLiteral);
+            return RangeValidationError('${fieldDescriptor.displayName}', value: value, minValue: $minFieldLiteral, maxValue: $maxFieldLiteral);
           }
       ''');
     }
     if (annotation.maxValue != null) {
       buffer.writeln('''
           if ($nullEscape value > $maxFieldLiteral) {
-            return RangeValidationError('${fieldDescriptor.name}', value: value, minValue: $minFieldLiteral, maxValue: $maxFieldLiteral);
+            return RangeValidationError('${fieldDescriptor.displayName}', value: value, minValue: $minFieldLiteral, maxValue: $maxFieldLiteral);
           }
       ''');
     }

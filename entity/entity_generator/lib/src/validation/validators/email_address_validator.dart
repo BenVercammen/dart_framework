@@ -34,7 +34,7 @@ class EmailAddressValidator extends PropertyValidator {
         .hasMatch(value ${fieldDescriptor.isNullable ? ' ?? \'\'' : ''})
         )
         {
-          return EmailAddressValidationError('${fieldDescriptor.name}');
+          return EmailAddressValidationError('${fieldDescriptor.displayName}');
         }
         ''');
     }
@@ -44,7 +44,7 @@ class EmailAddressValidator extends PropertyValidator {
     return createResult('''
           if (value == null) 
           {
-            return RequiredValidationError('${fieldDescriptor.name}'); 
+            return RequiredValidationError('${fieldDescriptor.displayName}'); 
           }
          ''', true);
   }

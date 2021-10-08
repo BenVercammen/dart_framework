@@ -45,7 +45,7 @@ class RegularExpressionValidator extends PropertyValidator {
         : '';
     buffer.writeln('''
           if ($nullEscape RegExp(r'$expression').stringMatch(value) != value) {
-            return RegularExpressionValidationError('${fieldDescriptor.name}', 
+            return RegularExpressionValidationError('${fieldDescriptor.displayName}', 
               expression: r'$expression');
           }
       ''');

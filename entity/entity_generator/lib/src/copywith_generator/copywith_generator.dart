@@ -17,10 +17,10 @@ class CopyWithGenerator extends GeneratorForAnnotation<CopyWith> {
     BuildStep buildStep,
   ) {
     var classElement = element.asClassElement();
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
     _className = classElement.name;
 
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
 
     var fieldDescriptors = _getFieldDescriptors(classElement);
 
@@ -39,7 +39,7 @@ class CopyWithGenerator extends GeneratorForAnnotation<CopyWith> {
 
     for (var fieldDescriptor in fieldDescriptors) {
       copyWithParameterFieldBuffer.writeln(
-          '${fieldDescriptor.fieldElementTypeName}? ${fieldDescriptor.name},');
+          '${fieldDescriptor.fieldElementTypeName}? ${fieldDescriptor.displayName},');
       var resetFieldName = fieldDescriptor.isNullable
           ? 'set${fieldDescriptor.pascalName}ToNull'
           : null;
@@ -47,7 +47,7 @@ class CopyWithGenerator extends GeneratorForAnnotation<CopyWith> {
         copyWithParameterFieldBuffer.writeln('bool $resetFieldName = false,');
       }
       copyWithAssignmentFieldBuffer.writeln(
-        '''${fieldDescriptor.name}: ${resetFieldName == null ? '' : '$resetFieldName ? null :'} ${fieldDescriptor.name} ?? this.${fieldDescriptor.name},''',
+        '''${fieldDescriptor.displayName}: ${resetFieldName == null ? '' : '$resetFieldName ? null :'} ${fieldDescriptor.displayName} ?? this.${fieldDescriptor.displayName},''',
       );
     }
 
@@ -69,10 +69,7 @@ class CopyWithGenerator extends GeneratorForAnnotation<CopyWith> {
 
 Iterable<FieldDescriptor> _getFieldDescriptors(ClassElement classElement) {
   final fieldSet = classElement.getSortedFieldSet();
-  final fieldDescriptors =
-      fieldSet.map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
-            fieldElement,
-          ));
+  final fieldDescriptors = fieldSet
+      .map((fieldElement) => FieldDescriptor.fromFieldElement(fieldElement));
   return fieldDescriptors;
 }

@@ -10,7 +10,7 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fieldDeclaration =>
-      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.name};';
+      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.displayName};';
 
   @override
   String get fieldType => fieldDescriptor.parameterTypeHasEntityMapAnnotation &&
@@ -19,7 +19,7 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
       : super.fieldType;
 
   String get _listExpression => '''
-        ${fieldDescriptor.isNullable ? 'entity.${fieldDescriptor.name} == null  ? null :' : ''}
+        ${fieldDescriptor.isNullable ? 'entity.${fieldDescriptor.displayName} == null  ? null :' : ''}
         entity.${fieldDescriptor.valueName}.map((e) => 
           \$${fieldDescriptor.parameterTypeName}Builder.from${fieldDescriptor.parameterTypeName}(e)).toList()''';
 
@@ -28,12 +28,12 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
       fieldDescriptor.parameterTypeHasEntityMapAnnotation &&
               !fieldDescriptor.parameterTypeIsEnum
           ? _listExpression
-          : 'entity.${fieldDescriptor.name}';
+          : 'entity.${fieldDescriptor.displayName}';
 
   @override
   String get constructorAssignment => fieldDescriptor.isNullable
       ? ''
-      : '${fieldDescriptor.name} = ${fieldDescriptor.name} ?? []';
+      : '${fieldDescriptor.displayName} = ${fieldDescriptor.displayName} ?? []';
 
   @override
   String get constructorStatement => '';
@@ -42,8 +42,8 @@ class ListFieldCodeGenerator extends FieldCodeGenerator {
   String get constructorExpression => fieldDescriptor
               .parameterTypeHasEntityMapAnnotation &&
           !fieldDescriptor.parameterTypeIsEnum
-      ? '''${fieldDescriptor.isNullable ? '${fieldDescriptor.name} == null ? null : ' : ''} List.unmodifiable(${fieldDescriptor.valueName}.map((e) => e.build()))'''
-      : fieldDescriptor.name;
+      ? '''${fieldDescriptor.isNullable ? '${fieldDescriptor.displayName} == null ? null : ' : ''} List.unmodifiable(${fieldDescriptor.valueName}.map((e) => e.build()))'''
+      : fieldDescriptor.displayName;
 
   @override
   String get defaultProvided => ' ?? []';

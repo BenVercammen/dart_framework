@@ -14,7 +14,6 @@ message GCalcParameters
 {
   int32 parameter1 = 1;
   int32 parameter2 = 2;
-
 }   
 
 message GListOfCalcParameters

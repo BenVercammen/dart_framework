@@ -14,24 +14,24 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fieldDeclaration =>
-      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.name};';
+      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.displayName};';
 
   @override
   String get toBuilderExpression => fieldDescriptor.isNullable
-      ? '''entity.${fieldDescriptor.name} == null ? null : \$${fieldDescriptor.fieldElementTypeName}Builder.from${fieldDescriptor.fieldElementTypeName}(entity.${fieldDescriptor.name}!)'''
-      : '''\$${fieldDescriptor.fieldElementTypeName}Builder.from${fieldDescriptor.fieldElementTypeName}(entity.${fieldDescriptor.name})''';
+      ? '''entity.${fieldDescriptor.displayName} == null ? null : \$${fieldDescriptor.fieldElementTypeName}Builder.from${fieldDescriptor.fieldElementTypeName}(entity.${fieldDescriptor.displayName}!)'''
+      : '''\$${fieldDescriptor.fieldElementTypeName}Builder.from${fieldDescriptor.fieldElementTypeName}(entity.${fieldDescriptor.displayName})''';
 
   @override
   String get constructorAssignment => fieldDescriptor.isNullable
       ? ''
-      : '${fieldDescriptor.name} = ${fieldDescriptor.name} ?? $fieldType()';
+      : '${fieldDescriptor.displayName} = ${fieldDescriptor.displayName} ?? $fieldType()';
 
   @override
   String get constructorStatement => '';
 
   @override
   String get constructorExpression =>
-      '${fieldDescriptor.name}${fieldDescriptor.isNullable ? '?' : ''}.build()';
+      '${fieldDescriptor.displayName}${fieldDescriptor.isNullable ? '?' : ''}.build()';
 
   @override
   String get defaultProvided =>

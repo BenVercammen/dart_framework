@@ -1,5 +1,4 @@
-import 'package:proto_annotations/proto_annotations.dart';
-import 'package:source_gen/source_gen.dart';
+import 'package:proto_generator/src/proto_common.dart';
 
 import '../field_code_generator.dart';
 import '../field_descriptor.dart';
@@ -9,15 +8,11 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator
     implements ExternalProtoName {
   EntityFieldCodeGenerator(FieldDescriptor fieldDescriptor, int lineNumber)
       : super(fieldDescriptor, lineNumber) {
-    var fieldElementType = fieldDescriptor.itemType;
+    final fieldElementType = fieldDescriptor.itemType;
 
-    var annotation = TypeChecker.fromRuntime(Proto)
-        .firstAnnotationOf(fieldElementType.element!);
+    final packageName = fieldElementType.packageName;
 
-    var packageName =
-        annotation?.getField('packageName')?.toStringValue() ?? '';
-
-    var fieldElementTypeName =
+    final fieldElementTypeName =
         '''${fieldDescriptor.prefix}${fieldElementType.getDisplayString(withNullability: false)}''';
     _fieldType = packageName != ''
         ? '$packageName.$fieldElementTypeName'
@@ -28,13 +23,9 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator
 
   String? _initExternalProtoName(FieldDescriptor fieldDescriptor) {
     final fieldElementType = fieldDescriptor.itemType;
-
-    // if (fieldDescriptor.classElement ==
-    //     fieldDescriptor.fieldElement.enclosingElement) {
-    //   return null;
-    // }
-    var segments = fieldElementType.element!.source!.uri.pathSegments.toList();
-    var lastSrc = segments.lastIndexOf('src');
+    final segments =
+        fieldElementType.element!.source!.uri.pathSegments.toList();
+    final lastSrc = segments.lastIndexOf('src');
     if (lastSrc != -1) segments.removeRange(0, lastSrc + 1);
     var fileName = segments[segments.length - 1];
     fileName = fileName.substring(0, fileName.length - 4) + 'proto';

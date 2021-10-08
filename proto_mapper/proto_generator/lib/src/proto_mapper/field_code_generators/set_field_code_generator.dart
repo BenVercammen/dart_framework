@@ -4,8 +4,15 @@ import '../field_code_generator.dart';
 import '../field_descriptor.dart';
 
 class SetFieldCodeGenerator extends FieldCodeGenerator {
-  SetFieldCodeGenerator(FieldDescriptor fieldDescriptor)
-      : super(fieldDescriptor);
+  SetFieldCodeGenerator(
+    FieldDescriptor fieldDescriptor, {
+    String refName = FieldCodeGenerator.defaultRefName,
+    String protoRefName = FieldCodeGenerator.defaultProtoRefName,
+  }) : super(
+          fieldDescriptor,
+          refName: refName,
+          protoRefName: protoRefName,
+        );
 
   String get _valueToProto {
     final fieldTypeName = fieldDescriptor.setParameterType!
@@ -37,13 +44,13 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
   @override
   String get toProtoMap => fieldDescriptor.isNullable
       ? '''        
-      proto.$protoFieldName
-        .addAll(instance.$fieldName${_toProtoConversion != '' ? '?' : ''}$_toProtoConversion ?? []);
+      $protoRef$protoFieldName
+        .addAll($ref$fieldName${_toProtoConversion != '' ? '?' : ''}$_toProtoConversion ?? []);
         $hasValueToProtoMap;
       '''
       : '''
-        proto.$protoFieldName
-          .addAll(instance.$fieldName$_toProtoConversion);
+        $protoRef$protoFieldName
+          .addAll($ref$fieldName$_toProtoConversion);
 
       ''';
 
@@ -72,5 +79,5 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fromProtoNonNullableExpression =>
-      '''Set<${fieldDescriptor.parameterTypeName}>.unmodifiable(instance.$protoFieldName.map((e) => $_protoToValue))''';
+      '''Set<${fieldDescriptor.parameterTypeName}>.unmodifiable($ref$protoFieldName.map((e) => $_protoToValue))''';
 }

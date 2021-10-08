@@ -30,7 +30,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
     _classElement = element;
     _className = element.name;
 
-    if (_classElement!.kind.name == 'ENUM') {
+    if (_classElement!.kind == ElementKind.ENUM) {
       return renderEnumMapper();
     }
 
@@ -53,7 +53,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
       var toMapMap = fieldCodeGenerator.toMapMap;
       toMapFieldBuffer.writeln(toMapMap);
 
-      if (fieldDescriptor.fieldElement.isFinal) {
+      if (fieldDescriptor.isFinal) {
         var constructorMap = fieldCodeGenerator.constructorMap;
         constructorFieldBuffer.writeln(constructorMap);
       } else {
@@ -183,7 +183,6 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   final fieldSet = classElement.getSortedFieldSet();
   final fieldDescriptors = fieldSet
       .map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
             fieldElement,
             annotation,
           ))

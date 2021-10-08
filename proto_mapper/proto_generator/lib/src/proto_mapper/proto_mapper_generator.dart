@@ -35,7 +35,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     _prefix = readAnnotation.prefix ?? _prefix;
 
     _classElement = element.asClassElement();
-    if (_classElement!.kind.name == 'ENUM') return renderEnumMapper();
+    if (_classElement!.kind == ElementKind.ENUM) return renderEnumMapper();
 
     final fieldDescriptors =
         _getFieldDescriptors(_classElement!, readAnnotation);
@@ -45,12 +45,12 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     var constructorFieldBuffer = StringBuffer();
 
     for (var fieldDescriptor in fieldDescriptors) {
-      var fieldCodeGenerator =
+      final fieldCodeGenerator =
           FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
 
       toProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
 
-      if (fieldDescriptor.fieldElement.isFinal) {
+      if (fieldDescriptor.isFinal) {
         var constructorMap = fieldCodeGenerator.constructorMap;
         constructorFieldBuffer.writeln(constructorMap);
       } else {
@@ -60,7 +60,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     }
 
     var renderBuffer = StringBuffer();
-    var mapper = renderMapper(
+    var mapper = _renderMapper(
       toProtoFieldBuffer,
       fromProtoFieldBuffer,
       constructorFieldBuffer,
@@ -71,7 +71,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     return renderBuffer.toString();
   }
 
-  String renderMapper(
+  String _renderMapper(
     StringBuffer toProtoFieldBuffer,
     StringBuffer fromProtoFieldBuffer,
     StringBuffer constructorFieldBuffer,
@@ -147,6 +147,12 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
         $prefix$className toProto($className entity) => 
           $prefix$className.valueOf(entity.index)!;
       }    
+
+      extension \$$prefix${className}ProtoExtension on $prefix$className {
+  $className to$className() =>
+      const \$${className}ProtoMapper().fromProto(this);
+}
+
   ''';
   }
 }

@@ -81,8 +81,8 @@ ListsHost _listsHost([bool nullsWithValues = false]) => ListsHost(
       nvints: nullsWithValues ? [55, 2, 1, 8] : null,
       vdoubles: [12.44, 776.44],
       nvdoubles: nullsWithValues ? [6, 7.8, 3] : null,
-      vapplianceTypes: [ApplianceType.Cutlery, ApplianceType.Heat],
-      nvapplianceTypes: nullsWithValues ? [ApplianceType.Heat] : null,
+      vapplianceTypes: [ApplianceType.cutlery, ApplianceType.heat],
+      nvapplianceTypes: nullsWithValues ? [ApplianceType.heat] : null,
       vbools: [true, false],
       nvbools: nullsWithValues ? [false, false, true] : null,
     );

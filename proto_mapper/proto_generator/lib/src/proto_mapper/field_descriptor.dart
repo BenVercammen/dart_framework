@@ -1,5 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/type.dart';
 import 'package:proto_annotations/proto_annotations.dart';
+import 'package:proto_generator/src/proto_common.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
@@ -8,30 +10,39 @@ class FieldDescriptor extends FieldDescriptorBase {
   final ProtoField? protoFieldAnnotation;
   final ProtoIgnore? protoIgnoreAnnotation;
 
-  FieldDescriptor._(
-    ClassElement classElement,
-    FieldElement fieldElement,
+  FieldDescriptor(
     this.protoMapperAnnotation, {
+    required String displayName,
+    required String name,
+    required bool isFinal,
+    required DartType fieldElementType,
     this.protoFieldAnnotation,
     this.protoIgnoreAnnotation,
-  }) : super(classElement, fieldElement);
+  }) : super(
+          displayName: displayName,
+          name: name,
+          isFinal: isFinal,
+          fieldElementType: fieldElementType,
+        );
 
-  factory FieldDescriptor.fromFieldElement(
-    ClassElement classElement,
+  FieldDescriptor.fromFieldElement(
     FieldElement fieldElement,
     MapProto mapProtoBase,
-  ) {
-    final protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement);
-    final protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement);
+  )   : protoMapperAnnotation = mapProtoBase,
+        protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement),
+        protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement),
+        super.fromFieldElement(fieldElement);
+  // {
+  //   final protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement);
+  //   final protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement);
 
-    return FieldDescriptor._(
-      classElement,
-      fieldElement,
-      mapProtoBase,
-      protoFieldAnnotation: protoFieldAnnotation,
-      protoIgnoreAnnotation: protoIgnoreAnnotation,
-    );
-  }
+  //   return FieldDescriptor(
+  //     fieldElement,
+  //     mapProtoBase,
+  //     protoFieldAnnotation: protoFieldAnnotation,
+  //     protoIgnoreAnnotation: protoIgnoreAnnotation,
+  //   );
+  // }
 
   String get prefix => protoMapperAnnotation.prefix ?? '';
 
@@ -40,20 +51,17 @@ class FieldDescriptor extends FieldDescriptorBase {
   bool get _hasProtoIgnore => protoIgnoreAnnotation != null;
   bool get _hasProtoField => protoFieldAnnotation != null;
 
-  String get protoFieldName => protoFieldAnnotation?.name ?? name;
+  String get protoFieldName => protoFieldAnnotation?.name ?? displayName;
 
   bool get isProtoIncluded =>
       !_hasProtoIgnore &&
       (protoMapperAnnotation.includeFieldsByDefault || _hasProtoField);
 
-  bool get typeHasMapProtoAnnotation {
-    var annotation = TypeChecker.fromRuntime(MapProto)
-        .firstAnnotationOf(fieldElement.type.element!);
-    return annotation != null;
-  }
+  bool get typeHasMapProtoAnnotation => fieldElementType.hasMapProto;
 
   @override
-  bool get parameterTypeIsEnum => parameterType.element!.kind.name == 'ENUM';
+  bool get parameterTypeIsEnum =>
+      parameterType.element!.kind == ElementKind.ENUM;
 }
 
 const _protoFieldChecker = TypeChecker.fromRuntime(ProtoField);

@@ -1,5 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:proto_annotations/proto_annotations.dart';
+import 'package:proto_generator/src/proto_common.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
@@ -37,15 +38,11 @@ class MethodDescriptor extends MethodDescriptorBase {
 
   bool get isProtoIncluded => !_hasProtoIgnore;
 
-  bool get typeHasProtoAnnotation {
-    var annotation = TypeChecker.fromRuntime(MapProto)
-        .firstAnnotationOf(methodElement.type.alias!.element);
-    return annotation != null;
-  }
+  bool get typeHasProtoAnnotation => methodElement.hasMapProto;
 
   @override
   bool get returnParameterTypeIsEnum =>
-      returnParameterType.element!.kind.name == 'ENUM';
+      returnParameterType.element!.kind == ElementKind.ENUM;
 }
 
 const _protoIgnoreChecker = TypeChecker.fromRuntime(ProtoIgnore);

@@ -18,48 +18,49 @@ abstract class FieldCodeGenerator {
   String get fieldType => fieldDescriptor.fieldElementTypeName;
 
   String get fieldDeclaration => fieldDescriptor.isNullable
-      ? '  $fieldType? ${fieldDescriptor.name};'
+      ? '  $fieldType? ${fieldDescriptor.displayName};'
       : '''
-          $fieldType? \$${fieldDescriptor.name};
-          $fieldType get ${fieldDescriptor.name} =>
-              \$${fieldDescriptor.name} $defaultProvided;
-          set ${fieldDescriptor.name}($fieldType value) => \$${fieldDescriptor.name} = value;
+          $fieldType? \$${fieldDescriptor.displayName};
+          $fieldType get ${fieldDescriptor.displayName} =>
+              \$${fieldDescriptor.displayName} $defaultProvided;
+          set ${fieldDescriptor.displayName}($fieldType value) => \$${fieldDescriptor.displayName} = value;
       ''';
 
   String get defaultProvided => !buildBuilder.useDefaultsProvider
       ? '!'
-      : ' ?? _defaultsProvider.${fieldDescriptor.name}';
+      : ' ?? _defaultsProvider.${fieldDescriptor.displayName}';
 
   bool get usesDefaultsProvided =>
       buildBuilder.useDefaultsProvider && !fieldDescriptor.isNullable;
 
-  String get toBuilderMap => '  ${fieldDescriptor.name}: $toBuilderExpression,';
+  String get toBuilderMap =>
+      '  ${fieldDescriptor.displayName}: $toBuilderExpression,';
 
-  String get toBuilderExpression => 'entity.${fieldDescriptor.name}';
+  String get toBuilderExpression => 'entity.${fieldDescriptor.displayName}';
 
   String get constructorDeclaration => fieldDescriptor.isNullable
-      ? 'this.${fieldDescriptor.name},'
-      : '$fieldType? ${fieldDescriptor.name},';
+      ? 'this.${fieldDescriptor.displayName},'
+      : '$fieldType? ${fieldDescriptor.displayName},';
 
   String get constructorStatement {
     if (fieldDescriptor.isNullable) return '';
-    return '\$${fieldDescriptor.name} = ${fieldDescriptor.name};';
+    return '\$${fieldDescriptor.displayName} = ${fieldDescriptor.displayName};';
   }
 
   String get entityConstructorMap =>
-      '${fieldDescriptor.name}: $constructorExpression,';
+      '${fieldDescriptor.displayName}: $constructorExpression,';
 
-  String get constructorExpression => fieldDescriptor.name;
+  String get constructorExpression => fieldDescriptor.displayName;
 
   factory FieldCodeGenerator.fromFieldDescriptor(
       FieldDescriptor fieldDescriptor, BuildBuilder buildBuilder) {
-    if (fieldDescriptor.fieldElement.type.isDartCoreList) {
+    if (fieldDescriptor.fieldElementType.isDartCoreList) {
       return ListFieldCodeGenerator(fieldDescriptor, buildBuilder);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreSet) {
+    if (fieldDescriptor.fieldElementType.isDartCoreSet) {
       return SetFieldCodeGenerator(fieldDescriptor, buildBuilder);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreIterable) {
+    if (fieldDescriptor.fieldElementType.isDartCoreIterable) {
       return IterableFieldCodeGenerator(fieldDescriptor, buildBuilder);
     }
     if (!fieldDescriptor.typeIsEnum &&

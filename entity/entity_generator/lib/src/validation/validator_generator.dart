@@ -32,7 +32,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
 
   static String generateValidator(Element element, bool createBaseClass) {
     var classElement = element.asClassElement();
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
     var superTypeElement = classElement.supertype!.element;
 
     var annotation = TypeChecker.fromRuntime(Validatable)
@@ -50,7 +50,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
 
     for (var fieldDescriptor in fieldDescriptors) {
       var errorLine = '''
-          if ((error = validate${fieldDescriptor.pascalName}(entity.${fieldDescriptor.name}, entity: entity)) != null) {
+          if ((error = validate${fieldDescriptor.pascalName}(entity.${fieldDescriptor.displayName}, entity: entity)) != null) {
             errors.add(error!);
           }
       ''';
@@ -122,7 +122,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
             ValidationError? \$validate${fieldDescriptor.pascalName}(${fieldDescriptor.fieldElementTypeName}? value, {$className? entity})
     {
       if (value == null) {
-        return RequiredValidationError('${fieldDescriptor.name}');
+        return RequiredValidationError('${fieldDescriptor.displayName}');
       }
       return validate${fieldDescriptor.pascalName}(value, entity: entity);
     }
@@ -203,7 +203,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
       }).where((p) => p.errorList.validationErrors.isNotEmpty).toList();
       
       if (errorLists.isNotEmpty) {
-        return ListPropertyValidation('${fieldDescriptor.name}', errorLists);
+        return ListPropertyValidation('${fieldDescriptor.displayName}', errorLists);
       }
 
 
@@ -224,7 +224,7 @@ class ValidatorGenerator extends GeneratorForAnnotation<Validatable> {
 
         var errors = 
           \$${fieldDescriptor.fieldElementType.getDisplayString(withNullability: false)}Validator().validate(value);
-        var errorListValidation = PropertyValidation('${fieldDescriptor.name}', errors);
+        var errorListValidation = PropertyValidation('${fieldDescriptor.displayName}', errors);
 
         if (errorListValidation.errorList.validationErrors.isNotEmpty) {
           return errorListValidation;

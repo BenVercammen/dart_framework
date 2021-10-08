@@ -20,7 +20,6 @@ message GCategory
   repeated GComponent otherComponents = 5;
   repeated GComponent secondaryComponents = 6;
   bool secondaryComponentsHasValue = 7;
-
 }   
 
 message GListOfCategory

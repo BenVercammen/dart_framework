@@ -14,7 +14,7 @@ class NullValidator extends PropertyValidator {
     return createResult('''
           if (value == null) 
           {
-            return RequiredValidationError('${fieldDescriptor.name}'); 
+            return RequiredValidationError('${fieldDescriptor.displayName}'); 
           }
          ''', true);
   }

@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Dart: Attach to Process",
+            "type": "dart",
+            "request": "attach"
+        },
+
+        {
             "name": "proto_annotations",
             "cwd": "proto_annotations",
             "request": "launch",
@@ -27,6 +33,6 @@
             "cwd": "test",
             "request": "launch",
             "type": "dart"
-        }
+        },
     ]
 }

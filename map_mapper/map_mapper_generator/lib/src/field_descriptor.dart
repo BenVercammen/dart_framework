@@ -12,19 +12,17 @@ class FieldDescriptor extends FieldDescriptorBase {
   final keyNames = ['key', 'id'];
 
   bool get isKey => keyNames.any((kn) =>
-      kn == name ||
-      name.endsWith(kn.substring(0, 1).toUpperCase() + kn.substring(1)));
+      kn == displayName ||
+      displayName.endsWith(kn.substring(0, 1).toUpperCase() + kn.substring(1)));
 
   FieldDescriptor._(
-    ClassElement classElement,
     FieldElement fieldElement,
     this.mapMapAnnotation, {
     this.mapFieldAnnotation,
     this.mapIgnoreAnnotation,
-  }) : super(classElement, fieldElement);
+  }) : super.fromFieldElement(fieldElement);
 
   factory FieldDescriptor.fromFieldElement(
-    ClassElement classElement,
     FieldElement fieldElement,
     MapMap mapEntityAnnotation,
   ) {
@@ -32,7 +30,6 @@ class FieldDescriptor extends FieldDescriptorBase {
     final mapIgnoreAnnotation = _getMapIgnore(fieldElement);
 
     return FieldDescriptor._(
-      classElement,
       fieldElement,
       mapEntityAnnotation,
       mapFieldAnnotation: mapFieldAnnotation,
@@ -47,11 +44,11 @@ class FieldDescriptor extends FieldDescriptorBase {
       !_hasMapIgnore &&
       (mapMapAnnotation.includeFieldsByDefault || _hasMapField);
 
-  String get mapName => mapFieldAnnotation?.name ?? fieldElement.name;
+  String get mapName => mapFieldAnnotation?.name ?? displayName;
 
   bool get typeHasMapMapAnnotation {
     var annotation = TypeChecker.fromRuntime(MapMap)
-        .firstAnnotationOf(fieldElement.type.element!);
+        .firstAnnotationOf(fieldElementType.element!);
     return annotation != null;
   }
 

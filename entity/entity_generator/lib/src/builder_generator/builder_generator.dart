@@ -20,10 +20,10 @@ class BuilderGenerator extends GeneratorForAnnotation<BuildBuilder> {
   ) {
     final readAnnotation = _hydrateAnnotation(annotation);
     var classElement = element.asClassElement();
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
     _className = classElement.name;
 
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
 
     var fieldDescriptors = _getFieldDescriptors(classElement);
 
@@ -152,11 +152,8 @@ class BuilderGenerator extends GeneratorForAnnotation<BuildBuilder> {
 
 Iterable<FieldDescriptor> _getFieldDescriptors(ClassElement classElement) {
   final fieldSet = classElement.getSortedFieldSet();
-  final fieldDescriptors =
-      fieldSet.map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
-            fieldElement,
-          ));
+  final fieldDescriptors = fieldSet
+      .map((fieldElement) => FieldDescriptor.fromFieldElement(fieldElement));
   return fieldDescriptors;
 }
 

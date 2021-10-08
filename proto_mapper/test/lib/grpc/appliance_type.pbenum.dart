@@ -10,26 +10,17 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class GApplianceType extends $pb.ProtobufEnum {
-  static const GApplianceType Heat = GApplianceType._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Heat');
-  static const GApplianceType Cold = GApplianceType._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Cold');
-  static const GApplianceType Cutlery = GApplianceType._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'Cutlery');
+  static const GApplianceType heat = GApplianceType._(
+      0, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'heat');
+  static const GApplianceType cold = GApplianceType._(
+      1, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'cold');
+  static const GApplianceType cutlery = GApplianceType._(2,
+      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'cutlery');
 
   static const $core.List<GApplianceType> values = <GApplianceType>[
-    Heat,
-    Cold,
-    Cutlery,
+    heat,
+    cold,
+    cutlery,
   ];
 
   static final $core.Map<$core.int, GApplianceType> _byValue =

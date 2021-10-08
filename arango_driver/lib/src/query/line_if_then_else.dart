@@ -15,7 +15,6 @@ import 'query_text_fragment.dart';
 /// ])
 /// ```
 class LineIfThenElse extends QueryTextFragment {
-  LineIfThenElse(bool cond, String whenTrue, String whenFalse) :
-    super(cond ? whenTrue : whenFalse);
-  
+  LineIfThenElse(bool cond, String whenTrue, String whenFalse)
+      : super(cond ? whenTrue : whenFalse);
 }

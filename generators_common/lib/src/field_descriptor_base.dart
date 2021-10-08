@@ -4,23 +4,35 @@ import 'package:analyzer/dart/element/type.dart';
 
 /// Enhanced information over a [FieldElement]
 class FieldDescriptorBase {
-  final ClassElement classElement;
-  final FieldElement fieldElement;
+  FieldDescriptorBase.fromFieldElement(FieldElement fieldElement)
+      : displayName = fieldElement.displayName,
+        name = fieldElement.name,
+        isFinal = fieldElement.isFinal,
+        fieldElementType = fieldElement.type;
 
-  FieldDescriptorBase(this.classElement, this.fieldElement);
+  FieldDescriptorBase({
+    required this.displayName,
+    required this.name,
+    required this.isFinal,
+    required this.fieldElementType,
+  });
 
   /// The displayName of the field element.
-  String get name => fieldElement.displayName;
+  final String displayName;
+
+  final String name;
+
+  final bool isFinal;
 
   /// Gets a non-nullable value representation of the field.
   ///
   /// When the field is not a nullable field, this will
   /// simply returns the field's name. Otherwise, it will
   /// return the field's name followed by !.
-  String get valueName => '$name${isNullable ? '!' : ''}';
+  String get valueName => '$displayName${isNullable ? '!' : ''}';
 
   /// Returns the type of the field element
-  DartType get fieldElementType => fieldElement.type;
+  final DartType fieldElementType;
 
   /// Returns the name of the type of the field element
   String get fieldElementTypeName =>
@@ -54,7 +66,7 @@ class FieldDescriptorBase {
   bool get isRepeated => listParameterType != null || setParameterType != null;
 
   /// Returns true when the field is an enum
-  bool get typeIsEnum => fieldElement.type.element!.kind.name == 'ENUM';
+  bool get typeIsEnum => fieldElementType.element!.kind == ElementKind.ENUM;
 
   /// Returns true when the field is a nullable type
   bool get isNullable =>
@@ -78,10 +90,10 @@ class FieldDescriptorBase {
 
   /// Returns the name of the field using a Pascal Case
   String get pascalName {
-    if (name == '') {
-      return name;
+    if (displayName == '') {
+      return displayName;
     }
-    return '${name.substring(0, 1).toUpperCase()}${name.substring(1)}';
+    return '${displayName.substring(0, 1).toUpperCase()}${displayName.substring(1)}';
   }
 
   /// When the field element type is a generic, returns the
@@ -91,5 +103,6 @@ class FieldDescriptorBase {
 
   /// When the field element type is a generic, returns
   /// a value indicating whether the first type parameter is an enum
-  bool get parameterTypeIsEnum => parameterType.element!.kind.name == 'ENUM';
+  bool get parameterTypeIsEnum =>
+      parameterType.element!.kind == ElementKind.ENUM;
 }

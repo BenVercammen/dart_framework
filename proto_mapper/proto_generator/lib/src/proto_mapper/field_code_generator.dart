@@ -16,30 +16,39 @@ import 'field_code_generators/string_field_code_generator.dart';
 import 'field_descriptor.dart';
 
 abstract class FieldCodeGenerator {
+  static const defaultRefName = 'instance';
+  static const defaultProtoRefName = 'proto';
+
   final FieldDescriptor fieldDescriptor;
+  final String refName;
+  String get ref => refName.isEmpty ? '' : refName + '.';
+  String get protoRef => protoRefName.isEmpty ? '' : protoRefName + '.';
+  final String protoRefName;
+
+  FieldCodeGenerator(
+    this.fieldDescriptor, {
+    this.refName = defaultRefName,
+    this.protoRefName = defaultProtoRefName,
+  });
 
   MapProto get mapProtoBase => fieldDescriptor.protoMapperAnnotation;
 
-  FieldCodeGenerator(this.fieldDescriptor);
-
   String get toProtoMap => fieldDescriptor.isNullable
       ? '''
-        if (instance.$fieldName != null) {
-          proto.$protoFieldName = $toProtoNullableExpression; 
+        if ($ref$fieldName != null) {
+          $protoRef$protoFieldName = $toProtoNullableExpression; 
         }
         $hasValueToProtoMap;
       '''
-      : 'proto.$protoFieldName = $toProtoExpression;';
+      : '$protoRef$protoFieldName = $toProtoExpression;';
 
   String get hasValueToProtoMap =>
-      'proto.${protoFieldName}HasValue = instance.$fieldName != null';
+      '$protoRef${protoFieldName}HasValue = $ref$fieldName != null';
 
   String get instanceReference =>
-      'instance.$fieldName${fieldDescriptor.isNullable ? '!' : ''}';
+      '$ref$fieldName${fieldDescriptor.isNullable && ref.isNotEmpty ? '!' : ''}';
   String get toProtoExpression => instanceReference;
   String get toProtoNullableExpression => toProtoExpression;
-
-/* Checked **/
 
   String get fromProtoMap => '$fieldName = $fromProtoExpression';
   String get constructorMap => '$fieldName: $fromProtoExpression, ';
@@ -50,50 +59,101 @@ abstract class FieldCodeGenerator {
   }
 
   String get fromProtoNullableExpression =>
-      '''(instance.${protoFieldName}HasValue ? ($fromProtoNonNullableExpression) : null)''';
+      '''($ref${protoFieldName}HasValue ? ($fromProtoNonNullableExpression) : null)''';
 
-  String get fromProtoNonNullableExpression => 'instance.$protoFieldName';
+  String get fromProtoNonNullableExpression => '$ref$protoFieldName';
 
-  String get fieldName => fieldDescriptor.fieldElement.name;
+  String get fieldName => fieldDescriptor.displayName;
   String get protoFieldName => fieldDescriptor.protoFieldName;
 
   factory FieldCodeGenerator.fromFieldDescriptor(
-      FieldDescriptor fieldDescriptor) {
-    if (fieldDescriptor.fieldElement.type.isDartCoreString) {
-      return StringFieldCodeGenerator(fieldDescriptor);
+    FieldDescriptor fieldDescriptor, {
+    String refName = FieldCodeGenerator.defaultRefName,
+    String protoRefName = FieldCodeGenerator.defaultProtoRefName,
+  }) {
+    if (fieldDescriptor.fieldElementType.isDartCoreString) {
+      return StringFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreBool) {
-      return BoolFieldCodeGenerator(fieldDescriptor);
+    if (fieldDescriptor.fieldElementType.isDartCoreBool) {
+      return BoolFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreInt) {
-      return IntFieldCodeGenerator(fieldDescriptor);
+    if (fieldDescriptor.fieldElementType.isDartCoreInt) {
+      return IntFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreList) {
-      return ListFieldCodeGenerator(fieldDescriptor);
+    if (fieldDescriptor.fieldElementType.isDartCoreList) {
+      return ListFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreSet) {
-      return SetFieldCodeGenerator(fieldDescriptor);
+    if (fieldDescriptor.fieldElementType.isDartCoreSet) {
+      return SetFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
     if (fieldDescriptor.typeIsEnum) {
-      return EnumFieldCodeGenerator(fieldDescriptor);
+      return EnumFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
     if (fieldDescriptor.fieldElementTypeName == (DateTime).toString()) {
-      return DateTimeFieldCodeGenerator(fieldDescriptor);
+      return DateTimeFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
     if (fieldDescriptor.fieldElementTypeName == (Decimal).toString()) {
-      return DecimalFieldCodeGenerator(fieldDescriptor);
+      return DecimalFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
     if (fieldDescriptor.fieldElementTypeName == (Duration).toString()) {
-      return DurationFieldCodeGenerator(fieldDescriptor);
+      return DurationFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
     if (fieldDescriptor.typeHasMapProtoAnnotation) {
-      return EntityFieldCodeGenerator(fieldDescriptor);
+      return EntityFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreIterable &&
+    if (fieldDescriptor.fieldElementType.isDartCoreIterable &&
         fieldDescriptor.iterableParameterType != null) {
-      return IterableFieldCodeGenerator(fieldDescriptor);
+      return IterableFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
     }
 
-    return GenericFieldCodeGenerator(fieldDescriptor);
+    return GenericFieldCodeGenerator(
+      fieldDescriptor,
+      refName: refName,
+      protoRefName: protoRefName,
+    );
   }
 }

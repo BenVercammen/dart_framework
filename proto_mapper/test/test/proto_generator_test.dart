@@ -184,12 +184,12 @@ void main() {
 
     test('null secondaryApplianceType', () {
       final recipe =
-          _scrambledEggsRecipe(secondaryApplianceType: ApplianceType.Cold);
+          _scrambledEggsRecipe(secondaryApplianceType: ApplianceType.cold);
 
       final proto = recipe.toProto();
       final recipe2 = proto.toRecipe();
 
-      expect(recipe2.secondaryApplianceType, ApplianceType.Cold);
+      expect(recipe2.secondaryApplianceType, ApplianceType.cold);
     });
 
     test('tags', () {
@@ -244,9 +244,9 @@ Category _eggsCategory({
     );
 
 Recipe _scrambledEggsRecipe({
-  DateTime? expiryDate = null,
-  Duration? totalDuration = null,
-  bool? requiresRobot = null,
+  DateTime? expiryDate,
+  Duration? totalDuration,
+  bool? requiresRobot,
   Component? alternativeComponent,
   List<Component>? secondaryComponents,
   Component? categoryAlternativeComponent,
@@ -283,7 +283,7 @@ Recipe _scrambledEggsRecipe({
       totalDuration: totalDuration,
       isPublished: true,
       requiresRobot: requiresRobot,
-      mainApplianceType: ApplianceType.Cutlery,
+      mainApplianceType: ApplianceType.cutlery,
       secondaryApplianceType: secondaryApplianceType,
       tags: ['tag1', 'tag2'],
       extraTags: extraTags,

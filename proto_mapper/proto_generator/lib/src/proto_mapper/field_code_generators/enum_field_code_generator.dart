@@ -2,15 +2,23 @@ import '../field_code_generator.dart';
 import '../field_descriptor.dart';
 
 class EnumFieldCodeGenerator extends FieldCodeGenerator {
-  String? _prefix;
-  EnumFieldCodeGenerator(FieldDescriptor fieldDescriptor)
-      : super(fieldDescriptor) {
+  EnumFieldCodeGenerator(
+    FieldDescriptor fieldDescriptor, {
+    String refName = FieldCodeGenerator.defaultRefName,
+    String protoRefName = FieldCodeGenerator.defaultProtoRefName,
+  }) : super(
+          fieldDescriptor,
+          refName: refName,
+          protoRefName: protoRefName,
+        ) {
     _prefix = fieldDescriptor.prefix;
   }
 
+  String? _prefix;
+
   @override
   String get fromProtoNonNullableExpression =>
-      '''${fieldDescriptor.fieldElementTypeName}.values[instance.$fieldName.value]''';
+      '''${fieldDescriptor.fieldElementTypeName}.values[$ref$fieldName.value]''';
 
   @override
   String get toProtoExpression =>

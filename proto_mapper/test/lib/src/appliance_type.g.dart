@@ -18,3 +18,8 @@ class $ApplianceTypeProtoMapper
   GApplianceType toProto(ApplianceType entity) =>
       GApplianceType.valueOf(entity.index)!;
 }
+
+extension $GApplianceTypeProtoExtension on GApplianceType {
+  ApplianceType toApplianceType() =>
+      const $ApplianceTypeProtoMapper().fromProto(this);
+}

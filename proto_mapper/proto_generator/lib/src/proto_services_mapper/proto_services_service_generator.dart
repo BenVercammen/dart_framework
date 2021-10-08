@@ -1,10 +1,15 @@
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:build/build.dart';
 import 'package:proto_annotations/proto_annotations.dart';
+import 'package:proto_generator/src/proto_common.dart';
+import 'package:proto_generator/src/proto_mapper/field_code_generator.dart';
+import 'package:proto_generator/src/proto_mapper/field_descriptor.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
+import '../proto_services_generator_base.dart';
 import 'method_descriptor.dart';
 
 class ProtoServicesServiceGenerator
@@ -28,64 +33,49 @@ class ProtoServicesServiceGenerator
     var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
 
     final classElement = element.asClassElement();
-    final packageName = readAnnotation.packageName != '' ? '' : _defaultPackage;
 
-    final packageDeclaration = packageName != '' ? 'package $packageName;' : '';
-    final withAuthenticator = readAnnotation.withAuthenticator;
-
-    var methodDescriptors = _getMethodDescriptors(classElement, readAnnotation);
-
-    var ret = _generateForClass(
-      classElement,
-      methodDescriptors,
-      packageDeclaration,
-      withAuthenticator,
+    final generator = _Generator(
+      classElement: classElement,
+      annotation: readAnnotation,
+      packageName: readAnnotation.packageName != '' ? '' : _defaultPackage,
+      prefix: _prefix,
     );
+    final ret = generator.generateForClass();
 
     return ret;
   }
+}
 
-  String _generateForClass(
-    ClassElement classElement,
-    Iterable<MethodDescriptor> methodDescriptors,
-    String packageDeclaration,
-    bool withAuthenticator,
-  ) {
+class _Generator extends ProtoServicesGeneratorBase {
+  final MapProtoServices annotation;
+  final String packageName;
+  final String packageDeclaration;
+  final bool withAuthenticator;
+
+  _Generator({
+    required this.annotation,
+    required String prefix,
+    required ClassElement classElement,
+    required this.packageName,
+  })  : packageDeclaration = packageName != '' ? 'package $packageName;' : '',
+        withAuthenticator = annotation.withAuthenticator,
+        super(classElement: classElement, prefix: prefix);
+
+  String generateForClass() {
+    var methodDescriptors = _getMethodDescriptors(classElement, annotation);
     final methodBuffer = StringBuffer();
     final externalProtoNames = <String>[];
 
     for (var methodDescriptor in methodDescriptors) {
-      final methodName = methodDescriptor.name;
-      final asnc = methodDescriptor.returnTypeIsFuture ? 'await' : '';
-      final parameterType = _getTypeName(methodDescriptor.parameterType);
-      final gParameterType =
-          _getPrefixedTypeName(methodDescriptor.parameterType);
-      final gReturnType = _getPrefixedTypeName(methodDescriptor.returnType);
-      final resultLine = !methodDescriptor.returnType.isList
-          ? '''final protoResult = result.toProto();'''
-          : '''final protoResult = $gReturnType()..items.addAll(result.map((i) => i.toProto()));''';
-
-      methodBuffer.writeln('''
-  @override Future<$gReturnType> $methodName(ServiceCall call, $gParameterType request,) async {
-    final service = \$serviceFactory(call);
-
-    final entity = request.to$parameterType();
-    final result = $asnc service.$methodName(entity);
-    $resultLine
-    return protoResult;
-  }
-
-''');
-
-      final externalProtoName =
-          _getExternalProtoName(methodDescriptor.returnType);
-
-      if (externalProtoName != '' &&
-          !externalProtoNames.contains(externalProtoName)) {
-        externalProtoNames.add(externalProtoName);
-      }
+      _generateMethod(methodDescriptor, methodBuffer, externalProtoNames);
     }
 
+    String ret = _generateClass(externalProtoNames, methodBuffer);
+    return ret;
+  }
+
+  String _generateClass(
+      List<String> externalProtoNames, StringBuffer methodBuffer) {
     var imports = StringBuffer();
     for (var externalProtoName in externalProtoNames) {
       imports.writeln('import \'$externalProtoName\';');
@@ -99,34 +89,184 @@ class ProtoServicesServiceGenerator
             : className;
 
     var ret = '''
-
-typedef ${serviceClassName}Factory = $className Function(ServiceCall call);
-
-
-
-class $_prefix$serviceClassName extends $_prefix${serviceClassName}Base
-{
-  final ${serviceClassName}Factory \$serviceFactory;
-  ${withAuthenticator ? 'final void Function(ServiceCall call) \$authenticator;' : ''}
-  
-
-  $_prefix$serviceClassName(
+    
+    typedef ${serviceClassName}Factory = $className Function(ServiceCall call);
+    
+    
+    
+    class $prefix$serviceClassName extends $prefix${serviceClassName}Base
+    {
+      final ${serviceClassName}Factory \$serviceFactory;
+      ${withAuthenticator ? 'final void Function(ServiceCall call) \$authenticator;' : ''}
+      
+    
+      $prefix$serviceClassName(
     this.\$serviceFactory,
     ${withAuthenticator ? 'this.\$authenticator,' : ''}
-  );
-
-  ${withAuthenticator ? '''
+      );
+    
+      ${withAuthenticator ? '''
     @override
-    void \$onMetadata(ServiceCall call) {
-        \$authenticator(call);
+    void \$onMetadata(ServiceCall context) {
+        \$authenticator(context);
     }  
-  ''' : ''}
-
-
-  $methodBuffer
-} 
-''';
+      ''' : ''}
+    
+    
+      $methodBuffer
+    } 
+    ''';
     return ret;
+  }
+
+  void _generateMethod(MethodDescriptor methodDescriptor,
+      StringBuffer methodBuffer, List<String> externalProtoNames) {
+    final methodName = methodDescriptor.name;
+    final asnc = methodDescriptor.returnTypeIsFuture ? 'await' : '';
+    final pVarBuffer = StringBuffer();
+    final pParmBuffer = StringBuffer();
+    final gParameterType =
+        _getParameterType(methodDescriptor, pVarBuffer, pParmBuffer);
+
+    final pResultBuffer = StringBuffer();
+    final pReturnBuffer = StringBuffer();
+    final gReturnType =
+        _getReturnType(methodDescriptor, pResultBuffer, pReturnBuffer);
+
+    methodBuffer.writeln('''
+      @override Future<$gReturnType> $methodName(ServiceCall call, $gParameterType request,) async {
+        final service = \$serviceFactory(call);
+    
+        $pVarBuffer
+        $pResultBuffer $asnc service.$methodName($pParmBuffer );
+        $pReturnBuffer
+        return proto;
+      }
+    
+    ''');
+
+    final externalProtoName =
+        _getExternalProtoName(methodDescriptor.returnType);
+
+    if (externalProtoName != '' &&
+        !externalProtoNames.contains(externalProtoName)) {
+      externalProtoNames.add(externalProtoName);
+    }
+  }
+
+  String _getReturnType(
+    MethodDescriptor methodDescriptor,
+    StringBuffer pResultBuffer,
+    StringBuffer pReturnBuffer,
+  ) {
+    final protoMappedReturnType = _getProtoMappedReturnType(
+      methodDescriptor,
+      pResultBuffer,
+      pReturnBuffer,
+    );
+    if (protoMappedReturnType.isNotEmpty) {
+      // pResultBuffer.write(r'final $result = ');
+      // pReturnBuffer.write(protoMappedReturnType);
+      return protoMappedReturnType;
+    }
+
+    final messageName = getReturnMessageName(methodDescriptor.pascalName);
+
+    final futureType = methodDescriptor.returnType.futureType;
+    if (futureType.isVoid) {
+      pReturnBuffer.write('final proto = $messageName();');
+      return messageName;
+    }
+
+    final fd = FieldDescriptor(
+      MapProto(
+        prefix: prefix,
+        packageName: packageName,
+      ),
+      displayName: 'value',
+      isFinal: true,
+      name: 'value',
+      fieldElementType: futureType,
+    );
+
+    final fieldCodeGenerator = FieldCodeGenerator.fromFieldDescriptor(
+      fd,
+      refName: '',
+    );
+
+    pResultBuffer.write('final value = ');
+    pReturnBuffer.writeln('final proto = $messageName();');
+    final assignment = fieldCodeGenerator.toProtoMap;
+    pReturnBuffer.writeln(assignment);
+
+    return messageName;
+  }
+
+  String _getParameterType(
+    MethodDescriptor methodDescriptor,
+    StringBuffer pVarBuffer,
+    StringBuffer pParmBuffer,
+  ) {
+    final protoMappedParameter =
+        _getProtoMappedParameterType(methodDescriptor, pVarBuffer, pParmBuffer);
+    if (protoMappedParameter.isNotEmpty) return protoMappedParameter;
+
+    final messageName = getParameterMessageName(methodDescriptor.pascalName);
+
+    final parms = methodDescriptor.methodElement.parameters;
+    if (parms.isEmpty) return messageName;
+
+    int index = 0;
+    for (final parm in parms) {
+      final varname = 'p${index++}';
+      pParmBuffer.write('$varname, ');
+
+      final type = parm.type;
+
+      final fd = FieldDescriptor(
+        MapProto(
+          prefix: prefix,
+          packageName: packageName,
+        ),
+        displayName: parm.displayName,
+        isFinal: true,
+        name: parm.name,
+        fieldElementType: type,
+      );
+      final fieldCodeGenerator = FieldCodeGenerator.fromFieldDescriptor(
+        fd,
+        refName: 'request',
+      );
+
+      final expression = fieldCodeGenerator.fromProtoExpression;
+      pVarBuffer.writeln('final $varname = $expression;');
+    }
+
+    return messageName;
+  }
+
+  String _getProtoMappedReturnType(
+    MethodDescriptor methodDescriptor,
+    StringBuffer pResultBuffer,
+    StringBuffer pReturnBuffer,
+  ) {
+    final returnType = methodDescriptor.returnType;
+    final finalType = returnType.finalType;
+    if (finalType.isVoid) return '';
+    if (finalType.element?.kind == ElementKind.ENUM) return '';
+    if (!finalType.hasMapProto) return '';
+    if (returnType.futureType.nullabilitySuffix == NullabilitySuffix.question) {
+      return '';
+    }
+
+    final gReturnType = _getPrefixedTypeName(returnType);
+    final protoAssign = !methodDescriptor.returnType.isList
+        ? r'final proto = $result.toProto();'
+        : '''final proto = $gReturnType()..items.addAll(\$result.map((i) => i.toProto()));''';
+
+    pResultBuffer.write(r'final $result = ');
+    pReturnBuffer.write(protoAssign);
+    return gReturnType;
   }
 
   String _getTypeName(DartType type) {
@@ -139,7 +279,7 @@ class $_prefix$serviceClassName extends $_prefix${serviceClassName}Base
     final itemType = type.finalType;
     final listOf = type.isList ? 'ListOf' : '';
     final displayName = itemType.getDisplayString(withNullability: false);
-    final ret = '$_prefix$listOf$displayName';
+    final ret = '$prefix$listOf$displayName';
     return ret;
   }
 
@@ -156,6 +296,29 @@ class $_prefix$serviceClassName extends $_prefix${serviceClassName}Base
     segments[segments.length - 1] = fileName;
     final ret = segments.join('/');
     return ret;
+  }
+
+  String _getProtoMappedParameterType(
+    MethodDescriptor methodDescriptor,
+    StringBuffer pVarBuffer,
+    StringBuffer pParmBuffer,
+  ) {
+    if (methodDescriptor.methodElement.parameters.length != 1) {
+      return '';
+    }
+    final finalType = methodDescriptor.parameterType.finalType;
+    if (!finalType.hasMapProto) return '';
+
+    final parameterType = _getTypeName(methodDescriptor.parameterType);
+
+    final toEntity = !methodDescriptor.parameterType.isList
+        ? 'request.to$parameterType()'
+        : 'request.items.map((i) => i.to$parameterType()).toList()';
+
+    pVarBuffer.writeln('final entity = $toEntity;');
+    pParmBuffer.writeln('entity');
+
+    return _getPrefixedTypeName(methodDescriptor.parameterType);
   }
 }
 

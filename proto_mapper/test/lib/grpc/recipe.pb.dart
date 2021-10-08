@@ -113,7 +113,7 @@ class GRecipe extends $pb.GeneratedMessage {
             : 'mainApplianceType',
         $pb.PbFieldType.OE,
         protoName: 'mainApplianceType',
-        defaultOrMaker: $6.GApplianceType.Heat,
+        defaultOrMaker: $6.GApplianceType.heat,
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..e<$6.GApplianceType>(
@@ -123,7 +123,7 @@ class GRecipe extends $pb.GeneratedMessage {
             : 'secondaryApplianceType',
         $pb.PbFieldType.OE,
         protoName: 'secondaryApplianceType',
-        defaultOrMaker: $6.GApplianceType.Heat,
+        defaultOrMaker: $6.GApplianceType.heat,
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..aOB(

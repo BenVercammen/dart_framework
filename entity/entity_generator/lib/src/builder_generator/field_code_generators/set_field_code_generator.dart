@@ -10,7 +10,7 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fieldDeclaration =>
-      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.name};';
+      '  $fieldType${fieldDescriptor.nullSuffix} ${fieldDescriptor.displayName};';
 
   @override
   String get fieldType => fieldDescriptor.parameterTypeHasEntityMapAnnotation &&
@@ -19,7 +19,7 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
       : super.fieldType;
 
   String get _setExpression => '''
-        ${fieldDescriptor.isNullable ? 'entity.${fieldDescriptor.name} == null  ? null :' : ''}
+        ${fieldDescriptor.isNullable ? 'entity.${fieldDescriptor.displayName} == null  ? null :' : ''}
         entity.${fieldDescriptor.valueName}.map((e) => 
           \$${fieldDescriptor.parameterTypeName}Builder.from${fieldDescriptor.parameterTypeName}(e)).toSet()''';
 
@@ -28,12 +28,12 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
       fieldDescriptor.parameterTypeHasEntityMapAnnotation &&
               !fieldDescriptor.parameterTypeIsEnum
           ? _setExpression
-          : 'entity.${fieldDescriptor.name}';
+          : 'entity.${fieldDescriptor.displayName}';
 
   @override
   String get constructorAssignment => fieldDescriptor.isNullable
       ? ''
-      : '${fieldDescriptor.name} = ${fieldDescriptor.name} ?? {}';
+      : '${fieldDescriptor.displayName} = ${fieldDescriptor.displayName} ?? {}';
 
   @override
   String get constructorStatement => '';
@@ -42,8 +42,8 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
   String get constructorExpression => fieldDescriptor
               .parameterTypeHasEntityMapAnnotation &&
           !fieldDescriptor.parameterTypeIsEnum
-      ? '''${fieldDescriptor.isNullable ? '${fieldDescriptor.name} == null ? null : ' : ''} Set.unmodifiable(${fieldDescriptor.valueName}.map((e) => e.build()))'''
-      : fieldDescriptor.name;
+      ? '''${fieldDescriptor.isNullable ? '${fieldDescriptor.displayName} == null ? null : ' : ''} Set.unmodifiable(${fieldDescriptor.valueName}.map((e) => e.build()))'''
+      : fieldDescriptor.displayName;
 
   @override
   String get defaultProvided => ' ?? {}';

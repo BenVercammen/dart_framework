@@ -74,5 +74,5 @@ class MethodDescriptorBase {
   /// When the field element type is a generic, returns
   /// a value indicating whether the first type parameter is an enum
   bool get returnParameterTypeIsEnum =>
-      returnParameterType.element!.kind.name == 'ENUM';
+      returnParameterType.element!.kind == ElementKind.ENUM;
 }

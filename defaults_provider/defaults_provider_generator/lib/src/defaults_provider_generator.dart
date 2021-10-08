@@ -29,7 +29,7 @@ class DefaultsProviderGenerator
   static String generateDefaultsProvider(
       Element element, bool createBaseClass) {
     var classElement = element.asClassElement();
-    if (classElement.kind.name == 'ENUM') return '';
+    if (classElement.kind == ElementKind.ENUM) return '';
     var superTypeElement = classElement.supertype!.element;
 
     var annotation = TypeChecker.fromRuntime(DefaultsProvider)
@@ -45,9 +45,9 @@ class DefaultsProviderGenerator
 
     for (var field in constructorFields) {
       parameterFieldBuffer
-          .writeln('${field.fieldElementTypeName}? ${field.name},');
-      constructorFieldBuffer
-          .writeln('${field.name}: ${field.name} ?? this.${field.name},');
+          .writeln('${field.fieldElementTypeName}? ${field.displayName},');
+      constructorFieldBuffer.writeln(
+          '${field.displayName}: ${field.displayName} ?? this.${field.displayName},');
     }
 
     final propertyFields = _getFieldDescriptors(classElement, false);
@@ -55,14 +55,15 @@ class DefaultsProviderGenerator
 
     for (var field in constructorFields) {
       if (!superClassHasDefaultsProvider ||
-          propertyFields.any((element) => element.name == field.name)) {
+          propertyFields
+              .any((element) => element.displayName == field.displayName)) {
         var gen =
             FieldCodeGenerator.fromFieldDescriptor(field, createBaseClass);
         propertyFieldBuffer.writeln(
-            '''${field.fieldElementTypeName} get ${field.name} ${createBaseClass && gen.defaultExpression == '' ? '' : ' => ' + gen.defaultExpression};''');
+            '''${field.fieldElementTypeName} get ${field.displayName} ${createBaseClass && gen.defaultExpression == '' ? '' : ' => ' + gen.defaultExpression};''');
       } else {
         propertyFieldBuffer.writeln(
-            '''${field.fieldElementTypeName} get ${field.name} => _superDefaultsProvider.${field.name};''');
+            '''${field.fieldElementTypeName} get ${field.displayName} => _superDefaultsProvider.${field.displayName};''');
       }
     }
 
@@ -105,10 +106,7 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   final fieldSet =
       classElement.getSortedFieldSet(includeInherited: includeInherited);
   final fieldDescriptors = fieldSet
-      .map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
-            fieldElement,
-          ))
+      .map((fieldElement) => FieldDescriptor.fromFieldElement(fieldElement))
       .where((element) => !element.isNullable);
   return fieldDescriptors;
 }

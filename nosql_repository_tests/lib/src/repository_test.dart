@@ -264,7 +264,8 @@ void repositoryTests(RepositoryTestHandler handler) {
       var unfilteredSearchResult = await repository!.searchToList(
         criteria,
         thirdPrincipal,
-        searchPolicy: SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
+        searchPolicy:
+            SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
       );
 
       expect(filteredSearchResult.length, 1);
@@ -287,7 +288,8 @@ void repositoryTests(RepositoryTestHandler handler) {
 
       var unfilteredSearchResult = await repository!.getAllToList(
         thirdPrincipal,
-        searchPolicy: SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
+        searchPolicy:
+            SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
       );
 
       expect(filteredSearchResult.length, 1);
@@ -316,7 +318,8 @@ void repositoryTests(RepositoryTestHandler handler) {
       var unfilteredSearchResult = await repository!.searchToList(
         criteria,
         thirdPrincipal,
-        searchPolicy: SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
+        searchPolicy:
+            SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
       );
 
       expect(filteredSearchResult.length, 0);
@@ -339,7 +342,8 @@ void repositoryTests(RepositoryTestHandler handler) {
 
       var unfilteredSearchResult = await repository!.getAllToList(
         thirdPrincipal,
-        searchPolicy: SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
+        searchPolicy:
+            SearchPolicy(filterByTenant: false, permission: 'search_recipes'),
       );
 
       expect(filteredSearchResult.length, 0);

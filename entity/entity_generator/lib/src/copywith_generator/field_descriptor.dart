@@ -5,23 +5,20 @@ import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {
   FieldDescriptor._(
-    ClassElement classElement,
     FieldElement fieldElement,
-  ) : super(classElement, fieldElement);
+  ) : super.fromFieldElement(fieldElement);
 
   factory FieldDescriptor.fromFieldElement(
-    ClassElement classElement,
     FieldElement fieldElement,
   ) {
     return FieldDescriptor._(
-      classElement,
       fieldElement,
     );
   }
 
   bool get typeHasEntityMapAnnotation {
     var annotation = TypeChecker.fromRuntime(BuildBuilder)
-        .firstAnnotationOf(fieldElement.type.element!);
+        .firstAnnotationOf(fieldElementType.element!);
     return annotation != null;
   }
 

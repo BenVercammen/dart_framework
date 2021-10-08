@@ -1,6 +1,5 @@
-import 'package:proto_annotations/proto_annotations.dart';
 import 'package:proto_generator/src/proto/field_code_generators/double_field_code_generator.dart';
-import 'package:source_gen/source_gen.dart';
+import 'package:proto_generator/src/proto_common.dart';
 
 import 'field_code_generators/bool_field_code_generator.dart';
 import 'field_code_generators/datetime_field_code_generator.dart';
@@ -50,8 +49,7 @@ abstract class FieldCodeGenerator {
     if (typeName == (Duration).toString()) {
       return DurationFieldCodeGenerator(fieldDescriptor, lineNumber);
     }
-    if (TypeChecker.fromRuntime(Proto).firstAnnotationOf(type.element!) !=
-        null) {
+    if (type.hasProto) {
       return EntityFieldCodeGenerator(fieldDescriptor, lineNumber);
     }
     return GenericFieldCodeGenerator(fieldDescriptor, lineNumber);

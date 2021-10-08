@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/arango_security_repository/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/arango_security_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/test_mongo/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/test_mongo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/map_mapper_annotations/build" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/map_mapper_annotations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/entity_annotations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/entity_annotations/build" />
+      <excludeFolder url="file://$MODULE_DIR$/squarealfa_security/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/squarealfa_security/build" />
+      <excludeFolder url="file://$MODULE_DIR$/nosql_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/nosql_repository/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/entity_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/entity_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/entity_adapter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/entity_adapter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/nosql_repository_tests/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/nosql_repository_tests/build" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_annotations/build" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_annotations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/mongo_security_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/mongo_security_repository/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/defaults_provider/defaults_provider_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/mongo_repository/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/mongo_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/generators_common/build" />
+      <excludeFolder url="file://$MODULE_DIR$/generators_common/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_mapper_example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_mapper_example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example_model/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example_model/build" />
+      <excludeFolder url="file://$MODULE_DIR$/grpc_host/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/grpc_host/build" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/entity_adapter_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entity_adapter/entity_adapter_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/security_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/security_repository/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/map_mapper_generator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/map_mapper/map_mapper_generator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/arango_driver/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/arango_driver/build" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_annotations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/proto_mapper/proto_annotations/build" />
+      <excludeFolder url="file://$MODULE_DIR$/arango_repository/build" />
+      <excludeFolder url="file://$MODULE_DIR$/arango_repository/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

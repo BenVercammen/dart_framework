@@ -35,10 +35,10 @@ abstract class FieldCodeGenerator {
     if (fieldDescriptor.fieldElementType.isDartCoreBool) {
       return BoolFieldCodeGenerator(fieldDescriptor, isAbstract);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreList) {
+    if (fieldDescriptor.fieldElementType.isDartCoreList) {
       return ListFieldCodeGenerator(fieldDescriptor, isAbstract);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreSet) {
+    if (fieldDescriptor.fieldElementType.isDartCoreSet) {
       return SetFieldCodeGenerator(fieldDescriptor, isAbstract);
     }
     if (!fieldDescriptor.typeIsEnum &&
@@ -51,7 +51,7 @@ abstract class FieldCodeGenerator {
     if (fieldDescriptor.fieldElementTypeName == (Duration).toString()) {
       return DurationFieldCodeGenerator(fieldDescriptor, isAbstract);
     }
-    if (fieldDescriptor.fieldElement.type.isDartCoreIterable) {
+    if (fieldDescriptor.fieldElementType.isDartCoreIterable) {
       return ListFieldCodeGenerator(fieldDescriptor, isAbstract);
     }
     return GenericFieldCodeGenerator(fieldDescriptor, isAbstract);

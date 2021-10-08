@@ -7,21 +7,188 @@
 syntax = "proto3";
 
 import 'recipe.proto';
-import 'empty.proto';
 import 'key.proto';
-import 'calc_result.proto';
+import 'recipe_type.proto';
 import 'calc_parameters.proto';
+import 'calc_result.proto';
 
 
 
 
 service GRecipeService
 {
-    rpc Create (GRecipe) returns (GRecipe);
-    rpc Update (GRecipe) returns (GRecipe);
-    rpc Delete (GKey) returns (GEmpty);
-    rpc Get (GKey) returns (GRecipe);
-    rpc Search (GEmpty) returns (GListOfRecipe);
-    rpc DoCalculation (GCalcParameters) returns (GCalcResult);
+  rpc Create (GRecipe) returns (GRecipe);
+  rpc Update (GRecipe) returns (GRecipe);
+  rpc Delete (GKey) returns (G_GRecipeService_Delete_Return);
+  rpc Get (GKey) returns (GRecipe);
+  rpc Search (G_GRecipeService_Search_Parameters) returns (GListOfRecipe);
+  rpc SearchNullable (G_GRecipeService_SearchNullable_Parameters) returns (G_GRecipeService_SearchNullable_Return);
+  rpc InsertMany (GListOfRecipe) returns (G_GRecipeService_InsertMany_Return);
+  rpc GetNullable (G_GRecipeService_GetNullable_Parameters) returns (G_GRecipeService_GetNullable_Return);
+  rpc Count (G_GRecipeService_Count_Parameters) returns (G_GRecipeService_Count_Return);
+  rpc CountNullable (G_GRecipeService_CountNullable_Parameters) returns (G_GRecipeService_CountNullable_Return);
+  rpc Reindex (G_GRecipeService_Reindex_Parameters) returns (G_GRecipeService_Reindex_Return);
+  rpc GetMainRecipeType (G_GRecipeService_GetMainRecipeType_Parameters) returns (G_GRecipeService_GetMainRecipeType_Return);
+  rpc GetMainRecipeTypeNullable (G_GRecipeService_GetMainRecipeTypeNullable_Parameters) returns (G_GRecipeService_GetMainRecipeTypeNullable_Return);
+  rpc GetRecipeTypeList (G_GRecipeService_GetRecipeTypeList_Parameters) returns (G_GRecipeService_GetRecipeTypeList_Return);
+  rpc GetRecipeTypeListNullable (G_GRecipeService_GetRecipeTypeListNullable_Parameters) returns (G_GRecipeService_GetRecipeTypeListNullable_Return);
+  rpc GetListOfInts (G_GRecipeService_GetListOfInts_Parameters) returns (G_GRecipeService_GetListOfInts_Return);
+  rpc GetListOfIntsNullable (G_GRecipeService_GetListOfIntsNullable_Parameters) returns (G_GRecipeService_GetListOfIntsNullable_Return);
+  rpc DoCalculation (GCalcParameters) returns (GCalcResult);
+  rpc ReceiveLotsOfArgs (G_GRecipeService_ReceiveLotsOfArgs_Parameters) returns (G_GRecipeService_ReceiveLotsOfArgs_Return);
+  rpc ReceiveLotsOfNullableArgs (G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters) returns (G_GRecipeService_ReceiveLotsOfNullableArgs_Return);
+} 
+    
 
+message G_GRecipeService_Delete_Return {
+}
+
+message G_GRecipeService_Search_Parameters {
+}
+
+message G_GRecipeService_SearchNullable_Parameters {
+}
+
+message G_GRecipeService_SearchNullable_Return {
+  repeated GRecipe value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_InsertMany_Return {
+}
+
+message G_GRecipeService_GetNullable_Parameters {
+}
+
+message G_GRecipeService_GetNullable_Return {
+  GRecipe value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_Count_Parameters {
+}
+
+message G_GRecipeService_Count_Return {
+  int32 value = 1;
+}
+
+message G_GRecipeService_CountNullable_Parameters {
+  bool returnNull = 1;
+}
+
+message G_GRecipeService_CountNullable_Return {
+  int32 value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_Reindex_Parameters {
+}
+
+message G_GRecipeService_Reindex_Return {
+}
+
+message G_GRecipeService_GetMainRecipeType_Parameters {
+}
+
+message G_GRecipeService_GetMainRecipeType_Return {
+  GRecipeTypes value = 1;
+}
+
+message G_GRecipeService_GetMainRecipeTypeNullable_Parameters {
+}
+
+message G_GRecipeService_GetMainRecipeTypeNullable_Return {
+  GRecipeTypes value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_GetRecipeTypeList_Parameters {
+}
+
+message G_GRecipeService_GetRecipeTypeList_Return {
+  repeated GRecipeTypes value = 1;
+}
+
+message G_GRecipeService_GetRecipeTypeListNullable_Parameters {
+}
+
+message G_GRecipeService_GetRecipeTypeListNullable_Return {
+  repeated GRecipeTypes value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_GetListOfInts_Parameters {
+}
+
+message G_GRecipeService_GetListOfInts_Return {
+  repeated int32 value = 1;
+}
+
+message G_GRecipeService_GetListOfIntsNullable_Parameters {
+}
+
+message G_GRecipeService_GetListOfIntsNullable_Return {
+  repeated int32 value = 1;
+  bool valueHasValue = 2;
+}
+
+message G_GRecipeService_ReceiveLotsOfArgs_Parameters {
+  string pString = 1;
+  int32 pInt = 2;
+  GRecipeTypes pRecipeTypes = 3;
+  GRecipe pRecipe = 4;
+  repeated string pListStrings = 5;
+  repeated int32 pListInts = 6;
+  repeated GRecipeTypes pListRecipeTypes = 7;
+  repeated GRecipe pListRecipes = 8;
+  repeated string pSetString = 9;
+  repeated int32 pSetInt = 10;
+  repeated GRecipeTypes pSetRecipeTypes = 11;
+  repeated GRecipe pSetRecipe = 12;
+  repeated string pIterableString = 13;
+  repeated int32 pIterableInt = 14;
+  repeated GRecipeTypes pIterableRecipeTypes = 15;
+  repeated GRecipe pIterableRecipe = 16;
+}
+
+message G_GRecipeService_ReceiveLotsOfArgs_Return {
+}
+
+message G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters {
+  string pString = 1;
+  bool pStringHasValue = 2;
+  int32 pInt = 3;
+  bool pIntHasValue = 4;
+  GRecipeTypes pRecipeTypes = 5;
+  bool pRecipeTypesHasValue = 6;
+  GRecipe pRecipe = 7;
+  bool pRecipeHasValue = 8;
+  repeated string pListStrings = 9;
+  bool pListStringsHasValue = 10;
+  repeated int32 pListInts = 11;
+  bool pListIntsHasValue = 12;
+  repeated GRecipeTypes pListRecipeTypes = 13;
+  bool pListRecipeTypesHasValue = 14;
+  repeated GRecipe pListRecipes = 15;
+  bool pListRecipesHasValue = 16;
+  repeated string pSetString = 17;
+  bool pSetStringHasValue = 18;
+  repeated int32 pSetInt = 19;
+  bool pSetIntHasValue = 20;
+  repeated GRecipeTypes pSetRecipeTypes = 21;
+  bool pSetRecipeTypesHasValue = 22;
+  repeated GRecipe pSetRecipe = 23;
+  bool pSetRecipeHasValue = 24;
+  repeated string pIterableString = 25;
+  bool pIterableStringHasValue = 26;
+  repeated int32 pIterableInt = 27;
+  bool pIterableIntHasValue = 28;
+  repeated GRecipeTypes pIterableRecipeTypes = 29;
+  bool pIterableRecipeTypesHasValue = 30;
+  repeated GRecipe pIterableRecipe = 31;
+  bool pIterableRecipeHasValue = 32;
+}
+
+message G_GRecipeService_ReceiveLotsOfNullableArgs_Return {
+  repeated int32 value = 1;
 }

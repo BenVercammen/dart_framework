@@ -4,8 +4,7 @@ import 'package:proto_annotations/proto_annotations.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
-import 'field_code_generator.dart';
-import 'field_code_generators/external_proto_name.dart';
+import '../proto_common.dart';
 import 'field_descriptor.dart';
 
 class ProtoGenerator extends GeneratorForAnnotation<Proto> {
@@ -32,7 +31,7 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
 
     final packageDeclaration = packageName != '' ? 'package $packageName;' : '';
 
-    var ret = classElement.kind.name == 'ENUM'
+    var ret = classElement.kind == ElementKind.ENUM
         ? _generateForEnum(
             classElement,
             readAnnotation,
@@ -55,7 +54,7 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     final externalProtoNames = <String>[];
     var fieldDescriptors = _getFieldDescriptors(classElement, annotation);
     final fieldDeclarations =
-        _createFieldDeclarations(fieldDescriptors, externalProtoNames);
+        createFieldDeclarations(fieldDescriptors, externalProtoNames);
 
     var imports = StringBuffer();
     for (var externalProtoName in externalProtoNames) {
@@ -67,13 +66,12 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     final messages = '''
 message $_prefix$className
 {
-$fieldDeclarations
-}   
+$fieldDeclarations}   
 
 message ${_prefix}ListOf$className
 {
   repeated $_prefix$className items = 1;
-}   
+}
     ''';
 
     var ret = '''
@@ -88,38 +86,6 @@ $messages
  
 ''';
     return ret;
-  }
-
-  String _createFieldDeclarations(
-    Iterable<FieldDescriptor> fieldDescriptors,
-    List<String> externalProtoNames,
-  ) {
-    final fieldBuffer = StringBuffer();
-    var lineNumber = 1;
-    for (var fieldDescriptor in fieldDescriptors) {
-      var fieldCodeGenerator = FieldCodeGenerator.fromFieldDescriptor(
-        fieldDescriptor,
-        lineNumber++,
-      );
-
-      var fieldLine = fieldCodeGenerator.fieldLine;
-      fieldBuffer.writeln(
-          '  ${fieldDescriptor.isRepeated ? 'repeated ' : ''}$fieldLine');
-      if (fieldDescriptor.isNullable) {
-        fieldBuffer.writeln('  ${fieldCodeGenerator.hasValueLine}');
-        lineNumber++;
-      }
-
-      if (fieldCodeGenerator is! ExternalProtoName) continue;
-      var externalProtoName =
-          (fieldCodeGenerator as ExternalProtoName).externalProtoName;
-      if (externalProtoName != null &&
-          !externalProtoNames.contains(externalProtoName)) {
-        externalProtoNames.add(externalProtoName);
-      }
-    }
-
-    return fieldBuffer.toString();
   }
 
   String _generateForEnum(
@@ -146,8 +112,7 @@ $packageDeclaration
     
 enum $_prefix$className
 {
-$fieldBuffer
-}   
+$fieldBuffer}   
      
 message Nullable$_prefix$className
 {
@@ -166,7 +131,6 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   final fieldSet = classElement.getSortedFieldSet();
   final fieldDescriptors = fieldSet
       .map((fieldElement) => FieldDescriptor.fromFieldElement(
-            classElement,
             fieldElement,
             annotation,
           ))
