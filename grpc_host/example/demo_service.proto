@@ -1,0 +1,16 @@
+syntax="proto3";
+
+service GDemoService
+{
+  rpc InsertPerson (GPerson) returns (GPersonInsertResult);
+} 
+
+
+message GPerson {
+  string key = 1;
+  string name = 2;
+}   
+
+message GPersonInsertResult {
+    string key = 1;
+}
