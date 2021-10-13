@@ -14,6 +14,8 @@ void main() {
         issuer: 'Our Server',
         audience: 'Our Server',
         notBefore: DateTime.now(),
+        tid: 'abc',
+        tenantId: '123',
         expires: DateTime.now().add(Duration(seconds: 300)));
 
     var tokenGenerator = JsonWebTokenHandler(secret);
@@ -41,6 +43,23 @@ void main() {
 
       expect(map['name'], 'John Doe');
       expect(map['email'], 'user@domain.com');
+    });
+
+    test('tenantId is correct', () {
+      var parts = jwt.split('.');
+
+      var body = decodeB64Json(parts[1]);
+      var map = jsonDecode(body) as Map<String, dynamic>;
+
+      expect(map['tenantId'], '123');
+    });
+    test('tid is correct', () {
+      var parts = jwt.split('.');
+
+      var body = decodeB64Json(parts[1]);
+      var map = jsonDecode(body) as Map<String, dynamic>;
+
+      expect(map['tid'], 'abc');
     });
   });
 

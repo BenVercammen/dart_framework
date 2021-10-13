@@ -10,6 +10,7 @@ class JwtPayload {
   final bool emailVerified;
   final bool isVerified;
   final String tenantId;
+  final String tid;
   final bool isAdministrator;
   final List<String> permissions;
 
@@ -29,6 +30,7 @@ class JwtPayload {
     this.emailVerified = false,
     this.isVerified = false,
     this.tenantId = '',
+    this.tid = '',
     this.permissions = const [],
     this.isAdministrator = false,
     this.extra = const <String, dynamic>{},
@@ -39,6 +41,7 @@ class JwtPayload {
     var subject = '';
     var email = '';
     var tenantId = '';
+    var tid = '';
     var issuer = '';
     var audience = '';
     var permissions = const <String>[];
@@ -59,8 +62,11 @@ class JwtPayload {
         case 'email':
           email = entry.value;
           break;
+        case 'tid':
+          tid = entry.value ?? '';
+          break;
         case 'tenantId':
-          tenantId = entry.value;
+          tenantId = entry.value ?? '';
           break;
         case 'iss':
           issuer = entry.value;
@@ -101,6 +107,7 @@ class JwtPayload {
         extra: extra,
         emailVerified: emailVerified,
         tenantId: tenantId,
+        tid: tid,
         permissions: permissions,
         isAdministrator: isAdministrator);
     return payload;
@@ -116,6 +123,7 @@ class JwtPayload {
     DateTime? expires,
     String? userId,
     String? tenantId,
+    String? tid,
     List<String>? roles,
     bool? isVerified,
     bool? emailVerified,
@@ -132,6 +140,8 @@ class JwtPayload {
       extra: extra ?? this.extra,
       isVerified: isVerified ?? this.isVerified,
       emailVerified: emailVerified ?? this.emailVerified,
+      tenantId: tenantId ?? this.tenantId,
+      tid: tid ?? this.tid,
     );
     return ret;
   }
@@ -150,6 +160,9 @@ class JwtPayload {
     _addClaimIfNotNull(map, 'exp', exp);
     _addClaimIfNotNull(map, 'adm', isAdministrator);
     _addClaimIfNotNull(map, 'scp', permissions);
+    _addClaimIfNotNullOrEmpty(map, 'tenantId', tenantId);
+    _addClaimIfNotNullOrEmpty(map, 'tid', tid);
+
     for (var claim in extra.entries) {
       _addClaimIfNotNull(map, claim.key, claim.value);
     }
@@ -168,9 +181,17 @@ class JwtPayload {
 
   static void _addClaimIfNotNull(
     Map<String, dynamic> claimsMap,
-    String? claim,
+    String claim,
     dynamic value,
   ) {
-    if (claim != null) claimsMap[claim] = value;
+    if (value != null) claimsMap[claim] = value;
+  }
+
+  static void _addClaimIfNotNullOrEmpty(
+    Map<String, dynamic> claimsMap,
+    String claim,
+    String? value,
+  ) {
+    if (value != null && value.isNotEmpty) claimsMap[claim] = value;
   }
 }

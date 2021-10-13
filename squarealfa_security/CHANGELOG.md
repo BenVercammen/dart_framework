@@ -37,3 +37,7 @@
 ## 2.0.0
 
 - Added support for Firebase generated JWT token validation
+
+## 2.0.1
+
+- Handling new "tid" claim
