@@ -29,3 +29,7 @@
 ## 2.0.0
 
 - KeyHandler is no longer a dependency, but a build configuration.
+
+## 2.0.1
+
+- Updated arango_driver dependency to 2.0.1

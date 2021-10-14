@@ -195,3 +195,11 @@ Fix pedantic warning again
 ## 2.0.0
 
 - Collection and Index maintenance multiple parameters replaced by single criteria parameter (breaking change)
+
+## 2.0.1
+
+- Fixed wrong type in IndexInfo.selectivityEstimate
+
+## 2.0.2
+
+- Casting selectivityEstimate to double on response

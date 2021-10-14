@@ -847,7 +847,7 @@ class ArangoDBClient {
         unique: map['unique'],
         deduplicate: map['deduplicate'],
         sparse: map['sparse'],
-        selectivityEstimate: map['selectivityEstimate'],
+        selectivityEstimate: map['selectivityEstimate'].toDouble(),
       ),
     );
   }

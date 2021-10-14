@@ -9,7 +9,7 @@ class IndexInfo {
   final bool unique;
   final bool deduplicate;
   final bool sparse;
-  final int selectivityEstimate;
+  final double selectivityEstimate;
 
   const IndexInfo({
     required this.id,
