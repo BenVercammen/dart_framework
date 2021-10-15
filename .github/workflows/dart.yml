@@ -1,4 +1,4 @@
-# Created with package:mono_repo v5.0.2
+# Created with package:mono_repo v5.0.3
 name: Dart CI
 on:
   push:
@@ -26,30 +26,30 @@ jobs:
           restore-keys: |
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
         uses: actions/checkout@v2.3.4
       - name: mono_repo self validate
-        run: dart pub global activate mono_repo 5.0.2
+        run: dart pub global activate mono_repo 5.0.3
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
-    name: "analyze_format; PKG: arango_driver; `dart format --output=none --set-exit-if-changed .`"
+    name: "analyze_format; PKGS: arango_driver, arango_repository, grpc_host, mongo_repository; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.6
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_driver;commands:format"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_driver-arango_repository-grpc_host-mongo_repository;commands:format"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_driver
+            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_driver-arango_repository-grpc_host-mongo_repository
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -63,25 +63,6 @@ jobs:
         if: "always() && steps.arango_driver_pub_upgrade.conclusion == 'success'"
         working-directory: arango_driver
         run: "dart format --output=none --set-exit-if-changed ."
-  job_003:
-    name: "analyze_format; PKG: arango_repository; `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_repository;commands:format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:arango_repository
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: arango_repository_pub_upgrade
         name: arango_repository; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -91,25 +72,6 @@ jobs:
         if: "always() && steps.arango_repository_pub_upgrade.conclusion == 'success'"
         working-directory: arango_repository
         run: "dart format --output=none --set-exit-if-changed ."
-  job_004:
-    name: "analyze_format; PKG: grpc_host; `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:grpc_host;commands:format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:grpc_host
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: grpc_host_pub_upgrade
         name: grpc_host; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -119,25 +81,6 @@ jobs:
         if: "always() && steps.grpc_host_pub_upgrade.conclusion == 'success'"
         working-directory: grpc_host
         run: "dart format --output=none --set-exit-if-changed ."
-  job_005:
-    name: "analyze_format; PKG: mongo_repository; `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:mongo_repository;commands:format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:mongo_repository
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: mongo_repository_pub_upgrade
         name: mongo_repository; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -147,21 +90,21 @@ jobs:
         if: "always() && steps.mongo_repository_pub_upgrade.conclusion == 'success'"
         working-directory: mongo_repository
         run: "dart format --output=none --set-exit-if-changed ."
-  job_006:
-    name: "analyze_format; PKG: defaults_provider/defaults_provider_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
+  job_003:
+    name: "analyze_format; PKGS: defaults_provider/defaults_provider_annotations, defaults_provider/defaults_provider_generator, defaults_provider/example, defaults_provider/test, entity/entity_annotations, entity/entity_generator, entity/example, entity/test, entity_adapter/entity_adapter, entity_adapter/entity_adapter_generator, entity_adapter/example, example_model, generators_common, map_mapper/example, map_mapper/map_mapper_annotations, map_mapper/map_mapper_generator, map_mapper/test, map_mapper/test_mongo, proto_mapper/example, proto_mapper/proto_annotations, proto_mapper/proto_generator, proto_mapper/test, squarealfa_security; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.6
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_annotations;commands:analyze-format"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator--!!too_long!!-665-258509413"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_annotations
+            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator--!!too_long!!-641-597014237
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -179,25 +122,6 @@ jobs:
         if: "always() && steps.defaults_provider_defaults_provider_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/defaults_provider_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_007:
-    name: "analyze_format; PKG: defaults_provider/defaults_provider_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_generator;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/defaults_provider_generator
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: defaults_provider_defaults_provider_generator_pub_upgrade
         name: defaults_provider/defaults_provider_generator; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -211,25 +135,6 @@ jobs:
         if: "always() && steps.defaults_provider_defaults_provider_generator_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/defaults_provider_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_008:
-    name: "analyze_format; PKG: defaults_provider/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/example;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/example
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: defaults_provider_example_pub_upgrade
         name: defaults_provider/example; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -243,25 +148,6 @@ jobs:
         if: "always() && steps.defaults_provider_example_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_009:
-    name: "analyze_format; PKG: defaults_provider/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/test;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:defaults_provider/test
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: defaults_provider_test_pub_upgrade
         name: defaults_provider/test; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -275,25 +161,6 @@ jobs:
         if: "always() && steps.defaults_provider_test_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_010:
-    name: "analyze_format; PKG: entity/entity_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/entity_annotations;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/entity_annotations
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_entity_annotations_pub_upgrade
         name: entity/entity_annotations; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -307,25 +174,6 @@ jobs:
         if: "always() && steps.entity_entity_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: entity/entity_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_011:
-    name: "analyze_format; PKG: entity/entity_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/entity_generator;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/entity_generator
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_entity_generator_pub_upgrade
         name: entity/entity_generator; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -339,25 +187,6 @@ jobs:
         if: "always() && steps.entity_entity_generator_pub_upgrade.conclusion == 'success'"
         working-directory: entity/entity_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_012:
-    name: "analyze_format; PKG: entity/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/example;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/example
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_example_pub_upgrade
         name: entity/example; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -371,25 +200,6 @@ jobs:
         if: "always() && steps.entity_example_pub_upgrade.conclusion == 'success'"
         working-directory: entity/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_013:
-    name: "analyze_format; PKG: entity/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/test;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity/test
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_test_pub_upgrade
         name: entity/test; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -403,25 +213,6 @@ jobs:
         if: "always() && steps.entity_test_pub_upgrade.conclusion == 'success'"
         working-directory: entity/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_014:
-    name: "analyze_format; PKG: entity_adapter/entity_adapter; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/entity_adapter;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/entity_adapter
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_adapter_entity_adapter_pub_upgrade
         name: entity_adapter/entity_adapter; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -435,25 +226,6 @@ jobs:
         if: "always() && steps.entity_adapter_entity_adapter_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/entity_adapter
         run: "dart format --output=none --set-exit-if-changed ."
-  job_015:
-    name: "analyze_format; PKG: entity_adapter/entity_adapter_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/entity_adapter_generator;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/entity_adapter_generator
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_adapter_entity_adapter_generator_pub_upgrade
         name: entity_adapter/entity_adapter_generator; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -467,25 +239,6 @@ jobs:
         if: "always() && steps.entity_adapter_entity_adapter_generator_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/entity_adapter_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_016:
-    name: "analyze_format; PKG: entity_adapter/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/example;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:entity_adapter/example
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: entity_adapter_example_pub_upgrade
         name: entity_adapter/example; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -499,25 +252,6 @@ jobs:
         if: "always() && steps.entity_adapter_example_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_017:
-    name: "analyze_format; PKG: example_model; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:example_model;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:example_model
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: example_model_pub_upgrade
         name: example_model; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -531,25 +265,6 @@ jobs:
         if: "always() && steps.example_model_pub_upgrade.conclusion == 'success'"
         working-directory: example_model
         run: "dart format --output=none --set-exit-if-changed ."
-  job_018:
-    name: "analyze_format; PKG: generators_common; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:generators_common;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:generators_common
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: generators_common_pub_upgrade
         name: generators_common; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -563,25 +278,6 @@ jobs:
         if: "always() && steps.generators_common_pub_upgrade.conclusion == 'success'"
         working-directory: generators_common
         run: "dart format --output=none --set-exit-if-changed ."
-  job_019:
-    name: "analyze_format; PKG: map_mapper/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/example;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/example
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: map_mapper_example_pub_upgrade
         name: map_mapper/example; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -595,25 +291,6 @@ jobs:
         if: "always() && steps.map_mapper_example_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_020:
-    name: "analyze_format; PKG: map_mapper/map_mapper_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/map_mapper_annotations;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/map_mapper_annotations
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: map_mapper_map_mapper_annotations_pub_upgrade
         name: map_mapper/map_mapper_annotations; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -627,25 +304,6 @@ jobs:
         if: "always() && steps.map_mapper_map_mapper_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/map_mapper_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_021:
-    name: "analyze_format; PKG: map_mapper/map_mapper_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/map_mapper_generator;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/map_mapper_generator
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: map_mapper_map_mapper_generator_pub_upgrade
         name: map_mapper/map_mapper_generator; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -659,25 +317,6 @@ jobs:
         if: "always() && steps.map_mapper_map_mapper_generator_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/map_mapper_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_022:
-    name: "analyze_format; PKG: map_mapper/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/test;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/test
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: map_mapper_test_pub_upgrade
         name: map_mapper/test; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -691,25 +330,6 @@ jobs:
         if: "always() && steps.map_mapper_test_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_023:
-    name: "analyze_format; PKG: map_mapper/test_mongo; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/test_mongo;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:map_mapper/test_mongo
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: map_mapper_test_mongo_pub_upgrade
         name: map_mapper/test_mongo; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -723,25 +343,6 @@ jobs:
         if: "always() && steps.map_mapper_test_mongo_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/test_mongo
         run: "dart format --output=none --set-exit-if-changed ."
-  job_024:
-    name: "analyze_format; PKG: proto_mapper/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/example;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/example
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: proto_mapper_example_pub_upgrade
         name: proto_mapper/example; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -755,25 +356,6 @@ jobs:
         if: "always() && steps.proto_mapper_example_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_025:
-    name: "analyze_format; PKG: proto_mapper/proto_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/proto_annotations;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/proto_annotations
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: proto_mapper_proto_annotations_pub_upgrade
         name: proto_mapper/proto_annotations; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -787,25 +369,6 @@ jobs:
         if: "always() && steps.proto_mapper_proto_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/proto_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_026:
-    name: "analyze_format; PKG: proto_mapper/proto_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/proto_generator;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/proto_generator
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: proto_mapper_proto_generator_pub_upgrade
         name: proto_mapper/proto_generator; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -819,25 +382,6 @@ jobs:
         if: "always() && steps.proto_mapper_proto_generator_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/proto_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_027:
-    name: "analyze_format; PKG: proto_mapper/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/test;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:proto_mapper/test
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: proto_mapper_test_pub_upgrade
         name: proto_mapper/test; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -851,25 +395,6 @@ jobs:
         if: "always() && steps.proto_mapper_test_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_028:
-    name: "analyze_format; PKG: squarealfa_security; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:squarealfa_security;commands:analyze-format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:squarealfa_security
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2.3.4
       - id: squarealfa_security_pub_upgrade
         name: squarealfa_security; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -883,7 +408,7 @@ jobs:
         if: "always() && steps.squarealfa_security_pub_upgrade.conclusion == 'success'"
         working-directory: squarealfa_security
         run: "dart format --output=none --set-exit-if-changed ."
-  job_029:
+  job_004:
     name: "unit_test; PKG: defaults_provider/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -897,7 +422,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -915,32 +440,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_030:
+  job_005:
     name: "unit_test; PKG: entity/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -954,7 +454,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -972,32 +472,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_031:
+  job_006:
     name: "unit_test; PKG: generators_common; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1011,7 +486,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -1029,32 +504,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_032:
+  job_007:
     name: "unit_test; PKG: map_mapper/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1068,7 +518,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -1086,32 +536,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_033:
+  job_008:
     name: "unit_test; PKG: map_mapper/test_mongo; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1125,7 +550,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -1143,32 +568,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_034:
+  job_009:
     name: "unit_test; PKG: proto_mapper/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1182,7 +582,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -1200,32 +600,7 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
-  job_035:
+  job_010:
     name: "unit_test; PKG: squarealfa_security; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1239,7 +614,7 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.2
+      - uses: dart-lang/setup-dart@v1.3
         with:
           sdk: stable
       - id: checkout
@@ -1257,28 +632,3 @@ jobs:
       - job_001
       - job_002
       - job_003
-      - job_004
-      - job_005
-      - job_006
-      - job_007
-      - job_008
-      - job_009
-      - job_010
-      - job_011
-      - job_012
-      - job_013
-      - job_014
-      - job_015
-      - job_016
-      - job_017
-      - job_018
-      - job_019
-      - job_020
-      - job_021
-      - job_022
-      - job_023
-      - job_024
-      - job_025
-      - job_026
-      - job_027
-      - job_028
