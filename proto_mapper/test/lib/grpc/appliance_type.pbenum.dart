@@ -11,11 +11,20 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class GApplianceType extends $pb.ProtobufEnum {
   static const GApplianceType heat = GApplianceType._(
-      0, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'heat');
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'heat');
   static const GApplianceType cold = GApplianceType._(
-      1, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'cold');
-  static const GApplianceType cutlery = GApplianceType._(2,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'cutlery');
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'cold');
+  static const GApplianceType cutlery = GApplianceType._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'cutlery');
 
   static const $core.List<GApplianceType> values = <GApplianceType>[
     heat,

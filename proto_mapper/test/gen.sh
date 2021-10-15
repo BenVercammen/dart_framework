@@ -17,3 +17,4 @@ mkdir ./lib/grpc
 
 # generate dart grpc business model files
 protoc --dart_out=grpc:lib/grpc/ -Iproto/ ./proto/*.proto
+dart format fix lib/grpc/

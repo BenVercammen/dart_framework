@@ -6,3 +6,4 @@ rm -rf ./lib/grpc/
 mkdir ./lib/grpc
 protoc --dart_out=grpc:lib/grpc/ -Ilib/src ./lib/src/*.proto
 
+dart format --fix lib/grpc/

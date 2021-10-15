@@ -15,7 +15,6 @@ message GRecipe
   string title = 1;
   string description = 2;
   bool descriptionHasValue = 3;
-
 }   
 
 message GListOfRecipe
