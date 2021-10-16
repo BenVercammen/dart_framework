@@ -92,6 +92,34 @@ jobs:
         working-directory: arango_repository
         run: "dart format --output=none --set-exit-if-changed ."
   job_004:
+    name: "analyze_format; PKG: firebase-auth-admin; `dart format --output=none --set-exit-if-changed .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:firebase-auth-admin;commands:format"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:firebase-auth-admin
+            os:ubuntu-latest;pub-cache-hosted;dart:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.2
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v2.3.4
+      - id: firebase-auth-admin_pub_upgrade
+        name: "firebase-auth-admin; dart pub upgrade"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: firebase-auth-admin
+        run: dart pub upgrade
+      - name: "firebase-auth-admin; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.firebase-auth-admin_pub_upgrade.conclusion == 'success'"
+        working-directory: firebase-auth-admin
+        run: "dart format --output=none --set-exit-if-changed ."
+  job_005:
     name: "analyze_format; PKG: grpc_host; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -119,7 +147,7 @@ jobs:
         if: "always() && steps.grpc_host_pub_upgrade.conclusion == 'success'"
         working-directory: grpc_host
         run: "dart format --output=none --set-exit-if-changed ."
-  job_005:
+  job_006:
     name: "analyze_format; PKG: mongo_repository; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -147,7 +175,7 @@ jobs:
         if: "always() && steps.mongo_repository_pub_upgrade.conclusion == 'success'"
         working-directory: mongo_repository
         run: "dart format --output=none --set-exit-if-changed ."
-  job_006:
+  job_007:
     name: "analyze_format; PKG: defaults_provider/defaults_provider_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -179,7 +207,7 @@ jobs:
         if: "always() && steps.defaults_provider_defaults_provider_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/defaults_provider_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_007:
+  job_008:
     name: "analyze_format; PKG: defaults_provider/defaults_provider_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -211,7 +239,7 @@ jobs:
         if: "always() && steps.defaults_provider_defaults_provider_generator_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/defaults_provider_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_008:
+  job_009:
     name: "analyze_format; PKG: defaults_provider/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -243,7 +271,7 @@ jobs:
         if: "always() && steps.defaults_provider_example_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_009:
+  job_010:
     name: "analyze_format; PKG: defaults_provider/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -275,7 +303,7 @@ jobs:
         if: "always() && steps.defaults_provider_test_pub_upgrade.conclusion == 'success'"
         working-directory: defaults_provider/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_010:
+  job_011:
     name: "analyze_format; PKG: entity/entity_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -307,7 +335,7 @@ jobs:
         if: "always() && steps.entity_entity_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: entity/entity_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_011:
+  job_012:
     name: "analyze_format; PKG: entity/entity_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -339,7 +367,7 @@ jobs:
         if: "always() && steps.entity_entity_generator_pub_upgrade.conclusion == 'success'"
         working-directory: entity/entity_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_012:
+  job_013:
     name: "analyze_format; PKG: entity/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -371,7 +399,7 @@ jobs:
         if: "always() && steps.entity_example_pub_upgrade.conclusion == 'success'"
         working-directory: entity/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_013:
+  job_014:
     name: "analyze_format; PKG: entity/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -403,7 +431,7 @@ jobs:
         if: "always() && steps.entity_test_pub_upgrade.conclusion == 'success'"
         working-directory: entity/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_014:
+  job_015:
     name: "analyze_format; PKG: entity_adapter/entity_adapter; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -435,7 +463,7 @@ jobs:
         if: "always() && steps.entity_adapter_entity_adapter_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/entity_adapter
         run: "dart format --output=none --set-exit-if-changed ."
-  job_015:
+  job_016:
     name: "analyze_format; PKG: entity_adapter/entity_adapter_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -467,7 +495,7 @@ jobs:
         if: "always() && steps.entity_adapter_entity_adapter_generator_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/entity_adapter_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_016:
+  job_017:
     name: "analyze_format; PKG: entity_adapter/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -499,7 +527,7 @@ jobs:
         if: "always() && steps.entity_adapter_example_pub_upgrade.conclusion == 'success'"
         working-directory: entity_adapter/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_017:
+  job_018:
     name: "analyze_format; PKG: example_model; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -531,7 +559,7 @@ jobs:
         if: "always() && steps.example_model_pub_upgrade.conclusion == 'success'"
         working-directory: example_model
         run: "dart format --output=none --set-exit-if-changed ."
-  job_018:
+  job_019:
     name: "analyze_format; PKG: generators_common; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -563,7 +591,7 @@ jobs:
         if: "always() && steps.generators_common_pub_upgrade.conclusion == 'success'"
         working-directory: generators_common
         run: "dart format --output=none --set-exit-if-changed ."
-  job_019:
+  job_020:
     name: "analyze_format; PKG: map_mapper/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -595,7 +623,7 @@ jobs:
         if: "always() && steps.map_mapper_example_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_020:
+  job_021:
     name: "analyze_format; PKG: map_mapper/map_mapper_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -627,7 +655,7 @@ jobs:
         if: "always() && steps.map_mapper_map_mapper_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/map_mapper_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_021:
+  job_022:
     name: "analyze_format; PKG: map_mapper/map_mapper_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -659,7 +687,7 @@ jobs:
         if: "always() && steps.map_mapper_map_mapper_generator_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/map_mapper_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_022:
+  job_023:
     name: "analyze_format; PKG: map_mapper/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -691,7 +719,7 @@ jobs:
         if: "always() && steps.map_mapper_test_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_023:
+  job_024:
     name: "analyze_format; PKG: map_mapper/test_mongo; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -723,7 +751,7 @@ jobs:
         if: "always() && steps.map_mapper_test_mongo_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/test_mongo
         run: "dart format --output=none --set-exit-if-changed ."
-  job_024:
+  job_025:
     name: "analyze_format; PKG: proto_mapper/example; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -755,7 +783,7 @@ jobs:
         if: "always() && steps.proto_mapper_example_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/example
         run: "dart format --output=none --set-exit-if-changed ."
-  job_025:
+  job_026:
     name: "analyze_format; PKG: proto_mapper/proto_annotations; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -787,7 +815,7 @@ jobs:
         if: "always() && steps.proto_mapper_proto_annotations_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/proto_annotations
         run: "dart format --output=none --set-exit-if-changed ."
-  job_026:
+  job_027:
     name: "analyze_format; PKG: proto_mapper/proto_generator; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -819,7 +847,7 @@ jobs:
         if: "always() && steps.proto_mapper_proto_generator_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/proto_generator
         run: "dart format --output=none --set-exit-if-changed ."
-  job_027:
+  job_028:
     name: "analyze_format; PKG: proto_mapper/test; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -851,7 +879,7 @@ jobs:
         if: "always() && steps.proto_mapper_test_pub_upgrade.conclusion == 'success'"
         working-directory: proto_mapper/test
         run: "dart format --output=none --set-exit-if-changed ."
-  job_028:
+  job_029:
     name: "analyze_format; PKG: squarealfa_security; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -883,7 +911,7 @@ jobs:
         if: "always() && steps.squarealfa_security_pub_upgrade.conclusion == 'success'"
         working-directory: squarealfa_security
         run: "dart format --output=none --set-exit-if-changed ."
-  job_029:
+  job_030:
     name: "unit_test; PKG: defaults_provider/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -940,7 +968,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_030:
+      - job_029
+  job_031:
     name: "unit_test; PKG: entity/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -997,7 +1026,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_031:
+      - job_029
+  job_032:
     name: "unit_test; PKG: generators_common; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1054,7 +1084,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_032:
+      - job_029
+  job_033:
     name: "unit_test; PKG: map_mapper/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1111,7 +1142,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_033:
+      - job_029
+  job_034:
     name: "unit_test; PKG: map_mapper/test_mongo; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1168,7 +1200,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_034:
+      - job_029
+  job_035:
     name: "unit_test; PKG: proto_mapper/test; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1225,7 +1258,8 @@ jobs:
       - job_026
       - job_027
       - job_028
-  job_035:
+      - job_029
+  job_036:
     name: "unit_test; PKG: squarealfa_security; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1282,3 +1316,4 @@ jobs:
       - job_026
       - job_027
       - job_028
+      - job_029
