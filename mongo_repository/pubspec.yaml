@@ -17,5 +17,5 @@ dev_dependencies:
   
   test: ^1.17.0
   nosql_repository_tests:
-    path: ../nosql_repository_tests
+    path: ../nosql_repository/test
   lints: ^1.0.1
