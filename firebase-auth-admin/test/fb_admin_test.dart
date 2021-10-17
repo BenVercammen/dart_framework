@@ -57,6 +57,16 @@ void main() {
       expect(claims[name], value);
     });
 
+    test('Set, clear and retrieve custom claims', () async {
+      final name = 'adhoc';
+      final value = 'abracadabra';
+      await firebase.setCustomClaims(uid, {name: value});
+      await firebase.setCustomClaims(uid, {});
+      final claims = await firebase.getCustomClaims(uid);
+
+      expect(claims[name], isNull);
+    });
+
     test('Set custom claims and retrieve user', () async {
       final name = 'adhoc';
       final value = 'abracadabra';

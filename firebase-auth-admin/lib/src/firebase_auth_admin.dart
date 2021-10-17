@@ -35,6 +35,7 @@ Future<void> setCustomClaims(String uid, Map<String, dynamic> claims) async {
 
 Future<Map<String, dynamic>> getCustomClaims(String uid) async {
   final claims = await runNative<String, String>(_getCustomClaims, uid);
+  if (claims == "null") return {};
   final ret = jsonDecode(claims);
   return ret;
 }

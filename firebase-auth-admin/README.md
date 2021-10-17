@@ -21,7 +21,7 @@ Currently the following methods are implemented:
 
 ## Considerations before using
 
-The purpose of this package, as an alternative to other implementations, was to have as much of an official Firebase Auth Admin SDK on the server possible. Since at the time of this writing there is no Firebase Dart Admin SDK, the closest approach was to use the official GO SDK and expose it to Dart via FFI - Foreign Function Interface.
+The purpose of this package, as an alternative to other implementations, was to have as much of an official Firebase Auth Admin SDK on the server possible. Since at the time of this writing there is no official Firebase Dart Admin SDK, the closest approach was to use the official GO SDK and expose it to Dart via FFI - Foreign Function Interface.
 
 While there is some extra confidence by exposing an official SDK, there are some caveats to this implementation that you should be aware of.
 
