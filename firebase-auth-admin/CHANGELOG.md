@@ -9,4 +9,8 @@
 
 ## 0.9.2
 
-- Added executable
+- Added admin command line tool. This version supports setting and getting custom user claims.
+
+## 0.9.3
+
+- CLI with new parameter to receive custom user claims as JSON structure

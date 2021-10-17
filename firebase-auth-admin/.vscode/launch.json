@@ -9,7 +9,7 @@
             "type": "dart",
             "request": "launch",
             "program": "bin/firebase_auth_admin.dart",
-            "args": ["setCustomClaims", "-u", "my9SC9US35h5XgpKX4OIx0cBz0y1", "-a", "tid:3579532", "-a", "adm:true", "-a", "scp:['read_something']"]
+            "args": ["setCustomClaims", "-u", "my9SC9US35h5XgpKX4OIx0cBz0y1", "-j", "{adm: true, inorg: false, scp: ['read_something'], tid: '3579532', tname: 'Rui Craveiro'}"]
         }
     ]
 }

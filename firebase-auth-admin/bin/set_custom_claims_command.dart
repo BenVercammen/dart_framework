@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:args/args.dart';
 
 import 'command.dart';
@@ -8,6 +10,7 @@ class SetCustomClaimsCommand extends Command {
   final bool clear;
   final List<String> add;
   final List<String> remove;
+  final Map<String, dynamic>? jsonMap;
 
   SetCustomClaimsCommand(
     CommonOptions commonOptions,
@@ -15,6 +18,7 @@ class SetCustomClaimsCommand extends Command {
     required this.clear,
     required this.add,
     required this.remove,
+    this.jsonMap,
   }) : super(commonOptions);
 
   factory SetCustomClaimsCommand.fromResults(
@@ -25,6 +29,9 @@ class SetCustomClaimsCommand extends Command {
     final clear = results['clear'] ?? false;
     final add = results['add'] as List<String>;
     final remove = results['remove'] as List<String>;
+    final jsonText = results['json'] as String? ?? '';
+    final Map<String, dynamic>? jsonMap =
+        jsonText.isEmpty ? null : jsonDecode(jsonText);
 
     return SetCustomClaimsCommand(
       commonOptions,
@@ -32,6 +39,7 @@ class SetCustomClaimsCommand extends Command {
       clear: clear,
       add: add,
       remove: remove,
+      jsonMap: jsonMap,
     );
   }
 
@@ -43,6 +51,11 @@ class SetCustomClaimsCommand extends Command {
       abbr: 'u',
       help: 'UID of the user',
       mandatory: true,
+    );
+    cc.addOption(
+      'json',
+      abbr: 'j',
+      help: 'Parse the base claims from the given JSON structure.',
     );
     cc.addFlag(
       'clear',

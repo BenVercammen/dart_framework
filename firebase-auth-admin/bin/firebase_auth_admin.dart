@@ -20,8 +20,11 @@ void main(List<String> args) async {
 
 Future<void> _setCustomClaims(SetCustomClaimsCommand command) async {
   final uid = command.uid;
-  var claims =
-      command.clear ? <String, dynamic>{} : await firebase.getCustomClaims(uid);
+  var claims = command.jsonMap != null
+      ? command.jsonMap!
+      : (command.clear
+          ? <String, dynamic>{}
+          : await firebase.getCustomClaims(uid));
 
   if (!command.clear) {
     for (final r in command.remove) {
