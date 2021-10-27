@@ -20,7 +20,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 #line 3 "auth.go"
-#include <stdlib.h>
+ #include <stdlib.h>
 
 #line 1 "cgo-generated-wrapper"
 
@@ -72,21 +72,20 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern char* initialize(char* credentialsFile);
-extern void freeMem(char* pointer);
-extern char* verifyToken(char* idToken, char** token);
-extern char* verifyIDTokenAndCheckRevoked(char* idToken, char** token);
-extern char* revokeRefreshTokens(char* idToken);
-extern char* setCustomUserClaims(char* uid, char* claims);
-extern char* createUser(char* userJson, char** uid);
-extern char* updateUser(char* userJson);
-extern char* deleteUser(char* uid);
-extern char* getCustomClaims(char* uid, char** claims);
-extern char* createCustomTokenWithClaims(char* uid, char* claims, char** token);
-extern char* createCustomToken(char* uid, char** token);
-extern char* getUser(char* uid, char** user);
-extern char* getUserByEmail(char* email, char** user);
-extern char* getUserByPhoneNumber(char* phoneNumber, char** user);
+extern char* initialize(void* api, char* credentialsFile);
+extern void verifyToken(GoInt64 port, char* idToken);
+extern void verifyIDTokenAndCheckRevoked(GoInt64 port, char* idToken);
+extern void revokeRefreshTokens(GoInt64 port, char* idToken);
+extern void setCustomUserClaims(GoInt64 port, char* uid, char* claims);
+extern void createUser(GoInt64 port, char* userJson);
+extern void updateUser(GoInt64 port, char* userJson);
+extern void deleteUser(GoInt64 port, char* uid);
+extern void getCustomClaims(GoInt64 port, char* uid);
+extern void createCustomTokenWithClaims(GoInt64 port, char* uid, char* claims);
+extern void createCustomToken(GoInt64 port, char* uid);
+extern void getUser(GoInt64 port, char* uid);
+extern void getUserByEmail(GoInt64 port, char* email);
+extern void getUserByPhoneNumber(GoInt64 port, char* phoneNumber);
 
 #ifdef __cplusplus
 }

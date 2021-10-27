@@ -18,6 +18,16 @@ class LibAuth {
           lookup)
       : _lookup = lookup;
 
+  int __ctype_get_mb_cur_max() {
+    return ___ctype_get_mb_cur_max();
+  }
+
+  late final ___ctype_get_mb_cur_maxPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function()>>(
+          '__ctype_get_mb_cur_max');
+  late final ___ctype_get_mb_cur_max =
+      ___ctype_get_mb_cur_maxPtr.asFunction<int Function()>();
+
   double atof(
     ffi.Pointer<ffi.Int8> __nptr,
   ) {
@@ -1550,91 +1560,80 @@ class LibAuth {
       _getloadavgPtr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
 
   ffi.Pointer<ffi.Int8> initialize(
+    ffi.Pointer<ffi.Void> api,
     ffi.Pointer<ffi.Int8> credentialsFile,
   ) {
     return _initialize(
+      api,
       credentialsFile,
     );
   }
 
   late final _initializePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>>('initialize');
-  late final _initialize = _initializePtr
-      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>();
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Int8>)>>('initialize');
+  late final _initialize = _initializePtr.asFunction<
+      ffi.Pointer<ffi.Int8> Function(
+          ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Int8>)>();
 
-  void freeMem(
-    ffi.Pointer<ffi.Int8> pointer,
-  ) {
-    return _freeMem(
-      pointer,
-    );
-  }
-
-  late final _freeMemPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Int8>)>>(
-          'freeMem');
-  late final _freeMem =
-      _freeMemPtr.asFunction<void Function(ffi.Pointer<ffi.Int8>)>();
-
-  ffi.Pointer<ffi.Int8> verifyToken(
+  void verifyToken(
+    int port,
     ffi.Pointer<ffi.Int8> idToken,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> token,
   ) {
     return _verifyToken(
+      port,
       idToken,
-      token,
     );
   }
 
   late final _verifyTokenPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('verifyToken');
-  late final _verifyToken = _verifyTokenPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('verifyToken');
+  late final _verifyToken =
+      _verifyTokenPtr.asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> verifyIDTokenAndCheckRevoked(
+  void verifyIDTokenAndCheckRevoked(
+    int port,
     ffi.Pointer<ffi.Int8> idToken,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> token,
   ) {
     return _verifyIDTokenAndCheckRevoked(
+      port,
       idToken,
-      token,
     );
   }
 
   late final _verifyIDTokenAndCheckRevokedPtr = _lookup<
-          ffi.NativeFunction<
-              ffi.Pointer<ffi.Int8> Function(
-                  ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>(
-      'verifyIDTokenAndCheckRevoked');
-  late final _verifyIDTokenAndCheckRevoked =
-      _verifyIDTokenAndCheckRevokedPtr.asFunction<
-          ffi.Pointer<ffi.Int8> Function(
-              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+      ffi.NativeFunction<
+          ffi.Void Function(
+              GoInt64, ffi.Pointer<ffi.Int8>)>>('verifyIDTokenAndCheckRevoked');
+  late final _verifyIDTokenAndCheckRevoked = _verifyIDTokenAndCheckRevokedPtr
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> revokeRefreshTokens(
+  void revokeRefreshTokens(
+    int port,
     ffi.Pointer<ffi.Int8> idToken,
   ) {
     return _revokeRefreshTokens(
+      port,
       idToken,
     );
   }
 
   late final _revokeRefreshTokensPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(
-              ffi.Pointer<ffi.Int8>)>>('revokeRefreshTokens');
+          ffi.Void Function(
+              GoInt64, ffi.Pointer<ffi.Int8>)>>('revokeRefreshTokens');
   late final _revokeRefreshTokens = _revokeRefreshTokensPtr
-      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>();
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> setCustomUserClaims(
+  void setCustomUserClaims(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
     ffi.Pointer<ffi.Int8> claims,
   ) {
     return _setCustomUserClaims(
+      port,
       uid,
       claims,
     );
@@ -1642,169 +1641,161 @@ class LibAuth {
 
   late final _setCustomUserClaimsPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>,
               ffi.Pointer<ffi.Int8>)>>('setCustomUserClaims');
   late final _setCustomUserClaims = _setCustomUserClaimsPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
+      void Function(int, ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> createUser(
+  void createUser(
+    int port,
     ffi.Pointer<ffi.Int8> userJson,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> uid,
   ) {
     return _createUser(
+      port,
       userJson,
-      uid,
     );
   }
 
   late final _createUserPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('createUser');
-  late final _createUser = _createUserPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('createUser');
+  late final _createUser =
+      _createUserPtr.asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> updateUser(
+  void updateUser(
+    int port,
     ffi.Pointer<ffi.Int8> userJson,
   ) {
     return _updateUser(
+      port,
       userJson,
     );
   }
 
   late final _updateUserPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>>('updateUser');
-  late final _updateUser = _updateUserPtr
-      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('updateUser');
+  late final _updateUser =
+      _updateUserPtr.asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> deleteUser(
+  void deleteUser(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
   ) {
     return _deleteUser(
+      port,
       uid,
     );
   }
 
   late final _deleteUserPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>>('deleteUser');
-  late final _deleteUser = _deleteUserPtr
-      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('deleteUser');
+  late final _deleteUser =
+      _deleteUserPtr.asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> getCustomClaims(
+  void getCustomClaims(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> claims,
   ) {
     return _getCustomClaims(
+      port,
       uid,
-      claims,
     );
   }
 
   late final _getCustomClaimsPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('getCustomClaims');
-  late final _getCustomClaims = _getCustomClaimsPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(
+              GoInt64, ffi.Pointer<ffi.Int8>)>>('getCustomClaims');
+  late final _getCustomClaims = _getCustomClaimsPtr
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> createCustomTokenWithClaims(
+  void createCustomTokenWithClaims(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
     ffi.Pointer<ffi.Int8> claims,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> token,
   ) {
     return _createCustomTokenWithClaims(
+      port,
       uid,
       claims,
-      token,
     );
   }
 
   late final _createCustomTokenWithClaimsPtr = _lookup<
-          ffi.NativeFunction<
-              ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-                  ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>(
-      'createCustomTokenWithClaims');
+      ffi.NativeFunction<
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>>('createCustomTokenWithClaims');
   late final _createCustomTokenWithClaims =
       _createCustomTokenWithClaimsPtr.asFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          void Function(int, ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> createCustomToken(
+  void createCustomToken(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> token,
   ) {
     return _createCustomToken(
+      port,
       uid,
-      token,
     );
   }
 
   late final _createCustomTokenPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('createCustomToken');
-  late final _createCustomToken = _createCustomTokenPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(
+              GoInt64, ffi.Pointer<ffi.Int8>)>>('createCustomToken');
+  late final _createCustomToken = _createCustomTokenPtr
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> getUser(
+  void getUser(
+    int port,
     ffi.Pointer<ffi.Int8> uid,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> user,
   ) {
     return _getUser(
+      port,
       uid,
-      user,
     );
   }
 
   late final _getUserPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('getUser');
-  late final _getUser = _getUserPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('getUser');
+  late final _getUser =
+      _getUserPtr.asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> getUserByEmail(
+  void getUserByEmail(
+    int port,
     ffi.Pointer<ffi.Int8> email,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> user,
   ) {
     return _getUserByEmail(
+      port,
       email,
-      user,
     );
   }
 
   late final _getUserByEmailPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('getUserByEmail');
-  late final _getUserByEmail = _getUserByEmailPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(GoInt64, ffi.Pointer<ffi.Int8>)>>('getUserByEmail');
+  late final _getUserByEmail = _getUserByEmailPtr
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 
-  ffi.Pointer<ffi.Int8> getUserByPhoneNumber(
+  void getUserByPhoneNumber(
+    int port,
     ffi.Pointer<ffi.Int8> phoneNumber,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> user,
   ) {
     return _getUserByPhoneNumber(
+      port,
       phoneNumber,
-      user,
     );
   }
 
   late final _getUserByPhoneNumberPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>,
-              ffi.Pointer<ffi.Pointer<ffi.Int8>>)>>('getUserByPhoneNumber');
-  late final _getUserByPhoneNumber = _getUserByPhoneNumberPtr.asFunction<
-      ffi.Pointer<ffi.Int8> Function(
-          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Pointer<ffi.Int8>>)>();
+          ffi.Void Function(
+              GoInt64, ffi.Pointer<ffi.Int8>)>>('getUserByPhoneNumber');
+  late final _getUserByPhoneNumber = _getUserByPhoneNumberPtr
+      .asFunction<void Function(int, ffi.Pointer<ffi.Int8>)>();
 }
 
 class div_t extends ffi.Struct {

@@ -7,7 +7,6 @@ class FirebaseToken {
   final String subject;
   final String uid;
   final FirebaseInfo firebaseInfo;
-  final Map<String, dynamic> claims;
 
   FirebaseToken({
     required this.authTime,
@@ -18,7 +17,6 @@ class FirebaseToken {
     required this.subject,
     required this.uid,
     required this.firebaseInfo,
-    required this.claims,
   });
 }
 

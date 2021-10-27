@@ -1,0 +1,1 @@
+This code is based on https://github.com/mraleph/go_dart_ffi_example.

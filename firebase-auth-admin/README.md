@@ -23,11 +23,9 @@ Currently the following methods are implemented:
 
 The purpose of this package, as an alternative to other implementations, was to have as much of an official Firebase Auth Admin SDK on the server possible. Since at the time of this writing there is no official Firebase Dart Admin SDK, the closest approach was to use the official GO SDK and expose it to Dart via FFI - Foreign Function Interface.
 
-While there is some extra confidence by exposing an official SDK, there are some caveats to this implementation that you should be aware of.
+While there is some extra confidence by exposing an official SDK, there is a caveat to this implementation that you should be aware of.
 
-- While both Dart and Go are garbage collected platforms, the interface used to communicate between them is C interface (Dart FFI coupled with Go's CGO). This means that there is data marshalling going on. Mainly, this means that there is manual memory allocation and destruction going on. While we have taken a lot of care to prevent any memory leak, we would be grateful for any memory leak report in case you experience one, by filling an issue on GitHub.
-
-- Calls to GO are synchronous and may take an undeterministic time to complete as the GO SDK will need to call Firebase to complete the requests. The simplest approach we found to avoid having frozen isolates while waiting for GO requests was to launch an isolate on each request, thus freeing the isolate you are calling the API from to do other work in the meantime. We do appreciate suggestions on better ways to do this, or even better, pull requests containing actual improvements. We still did not implement an isolate pooling mechanism to prevent an eventual isolate explosion. In case you expect any scaling issues, our advice is to avoid using the ```verifyIdToken``` and ```verifyIDTokenAndCheckRevoked``` on every call, but instead use other token verification mechanisms as described in https://firebase.google.com/docs/auth/admin/verify-id-tokens. In fact, we advise using this API only when responding to calls made by users that have already been authenticated.
+While both Dart and Go are garbage collected platforms, the interface used to communicate between them is C interface (Dart FFI coupled with Go's CGO). This means that there is data marshalling going on. Mainly, this means that there is manual memory allocation and destruction going on. While we have taken a lot of care to prevent any memory leak, we would be grateful for any memory leak report in case you experience one, by filling an issue on GitHub.
 
 
 ## Getting started

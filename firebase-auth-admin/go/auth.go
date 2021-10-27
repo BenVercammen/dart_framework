@@ -1,9 +1,11 @@
 package main
 
-//#include <stdlib.h>
+// #include <stdlib.h>
 import "C"
 
 import (
+	"errors"
+
 	firebase "firebase.google.com/go"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
@@ -13,6 +15,7 @@ import (
 	"unsafe"
 
 	"firebase.google.com/go/auth"
+	"github.com/squarealfa/dart_framework/firebase-auth-admin/go/dart_api_dl"
 )
 
 var client *auth.Client
@@ -20,7 +23,9 @@ var client *auth.Client
 const initError = "please call initialize before any other authorization method"
 
 //export initialize
-func initialize(credentialsFile *C.char) *C.char {
+func initialize(api unsafe.Pointer, credentialsFile *C.char) *C.char {
+	dart_api_dl.Init(api)
+
 	gCredentialsFile := C.GoString(credentialsFile)
 
 	opt := option.WithCredentialsFile(gCredentialsFile)
@@ -40,100 +45,86 @@ func initialize(credentialsFile *C.char) *C.char {
 	return nil
 }
 
-//export freeMem
-func freeMem(pointer *C.char) {
-	C.free(unsafe.Pointer(pointer))
-}
-
 //export verifyToken
-func verifyToken(idToken *C.char, token **C.char) *C.char {
+func verifyToken(port int64, idToken *C.char) {
+	if !_checkClient(port) {
+		return
+	}
 	gIdToken := C.GoString(idToken)
 
+	go doVerifyToken(port, gIdToken)
+}
+
+func doVerifyToken(port int64, idToken string) {
 	ctx := context.Background()
-	sToken, err := client.VerifyIDToken(ctx, gIdToken)
-
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	var jToken []byte
-	jToken, err = json.Marshal(sToken)
-
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	gToken := string(jToken)
-	*token = C.CString(gToken)
-
-	return nil
+	sToken, err := client.VerifyIDToken(ctx, idToken)
+	_handleResult(port, sToken, err)
 }
 
 //export verifyIDTokenAndCheckRevoked
-func verifyIDTokenAndCheckRevoked(idToken *C.char, token **C.char) *C.char {
+func verifyIDTokenAndCheckRevoked(port int64, idToken *C.char) {
+	if !_checkClient(port) {
+		return
+	}
 	gIdToken := C.GoString(idToken)
+	go doVerifyIDTokenAndCheckRevoked(port, gIdToken)
+}
 
+func doVerifyIDTokenAndCheckRevoked(port int64, idToken string) {
 	ctx := context.Background()
-	sToken, err := client.VerifyIDTokenAndCheckRevoked(ctx, gIdToken)
-
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	var jToken []byte
-	jToken, err = json.Marshal(sToken)
-
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	gToken := string(jToken)
-	*token = C.CString(gToken)
-
-	return nil
+	sToken, err := client.VerifyIDTokenAndCheckRevoked(ctx, idToken)
+	_handleResult(port, sToken, err)
 }
 
 //export revokeRefreshTokens
-func revokeRefreshTokens(idToken *C.char) *C.char {
-	gIdToken := C.GoString(idToken)
-
-	ctx := context.Background()
-	err := client.RevokeRefreshTokens(ctx, gIdToken)
-
-	if err != nil {
-		return C.CString(err.Error())
+func revokeRefreshTokens(port int64, idToken *C.char) {
+	if !_checkClient(port) {
+		return
 	}
+	gIdToken := C.GoString(idToken)
+	go doRevokeRefreshTokens(port, gIdToken)
+}
 
-	return nil
+func doRevokeRefreshTokens(port int64, idToken string) {
+	ctx := context.Background()
+	err := client.RevokeRefreshTokens(ctx, idToken)
+	_handleEmptyResult(port, err)
+
 }
 
 //export setCustomUserClaims
-func setCustomUserClaims(uid *C.char, claims *C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func setCustomUserClaims(port int64, uid *C.char, claims *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gClaims := C.GoString(claims)
 	gUid := C.GoString(uid)
 
+	go doSetCustomClaims(port, gUid, gClaims)
+
+}
+
+func doSetCustomClaims(port int64, uid string, claims string) {
 	var claimsMap map[string]interface{}
-	bClaims := []byte(gClaims)
-	json.Unmarshal(bClaims, &claimsMap)
+	bClaims := []byte(claims)
+	err := json.Unmarshal(bClaims, &claimsMap)
+
+	if err != nil {
+		dart_api_dl.SendErrorToPort(port, err)
+		return
+	}
 
 	ctx := context.Background()
-	err := client.SetCustomUserClaims(ctx, gUid, claimsMap)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-	return nil
+	err = client.SetCustomUserClaims(ctx, uid, claimsMap)
+	_handleEmptyResult(port, err)
+
 }
 
 //export createUser
-func createUser(userJson *C.char, uid **C.char) *C.char {
-	*uid = nil
-
-	if client == nil {
-		return C.CString(initError)
+func createUser(port int64, userJson *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUserJson := []byte(C.GoString(userJson))
@@ -170,20 +161,23 @@ func createUser(userJson *C.char, uid **C.char) *C.char {
 
 	ctx := context.Background()
 
+	go doCreateUser(port, ctx, params)
+}
+
+func doCreateUser(port int64, ctx context.Context, params *auth.UserToCreate) {
 	u, err := client.CreateUser(ctx, params)
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
-	*uid = C.CString(u.UID)
-
-	return nil
+	dart_api_dl.SendDataToPort(port, u.UID)
 }
 
 //export updateUser
-func updateUser(userJson *C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func updateUser(port int64, userJson *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUserJson := []byte(C.GoString(userJson))
@@ -216,68 +210,58 @@ func updateUser(userJson *C.char) *C.char {
 		params.PhotoURL(userMap["photoUrl"].(string))
 	}
 
+	go doUpdateUser(port, gUid, params)
+}
+
+func doUpdateUser(port int64, gUid string, params *auth.UserToUpdate) {
 	ctx := context.Background()
-
 	_, err := client.UpdateUser(ctx, gUid, params)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	return nil
+	_handleEmptyResult(port, err)
 }
 
 //export deleteUser
-func deleteUser(uid *C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func deleteUser(port int64, uid *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUid := C.GoString(uid)
 
+	go doDeleteUser(port, gUid)
+}
+
+func doDeleteUser(port int64, gUid string) {
 	ctx := context.Background()
-
 	err := client.DeleteUser(ctx, gUid)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	return nil
+	_handleEmptyResult(port, err)
 }
 
 //export getCustomClaims
-func getCustomClaims(uid *C.char, claims **C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func getCustomClaims(port int64, uid *C.char) {
+	if !_checkClient(port) {
+		return
 	}
-
 	gUid := C.GoString(uid)
 
-	ctx := context.Background()
+	go doGetCustomClaims(port, gUid)
+}
 
+func doGetCustomClaims(port int64, gUid string) {
+	ctx := context.Background()
 	usr, err := client.GetUser(ctx, gUid)
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
 	cclaims := usr.CustomClaims
-	bytes, err := json.Marshal(cclaims)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	jsonClaims := string(bytes)
-
-	*claims = C.CString(jsonClaims)
-
-	return nil
+	_handleResult(port, cclaims, err)
 }
 
 //export createCustomTokenWithClaims
-func createCustomTokenWithClaims(uid *C.char, claims *C.char, token **C.char) *C.char {
-	*token = nil
-
-	if client == nil {
-		return C.CString(initError)
+func createCustomTokenWithClaims(port int64, uid *C.char, claims *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUid := C.GoString(uid)
@@ -287,116 +271,129 @@ func createCustomTokenWithClaims(uid *C.char, claims *C.char, token **C.char) *C
 	bClaims := []byte(gClaims)
 	json.Unmarshal(bClaims, &claimsMap)
 
+	go doCreateCustomTokenWithClaims(port, gUid, claimsMap)
+
+}
+
+func doCreateCustomTokenWithClaims(port int64, gUid string, claimsMap map[string]interface{}) {
 	ctx := context.Background()
 	idToken, err := client.CustomTokenWithClaims(ctx, gUid, claimsMap)
 
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
-	*token = C.CString(idToken)
-	return nil
+	dart_api_dl.SendDataToPort(port, idToken)
 }
 
 //export createCustomToken
-func createCustomToken(uid *C.char, token **C.char) *C.char {
-	*token = nil
-
-	if client == nil {
-		return C.CString(initError)
+func createCustomToken(port int64, uid *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUid := C.GoString(uid)
+	go doCreateCustomToken(port, gUid)
+}
 
+func doCreateCustomToken(port int64, gUid string) {
 	ctx := context.Background()
 	idToken, err := client.CustomToken(ctx, gUid)
 
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
-	*token = C.CString(idToken)
-	return nil
+	dart_api_dl.SendDataToPort(port, idToken)
 }
 
 //export getUser
-func getUser(uid *C.char, user **C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func getUser(port int64, uid *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gUid := C.GoString(uid)
 
+	go doGetUser(port, gUid)
+}
+
+func doGetUser(port int64, gUid string) {
 	ctx := context.Background()
-
 	usr, err := client.GetUser(ctx, gUid)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	bytes, err := json.Marshal(usr)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	jsonUser := string(bytes)
-
-	*user = C.CString(jsonUser)
-
-	return nil
+	_handleResult(port, usr, err)
 }
 
 //export getUserByEmail
-func getUserByEmail(email *C.char, user **C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func getUserByEmail(port int64, email *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gEmail := C.GoString(email)
+
+	go doGetUserByEmail(port, gEmail)
+}
+
+func doGetUserByEmail(port int64, email string) {
 	ctx := context.Background()
-
-	usr, err := client.GetUserByEmail(ctx, gEmail)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	bytes, err := json.Marshal(usr)
-	if err != nil {
-		return C.CString(err.Error())
-	}
-
-	jsonUser := string(bytes)
-
-	*user = C.CString(jsonUser)
-
-	return nil
+	usr, err := client.GetUserByEmail(ctx, email)
+	_handleResult(port, usr, err)
 }
 
 //export getUserByPhoneNumber
-func getUserByPhoneNumber(phoneNumber *C.char, user **C.char) *C.char {
-	if client == nil {
-		return C.CString(initError)
+func getUserByPhoneNumber(port int64, phoneNumber *C.char) {
+	if !_checkClient(port) {
+		return
 	}
 
 	gPhoneNumber := C.GoString(phoneNumber)
 
+	go doGetUserByPhoneNumber(port, gPhoneNumber)
+}
+
+func doGetUserByPhoneNumber(port int64, phoneNumber string) {
 	ctx := context.Background()
+	usr, err := client.GetUserByPhoneNumber(ctx, phoneNumber)
+	_handleResult(port, usr, err)
+}
 
-	usr, err := client.GetUserByPhoneNumber(ctx, gPhoneNumber)
+func _handleResult(port int64, v interface{}, err error) {
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
-	bytes, err := json.Marshal(usr)
+	var jToken []byte
+	jToken, err = json.Marshal(v)
 	if err != nil {
-		return C.CString(err.Error())
+		dart_api_dl.SendErrorToPort(port, err)
+		return
 	}
 
-	jsonUser := string(bytes)
+	gToken := string(jToken)
+	dart_api_dl.SendDataToPort(port, gToken)
 
-	*user = C.CString(jsonUser)
+}
 
-	return nil
+func _handleEmptyResult(port int64, err error) {
+	if err != nil {
+		dart_api_dl.SendErrorToPort(port, err)
+		return
+	}
+
+	dart_api_dl.SendDataToPort(port, "")
+}
+
+func _checkClient(port int64) bool {
+	if client == nil {
+		dart_api_dl.SendErrorToPort(port, errors.New(initError))
+		return false
+	}
+	return true
+
 }
 
 func main() {

@@ -25,6 +25,7 @@ void main() {
         uid: 'testuseruid',
       );
       uid = await firebase.createUser(usr);
+      print(uid);
     });
 
     tearDownAll(() async {

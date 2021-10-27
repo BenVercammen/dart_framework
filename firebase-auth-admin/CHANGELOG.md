@@ -14,3 +14,7 @@
 ## 0.9.3
 
 - CLI with new parameter to receive custom user claims as JSON structure
+
+## 0.9.4
+
+- Huge performance improvement gained by using Go routines instead of Dart Isolates.
