@@ -1,7 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:squarealfa_validation_test/squarealfa_validation_test.dart';
 import 'package:squarealfa_validation_test/src/empty.dart';
-import 'package:squarealfa_validation_test/src/ingredient.dart';
 
 import 'package:test/test.dart';
 

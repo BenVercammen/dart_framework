@@ -1,8 +1,5 @@
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:map_mapper_generator_test/map_mapper_generator_test.dart';
-import 'appliance_type.dart';
-import 'category.dart';
-import 'ingredient.dart';
 
 part 'recipe.g.dart';
 
