@@ -15,7 +15,7 @@ void main() async {
 /// the parameters defined by HostSettings,
 /// isolatesMultiplier * the number of CPU
 /// cores, plus the extraIsolates parameter.
-class ExampleHost extends Host {
+class ExampleHost extends Host<String> {
   ExampleHost() : super(ExampleHost.run);
 
   @override
@@ -23,8 +23,11 @@ class ExampleHost extends Host {
     return HostSettings(port: 9000, isolatesMultiplier: 2);
   }
 
+  @override
+  String get appSettings => 'xpto';
+
   /// This method will be run for each of the spawned isolates
-  static void run(HostParameters parms) async {
+  static void run(HostParameters<String> parms) async {
     // It will launch the ExampleServicesHost instance
     // that itself will finally host a set of
     // services run by the isolate.
@@ -34,7 +37,9 @@ class ExampleHost extends Host {
 }
 
 class ExampleServicesHost extends ServicesHost {
-  ExampleServicesHost(HostParameters parameters) : super(parameters);
+  ExampleServicesHost(HostParameters<String> parameters) : super(parameters) {
+    
+  }
 
   @override
   List<Service> get services => [GDemoService()];
