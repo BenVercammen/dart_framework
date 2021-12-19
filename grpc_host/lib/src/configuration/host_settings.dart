@@ -23,7 +23,7 @@ class HostSettings {
   });
 
   factory HostSettings.fromYamlFile({String filename = 'appsettings.yaml'}) {
-    var yamlDocument = _loadConfig(filename);
+    var yamlDocument = File(filename).readYaml();
     if (yamlDocument == null) return HostSettings();
 
     final ret = HostSettings.fromYaml(yamlDocument);
@@ -58,21 +58,5 @@ class HostSettings {
     );
 
     return ret;
-  }
-
-  static YamlMap? _loadConfig(String filename) {
-    try {
-      var file = File(filename);
-      if (!file.existsSync()) {
-        return null;
-      }
-
-      final text = File(filename).readAsStringSync();
-      var map = loadYaml(text) as YamlMap?;
-      return map;
-    } catch (ex) {
-      // Would be logging
-      return null;
-    }
   }
 }

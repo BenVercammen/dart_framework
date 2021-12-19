@@ -4,10 +4,16 @@ import 'dart:isolate';
 import 'package:grpc/grpc.dart';
 import 'package:grpc_host/grpc_host.dart';
 
-abstract class ServicesHost {
-  final HostParameters parameters;
+abstract class ServicesHost<TAppSettings> {
+  final HostParameters<TAppSettings> parameters;
+  final Settings settings;
   final HostSettings hostSettings;
-  ServicesHost(this.parameters) : hostSettings = parameters.hostSettings;
+  final TAppSettings? appSettings;
+
+  ServicesHost(this.parameters)
+      : settings = parameters.settings,
+        hostSettings = parameters.settings.hostSettings,
+        appSettings = parameters.settings.appSettings;
 
   Container get container => Container();
 

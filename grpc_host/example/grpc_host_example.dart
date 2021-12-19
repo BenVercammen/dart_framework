@@ -19,12 +19,11 @@ class ExampleHost extends Host<String> {
   ExampleHost() : super(ExampleHost.run);
 
   @override
-  HostSettings get hostSettings {
-    return HostSettings(port: 9000, isolatesMultiplier: 2);
+  Settings<String> get settings {
+    final hostSettings = HostSettings(port: 9000, isolatesMultiplier: 2);
+    final settings = Settings<String>(hostSettings, appSettings: '');
+    return settings;
   }
-
-  @override
-  String get appSettings => 'xpto';
 
   /// This method will be run for each of the spawned isolates
   static void run(HostParameters<String> parms) async {
@@ -37,9 +36,7 @@ class ExampleHost extends Host<String> {
 }
 
 class ExampleServicesHost extends ServicesHost {
-  ExampleServicesHost(HostParameters<String> parameters) : super(parameters) {
-    
-  }
+  ExampleServicesHost(HostParameters<String> parameters) : super(parameters);
 
   @override
   List<Service> get services => [GDemoService()];

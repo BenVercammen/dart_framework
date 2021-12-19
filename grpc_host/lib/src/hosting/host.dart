@@ -4,19 +4,20 @@ import 'dart:isolate';
 import 'package:grpc_host/grpc_host.dart';
 
 abstract class Host<TAppSettings> {
-  HostSettings get hostSettings;
-  TAppSettings? get appSettings => null;
+  Settings<TAppSettings> get settings;
 
   final void Function(HostParameters<TAppSettings> message) entryPoint;
 
   Host(this.entryPoint);
 
   Future serve() async {
-    var hostSettings = this.hostSettings;
+    var hostSettings = settings.hostSettings;
     var receivePort = ReceivePort();
     var errorReceivePort = ReceivePort();
-    var hostParameters =
-        HostParameters<TAppSettings>(receivePort.sendPort, hostSettings, appSettings: appSettings);
+    var hostParameters = HostParameters<TAppSettings>(
+      receivePort.sendPort,
+      settings,
+    );
     var isolates = <Isolate>[];
     final numberIsolates =
         hostSettings.isolatesMultiplier * Platform.numberOfProcessors +

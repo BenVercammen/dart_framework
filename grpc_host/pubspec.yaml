@@ -2,7 +2,7 @@ name: grpc_host
 description: Hosts gRPC services
 homepage: https://github.com/squarealfa/dart_framework/tree/main/grpc_host
 repository: https://github.com/squarealfa/dart_framework
-version: 2.0.0
+version: 3.0.0
 
 
 environment:
