@@ -1,10 +1,7 @@
 import 'package:grpc/grpc.dart';
 import 'package:grpc_host/grpc_host.dart';
-import 'package:grpc_host/src/services/authenticated_services.dart';
 import 'package:nosql_repository/nosql_repository.dart';
 import 'package:squarealfa_entity_adapter/squarealfa_entity_adapter.dart';
-
-import 'entity_services_parameters.dart';
 
 class EntityServices<TEntity> extends AuthenticatedServices {
   final Repository<TEntity> repository;

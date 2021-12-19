@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:grpc_host/grpc_host.dart';
-import 'package:grpc_host/src/configuration/smtp_settings.dart';
 import 'package:grpc_host/src/configuration/ssl_settings.dart';
 import 'package:yaml/yaml.dart';
 

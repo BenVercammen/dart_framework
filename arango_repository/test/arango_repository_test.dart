@@ -2,7 +2,6 @@ import 'package:arango_driver/arango_driver.dart';
 import 'package:arangodb_repository/arangodb_repository.dart';
 import 'package:nosql_repository/src/repository.dart';
 import 'package:nosql_repository_tests/nosql_repository_tests.dart';
-import 'package:nosql_repository_tests/src/recipe.dart';
 
 import 'test_conf.dart';
 

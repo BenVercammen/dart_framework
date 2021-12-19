@@ -100,16 +100,16 @@ jobs:
         working-directory: mongo_repository
         run: "dart format --output=none --set-exit-if-changed ."
   job_003:
-    name: "analyze_format; PKGS: defaults_provider/defaults_provider_annotations, defaults_provider/defaults_provider_generator, defaults_provider/example, defaults_provider/test, entity/entity_annotations, entity/entity_generator, entity/example, entity/test, entity_adapter/entity_adapter, entity_adapter/entity_adapter_generator, entity_adapter/example, example_model, generators_common, map_mapper/example, map_mapper/map_mapper_annotations, map_mapper/map_mapper_generator, map_mapper/test, map_mapper/test_mongo, proto_mapper/example, proto_mapper/proto_annotations, proto_mapper/proto_generator, proto_mapper/test, squarealfa_security; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
+    name: "analyze_format; PKGS: defaults_provider/defaults_provider_annotations, defaults_provider/defaults_provider_generator, defaults_provider/example, defaults_provider/test, entity/entity_annotations, entity/entity_generator, entity/example, entity/test, entity_adapter/entity_adapter, entity_adapter/entity_adapter_generator, entity_adapter/example, example_model, generators_common, map_mapper/example, map_mapper/map_mapper_annotations, map_mapper/map_mapper_generator, map_mapper/test, map_mapper/test_mongo, nosql_repository/test, proto_mapper/example, proto_mapper/proto_annotations, proto_mapper/proto_generator, proto_mapper/test, squarealfa_security; `dart analyze --fatal-infos`, `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator-m-!!too_long!!-664-703278569"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator-m-!!too_long!!-686-497251889"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator-m-!!too_long!!-640-255402444
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:defaults_provider/defaults_provider_annotations-defaults_provider/defaults_provider_generator-defaults_provider/example-defaults_provider/test-entity/entity_annotations-entity/entity_generator-entity/example-entity/test-entity_adapter/entity_adapter-entity_adapter/entity_adapter_generator-entity_adapter/example-example_model-generators_common-map_mapper/example-map_mapper/map_mapper_annotations-map_mapper/map_mapper_generator-ma-!!too_long!!-662-91811656
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -351,6 +351,19 @@ jobs:
       - name: "map_mapper/test_mongo; dart format --output=none --set-exit-if-changed ."
         if: "always() && steps.map_mapper_test_mongo_pub_upgrade.conclusion == 'success'"
         working-directory: map_mapper/test_mongo
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: nosql_repository_test_pub_upgrade
+        name: nosql_repository/test; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: nosql_repository/test
+        run: dart pub upgrade
+      - name: "nosql_repository/test; dart analyze --fatal-infos"
+        if: "always() && steps.nosql_repository_test_pub_upgrade.conclusion == 'success'"
+        working-directory: nosql_repository/test
+        run: dart analyze --fatal-infos
+      - name: "nosql_repository/test; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.nosql_repository_test_pub_upgrade.conclusion == 'success'"
+        working-directory: nosql_repository/test
         run: "dart format --output=none --set-exit-if-changed ."
       - id: proto_mapper_example_pub_upgrade
         name: proto_mapper/example; dart pub upgrade

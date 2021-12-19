@@ -5,23 +5,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:arango_driver/arango_driver.dart';
-import 'package:arango_driver/src/results/create_database_info.dart';
 import 'package:arango_driver/src/results/document_response.dart';
-import 'package:arango_driver/src/results/identifier.dart';
 import 'package:arango_driver/src/results/key_options.dart';
-import 'package:arango_driver/src/results/operation_result.dart';
-import 'package:arango_driver/src/results/result.dart';
-import 'package:arango_driver/src/transactions/transaction_response.dart';
-import 'package:arango_driver/src/transactions/transaction_states.dart';
-
-import 'results/collection_info.dart';
-import 'results/collection_properties_response.dart';
-import 'results/collection_response.dart';
-import 'results/db_info_response.dart';
-import 'results/id_response.dart';
-import 'results/result_response.dart';
-import 'transactions/transaction.dart';
-import 'transactions/transaction_options.dart';
 
 class ArangoDBClient {
   final String scheme;

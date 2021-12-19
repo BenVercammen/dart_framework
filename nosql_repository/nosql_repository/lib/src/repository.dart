@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:nosql_repository/nosql_repository.dart';
-import 'package:nosql_repository/src/repository_transaction_options.dart';
 
 /// Defines data access methods to a specific
 /// database collection.

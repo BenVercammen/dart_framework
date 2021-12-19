@@ -3,8 +3,6 @@ import 'dart:isolate';
 
 import 'package:grpc_host/grpc_host.dart';
 
-import 'host_parameters.dart';
-
 abstract class Host {
   HostSettings get hostSettings;
 

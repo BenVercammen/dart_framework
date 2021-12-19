@@ -1,5 +1,4 @@
 import 'package:nosql_repository/nosql_repository.dart';
-import 'package:nosql_repository/src/policy/create_policy.dart';
 
 /// Simulates a repository to an entity type
 /// by storing instances into a map instead of a real
