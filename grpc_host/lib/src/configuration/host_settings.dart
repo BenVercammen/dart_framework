@@ -8,20 +8,16 @@ class HostSettings {
   static const defaultIsolatesMultiplier = 1;
   static const defaultExtraIsolates = 0;
 
-  final String dbConnectionString;
   final int isolatesMultiplier;
   final int extraIsolates;
   final int port;
-  final TokenSettings tokenSettings;
   final SslSettings sslSettings;
   final SmtpSettings smtpSettings;
 
   HostSettings({
-    this.dbConnectionString = '',
     this.isolatesMultiplier = defaultIsolatesMultiplier,
     this.extraIsolates = defaultExtraIsolates,
     this.port = 8080,
-    this.tokenSettings = const TokenSettings(),
     this.sslSettings = const SslSettings(),
     this.smtpSettings = const SmtpSettings(),
   });
@@ -36,7 +32,6 @@ class HostSettings {
   }
 
   factory HostSettings.fromYaml(YamlMap yamlDocument) {
-    final connString = yamlDocument['dbserver']['connectionString'];
     final port = yamlDocument['port'] as int? ?? 8080;
     final server = yamlDocument['server'];
     final isolatesMultiplier = server != null
@@ -45,10 +40,6 @@ class HostSettings {
     final extraIsolates = server != null
         ? server['extraIsolates'] ?? defaultExtraIsolates
         : defaultIsolatesMultiplier;
-    final tokenSettingsYaml = yamlDocument['tokenSettings'];
-    final tokenSettings = tokenSettingsYaml == null
-        ? TokenSettings()
-        : TokenSettings.fromYaml(tokenSettingsYaml);
     final sslSettingsYaml = yamlDocument['ssl'];
     final sslSettings = sslSettingsYaml == null
         ? SslSettings()
@@ -59,9 +50,7 @@ class HostSettings {
         : SmtpSettings.fromYaml(smtpSettingsYaml);
 
     var ret = HostSettings(
-      dbConnectionString: connString,
       port: port,
-      tokenSettings: tokenSettings,
       isolatesMultiplier: isolatesMultiplier,
       extraIsolates: extraIsolates,
       sslSettings: sslSettings,
