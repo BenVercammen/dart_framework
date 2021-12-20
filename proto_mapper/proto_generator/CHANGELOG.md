@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Fixed broken links to example
+
 ## 2.0.0
 
 - Generating services (with breaking changes).

@@ -20,7 +20,7 @@ We begin by typing our business model. The next step is to use the proto_generat
 
 ## Getting started
 
-In order to get started, look at the example project at https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/proto_mapper_example.
+In order to get started, look at the example project at https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/example.
 
 
 ## Context
