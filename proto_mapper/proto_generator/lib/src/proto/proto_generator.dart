@@ -11,6 +11,8 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
   final BuilderOptions options;
   late String _prefix;
   late String _defaultPackage;
+  String? prevBuildStepPath;
+  final Set<String> alreadyImported = {};
 
   ProtoGenerator(this.options) {
     var config = options.config;
@@ -31,6 +33,15 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
 
     final packageDeclaration = packageName != '' ? 'package $packageName;' : '';
 
+    var syntax = '';
+    if (buildStep.inputId.path != prevBuildStepPath) {
+      prevBuildStepPath = buildStep.inputId.path;
+      syntax = '''syntax = "proto3";
+      ''';
+      alreadyImported.clear();
+      alreadyImported.addAll(buildStep.allowedOutputs.map((e) => e.path.substring(e.path.lastIndexOf('/') + 1)));
+    }
+
     var ret = classElement.kind == ElementKind.ENUM
         ? _generateForEnum(
             classElement,
@@ -43,6 +54,7 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
             packageDeclaration,
           );
 
+    ret = '$syntax$ret';
     return ret;
   }
 
@@ -58,7 +70,11 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
 
     var imports = StringBuffer();
     for (var externalProtoName in externalProtoNames) {
-      imports.writeln('import \'$externalProtoName\';');
+      // Prevent .proto file from importing itself or multiple imports
+      if (!alreadyImported.contains(externalProtoName)) {
+        imports.writeln('import \'$externalProtoName\';');
+        alreadyImported.add(externalProtoName);
+      }
     }
 
     final className = classElement.name;
@@ -75,7 +91,6 @@ message ${_prefix}ListOf$className
     ''';
 
     var ret = '''
-syntax = "proto3";
 
 $imports
 
@@ -106,7 +121,6 @@ $messages
     }
     var className = classElement.name;
     var ret = '''
-syntax = "proto3";
     
 $packageDeclaration
     
