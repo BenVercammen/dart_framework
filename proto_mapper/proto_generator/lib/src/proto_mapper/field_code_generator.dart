@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
-
 import 'package:proto_annotations/proto_annotations.dart';
+
 import 'field_code_generators/bool_field_code_generator.dart';
 import 'field_code_generators/datetime_field_code_generator.dart';
 import 'field_code_generators/decimal_field_code_generator.dart';
@@ -11,6 +11,7 @@ import 'field_code_generators/generic_field_code_generator.dart';
 import 'field_code_generators/int_field_code_generator.dart';
 import 'field_code_generators/iterable_field_code_generator.dart';
 import 'field_code_generators/list_field_code_generator.dart';
+import 'field_code_generators/map_field_code_generator.dart';
 import 'field_code_generators/set_field_code_generator.dart';
 import 'field_code_generators/string_field_code_generator.dart';
 import 'field_descriptor.dart';
@@ -94,6 +95,13 @@ abstract class FieldCodeGenerator {
     }
     if (fieldDescriptor.fieldElementType.isDartCoreList) {
       return ListFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
+    }
+    if (fieldDescriptor.fieldElementType.isDartCoreMap) {
+      return MapFieldCodeGenerator(
         fieldDescriptor,
         refName: refName,
         protoRefName: protoRefName,

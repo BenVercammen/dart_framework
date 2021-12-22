@@ -27,12 +27,15 @@ String createFieldDeclarations(
       lineNumber++;
     }
 
-    if (fieldCodeGenerator is! ExternalProtoName) continue;
-    var externalProtoName =
-        (fieldCodeGenerator as ExternalProtoName).externalProtoName;
-    if (externalProtoName != null &&
-        !externalProtoNames.contains(externalProtoName)) {
-      externalProtoNames.add(externalProtoName);
+    if (fieldCodeGenerator is! ExternalProtoNames) continue;
+    var externalProtoNames2 =
+        (fieldCodeGenerator as ExternalProtoNames).externalProtoNames;
+    if (externalProtoNames2 != null) {
+      for (String externalProtoName in externalProtoNames2) {
+        if (!externalProtoNames.contains(externalProtoName)) {
+          externalProtoNames.add(externalProtoName);
+        }
+      }
     }
   }
 

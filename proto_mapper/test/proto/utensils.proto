@@ -1,0 +1,89 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+
+
+
+
+message GKnife
+{
+  string name = 1;
+  GKnifeType type = 2;
+}   
+
+message GListOfKnife
+{
+  repeated GKnife items = 1;
+}
+
+message GGarlicPress
+{
+  string name = 1;
+  bool machineWashable = 2;
+}   
+
+message GListOfGarlicPress
+{
+  repeated GGarlicPress items = 1;
+}
+
+import 'recipe.proto';
+
+
+
+
+message GKitchen
+{
+  repeated GRecipe recipeList = 1;
+  map<string, GRecipe> recipeMap = 2;
+}   
+
+message GListOfKitchen
+{
+  repeated GKitchen items = 1;
+}
+
+import 'appliance_type.proto';
+
+
+
+
+message GChef
+{
+  GRecipe favoriteRecipe = 1;
+  GKnife favoriteKnife = 2;
+  GApplianceType favoriteApplianceType = 3;
+}   
+
+message GListOfChef
+{
+  repeated GChef items = 1;
+}
+
+message GInventory
+{
+  map<string, int32> numberOfThings = 1;
+  map<string, GRecipe> recipesByName = 2;
+}   
+
+message GListOfInventory
+{
+  repeated GInventory items = 1;
+}
+
+enum GKnifeType
+{
+  chefsKnife = 0;
+  paringKnife = 1;
+  breadKnife = 2;
+}   
+     
+message NullableGKnifeType
+{
+  bool hasValue = 1;
+  GKnifeType value = 2;
+}
