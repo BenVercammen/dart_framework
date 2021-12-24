@@ -1,6 +1,8 @@
 ## 2.0.1
 
 - Fixed broken links to example
+- Added support for multiple @proto and @mapProto annotated classes within a single .dart file
+- Added support for Map<?, ?>
 
 ## 2.0.0
 
