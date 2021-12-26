@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'dart:io';
 
 import 'package:grpc_host/grpc_host.dart';
@@ -12,6 +14,8 @@ class HostSettings {
   final int extraIsolates;
   final int port;
   final SslSettings sslSettings;
+  @Deprecated(
+      'All settings not related to grpc-hosting features are deprecated and will be removed in the next version.')
   final SmtpSettings smtpSettings;
 
   HostSettings({

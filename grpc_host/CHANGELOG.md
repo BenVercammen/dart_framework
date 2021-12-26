@@ -1,7 +1,10 @@
+## 3.0.1
+
+- Deprecating smtpSettings
+
 ## 3.0.0
 
 - Split host settings from customizable AppSettings
-
 
 ## 2.0.0
 
