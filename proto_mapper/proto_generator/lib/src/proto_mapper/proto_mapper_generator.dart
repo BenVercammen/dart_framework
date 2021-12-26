@@ -40,30 +40,69 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     final fieldDescriptors =
         _getFieldDescriptors(_classElement!, readAnnotation);
 
-    var toProtoFieldBuffer = StringBuffer();
-    var fromProtoFieldBuffer = StringBuffer();
-    var constructorFieldBuffer = StringBuffer();
+    var finalToProtoFieldBuffer = StringBuffer();
+    var finalFromProtoFieldBuffer = StringBuffer();
+    var finalConstructorFieldBuffer = StringBuffer();
+    var constructorName = '';
 
+    // toProto is just fields, regardless of constructors...
     for (var fieldDescriptor in fieldDescriptors) {
       final fieldCodeGenerator =
-          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+        FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+      finalToProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
+    }
 
-      toProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
+    // All constructors should be eligible for use
+    for (final constructor in _classElement!.constructors) {
+      var fromProtoFieldBuffer = StringBuffer();
+      var constructorFieldBuffer = StringBuffer();
+      var nonCoveredFields = List<FieldDescriptor>.from(fieldDescriptors);
+      constructorName = constructor.name.isNotEmpty ? ".${constructor.name}" : constructor.name;
 
-      if (fieldDescriptor.isFinal) {
+      // First use the available constructor parameters (this way we preserve unnamed constructor arg order)
+      for (ParameterElement constructorParameter in constructor.parameters) {
+        final fieldDescriptorList = fieldDescriptors.where((element) => element.name == constructorParameter.name);
+        if (fieldDescriptorList.isEmpty) {
+          // If not found, there's not much we can do...
+          continue;
+        }
+        final fieldCodeGenerator =
+          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptorList.first);
+        // INLINE
         var constructorMap = fieldCodeGenerator.constructorMap;
+        if (!constructorParameter.isNamed) {
+          constructorMap = constructorMap.substring(constructorParameter.nameLength + 1);
+        }
         constructorFieldBuffer.writeln(constructorMap);
-      } else {
-        var fromProtoMap = fieldCodeGenerator.fromProtoMap;
-        fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
+        // Remove from nonCoveredFields, as we have it covered...
+        nonCoveredFields.removeWhere((element) => element.name == constructorParameter.name);
+      }
+      // Then append the (non-final) fields not included within the constructor
+      // Final fields will be skipped, as they can't be set anyway...
+      for (var fieldDescriptor in nonCoveredFields) {
+        final fieldCodeGenerator =
+          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+        if (!fieldDescriptor.isFinal) {
+          var fromProtoMap = fieldCodeGenerator.fromProtoMap;
+          fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
+        }
+      }
+      if (nonCoveredFields.isEmpty || (finalFromProtoFieldBuffer.isEmpty && finalConstructorFieldBuffer.isEmpty)) {
+        finalFromProtoFieldBuffer = StringBuffer(fromProtoFieldBuffer);
+        finalConstructorFieldBuffer = StringBuffer(constructorFieldBuffer);
+      }
+      // If 100% field coverage, we're done..
+      if (nonCoveredFields.isEmpty) {
+        break;
       }
     }
 
     var renderBuffer = StringBuffer();
     var mapper = _renderMapper(
-      toProtoFieldBuffer,
-      fromProtoFieldBuffer,
-      constructorFieldBuffer,
+      constructorName,
+      finalToProtoFieldBuffer,
+      finalFromProtoFieldBuffer,
+      finalConstructorFieldBuffer,
     );
 
     renderBuffer.writeln(mapper);
@@ -72,6 +111,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   }
 
   String _renderMapper(
+    String constructorName,
     StringBuffer toProtoFieldBuffer,
     StringBuffer fromProtoFieldBuffer,
     StringBuffer constructorFieldBuffer,
@@ -113,8 +153,8 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       }
 
       $className _\$${className}FromProto($prefix$className instance) =>
-        $className($constructorFieldBuffer)
-          $fromProtoFieldBuffer;  
+        $className$constructorName($constructorFieldBuffer)
+          $fromProtoFieldBuffer;
 
       extension \$${className}ProtoExtension on $className {
         $prefix$className toProto() => _\$${className}ToProto(this);

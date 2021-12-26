@@ -1,0 +1,102 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+
+
+
+
+message GConstructObject1
+{
+  string name = 1;
+  int32 number = 2;
+}   
+
+message GListOfConstructObject1
+{
+  repeated GConstructObject1 items = 1;
+}
+
+message GConstructObject2
+{
+  string name = 1;
+  int32 number = 2;
+}   
+
+message GListOfConstructObject2
+{
+  repeated GConstructObject2 items = 1;
+}
+
+message GConstructObject3
+{
+  string name = 1;
+  int32 number = 2;
+}   
+
+message GListOfConstructObject3
+{
+  repeated GConstructObject3 items = 1;
+}
+
+message GConstructObject4
+{
+  string name = 1;
+  int32 number = 2;
+}   
+
+message GListOfConstructObject4
+{
+  repeated GConstructObject4 items = 1;
+}
+
+message GConstructObject5
+{
+  string name = 1;
+  int32 number = 2;
+}   
+
+message GListOfConstructObject5
+{
+  repeated GConstructObject5 items = 1;
+}
+
+message GConstructObject6
+{
+  string name = 1;
+  bool nameHasValue = 2;
+  int32 number = 3;
+  bool numberHasValue = 4;
+}   
+
+message GListOfConstructObject6
+{
+  repeated GConstructObject6 items = 1;
+}
+
+message GConstructObject7
+{
+  int32 number = 1;
+  bool numberHasValue = 2;
+  string name = 3;
+}   
+
+message GListOfConstructObject7
+{
+  repeated GConstructObject7 items = 1;
+}
+
+message GConstructObject8
+{
+  int32 number = 1;
+  bool numberHasValue = 2;
+  string name = 3;
+}   
+
+message GListOfConstructObject8
+{
+  repeated GConstructObject8 items = 1;
+}
