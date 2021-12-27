@@ -63,4 +63,20 @@ class HostSettings {
 
     return ret;
   }
+
+  HostSettings copyWith({
+    int? isolatesMultiplier,
+    int? extraIsolates,
+    int? port,
+    SslSettings? sslSettings,
+    SmtpSettings? smtpSettings,
+  }) {
+    return HostSettings(
+      isolatesMultiplier: isolatesMultiplier ?? this.isolatesMultiplier,
+      extraIsolates: extraIsolates ?? this.extraIsolates,
+      port: port ?? this.port,
+      sslSettings: sslSettings ?? this.sslSettings,
+      smtpSettings: smtpSettings ?? this.smtpSettings,
+    );
+  }
 }
