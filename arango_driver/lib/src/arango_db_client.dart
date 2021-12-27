@@ -9,6 +9,7 @@ import 'package:arango_driver/src/results/document_response.dart';
 import 'package:arango_driver/src/results/key_options.dart';
 
 class ArangoDBClient {
+  final SecurityContext? securityContext;
   final String scheme;
   final String host;
   final int port;
@@ -29,6 +30,7 @@ class ArangoDBClient {
     required this.user,
     required this.pass,
     this.realm = '',
+    this.securityContext,
   }) {
     ({
       'sheme': scheme,
@@ -46,7 +48,10 @@ class ArangoDBClient {
     _connect();
   }
 
-  factory ArangoDBClient.fromConnectionString(String connectionString) {
+  factory ArangoDBClient.fromConnectionString(
+    String connectionString, {
+    SecurityContext? securityContext,
+  }) {
     var scheme = 'http';
     var host = 'localhost';
     var port = 8529;
@@ -96,13 +101,14 @@ class ArangoDBClient {
       db: db,
       user: user,
       pass: pass,
+      securityContext: securityContext,
     );
     return ret;
   }
 
   void _connect() {
     credentials = HttpClientBasicCredentials(user, pass);
-    httpClient = HttpClient();
+    httpClient = HttpClient(context: securityContext);
     httpClient.addCredentials(dbUrl, realm, credentials);
   }
 
