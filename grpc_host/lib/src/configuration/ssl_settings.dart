@@ -18,4 +18,14 @@ class SslSettings {
     );
     return ret;
   }
+
+  SslSettings copyWith({
+    String? certificatePath,
+    String? privateKeyPath,
+  }) {
+    return SslSettings(
+      certificatePath: certificatePath ?? this.certificatePath,
+      privateKeyPath: privateKeyPath ?? this.privateKeyPath,
+    );
+  }
 }

@@ -1,3 +1,7 @@
+## 3.0.3
+
+- Added copyWith to SslSettings
+
 ## 3.0.2
 
 - Added copyWith to HostSettings
