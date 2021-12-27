@@ -10,8 +10,8 @@ class SslSettings {
   });
 
   factory SslSettings.fromYaml(YamlMap yaml) {
-    final certificatePath = yaml['certificatePath'];
-    final privateKeyPath = yaml['privateKeyPath'];
+    final certificatePath = yaml['certificatePath'] ?? '';
+    final privateKeyPath = yaml['privateKeyPath'] ?? '';
     final ret = SslSettings(
       certificatePath: certificatePath,
       privateKeyPath: privateKeyPath,

@@ -1,3 +1,7 @@
+## 3.0.4
+
+- Support for empty SslSettings
+
 ## 3.0.3
 
 - Added copyWith to SslSettings
