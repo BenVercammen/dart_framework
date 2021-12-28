@@ -1577,6 +1577,24 @@ class LibAuth {
       ffi.Pointer<ffi.Int8> Function(
           ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Int8>)>();
 
+  ffi.Pointer<ffi.Int8> initializeWithJson(
+    ffi.Pointer<ffi.Void> api,
+    ffi.Pointer<ffi.Int8> credentialsJson,
+  ) {
+    return _initializeWithJson(
+      api,
+      credentialsJson,
+    );
+  }
+
+  late final _initializeWithJsonPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Int8>)>>('initializeWithJson');
+  late final _initializeWithJson = _initializeWithJsonPtr.asFunction<
+      ffi.Pointer<ffi.Int8> Function(
+          ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Int8>)>();
+
   void verifyToken(
     int port,
     ffi.Pointer<ffi.Int8> idToken,

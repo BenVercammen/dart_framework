@@ -73,6 +73,7 @@ extern "C" {
 #endif
 
 extern char* initialize(void* api, char* credentialsFile);
+extern char* initializeWithJson(void* api, char* credentialsJson);
 extern void verifyToken(GoInt64 port, char* idToken);
 extern void verifyIDTokenAndCheckRevoked(GoInt64 port, char* idToken);
 extern void revokeRefreshTokens(GoInt64 port, char* idToken);

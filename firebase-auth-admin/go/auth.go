@@ -45,6 +45,36 @@ func initialize(api unsafe.Pointer, credentialsFile *C.char) *C.char {
 	return nil
 }
 
+//export initializeWithJson
+func initializeWithJson(api unsafe.Pointer, credentialsJson *C.char) *C.char {
+	dart_api_dl.Init(api)
+
+	gCredentialsJson := C.GoString(credentialsJson)
+
+	var credentialsMap map[string]interface{}
+	bCredentials := []byte(gCredentialsJson)
+	err := json.Unmarshal(bCredentials, &credentialsMap)
+	if err != nil {
+		return C.CString(err.Error())
+	}
+
+	opt := option.WithCredentialsJSON(bCredentials)
+	ctx := context.Background()
+	app, err := firebase.NewApp(ctx, nil, opt)
+	if err != nil {
+		return C.CString(err.Error())
+	}
+
+	cli, err := app.Auth(ctx)
+	if err != nil {
+		return C.CString(err.Error())
+	}
+
+	client = cli
+
+	return nil
+}
+
 //export verifyToken
 func verifyToken(port int64, idToken *C.char) {
 	if !_checkClient(port) {

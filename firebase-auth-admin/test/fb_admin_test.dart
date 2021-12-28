@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:firebase_auth_admin/firebase_auth_admin.dart' as firebase;
 import 'package:test/test.dart';
 
+import 'test-service-account.dart';
+
 const testEmail = 'fbtest@test.com';
 const testDisplayName = 'Test User';
 const userInfo = firebase.FirebaseUserInfo(
@@ -101,6 +103,39 @@ void main() {
       expect(ctoken, isNotEmpty);
     });
   });
+
+
+
+
+
+  group('Initialization via Json', () {
+    late final String uid;
+
+    setUpAll(() async {
+      firebase.initializeWithJson(serviceAccountJson);
+      final usr = firebase.FirebaseCreateUser(
+        info: userInfo,
+        uid: 'testuseruid_via_json',
+      );
+      uid = await firebase.createUser(usr);
+      print(uid);
+    });
+
+    tearDownAll(() async {
+      await firebase.deleteUser(uid);
+    });
+
+    test('Create empty user', () async {
+      final usr =
+          firebase.FirebaseCreateUser(info: firebase.FirebaseUserInfo());
+      final uid = await firebase.createUser(usr);
+      await firebase.deleteUser(uid);
+      expect(uid, isNotEmpty);
+    });
+  });
+
+
+
 }
 
 String decodeB64Json(String payloadBase64) {

@@ -26,6 +26,16 @@ void initialize(String serviceFilePath) {
   }
 }
 
+void initializeWithJson(String serviceAccountJson) {
+  final serviceAccount =
+      serviceAccountJson.toNativeUtf8(allocator: malloc).cast<Int8>();
+  try {
+    nl.initializeWithJson(NativeApi.initializeApiDLData, serviceAccount);
+  } finally {
+    malloc.free(serviceAccount);
+  }
+}
+
 Future<void> setCustomClaims(String uid, Map<String, dynamic> claims) async {
   final claimsJson = jsonEncode(claims);
 
