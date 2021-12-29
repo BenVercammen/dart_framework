@@ -83,6 +83,7 @@ class ArangoDbRepository<TEntity> extends Repository<TEntity> {
     RepositoryTransaction? transaction,
   }) async {
     var key = map['_key'];
+    var rev = map['_rev'];
 
     var existing = await _get(
       key,
@@ -107,6 +108,7 @@ class ArangoDbRepository<TEntity> extends Repository<TEntity> {
       collectionName,
       key,
       map,
+      ifMatchRevision: rev,
       transaction: trx,
     );
     key = _handleDataResult(resultMap);

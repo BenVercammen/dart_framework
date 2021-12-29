@@ -104,10 +104,6 @@ void main() {
     });
   });
 
-
-
-
-
   group('Initialization via Json', () {
     late final String uid;
 
@@ -133,9 +129,6 @@ void main() {
       expect(uid, isNotEmpty);
     });
   });
-
-
-
 }
 
 String decodeB64Json(String payloadBase64) {
