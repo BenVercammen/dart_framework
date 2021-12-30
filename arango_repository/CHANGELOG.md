@@ -1,3 +1,7 @@
+## 2.0.3
+
+- Fixed example
+
 ## 2.0.2
 
 - Added support for optimistic concurrency

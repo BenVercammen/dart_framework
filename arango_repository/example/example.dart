@@ -6,12 +6,17 @@ import 'ingredient.dart';
 import 'principal.dart';
 import 'recipe.dart';
 
+const myDbName = 'mydatabase';
+const colName = 'recipes';
+const dbUser = 'myapp';
+const dbPassword = 'mypassword';
+
 void main(List<String> args) async {
   // first we create a connection to ArangoDB
-  final db = _connectArangoDb();
+  final db = await _connectArangoDb();
 
   // now, we create a repository on that connection to the recipes collection.
-  final repository = ArangoDbRepository<Recipe>(db, 'recipes');
+  final repository = ArangoDbRepository<Recipe>(db, colName);
 
   // first we need to create a principal to represent the
   // user performing the operations to the database
@@ -49,7 +54,7 @@ void main(List<String> args) async {
   await repository.create(map, principal);
 
   final criteria = SearchCriteria(searchConditions: [
-    Expression.like('entity.title', '%eggs%'),
+    Expression.like('title', '%eggs%'),
   ]);
 
   // because the user has the 'search_recipes' permission,
@@ -104,16 +109,52 @@ Recipe _friedEggsRecipe() {
   return recipe;
 }
 
-ArangoDBClient _connectArangoDb() {
-  var client = ArangoDBClient(
+Future<ArangoDBClient> _connectArangoDb() async {
+  await _maybeCreateDatabase();
+  final client = ArangoDBClient(
     scheme: 'http',
     host: 'localhost',
     port: 8529,
-    db: 'mydatabase',
-    user: 'user',
-    pass: 'password',
+    db: myDbName,
+    user: dbUser,
+    pass: dbPassword, // update this
   );
+
+  final colExists = (await client.allCollections())
+          .response
+          ?.any((col) => col.name == colName) ??
+      false;
+  if (!colExists) {
+    await client.createCollection(CollectionCriteria(
+      colName,
+      waitForSync: true,
+    ));
+  }
+
   return client;
+}
+
+Future<void> _maybeCreateDatabase() async {
+  final client = ArangoDBClient(
+    scheme: 'http',
+    host: 'localhost',
+    port: 8529,
+    db: '_system',
+    user: 'root', // update this
+    pass: 'pass', // update this
+  );
+  final dbExists = (await client.existingDatabases())
+          .response
+          ?.any((dbName) => dbName == myDbName) ??
+      false;
+  if (!dbExists) {
+    await client.createDatabase(CreateDatabaseInfo(myDbName, [
+      DatabaseUser(
+        dbUser,
+        dbPassword,
+      )
+    ]));
+  }
 }
 
 Map<String, dynamic> _recipeToMap(Recipe recipe) => {
