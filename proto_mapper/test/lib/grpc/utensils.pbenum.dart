@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: appliance_type.proto
+//  source: utensils.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
@@ -9,32 +9,32 @@
 import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class GApplianceType extends $pb.ProtobufEnum {
-  static const GApplianceType heat = GApplianceType._(
+class GKnifeType extends $pb.ProtobufEnum {
+  static const GKnifeType chefsKnife = GKnifeType._(
       0,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'heat');
-  static const GApplianceType cold = GApplianceType._(
+          : 'chefsKnife');
+  static const GKnifeType paringKnife = GKnifeType._(
       1,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'cold');
-  static const GApplianceType cutlery = GApplianceType._(
+          : 'paringKnife');
+  static const GKnifeType breadKnife = GKnifeType._(
       2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'cutlery');
+          : 'breadKnife');
 
-  static const $core.List<GApplianceType> values = <GApplianceType>[
-    heat,
-    cold,
-    cutlery,
+  static const $core.List<GKnifeType> values = <GKnifeType>[
+    chefsKnife,
+    paringKnife,
+    breadKnife,
   ];
 
-  static final $core.Map<$core.int, GApplianceType> _byValue =
+  static final $core.Map<$core.int, GKnifeType> _byValue =
       $pb.ProtobufEnum.initByValue(values);
-  static GApplianceType? valueOf($core.int value) => _byValue[value];
+  static GKnifeType? valueOf($core.int value) => _byValue[value];
 
-  const GApplianceType._($core.int v, $core.String n) : super(v, n);
+  const GKnifeType._($core.int v, $core.String n) : super(v, n);
 }

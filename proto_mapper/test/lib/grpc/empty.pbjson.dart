@@ -10,7 +10,7 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gEmptyDescriptor instead')
-const GEmpty$json = {
+const GEmpty$json = const {
   '1': 'GEmpty',
 };
 
@@ -18,10 +18,17 @@ const GEmpty$json = {
 final $typed_data.Uint8List gEmptyDescriptor =
     $convert.base64Decode('CgZHRW1wdHk=');
 @$core.Deprecated('Use gListOfEmptyDescriptor instead')
-const GListOfEmpty$json = {
+const GListOfEmpty$json = const {
   '1': 'GListOfEmpty',
-  '2': [
-    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GEmpty', '10': 'items'},
+  '2': const [
+    const {
+      '1': 'items',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.GEmpty',
+      '10': 'items'
+    },
   ],
 };
 

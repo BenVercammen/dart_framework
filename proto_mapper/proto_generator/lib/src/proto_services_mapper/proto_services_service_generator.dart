@@ -145,12 +145,15 @@ class _Generator extends ProtoServicesGeneratorBase {
     
     ''');
 
-    final externalProtoName =
-        _getExternalProtoName(methodDescriptor.returnType);
+    final externalProtoNames2 =
+        _getExternalProtoNames(methodDescriptor.returnType);
 
-    if (externalProtoName != '' &&
-        !externalProtoNames.contains(externalProtoName)) {
-      externalProtoNames.add(externalProtoName);
+    if (externalProtoNames2.isNotEmpty) {
+      for (String externalProtoName in externalProtoNames2) {
+        if (!externalProtoNames.contains(externalProtoName)) {
+          externalProtoNames.add(externalProtoName);
+        }
+      }
     }
   }
 
@@ -283,11 +286,11 @@ class _Generator extends ProtoServicesGeneratorBase {
     return ret;
   }
 
-  String _getExternalProtoName(DartType type) {
+  Iterable<String> _getExternalProtoNames(DartType type) {
     var fieldElementType = type.finalType;
     var segments = fieldElementType.element?.source?.uri.pathSegments.toList();
     if (segments == null) {
-      return '';
+      return [];
     }
     var lastSrc = segments.lastIndexOf('src');
     if (lastSrc != -1) segments.removeRange(0, lastSrc + 1);
@@ -295,7 +298,7 @@ class _Generator extends ProtoServicesGeneratorBase {
     fileName = fileName.substring(0, fileName.length - 4) + 'proto';
     segments[segments.length - 1] = fileName;
     final ret = segments.join('/');
-    return ret;
+    return [ret];
   }
 
   String _getProtoMappedParameterType(

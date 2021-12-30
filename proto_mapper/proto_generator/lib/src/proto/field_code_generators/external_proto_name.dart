@@ -1,3 +1,3 @@
-abstract class ExternalProtoName {
-  String? get externalProtoName;
+abstract class ExternalProtoNames {
+  Iterable<String>? get externalProtoNames;
 }

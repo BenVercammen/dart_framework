@@ -5,7 +5,7 @@ import '../field_descriptor.dart';
 import 'external_proto_name.dart';
 
 class EntityFieldCodeGenerator extends FieldCodeGenerator
-    implements ExternalProtoName {
+    implements ExternalProtoNames {
   EntityFieldCodeGenerator(FieldDescriptor fieldDescriptor, int lineNumber)
       : super(fieldDescriptor, lineNumber) {
     final fieldElementType = fieldDescriptor.itemType;
@@ -18,10 +18,10 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator
         ? '$packageName.$fieldElementTypeName'
         : fieldElementTypeName;
 
-    _externalProtoName = _initExternalProtoName(fieldDescriptor);
+    _externalProtoNames = _initExternalProtoName(fieldDescriptor);
   }
 
-  String? _initExternalProtoName(FieldDescriptor fieldDescriptor) {
+  Iterable<String>? _initExternalProtoName(FieldDescriptor fieldDescriptor) {
     final fieldElementType = fieldDescriptor.itemType;
     final segments =
         fieldElementType.element!.source!.uri.pathSegments.toList();
@@ -30,12 +30,12 @@ class EntityFieldCodeGenerator extends FieldCodeGenerator
     var fileName = segments[segments.length - 1];
     fileName = fileName.substring(0, fileName.length - 4) + 'proto';
     segments[segments.length - 1] = fileName;
-    return segments.join('/');
+    return [segments.join('/')];
   }
 
-  String? _externalProtoName;
+  Iterable<String>? _externalProtoNames;
   @override
-  String? get externalProtoName => _externalProtoName;
+  Iterable<String>? get externalProtoNames => _externalProtoNames;
 
   String? _fieldType;
   @override

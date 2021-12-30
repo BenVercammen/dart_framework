@@ -1,12 +1,13 @@
-import 'package:proto_generator/src/proto/field_code_generators/double_field_code_generator.dart';
 import 'package:proto_generator/src/proto_common.dart';
 
 import 'field_code_generators/bool_field_code_generator.dart';
 import 'field_code_generators/datetime_field_code_generator.dart';
+import 'field_code_generators/double_field_code_generator.dart';
 import 'field_code_generators/duration_field_code_generator.dart';
 import 'field_code_generators/entity_field_code_generator.dart';
 import 'field_code_generators/generic_field_code_generator.dart';
 import 'field_code_generators/int_field_code_generator.dart';
+import 'field_code_generators/map_field_code_generator.dart';
 import 'field_code_generators/string_field_code_generator.dart';
 import 'field_descriptor.dart';
 
@@ -51,6 +52,9 @@ abstract class FieldCodeGenerator {
     }
     if (type.hasProto) {
       return EntityFieldCodeGenerator(fieldDescriptor, lineNumber);
+    }
+    if (type.isDartCoreMap) {
+      return MapFieldCodeGenerator(fieldDescriptor, lineNumber);
     }
     return GenericFieldCodeGenerator(fieldDescriptor, lineNumber);
   }
