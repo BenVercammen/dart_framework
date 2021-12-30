@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:firebase_auth_admin/firebase_auth_admin.dart' as firebase;
 import 'package:test/test.dart';
 
-import 'test-service-account.dart';
+import 'test_service_account.dart';
 
 const testEmail = 'fbtest@test.com';
 const testDisplayName = 'Test User';

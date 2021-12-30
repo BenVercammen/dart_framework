@@ -10,11 +10,11 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gCalcParametersDescriptor instead')
-const GCalcParameters$json = const {
+const GCalcParameters$json = {
   '1': 'GCalcParameters',
-  '2': const [
-    const {'1': 'parameter1', '3': 1, '4': 1, '5': 5, '10': 'parameter1'},
-    const {'1': 'parameter2', '3': 2, '4': 1, '5': 5, '10': 'parameter2'},
+  '2': [
+    {'1': 'parameter1', '3': 1, '4': 1, '5': 5, '10': 'parameter1'},
+    {'1': 'parameter2', '3': 2, '4': 1, '5': 5, '10': 'parameter2'},
   ],
 };
 
@@ -22,10 +22,10 @@ const GCalcParameters$json = const {
 final $typed_data.Uint8List gCalcParametersDescriptor = $convert.base64Decode(
     'Cg9HQ2FsY1BhcmFtZXRlcnMSHgoKcGFyYW1ldGVyMRgBIAEoBVIKcGFyYW1ldGVyMRIeCgpwYXJhbWV0ZXIyGAIgASgFUgpwYXJhbWV0ZXIy');
 @$core.Deprecated('Use gListOfCalcParametersDescriptor instead')
-const GListOfCalcParameters$json = const {
+const GListOfCalcParameters$json = {
   '1': 'GListOfCalcParameters',
-  '2': const [
-    const {
+  '2': [
+    {
       '1': 'items',
       '3': 1,
       '4': 3,
