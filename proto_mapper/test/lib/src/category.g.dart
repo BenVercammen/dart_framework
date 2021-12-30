@@ -53,12 +53,12 @@ Category _$CategoryFromProto(GCategory instance) => Category(
       title: instance.title,
       mainComponent:
           const $ComponentProtoMapper().fromProto(instance.mainComponent),
+      otherComponents: List<Component>.unmodifiable(instance.otherComponents
+          .map((e) => const $ComponentProtoMapper().fromProto(e))),
       alternativeComponent: (instance.alternativeComponentHasValue
           ? (const $ComponentProtoMapper()
               .fromProto(instance.alternativeComponent))
           : null),
-      otherComponents: List<Component>.unmodifiable(instance.otherComponents
-          .map((e) => const $ComponentProtoMapper().fromProto(e))),
       secondaryComponents: (instance.secondaryComponentsHasValue
           ? (List<Component>.unmodifiable(instance.secondaryComponents
               .map((e) => const $ComponentProtoMapper().fromProto(e))))

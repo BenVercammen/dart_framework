@@ -81,41 +81,41 @@ GListsHost _$ListsHostToProto(ListsHost instance) {
 
 ListsHost _$ListsHostFromProto(GListsHost instance) => ListsHost(
       vbools: List<bool>.unmodifiable(instance.vbools.map((e) => e)),
+      vstrings: List<String>.unmodifiable(instance.vstrings.map((e) => e)),
+      vdurations: List<Duration>.unmodifiable(
+          instance.vdurations.map((e) => Duration(milliseconds: e.toInt()))),
+      vdatetimes: List<DateTime>.unmodifiable(instance.vdatetimes
+          .map((e) => DateTime.fromMillisecondsSinceEpoch(e.toInt()))),
+      vdecimals: List<Decimal>.unmodifiable(
+          instance.vdecimals.map((e) => Decimal.parse(e))),
+      vints: List<int>.unmodifiable(instance.vints.map((e) => e)),
+      vdoubles: List<double>.unmodifiable(instance.vdoubles.map((e) => e)),
+      vapplianceTypes: List<ApplianceType>.unmodifiable(instance.vapplianceTypes
+          .map((e) => const $ApplianceTypeProtoMapper().fromProto(e))),
       nvbools: (instance.nvboolsHasValue
           ? (List<bool>.unmodifiable(instance.nvbools.map((e) => e)))
           : null),
-      vstrings: List<String>.unmodifiable(instance.vstrings.map((e) => e)),
       nvstrings: (instance.nvstringsHasValue
           ? (List<String>.unmodifiable(instance.nvstrings.map((e) => e)))
           : null),
-      vdurations: List<Duration>.unmodifiable(
-          instance.vdurations.map((e) => Duration(milliseconds: e.toInt()))),
       nvdurations: (instance.nvdurationsHasValue
           ? (List<Duration>.unmodifiable(instance.nvdurations
               .map((e) => Duration(milliseconds: e.toInt()))))
           : null),
-      vdatetimes: List<DateTime>.unmodifiable(instance.vdatetimes
-          .map((e) => DateTime.fromMillisecondsSinceEpoch(e.toInt()))),
       nvdatetimes: (instance.nvdatetimesHasValue
           ? (List<DateTime>.unmodifiable(instance.nvdatetimes
               .map((e) => DateTime.fromMillisecondsSinceEpoch(e.toInt()))))
           : null),
-      vdecimals: List<Decimal>.unmodifiable(
-          instance.vdecimals.map((e) => Decimal.parse(e))),
       nvdecimals: (instance.nvdecimalsHasValue
           ? (List<Decimal>.unmodifiable(
               instance.nvdecimals.map((e) => Decimal.parse(e))))
           : null),
-      vints: List<int>.unmodifiable(instance.vints.map((e) => e)),
       nvints: (instance.nvintsHasValue
           ? (List<int>.unmodifiable(instance.nvints.map((e) => e)))
           : null),
-      vdoubles: List<double>.unmodifiable(instance.vdoubles.map((e) => e)),
       nvdoubles: (instance.nvdoublesHasValue
           ? (List<double>.unmodifiable(instance.nvdoubles.map((e) => e)))
           : null),
-      vapplianceTypes: List<ApplianceType>.unmodifiable(instance.vapplianceTypes
-          .map((e) => const $ApplianceTypeProtoMapper().fromProto(e))),
       nvapplianceTypes: (instance.nvapplianceTypesHasValue
           ? (List<ApplianceType>.unmodifiable(instance.nvapplianceTypes
               .map((e) => const $ApplianceTypeProtoMapper().fromProto(e))))

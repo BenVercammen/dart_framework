@@ -76,29 +76,29 @@ GRecipe _$RecipeToProto(Recipe instance) {
 
 Recipe _$RecipeFromProto(GRecipe instance) => Recipe(
       title: instance.title,
-      description:
-          (instance.descriptionHasValue ? (instance.description) : null),
       category: const $CategoryProtoMapper().fromProto(instance.category),
       ingredients: List<Ingredient>.unmodifiable(instance.ingredients
           .map((e) => const $IngredientProtoMapper().fromProto(e))),
       publishDate:
           DateTime.fromMillisecondsSinceEpoch(instance.publishDate.toInt()),
+      preparationDuration:
+          Duration(milliseconds: instance.preparationDuration.toInt()),
+      isPublished: instance.isPublished,
+      mainApplianceType: ApplianceType.values[instance.mainApplianceType.value],
+      tags: List<String>.unmodifiable(instance.tags.map((e) => e)),
+      description:
+          (instance.descriptionHasValue ? (instance.description) : null),
       expiryDate: (instance.expiryDateHasValue
           ? (DateTime.fromMillisecondsSinceEpoch(instance.expiryDate.toInt()))
           : null),
-      preparationDuration:
-          Duration(milliseconds: instance.preparationDuration.toInt()),
       totalDuration: (instance.totalDurationHasValue
           ? (Duration(milliseconds: instance.totalDuration.toInt()))
           : null),
-      isPublished: instance.isPublished,
       requiresRobot:
           (instance.requiresRobotHasValue ? (instance.requiresRobot) : null),
-      mainApplianceType: ApplianceType.values[instance.mainApplianceType.value],
       secondaryApplianceType: (instance.secondaryApplianceTypeHasValue
           ? (ApplianceType.values[instance.secondaryApplianceType.value])
           : null),
-      tags: List<String>.unmodifiable(instance.tags.map((e) => e)),
       extraTags: (instance.extraTagsHasValue
           ? (List<String>.unmodifiable(instance.extraTags.map((e) => e)))
           : null),

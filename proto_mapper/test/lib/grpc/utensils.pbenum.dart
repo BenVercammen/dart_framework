@@ -12,17 +12,17 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class GKnifeType extends $pb.ProtobufEnum {
   static const GKnifeType chefsKnife = GKnifeType._(
       0,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'chefsKnife');
   static const GKnifeType paringKnife = GKnifeType._(
       1,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'paringKnife');
   static const GKnifeType breadKnife = GKnifeType._(
       2,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'breadKnife');
 

@@ -37,92 +37,95 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     _classElement = element.asClassElement();
     if (_classElement!.kind == ElementKind.ENUM) return renderEnumMapper();
 
+    RenderMapperBuffers renderParms = _createRenderBuffers(readAnnotation);
+
+    final mapper = _renderMapper(renderParms);
+    return mapper;
+  }
+
+  RenderMapperBuffers _createRenderBuffers(MapProto readAnnotation) {
     final fieldDescriptors =
         _getFieldDescriptors(_classElement!, readAnnotation);
+    final fromFieldDescriptors = [...fieldDescriptors];
 
-    var finalToProtoFieldBuffer = StringBuffer();
-    var finalFromProtoFieldBuffer = StringBuffer();
-    var finalConstructorFieldBuffer = StringBuffer();
-    var constructorName = '';
+    final toProtoFieldBuffer = StringBuffer();
+    final fromProtoFieldBuffer = StringBuffer();
+    final constructorFieldBuffer = StringBuffer();
 
-    // toProto is just fields, regardless of constructors...
+    // lets get all the constructors which cover all final fields
+    final constructors = _classElement!.constructors
+        .where((constructor) => fieldDescriptors.every((fd) =>
+            !fd.isFinal ||
+            //fd.isLate ||
+            constructor.parameters.any((cp) => cp.name == fd.name)));
+
+    // let's just pick the first of the valid constructors
+    final constructor = constructors.isEmpty
+        ? throw InvalidGenerationSourceError(
+            'Cannot generate proto mapper for class ${_classElement!.name} because it is missing a constructor that covers all final properties')
+        : constructors.first;
+
+    // generate the mapping for the constructor, consuming all
+    // the fields that are set by the constructor
+    _buildConstructorBuffer(
+        constructor, fromFieldDescriptors, constructorFieldBuffer);
+
+    // assign the remaining from proto field assignments
+    // (that where not set by the constructor)
+    for (var fieldDescriptor
+        in fromFieldDescriptors.where((fd) => !fd.isFinal)) {
+      final fieldCodeGenerator =
+          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+      var fromProtoMap = fieldCodeGenerator.fromProtoMap;
+      fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
+    }
+
+    // assing the to proto field assignments
     for (var fieldDescriptor in fieldDescriptors) {
       final fieldCodeGenerator =
           FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
-      finalToProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
+      toProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
     }
 
-    // All constructors should be eligible for use
-    for (final constructor in _classElement!.constructors) {
-      var fromProtoFieldBuffer = StringBuffer();
-      var constructorFieldBuffer = StringBuffer();
-      var nonCoveredFields = List<FieldDescriptor>.from(fieldDescriptors);
-      constructorName = constructor.name.isNotEmpty
-          ? ".${constructor.name}"
-          : constructor.name;
+    final constructorName =
+        constructor.name.isNotEmpty ? ".${constructor.name}" : constructor.name;
 
-      // First use the available constructor parameters (this way we preserve unnamed constructor arg order)
-      for (ParameterElement constructorParameter in constructor.parameters) {
-        final fieldDescriptorList = fieldDescriptors
-            .where((element) => element.name == constructorParameter.name);
-        if (fieldDescriptorList.isEmpty) {
-          // If not found, there's not much we can do...
-          continue;
-        }
-        final fieldCodeGenerator =
-            FieldCodeGenerator.fromFieldDescriptor(fieldDescriptorList.first);
-        // INLINE
-        var constructorMap = fieldCodeGenerator.constructorMap;
-        if (!constructorParameter.isNamed) {
-          constructorMap =
-              constructorMap.substring(constructorParameter.nameLength + 1);
-        }
-        constructorFieldBuffer.writeln(constructorMap);
-        // Remove from nonCoveredFields, as we have it covered...
-        nonCoveredFields.removeWhere(
-            (element) => element.name == constructorParameter.name);
-      }
-      // Then append the (non-final) fields not included within the constructor
-      // Final fields will be skipped, as they can't be set anyway...
-      for (var fieldDescriptor in nonCoveredFields) {
-        final fieldCodeGenerator =
-            FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
-        if (!fieldDescriptor.isFinal) {
-          var fromProtoMap = fieldCodeGenerator.fromProtoMap;
-          fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
-        }
-      }
-      if (nonCoveredFields.isEmpty ||
-          (finalFromProtoFieldBuffer.isEmpty &&
-              finalConstructorFieldBuffer.isEmpty)) {
-        finalFromProtoFieldBuffer = StringBuffer(fromProtoFieldBuffer);
-        finalConstructorFieldBuffer = StringBuffer(constructorFieldBuffer);
-      }
-      // If 100% field coverage, we're done..
-      if (nonCoveredFields.isEmpty) {
-        break;
-      }
-    }
-
-    var renderBuffer = StringBuffer();
-    var mapper = _renderMapper(
-      constructorName,
-      finalToProtoFieldBuffer,
-      finalFromProtoFieldBuffer,
-      finalConstructorFieldBuffer,
+    final renderParms = RenderMapperBuffers(
+      constructorName: constructorName,
+      toProtoFieldBuffer: toProtoFieldBuffer,
+      fromProtoFieldBuffer: fromProtoFieldBuffer,
+      constructorFieldBuffer: constructorFieldBuffer,
     );
-
-    renderBuffer.writeln(mapper);
-
-    return renderBuffer.toString();
+    return renderParms;
   }
 
-  String _renderMapper(
-    String constructorName,
-    StringBuffer toProtoFieldBuffer,
-    StringBuffer fromProtoFieldBuffer,
-    StringBuffer constructorFieldBuffer,
-  ) {
+  void _buildConstructorBuffer(
+      ConstructorElement constructor,
+      List<FieldDescriptor> fromFieldDescriptors,
+      StringBuffer constructorFieldBuffer) {
+    for (var constructorParameter in constructor.parameters) {
+      final fieldDescriptorList = fromFieldDescriptors
+          .where((element) => element.name == constructorParameter.name);
+
+      if (fieldDescriptorList.isEmpty) {
+        // If not found, there's not much we can do...
+        continue;
+      }
+      final fieldDescriptor = fieldDescriptorList.first;
+      fromFieldDescriptors.remove(fieldDescriptor);
+
+      final fieldCodeGenerator =
+          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+      // INLINE
+      final constructorMap = constructorParameter.isNamed
+          ? fieldCodeGenerator.constructorMap
+          : fieldCodeGenerator.constructorMap
+              .substring(constructorParameter.nameLength + 1);
+      constructorFieldBuffer.writeln(constructorMap);
+    }
+  }
+
+  String _renderMapper(RenderMapperBuffers renderParms) {
     var prefix = _prefix;
 
     return '''
@@ -154,14 +157,14 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       {
         var proto = $prefix$className();
         
-        $toProtoFieldBuffer
+        ${renderParms.toProtoFieldBuffer}
         
         return proto;
       }
 
       $className _\$${className}FromProto($prefix$className instance) =>
-        $className$constructorName($constructorFieldBuffer)
-          $fromProtoFieldBuffer;
+        $className${renderParms.constructorName}(${renderParms.constructorFieldBuffer})
+          ${renderParms.fromProtoFieldBuffer};
 
       extension \$${className}ProtoExtension on $className {
         $prefix$className toProto() => _\$${className}ToProto(this);
@@ -211,4 +214,18 @@ MapProto? _hydrateAnnotation(ConstantReader reader, {String? prefix}) {
   );
 
   return ret;
+}
+
+class RenderMapperBuffers {
+  final String constructorName;
+  final StringBuffer toProtoFieldBuffer;
+  final StringBuffer fromProtoFieldBuffer;
+  final StringBuffer constructorFieldBuffer;
+
+  RenderMapperBuffers({
+    required this.constructorName,
+    required this.toProtoFieldBuffer,
+    required this.fromProtoFieldBuffer,
+    required this.constructorFieldBuffer,
+  });
 }
