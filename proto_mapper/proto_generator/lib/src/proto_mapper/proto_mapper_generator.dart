@@ -48,7 +48,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     // toProto is just fields, regardless of constructors...
     for (var fieldDescriptor in fieldDescriptors) {
       final fieldCodeGenerator =
-        FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
       finalToProtoFieldBuffer.writeln(fieldCodeGenerator.toProtoMap);
     }
 
@@ -57,37 +57,44 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       var fromProtoFieldBuffer = StringBuffer();
       var constructorFieldBuffer = StringBuffer();
       var nonCoveredFields = List<FieldDescriptor>.from(fieldDescriptors);
-      constructorName = constructor.name.isNotEmpty ? ".${constructor.name}" : constructor.name;
+      constructorName = constructor.name.isNotEmpty
+          ? ".${constructor.name}"
+          : constructor.name;
 
       // First use the available constructor parameters (this way we preserve unnamed constructor arg order)
       for (ParameterElement constructorParameter in constructor.parameters) {
-        final fieldDescriptorList = fieldDescriptors.where((element) => element.name == constructorParameter.name);
+        final fieldDescriptorList = fieldDescriptors
+            .where((element) => element.name == constructorParameter.name);
         if (fieldDescriptorList.isEmpty) {
           // If not found, there's not much we can do...
           continue;
         }
         final fieldCodeGenerator =
-          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptorList.first);
+            FieldCodeGenerator.fromFieldDescriptor(fieldDescriptorList.first);
         // INLINE
         var constructorMap = fieldCodeGenerator.constructorMap;
         if (!constructorParameter.isNamed) {
-          constructorMap = constructorMap.substring(constructorParameter.nameLength + 1);
+          constructorMap =
+              constructorMap.substring(constructorParameter.nameLength + 1);
         }
         constructorFieldBuffer.writeln(constructorMap);
         // Remove from nonCoveredFields, as we have it covered...
-        nonCoveredFields.removeWhere((element) => element.name == constructorParameter.name);
+        nonCoveredFields.removeWhere(
+            (element) => element.name == constructorParameter.name);
       }
       // Then append the (non-final) fields not included within the constructor
       // Final fields will be skipped, as they can't be set anyway...
       for (var fieldDescriptor in nonCoveredFields) {
         final fieldCodeGenerator =
-          FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
+            FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
         if (!fieldDescriptor.isFinal) {
           var fromProtoMap = fieldCodeGenerator.fromProtoMap;
           fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
         }
       }
-      if (nonCoveredFields.isEmpty || (finalFromProtoFieldBuffer.isEmpty && finalConstructorFieldBuffer.isEmpty)) {
+      if (nonCoveredFields.isEmpty ||
+          (finalFromProtoFieldBuffer.isEmpty &&
+              finalConstructorFieldBuffer.isEmpty)) {
         finalFromProtoFieldBuffer = StringBuffer(fromProtoFieldBuffer);
         finalConstructorFieldBuffer = StringBuffer(constructorFieldBuffer);
       }

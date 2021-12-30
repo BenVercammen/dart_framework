@@ -16,7 +16,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
         );
 
   String get _valueToProto {
-    var typeArguments = (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
+    var typeArguments =
+        (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
     final keyFieldTypeName = typeArguments[0];
     final valueFieldTypeName = typeArguments[1];
 
@@ -33,7 +34,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
         parameterType.isDartCoreString) {
       return parameterName;
     }
-    final fieldTypeName = parameterType.getDisplayString(withNullability: false);
+    final fieldTypeName =
+        parameterType.getDisplayString(withNullability: false);
     if (fieldTypeName == (Decimal).toString()) {
       return '$parameterName.toString()';
     }
@@ -70,7 +72,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
         parameterType.isDartCoreString) {
       return parameterName;
     }
-    final fieldTypeName = parameterType.getDisplayString(withNullability: false);
+    final fieldTypeName =
+        parameterType.getDisplayString(withNullability: false);
     if (fieldTypeName == (Decimal).toString()) {
       return 'Decimal.parse($parameterName)';
     }
@@ -84,9 +87,9 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
     return ''' const \$${fieldTypeName}ProtoMapper().fromProto($parameterName)''';
   }
 
-
   String get _protoToValue {
-    var typeArguments = (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
+    var typeArguments =
+        (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
     final keyFieldTypeName = typeArguments[0];
     final valueFieldTypeName = typeArguments[1];
 
@@ -99,6 +102,5 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
   @override
   String get fromProtoNonNullableExpression =>
       // '''List<${fieldDescriptor.parameterTypeName}>.unmodifiable($ref$protoFieldName.map((e) => $_protoToValue))''';
-  '''$ref$protoFieldName.map((k, v) => $_protoToValue)''';
-
+      '''$ref$protoFieldName.map((k, v) => $_protoToValue)''';
 }

@@ -2,8 +2,6 @@ import 'package:proto_generator_test/proto_generator_test.dart';
 import 'package:proto_generator_test/src/appliance_type.dart';
 import 'package:proto_generator_test/src/component.dart';
 import 'package:proto_generator_test/src/utensils.dart';
-import 'package:proto_generator_test/grpc/utensils.pb.dart';
-import 'package:proto_generator_test/grpc/recipe.pb.dart';
 import 'package:test/test.dart';
 
 /// With the classes defined in "utensils.proto", we can test the following items implicitly,
@@ -16,7 +14,6 @@ void main() {
     test('utensil', () {
       final kitchen = _kitchen();
       expect(kitchen.toJson(), equals(kitchen.toProto().toKitchen().toJson()));
-
     });
   });
 }
@@ -35,7 +32,10 @@ Kitchen _kitchen() {
 Recipe _recipe() {
   return Recipe(
       title: 'Recipe 1',
-      category: Category(title: 'Category', mainComponent: Component(description: 'Description'), otherComponents: []),
+      category: Category(
+          title: 'Category',
+          mainComponent: Component(description: 'Description'),
+          otherComponents: []),
       ingredients: [],
       publishDate: DateTime.now(),
       preparationDuration: Duration(),

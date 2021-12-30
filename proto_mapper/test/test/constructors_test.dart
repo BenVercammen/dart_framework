@@ -1,14 +1,12 @@
-import 'package:decimal/decimal.dart';
-import 'package:proto_generator_test/src/appliance_type.dart';
 import 'package:proto_generator_test/src/constructors_host.dart';
-import 'package:proto_generator_test/src/lists_host.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('Constructors', () {
     test('Two late properties, default constructor', () {
-      final construct = ConstructObject1()..name = 'Test'..number = 1;
+      final construct = ConstructObject1()
+        ..name = 'Test'
+        ..number = 1;
       final proto = construct.toProto();
       final proto2 = proto.toConstructObject1();
       expect(proto2, construct);
@@ -23,7 +21,9 @@ void main() {
       expect(proto2.name, construct.name);
       expect(proto2.number, construct.number);
     });
-    test('Unnamed constructor with unnamed arg, one missing but set by constructor', () {
+    test(
+        'Unnamed constructor with unnamed arg, one missing but set by constructor',
+        () {
       final construct = ConstructObject3('Test')..number = 1;
       final proto = construct.toProto();
       final proto2 = proto.toConstructObject3();
@@ -31,7 +31,8 @@ void main() {
       expect(proto2.name, construct.name);
       expect(proto2.number, construct.number);
     });
-    test('Only one named constructor arg, one missing but set by constructor', () {
+    test('Only one named constructor arg, one missing but set by constructor',
+        () {
       final construct = ConstructObject4(name: 'Test')..number = 1;
       final proto = construct.toProto();
       final proto2 = proto.toConstructObject4();
@@ -55,7 +56,9 @@ void main() {
       expect(proto2.name, construct.name);
       expect(proto2.number, construct.number);
     });
-    test('Named constructor, unnammed arguments, different order for fields and arguments', () {
+    test(
+        'Named constructor, unnammed arguments, different order for fields and arguments',
+        () {
       final construct = ConstructObject7.name('Test', 1);
       final proto = construct.toProto();
       final proto2 = proto.toConstructObject7();
@@ -71,6 +74,5 @@ void main() {
       expect(proto2.name, construct.name);
       expect(proto2.number, construct.number);
     });
-
   });
 }

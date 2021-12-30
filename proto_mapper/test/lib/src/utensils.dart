@@ -48,7 +48,10 @@ class Chef {
   final Knife favoriteKnife;
   final ApplianceType favoriteApplianceType;
 
-  Chef({required this.favoriteRecipe, required this.favoriteKnife, required this.favoriteApplianceType});
+  Chef(
+      {required this.favoriteRecipe,
+      required this.favoriteKnife,
+      required this.favoriteApplianceType});
 }
 
 @proto

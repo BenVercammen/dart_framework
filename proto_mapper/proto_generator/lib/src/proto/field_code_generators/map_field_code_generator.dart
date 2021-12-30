@@ -13,9 +13,12 @@ class MapFieldCodeGenerator extends FieldCodeGenerator
 
     final packageName = fieldElementType.packageName;
 
-    assert (fieldElementType is InterfaceType);
-    final keyTypeName = _fieldTypeName((fieldElementType as InterfaceType).typeArguments[0], fieldDescriptor.prefix);
-    final valueTypeName = _fieldTypeName((fieldElementType).typeArguments[1], fieldDescriptor.prefix);
+    assert(fieldElementType is InterfaceType);
+    final keyTypeName = _fieldTypeName(
+        (fieldElementType as InterfaceType).typeArguments[0],
+        fieldDescriptor.prefix);
+    final valueTypeName = _fieldTypeName(
+        (fieldElementType).typeArguments[1], fieldDescriptor.prefix);
 
     final fieldElementTypeName = '''map<$keyTypeName, $valueTypeName>''';
 
@@ -28,7 +31,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator
 
   Iterable<String>? _initExternalProtoNames(FieldDescriptor fieldDescriptor) {
     final names = <String>[];
-    final argumentTypes = (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
+    final argumentTypes =
+        (fieldDescriptor.fieldElementType as InterfaceType).typeArguments;
     for (DartType argumentType in argumentTypes) {
       if (argumentType.isDartCoreString ||
           argumentType.isDartCoreInt ||

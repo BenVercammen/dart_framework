@@ -13,7 +13,10 @@ class ConstructObject1 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject1 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject1 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -36,7 +39,10 @@ class ConstructObject2 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject2 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject2 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -59,7 +65,10 @@ class ConstructObject3 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject3 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject3 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -82,7 +91,10 @@ class ConstructObject4 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject4 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject4 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -105,7 +117,10 @@ class ConstructObject5 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject5 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject5 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -128,7 +143,10 @@ class ConstructObject6 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject6 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject6 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -151,7 +169,10 @@ class ConstructObject7 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject7 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject7 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -178,7 +199,10 @@ class ConstructObject8 {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ConstructObject8 && runtimeType == other.runtimeType && name == other.name && number == other.number;
+      other is ConstructObject8 &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;

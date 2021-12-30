@@ -39,7 +39,8 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
       syntax = '''syntax = "proto3";
       ''';
       alreadyImported.clear();
-      alreadyImported.addAll(buildStep.allowedOutputs.map((e) => e.path.substring(e.path.lastIndexOf('/') + 1)));
+      alreadyImported.addAll(buildStep.allowedOutputs
+          .map((e) => e.path.substring(e.path.lastIndexOf('/') + 1)));
     }
 
     var ret = classElement.kind == ElementKind.ENUM

@@ -24,8 +24,10 @@ void main() {
       var deserializedJson = GInventory.fromJson(serialized).toInventory();
       var deserializedProto = proto.toInventory();
       expect(inventory.toProto().writeToJson(), equals(serialized));
-      expect(inventory.toProto().writeToJson(), equals(deserializedJson.toJson()));
-      expect(inventory.toProto().writeToJson(), equals(deserializedProto.toJson()));
+      expect(
+          inventory.toProto().writeToJson(), equals(deserializedJson.toJson()));
+      expect(inventory.toProto().writeToJson(),
+          equals(deserializedProto.toJson()));
       print(inventory.toJson());
     });
   });
@@ -37,16 +39,16 @@ Inventory _inventory() {
     "One": 1,
     "Two": 2,
     "Three": 3
-  // }, numberOfKnives: {
-  //   Knife(name: "Chef's", type: KnifeType.chefsKnife): 2,
-  //   Knife(name: "Bread", type: KnifeType.breadKnife): 1
+    // }, numberOfKnives: {
+    //   Knife(name: "Chef's", type: KnifeType.chefsKnife): 2,
+    //   Knife(name: "Bread", type: KnifeType.breadKnife): 1
   }, recipesByName: {
     "Lasagna": lasagnaRecipe
-  // }, knifePerRecipe: {
-  //   lasagnaRecipe: Knife(name: 'Lasagna Knife', type: KnifeType.paringKnife)
-  // }, applianceKnifeMap: {
-  //   ApplianceType.heat: Knife(name: "Hot Knife", type: KnifeType.chefsKnife),
-  //   ApplianceType.cold: Knife(name: "Cold Knife", type: KnifeType.chefsKnife)
+    // }, knifePerRecipe: {
+    //   lasagnaRecipe: Knife(name: 'Lasagna Knife', type: KnifeType.paringKnife)
+    // }, applianceKnifeMap: {
+    //   ApplianceType.heat: Knife(name: "Hot Knife", type: KnifeType.chefsKnife),
+    //   ApplianceType.cold: Knife(name: "Cold Knife", type: KnifeType.chefsKnife)
   });
   return inventory;
 }
@@ -54,7 +56,10 @@ Inventory _inventory() {
 Recipe _recipe() {
   var lasagnaRecipe = Recipe(
       title: "Lasagna",
-      category: Category(title: "Sauce", mainComponent: Component(description: "Red sauce"), otherComponents: []),
+      category: Category(
+          title: "Sauce",
+          mainComponent: Component(description: "Red sauce"),
+          otherComponents: []),
       ingredients: [
         Ingredient(
             description: "Tomatoes",
