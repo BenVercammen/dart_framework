@@ -207,3 +207,7 @@ Fix pedantic warning again
 ## 2.0.3
 
 - Connect with securityContext
+
+## 2.0.4
+
+- CollectionPropertiesResponse accepts nullable tempObjectId

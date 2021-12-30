@@ -12,7 +12,7 @@ void main() async {
     db: 'blog', // <- the name of database for connect
     // User below must have access for you database:
     user: 'root', // <- use real username for this database
-    pass: 'Numer678_', // <- use real password for this user
+    pass: 'pass', // <- use real password for this user
   );
 
   // Lets, we have some condition which blog documents to read:

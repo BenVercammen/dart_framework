@@ -6,7 +6,7 @@ import 'result.dart';
 class CollectionPropertiesResponse extends CollectionResponse {
   final int writeConcern;
   final bool waitForSync;
-  final String tempObjectId;
+  final String? tempObjectId;
   final bool cacheEnabled;
   final bool isSmartChild;
   final String objectId;
@@ -20,7 +20,7 @@ class CollectionPropertiesResponse extends CollectionResponse {
     required CollectionInfo collectionInfo,
     required this.writeConcern,
     required this.waitForSync,
-    required this.tempObjectId,
+    this.tempObjectId,
     required this.cacheEnabled,
     required this.isSmartChild,
     required this.objectId,
