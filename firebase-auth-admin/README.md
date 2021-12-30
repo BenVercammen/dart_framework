@@ -33,10 +33,12 @@ While both Dart and Go are garbage collected platforms, the interface used to co
 The usage of this package requires a few extra steps than usual:
 - Add this package to your package dependencies on pubspec.yaml.
 
-- The package includes a dynamic library, ```lib-auth```, which you need to be able to access from your application. Find the physical path to the package and you may either add that path to your library search path, or you may copy or add a symbolic link from the library to the root of your app's package. The file extension of the library is different for each operating system:
+- The package requires a dynamic library, ```lib-auth```, which you need to be able to access from your application. Find the physical path to the package and you may either add that path to your library search path, or you may copy or add a symbolic link from the library to the root of your app's package. The file extension of the library is different for each operating system:
     * Linux: ``lib-auth.so``
     * MacOS: ``lib-auth.dylib``
     * Windows ``lib-auth.dll``
+
+Download the correct version of the library from: https://github.com/squarealfa/dart_framework/releases/tag/v0.9.5
 
 - Generate and download a new private key following the instruction in https://firebase.google.com/docs/admin/setup, under **To generate a private key file for your service account**.
 

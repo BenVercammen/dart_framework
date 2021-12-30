@@ -1,5 +1,7 @@
 import 'package:yaml/yaml.dart';
 
+@Deprecated(
+    'All settings not related to grpc-hosting features are deprecated and will be removed in the next version.')
 class SmtpSettings {
   final String hostname;
   final String username;

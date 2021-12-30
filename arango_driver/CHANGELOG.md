@@ -203,3 +203,7 @@ Fix pedantic warning again
 ## 2.0.2
 
 - Casting selectivityEstimate to double on response
+
+## 2.0.3
+
+- Connect with securityContext
