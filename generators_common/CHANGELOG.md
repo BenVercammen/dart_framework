@@ -1,15 +1,22 @@
-## 1.0.2-dev
+## 2.0.1
 
-- Updated dependencies
+- Upgraded dependencies
 
-## 1.0.1
+## 2.0.0
 
-- Updated dependencies
+- Added support for iterables and sets
 
 ## 1.0.0
 
 - Initial published version
 
-## 2.0.0
 
-- Added support for iterables and sets
+## 1.0.1
+
+- Updated dependencies
+
+## 1.0.2-dev
+
+- Updated dependencies
+
+

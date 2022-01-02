@@ -5,26 +5,16 @@ homepage: https://github.com/squarealfa/dart_framework/tree/main/defaults_provid
 repository: https://github.com/squarealfa/dart_framework
 version: 1.0.0
 
-publish_to: none
-
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  defaults_provider_annotations: #^1.1.0
-    path: ../defaults_provider_annotations
-
-  decimal: ^1.0.0
+  defaults_provider_annotations: ^2.0.0
 
 dev_dependencies:
-  defaults_provider_generator:
+   
 
   build_runner: ^2.0.0
+  defaults_provider_generator: ^2.0.1
   lints: ^1.0.1
-  test: ^1.14.4
-
-dependency_overrides:
-  defaults_provider_annotations:
-    path: ../defaults_provider_annotations
-  defaults_provider_generator:
-    path: ../defaults_provider_generator
+  test: ^1.20.1

@@ -1,19 +1,23 @@
-## 1.0.0
+## 2.0.1
 
-- Initial version
+- Updated dependencies
 
-## 1.1.0
+## 2.0.0
 
-- Removed redundant base classes
-
-## 1.1.1
-
-- Added reference to integrating framework.
+- Generated defaults provider prefixed with $. Replaced singleton with const class. (Breaking changes).
 
 ## 1.1.2
 
 - Fixed bug with target classes without a non-nullable field
 
-## 2.0.0
+## 1.1.1
 
-- Generated defaults provider prefixed with $. Replaced singleton with const class. (Breaking changes).
+- Added reference to integrating framework.
+
+## 1.1.0
+
+- Removed redundant base classes
+
+## 1.0.0
+
+- Initial version

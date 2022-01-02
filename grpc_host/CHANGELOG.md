@@ -1,3 +1,7 @@
+## 3.0.5
+
+- Upgraded dependencies
+
 ## 3.0.4
 
 - Support for empty SslSettings

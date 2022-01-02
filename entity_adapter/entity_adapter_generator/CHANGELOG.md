@@ -1,6 +1,6 @@
-## 1.0.0
+## 2.0.1
 
-- Initial
+- Updated dependencies
 
 ## 2.0.0
 
@@ -9,3 +9,7 @@
     - Replaced KeyHandler as a dependency with a build configuration.
     - Singleton pattern use generally replaced with const constructors.
     - Many other smaller improvements.
+
+## 1.0.0
+
+- Initial

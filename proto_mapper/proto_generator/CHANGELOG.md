@@ -1,3 +1,11 @@
+## 2.0.4
+
+- Updated depedencies
+
+## 2.0.3
+
+- Updated depedencies
+
 ## 2.0.2
 
 - Added support for multiple @proto and @mapProto annotated classes within a single .dart file

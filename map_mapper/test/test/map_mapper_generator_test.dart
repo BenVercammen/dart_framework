@@ -1,6 +1,5 @@
 import 'package:decimal/decimal.dart';
 import 'package:map_mapper_generator_test/map_mapper_generator_test.dart';
-import 'package:mongo_dart/mongo_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -257,8 +256,8 @@ Category _eggsCategory({
   List<Component>? secondaryComponents,
 }) =>
     Category(
-      id: ObjectId.fromSeconds(4343433).toHexString(),
-      mainComponentId: ObjectId.fromSeconds(87633323).toHexString(),
+      id: '4343433',
+      mainComponentId: '87633323',
       title: 'eggs',
       mainComponent: Component(
         description: 'category component',
@@ -287,19 +286,19 @@ Recipe _scrambledEggsRecipe({
         alternativeComponent: categoryAlternativeComponent,
         secondaryComponents: categorySecondaryComponents,
       ),
-      key: ObjectId.fromSeconds(5653323465).toHexString(),
-      categoryKey: ObjectId.fromSeconds(576653323).toHexString(),
-      secondaryCategoryKey: ObjectId.fromSeconds(5653323465).toHexString(),
+      key: '5653323465',
+      categoryKey: '576653323',
+      secondaryCategoryKey: '5653323465',
       publishDate: DateTime(2021, 02, 05, 13, 15, 12),
       expiryDate: expiryDate,
       ingredients: [
         Ingredient(
-          key: ObjectId.fromSeconds(73323465).toHexString(),
+          key: '73323465',
           description: '',
           quantity: Decimal.fromInt(0),
           precision: 1202.067843212219876,
           cookingDuration: Duration(),
-          mainComponentKey: ObjectId.fromSeconds(656434).toHexString(),
+          mainComponentKey: '656434',
           mainComponent: Component(
             description: 'ingredient component',
           ),

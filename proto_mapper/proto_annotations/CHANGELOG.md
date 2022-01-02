@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Updated dependencies
+
 ## 2.0.1
 
 - Fixed broken links to example

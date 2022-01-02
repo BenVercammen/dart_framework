@@ -6,29 +6,51 @@ part of 'recipe.dart';
 // BuilderGenerator
 // **************************************************************************
 
-class RecipeBuilder implements Builder<Recipe> {
-  String title;
+class $RecipeBuilder implements Builder<Recipe> {
+  String? $title;
+  String get title => $title!;
+  set title(String value) => $title = value;
+
   String? description;
 
-  RecipeBuilder({
-    required this.title,
+  $RecipeBuilder({
+    String? title,
     this.description,
-  });
-
-  factory RecipeBuilder.fromRecipe(Recipe entity) {
-    return RecipeBuilder(
-      title: entity.title,
-      description: entity.description,
-    );
+  }) {
+    $title = title;
   }
+
+  $RecipeBuilder.fromRecipe(Recipe entity)
+      : this(
+          title: entity.title,
+          description: entity.description,
+        );
 
   @override
   Recipe build() {
+    final entity = _build();
+    const $RecipeValidator().validateThrowing(entity);
+    return entity;
+  }
+
+  @override
+  BuildResult<Recipe> tryBuild() {
+    try {
+      final entity = _build();
+      final errors = $RecipeValidator().validate(entity);
+      final result =
+          BuildResult<Recipe>(result: entity, validationErrors: errors);
+      return result;
+    } catch (ex) {
+      return BuildResult<Recipe>(exception: ex);
+    }
+  }
+
+  Recipe _build() {
     var entity = Recipe(
       title: title,
       description: description,
     );
-    RecipeValidator().validateThrowing(entity);
     return entity;
   }
 }
@@ -37,7 +59,7 @@ class RecipeBuilder implements Builder<Recipe> {
 // CopyWithGenerator
 // **************************************************************************
 
-extension RecipeCopyWithExtension on Recipe {
+extension $RecipeCopyWithExtension on Recipe {
   Recipe copyWith({
     String? title,
     String? description,
@@ -55,13 +77,10 @@ extension RecipeCopyWithExtension on Recipe {
 // ValidatorGenerator
 // **************************************************************************
 
-class RecipeValidator implements Validator {
-  RecipeValidator.create();
+class $RecipeValidator implements Validator {
+  const $RecipeValidator();
 
-  static final RecipeValidator _singleton = RecipeValidator.create();
-  factory RecipeValidator() => _singleton;
-
-  ValidationError? validateTitle(String value) {
+  ValidationError? validateTitle(String value, {Recipe? entity}) {
     if (value.isEmpty) {
       return RequiredValidationError('title');
     }
@@ -69,7 +88,7 @@ class RecipeValidator implements Validator {
     return null;
   }
 
-  ValidationError? validateDescription(String? value) {
+  ValidationError? validateDescription(String? value, {Recipe? entity}) {
     if (value?.isEmpty ?? true) {
       return RequiredValidationError('description');
     }
@@ -77,16 +96,24 @@ class RecipeValidator implements Validator {
     return null;
   }
 
+  ValidationError? $validateTitle(String? value, {Recipe? entity}) {
+    if (value == null) {
+      return RequiredValidationError('title');
+    }
+    return validateTitle(value, entity: entity);
+  }
+
   @override
   ErrorList validate(covariant Recipe entity) {
     var errors = <ValidationError>[];
 
     ValidationError? error;
-    if ((error = validateTitle(entity.title)) != null) {
+    if ((error = validateTitle(entity.title, entity: entity)) != null) {
       errors.add(error!);
     }
 
-    if ((error = validateDescription(entity.description)) != null) {
+    if ((error = validateDescription(entity.description, entity: entity)) !=
+        null) {
       errors.add(error!);
     }
 
