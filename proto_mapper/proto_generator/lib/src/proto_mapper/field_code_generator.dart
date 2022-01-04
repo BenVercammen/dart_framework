@@ -5,6 +5,7 @@ import 'field_code_generators/bool_field_code_generator.dart';
 import 'field_code_generators/datetime_field_code_generator.dart';
 import 'field_code_generators/decimal_field_code_generator.dart';
 import 'field_code_generators/duration_field_code_generator.dart';
+import 'field_code_generators/dynamic_field_code_generator.dart';
 import 'field_code_generators/entity_field_code_generator.dart';
 import 'field_code_generators/enum_field_code_generator.dart';
 import 'field_code_generators/generic_field_code_generator.dart';
@@ -152,6 +153,14 @@ abstract class FieldCodeGenerator {
     if (fieldDescriptor.fieldElementType.isDartCoreIterable &&
         fieldDescriptor.iterableParameterType != null) {
       return IterableFieldCodeGenerator(
+        fieldDescriptor,
+        refName: refName,
+        protoRefName: protoRefName,
+      );
+    }
+    if (fieldDescriptor.fieldElementType.isDynamic ||
+        fieldDescriptor.fieldElementType.isDartCoreObject) {
+      return DynamicFieldCodeGenerator(
         fieldDescriptor,
         refName: refName,
         protoRefName: protoRefName,

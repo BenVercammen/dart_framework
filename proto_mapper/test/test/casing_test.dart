@@ -81,6 +81,7 @@ Recipe _scrambledEggsRecipe({
         ),
       ],
       title: 'Scrambled eggs',
+      description: 'gesg',
       preparationDuration: Duration(minutes: 23, seconds: 30),
       totalDuration: totalDuration,
       isPublished: true,

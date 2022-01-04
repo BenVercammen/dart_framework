@@ -1,0 +1,60 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+      
+
+
+
+
+message GDynamicObject
+{
+  google.protobuf.Any dynamic_property = 1;
+  google.protobuf.Any object_property = 2;
+}   
+
+message GListOfDynamicObject
+{
+  repeated GDynamicObject items = 1;
+}
+
+import "google/protobuf/any.proto";
+
+
+
+
+message GDynamicMap
+{
+  map<string, google.protobuf.Any> dynamic_map = 1;
+  map<string, google.protobuf.Any> object_map = 2;
+}   
+
+message GListOfDynamicMap
+{
+  repeated GDynamicMap items = 1;
+}
+
+message GDynamicSet
+{
+  repeated google.protobuf.Any dynamic_set = 1;
+  repeated google.protobuf.Any object_set = 2;
+}   
+
+message GListOfDynamicSet
+{
+  repeated GDynamicSet items = 1;
+}
+
+message GDynamicList
+{
+  repeated google.protobuf.Any dynamic_list = 1;
+  repeated google.protobuf.Any object_list = 2;
+}   
+
+message GListOfDynamicList
+{
+  repeated GDynamicList items = 1;
+}

@@ -41,6 +41,10 @@ class MapFieldCodeGenerator extends FieldCodeGenerator
           argumentType.isDartCoreBool) {
         continue;
       }
+      if (argumentType.isDynamic || argumentType.isDartCoreObject) {
+        names.add('google/protobuf/any.proto');
+        continue;
+      }
       final segments = argumentType.element!.source!.uri.pathSegments.toList();
       final lastSrc = segments.lastIndexOf('src');
       if (lastSrc != -1) segments.removeRange(0, lastSrc + 1);
@@ -69,6 +73,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator
       return 'int64';
     } else if (keyType.isDartCoreBool) {
       return 'bool';
+    } else if (keyType.isDynamic || keyType.isDartCoreObject) {
+      return 'google.protobuf.Any';
     }
     return '$prefix${keyType.getDisplayString(withNullability: true)}';
   }

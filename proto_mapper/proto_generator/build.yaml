@@ -9,6 +9,13 @@ builders:
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
 
+  proto_dynamic_mapper_generator:
+    import: "package:proto_generator/proto_generator.dart"
+    builder_factories: ["protoDynamicMapperBuilder"]
+    build_extensions: {}
+    auto_apply: dependents
+    build_to: source
+
   proto_generator:
     import: "package:proto_generator/proto_generator.dart"
     builder_factories: ["protoBuilder"]

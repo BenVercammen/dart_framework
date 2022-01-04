@@ -22,6 +22,27 @@ We begin by typing our business model. The next step is to use the proto_generat
 
 In order to get started, look at the example project at https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/example.
 
+### Using Map\<?, ?> types in @proto/@mapProto annotated classes
+It is possible to make use of Map types, but only when adhering to the following rules:
+ - keys should be primitive values (ie: String, int, ... )
+ - values can be primitives or objects, but not a collection type
+
+See https://developers.google.com/protocol-buffers/docs/proto3#maps for more information regarding the limits of Maps in protocol buffers. 
+
+### Making use of dynamic values
+`dynamic` and `Object` typed fields or collection values are also supported. 
+In the `.proto` files, these translate into `google.protobuf.Any` fields.
+In the generated mappers, they'll be "packed" and "unpacked" using the `Any` class/extension.
+
+Please note that in order to actually use this, you'll have to set up the following:
+ - The `any.proto` file needs to be available when running `protoc`. This can be done by adding `-I%PROTOC_HOME%/include` to the `protoc` command, where `%PROTOC_HOME` points to the location of your **protoc** installation.
+ - The `any.pb[enum|json|server].dart` files need to be generated and added to the `lib/grpc` folder.
+    ```
+     cd ./dart_framework/proto_mapper/test
+     protoc --dart_out=grpc:lib/grpc -I%PROTOC_HOME%/include %PROTOC_HOME%/include/google/protobuf/any.proto
+    ```
+
+See https://developers.google.com/protocol-buffers/docs/proto3#any for more information.
 
 ## Context
 

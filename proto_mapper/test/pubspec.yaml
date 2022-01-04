@@ -6,7 +6,7 @@ environment:
 dependencies:
   proto_generator:
     path: ../proto_generator
-  # decimal: ^2.0.0
+  decimal: ^2.1.0
   # fixnum: ^1.0.0
   # grpc: ^3.0.0
 

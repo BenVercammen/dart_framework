@@ -1,5 +1,9 @@
+## 3.0.3
+- Added support for `dynamic` or `Object` typed field and collection values. These are being mapped to `google.protobuf.Any` fields in the `.proto` files.
+
 ## 3.0.2
-- Use double instead of single quotes for import statements in `.proto`  files
+
+- Use double instead of single quotes for import statements in `.proto` files
 
 ## 3.0.1
 - Updated dependencies

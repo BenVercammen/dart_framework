@@ -1,3 +1,4 @@
+import 'package:proto_generator/src/proto/field_code_generators/dynamic_field_code_generator.dart';
 import 'package:proto_generator/src/proto_common.dart';
 
 import 'field_code_generators/bool_field_code_generator.dart';
@@ -69,6 +70,9 @@ abstract class FieldCodeGenerator {
     if (type.isDartCoreMap) {
       return MapFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
+    if (_hasDynamicValue(fieldDescriptor)) {
+      return DynamicFieldCodeGenerator(fieldDescriptor, lineNumbers);
+    }
     return GenericFieldCodeGenerator(fieldDescriptor, lineNumbers);
   }
 }
@@ -78,4 +82,12 @@ int _nextAvailable(List<int> numbers) {
   while (numbers.contains(++i)) {}
   numbers.add(i);
   return i;
+}
+
+bool _hasDynamicValue(FieldDescriptor fieldDescriptor) {
+  return fieldDescriptor.fieldElementType.isDynamic ||
+      fieldDescriptor.fieldElementType.isDartCoreObject ||
+      (fieldDescriptor.isRepeated &&
+          (fieldDescriptor.parameterType.isDynamic ||
+              fieldDescriptor.parameterType.isDartCoreObject));
 }

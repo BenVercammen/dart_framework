@@ -132,6 +132,9 @@ String collectionProtoToValue(mapperfield.FieldDescriptor fieldDescriptor,
     }
     return 'Duration(milliseconds: $parameterName.toInt())';
   }
+  if (_hasDynamicValue(fieldDescriptor)) {
+    return ''' DynamicProtoMapper.fromProto($parameterName)''';
+  }
   return ''' const \$${fieldTypeName}ProtoMapper().fromProto($parameterName)''';
 }
 
@@ -153,5 +156,17 @@ String collectionValueToProto(mapperfield.FieldDescriptor fieldDescriptor,
     }
     return '$parameterName.inMilliseconds.toDouble()';
   }
+  if (_hasDynamicValue(fieldDescriptor)) {
+    return ''' DynamicProtoMapper.toProto($parameterName)''';
+  }
   return ''' const \$${fieldTypeName}ProtoMapper().toProto($parameterName)''';
+}
+
+bool _hasDynamicValue(mapperfield.FieldDescriptor fieldDescriptor) {
+  return ((fieldDescriptor.fieldElementType.isDartCoreList || fieldDescriptor.fieldElementType.isDartCoreSet) &&
+    (fieldDescriptor.parameterType.isDynamic || fieldDescriptor.parameterType.isDartCoreObject)) ||
+    (fieldDescriptor.fieldElementType.isDartCoreMap && (
+        ((fieldDescriptor.fieldElementType as InterfaceType).typeArguments[1].isDynamic ||
+            (fieldDescriptor.fieldElementType as InterfaceType).typeArguments[1].isDartCoreObject))
+    );
 }

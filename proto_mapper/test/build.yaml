@@ -9,3 +9,13 @@ targets:
         options:
           dateTimePrecision: microseconds
           durationPrecision: microseconds
+      proto_generator:proto_dynamic_mapper_generator:
+        options:
+          # Defaults to "enabled: false, dynamic mapper needs to be turned on explicitly
+          enabled: true
+          # Defaults to "type.googleapis.com"
+          typeUrlPrefix: type.protogenerator.test
+          # Defaults to "G", should match the "prefix" option on "proto_mapper_generator"
+          generatedPrefix: G
+          # Defaults to "../grpc", should match the output folder used by the "protoc" command
+          generatedProtobufFolder: ../grpc

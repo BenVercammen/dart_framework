@@ -80,6 +80,5 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
 
   @override
   String get fromProtoNonNullableExpression =>
-      // '''List<${fieldDescriptor.parameterTypeName}>.unmodifiable($ref$protoFieldName.map((e) => $_protoToValue))''';
       '''$ref$protoFieldName.map((k, v) => $_protoToValue)''';
 }
