@@ -235,6 +235,147 @@ extension $GChefProtoExtension on GChef {
   Chef toChef() => _$ChefFromProto(this);
 }
 
+class $SousChefProtoMapper implements ProtoMapper<SousChef, GSousChef> {
+  const $SousChefProtoMapper();
+
+  @override
+  SousChef fromProto(GSousChef proto) => _$SousChefFromProto(proto);
+
+  @override
+  GSousChef toProto(SousChef entity) => _$SousChefToProto(entity);
+
+  SousChef fromJson(String json) =>
+      _$SousChefFromProto(GSousChef.fromJson(json));
+  String toJson(SousChef entity) => _$SousChefToProto(entity).writeToJson();
+
+  String toBase64Proto(SousChef entity) =>
+      base64Encode(utf8.encode(entity.toProto().writeToJson()));
+
+  SousChef fromBase64Proto(String base64Proto) =>
+      GSousChef.fromJson(utf8.decode(base64Decode(base64Proto))).toSousChef();
+}
+
+GSousChef _$SousChefToProto(SousChef instance) {
+  var proto = GSousChef();
+
+  if (instance.favoriteRecipe != null) {
+    proto.favoriteRecipe =
+        const $RecipeProtoMapper().toProto(instance.favoriteRecipe!);
+  }
+  proto.favoriteRecipeHasValue = instance.favoriteRecipe != null;
+
+  if (instance.favoriteKnife != null) {
+    proto.favoriteKnife =
+        const $KnifeProtoMapper().toProto(instance.favoriteKnife!);
+  }
+  proto.favoriteKnifeHasValue = instance.favoriteKnife != null;
+
+  proto.favoriteApplianceType =
+      GApplianceType.valueOf(instance.favoriteApplianceType.index)!;
+  proto.favoriteWords.addAll(instance.favoriteWords);
+
+  proto.birthdate = Int64(instance.birthdate.microsecondsSinceEpoch);
+  if (instance.shelfLife != null) {
+    proto.shelfLife = instance.shelfLife!.inMicroseconds.toDouble();
+  }
+  proto.shelfLifeHasValue = instance.shelfLife != null;
+
+  return proto;
+}
+
+SousChef _$SousChefFromProto(GSousChef instance) => SousChef(
+      favoriteApplianceType:
+          ApplianceType.values[instance.favoriteApplianceType.value],
+      birthdate:
+          DateTime.fromMicrosecondsSinceEpoch(instance.birthdate.toInt()),
+      favoriteWords:
+          List<String>.unmodifiable(instance.favoriteWords.map((e) => e)),
+    );
+
+extension $SousChefProtoExtension on SousChef {
+  GSousChef toProto() => _$SousChefToProto(this);
+  String toJson() => _$SousChefToProto(this).writeToJson();
+
+  static SousChef fromProto(GSousChef proto) => _$SousChefFromProto(proto);
+  static SousChef fromJson(String json) =>
+      _$SousChefFromProto(GSousChef.fromJson(json));
+}
+
+extension $GSousChefProtoExtension on GSousChef {
+  SousChef toSousChef() => _$SousChefFromProto(this);
+}
+
+class $KnifeMasterProtoMapper
+    implements ProtoMapper<KnifeMaster, GKnifeMaster> {
+  const $KnifeMasterProtoMapper();
+
+  @override
+  KnifeMaster fromProto(GKnifeMaster proto) => _$KnifeMasterFromProto(proto);
+
+  @override
+  GKnifeMaster toProto(KnifeMaster entity) => _$KnifeMasterToProto(entity);
+
+  KnifeMaster fromJson(String json) =>
+      _$KnifeMasterFromProto(GKnifeMaster.fromJson(json));
+  String toJson(KnifeMaster entity) =>
+      _$KnifeMasterToProto(entity).writeToJson();
+
+  String toBase64Proto(KnifeMaster entity) =>
+      base64Encode(utf8.encode(entity.toProto().writeToJson()));
+
+  KnifeMaster fromBase64Proto(String base64Proto) =>
+      GKnifeMaster.fromJson(utf8.decode(base64Decode(base64Proto)))
+          .toKnifeMaster();
+}
+
+GKnifeMaster _$KnifeMasterToProto(KnifeMaster instance) {
+  var proto = GKnifeMaster();
+
+  if (instance.favoriteRecipe != null) {
+    proto.favoriteRecipe =
+        const $RecipeProtoMapper().toProto(instance.favoriteRecipe!);
+  }
+  proto.favoriteRecipeHasValue = instance.favoriteRecipe != null;
+
+  proto.favoriteApplianceType =
+      GApplianceType.valueOf(instance.favoriteApplianceType.index)!;
+  proto.favoriteWords.addAll(instance.favoriteWords);
+
+  proto.birthdate = Int64(instance.birthdate.millisecondsSinceEpoch);
+  if (instance.shelfLife != null) {
+    proto.shelfLife = instance.shelfLife!.inMicroseconds.toDouble();
+  }
+  proto.shelfLifeHasValue = instance.shelfLife != null;
+
+  proto.favoriteKnife =
+      const $KnifeProtoMapper().toProto(instance.favoriteKnife);
+
+  return proto;
+}
+
+KnifeMaster _$KnifeMasterFromProto(GKnifeMaster instance) => KnifeMaster(
+      favoriteKnife:
+          const $KnifeProtoMapper().fromProto(instance.favoriteKnife),
+      favoriteApplianceType:
+          ApplianceType.values[instance.favoriteApplianceType.value],
+      birthdate:
+          DateTime.fromMillisecondsSinceEpoch(instance.birthdate.toInt()),
+    );
+
+extension $KnifeMasterProtoExtension on KnifeMaster {
+  GKnifeMaster toProto() => _$KnifeMasterToProto(this);
+  String toJson() => _$KnifeMasterToProto(this).writeToJson();
+
+  static KnifeMaster fromProto(GKnifeMaster proto) =>
+      _$KnifeMasterFromProto(proto);
+  static KnifeMaster fromJson(String json) =>
+      _$KnifeMasterFromProto(GKnifeMaster.fromJson(json));
+}
+
+extension $GKnifeMasterProtoExtension on GKnifeMaster {
+  KnifeMaster toKnifeMaster() => _$KnifeMasterFromProto(this);
+}
+
 class $InventoryProtoMapper implements ProtoMapper<Inventory, GInventory> {
   const $InventoryProtoMapper();
 

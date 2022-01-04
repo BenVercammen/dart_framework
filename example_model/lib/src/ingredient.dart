@@ -49,6 +49,9 @@ class MapEntity implements Proto, MapProto, MapMapped {
 
   @override
   final List<Type>? knownSubClasses;
+
+  @override
+  bool get allowMissingFields => false;
 }
 
 const mapEntity = MapEntity();

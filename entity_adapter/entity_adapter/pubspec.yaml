@@ -21,8 +21,10 @@ dev_dependencies:
   lints: ^1.0.1
 
 
-# dependency_overrides:
-#   map_mapper_annotations:
-#     path: ../../map_mapper/map_mapper_annotations
-#   squarealfa_common_types:
-#     path: ../../common_types
+dependency_overrides:
+  proto_annotations:
+    path: ../../proto_mapper/proto_annotations
+  map_mapper_annotations:
+    path: ../../map_mapper/map_mapper_annotations
+  squarealfa_common_types:
+    path: ../../common_types

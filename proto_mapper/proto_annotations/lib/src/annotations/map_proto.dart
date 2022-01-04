@@ -8,6 +8,7 @@ class MapProto {
     this.dateTimePrecision,
     this.durationPrecision,
     this.knownSubClasses,
+    this.allowMissingFields = false,
   });
 
   final String? packageName;
@@ -16,6 +17,7 @@ class MapProto {
   final TimePrecision? dateTimePrecision;
   final TimePrecision? durationPrecision;
   final List<Type>? knownSubClasses;
+  final bool allowMissingFields;
 }
 
 const mapProto = MapProto();

@@ -1,3 +1,8 @@
+## 3.1.1
+ - @MapProto no longer requires nullable final fields in a constructor.
+ - @MapProto allows missing non-nullable final fields if configured as such.
+ - In both cases, we can count on the compiler to cover any issues within the constructor.
+
 ## 3.1.0
 
 ### Changes

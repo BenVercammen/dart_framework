@@ -18,6 +18,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
 
   late TimePrecision _dateTimePrecision;
   late TimePrecision _durationPrecision;
+  late bool _allowMissingFields;
 
   ClassElement? _classElement;
 
@@ -34,6 +35,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
         config['dateTimePrecision'] as String? ?? 'microseconds');
     _durationPrecision = _getTimePrecision(
         config['durationPrecision'] as String? ?? 'microseconds');
+    _allowMissingFields = (config['allowMissingFields'] as bool? ?? false);
   }
 
   @override
@@ -47,6 +49,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       prefix: _prefix,
       dateTimePrecision: _dateTimePrecision,
       durationPrecision: _durationPrecision,
+      allowMissingFields: _allowMissingFields,
     );
     final mapProto = mapProtoReflected.mapProto;
     _prefix = mapProto.prefix ?? _prefix;
@@ -71,17 +74,31 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     final fromProtoFieldBuffer = StringBuffer();
     final constructorFieldBuffer = StringBuffer();
 
-    // lets get all the constructors which cover all final fields
+    // let's get all the constructors which cover all non-nullable final fields
+    final missingFields = <String>{};
     final constructors = _classElement!.constructors
-        .where((constructor) => fieldDescriptors.every((fd) =>
-            !fd.isFinal ||
+        .where((constructor) => fieldDescriptors.every((fd) {
+          final match = !fd.isFinal ||
+            fd.isNullable ||
             //fd.isLate ||
-            constructor.parameters.any((cp) => cp.name == fd.name)));
+            constructor.parameters.any((cp) => cp.name == fd.name);
+          if (!match) {
+            if (mapProto.allowMissingFields) {
+              // TODO: log instead of print???
+              print('WARNING: missing field ${fd.displayName}');
+              return true;
+            } else {
+              missingFields.add(fd.displayName);
+            }
+          }
+          return match;
+        }));
 
     // let's just pick the first of the valid constructors
     final constructor = constructors.isEmpty
         ? throw InvalidGenerationSourceError(
-            'Cannot generate proto mapper for class ${_classElement!.name} because it is missing a constructor that covers all final properties')
+            'Cannot generate proto mapper for class ${_classElement!.name} because it is missing a constructor that covers all final properties.\n'
+                '\tMissing fields: $missingFields')
         : constructors.first;
 
     // generate the mapping for the constructor, consuming all
@@ -99,7 +116,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
     }
 
-    // assing the to proto field assignments
+    // assign the to proto field assignments
     for (var fieldDescriptor in fieldDescriptors) {
       final fieldCodeGenerator =
           FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
@@ -304,6 +321,7 @@ MapProtoReflected _hydrateAnnotation(
   String? prefix,
   required TimePrecision dateTimePrecision,
   required TimePrecision durationPrecision,
+  required bool allowMissingFields,
 }) {
   final annotatedDateTimePrecision =
       reader.getTimePrecision('dateTimePrecision') ?? dateTimePrecision;
@@ -311,11 +329,15 @@ MapProtoReflected _hydrateAnnotation(
   final annotatedDurationPrecision =
       reader.getTimePrecision('durationPrecision') ?? durationPrecision;
 
+  final annotatedAllowMissingFields =
+      reader.read('allowMissingFields').boolValue || allowMissingFields;
+
   var mapProto = MapProto(
     prefix: reader.read('prefix').literalValue as String? ?? prefix,
     packageName: reader.read('packageName').literalValue as String,
     dateTimePrecision: annotatedDateTimePrecision,
     durationPrecision: annotatedDurationPrecision,
+    allowMissingFields: annotatedAllowMissingFields,
   );
 
   final kscReader = reader.read('knownSubClasses');

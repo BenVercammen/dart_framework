@@ -1,3 +1,7 @@
+## 2.1.1
+
+ - Added "allowMissingFields" property for @MapProto annotation.
+
 ## 2.1.0
 
 ### Changes

@@ -27,8 +27,12 @@ dev_dependencies:
   test: ^1.14.4
 
 
-# dependency_overrides:
-#   map_mapper_annotations:
-#     path: ../../map_mapper/map_mapper_annotations
-#   squarealfa_entity_adapter:
-#     path: ../entity_adapter
+dependency_overrides:
+  proto_generator:
+    path: ../../proto_mapper/proto_generator
+  proto_annotations:
+    path: ../../proto_mapper/proto_annotations
+  map_mapper_annotations:
+    path: ../../map_mapper/map_mapper_annotations
+  squarealfa_entity_adapter:
+    path: ../entity_adapter

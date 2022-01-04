@@ -85,6 +85,43 @@ message GListOfChef
   repeated GChef items = 1;
 }
 
+message GSousChef
+{
+  GRecipe favorite_recipe = 1;
+  bool favorite_recipe_has_value = 2;
+  GKnife favorite_knife = 3;
+  bool favorite_knife_has_value = 4;
+  GApplianceType favorite_appliance_type = 5;
+  repeated string favorite_words = 6;
+  int64 birthdate = 7;
+  double shelf_life = 8;
+  bool shelf_life_has_value = 9;
+
+}   
+
+message GListOfSousChef
+{
+  repeated GSousChef items = 1;
+}
+
+message GKnifeMaster
+{
+  GRecipe favorite_recipe = 1;
+  bool favorite_recipe_has_value = 2;
+  GApplianceType favorite_appliance_type = 3;
+  repeated string favorite_words = 4;
+  int64 birthdate = 5;
+  double shelf_life = 6;
+  bool shelf_life_has_value = 7;
+  GKnife favorite_knife = 8;
+
+}   
+
+message GListOfKnifeMaster
+{
+  repeated GKnifeMaster items = 1;
+}
+
 message GInventory
 {
   map<string, int32> number_of_things = 1;

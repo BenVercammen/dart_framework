@@ -80,6 +80,51 @@ class Chef {
   });
 }
 
+/// SousChef is not allowed to handle a knife, so default to null.
+/// In order for this to work, we'll have to ignore missing nullable fields
+/// when looking for the FieldDescriptors of an entity,
+/// and rely on the fact that the constructor will properly
+/// set the required parameters(s).
+@proto
+@mapProto
+class SousChef extends Chef {
+
+  SousChef(
+      {required ApplianceType favoriteApplianceType,
+      required DateTime birthdate,
+      List<String> favoriteWords = const []
+      })
+      : super(
+            favoriteKnife: null,
+            favoriteApplianceType: favoriteApplianceType,
+            favoriteWords: favoriteWords,
+            birthdate: birthdate);
+}
+
+/// KnifeMaster is required to have a favorite knife.
+/// To narrow down the requirement, we have to override the optional field
+/// defined in the parent class.
+/// We also know his favorite words, so no need to put them in the constructor.
+/// This requires addition of the "allowMissingFields" annotation property.
+@proto
+@MapProto(allowMissingFields: true, dateTimePrecision: TimePrecision.milliseconds)
+class KnifeMaster extends Chef {
+
+  @override
+  // ignore: overridden_fields
+  Knife favoriteKnife;
+
+  KnifeMaster(
+      {required this.favoriteKnife,
+      required ApplianceType favoriteApplianceType,
+      required DateTime birthdate})
+      : super(
+            favoriteKnife: favoriteKnife,
+            favoriteApplianceType: favoriteApplianceType,
+            favoriteWords: ['Yes', 'Sir'],
+            birthdate: birthdate);
+}
+
 @proto
 @MapProto(durationPrecision: TimePrecision.microseconds)
 class Inventory {
