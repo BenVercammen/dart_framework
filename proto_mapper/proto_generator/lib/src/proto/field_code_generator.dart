@@ -25,9 +25,6 @@ abstract class FieldCodeGenerator {
         ? (fieldDescriptor.hasValueNumber ?? _nextAvailable(lineNumbers))
         : null;
     hasValueLineNumber = hasValueLineNum;
-
-    print(
-        '###### ${fieldDescriptor.name} number: $lineNumber / hasValueNumber: $hasValueLine / lineNumbers: $lineNumbers');
   }
 
   String get fieldLine =>

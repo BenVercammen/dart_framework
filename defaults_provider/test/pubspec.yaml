@@ -4,10 +4,8 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  # defaults_provider_annotations: ^1.0.0
   defaults_provider_generator:
     path: ../defaults_provider_generator
-  #decimal: ^2.0.0
   fixnum: ^1.0.0
 
 dev_dependencies:

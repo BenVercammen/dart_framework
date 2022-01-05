@@ -5,7 +5,7 @@ import 'appliance_type.dart';
 
 part 'lists_host.g.dart';
 
-@mapMap
+@mapMapped
 class ListsHost {
   final List<bool> vbools;
   final List<bool>? nvbools;

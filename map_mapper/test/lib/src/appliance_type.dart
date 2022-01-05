@@ -2,7 +2,7 @@ import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 
 part 'appliance_type.g.dart';
 
-@mapMap
+@mapMapped
 enum ApplianceType {
   Heat,
   Cold,

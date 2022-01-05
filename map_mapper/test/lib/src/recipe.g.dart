@@ -27,10 +27,10 @@ class $RecipeMapMapper extends MapMapper<Recipe> {
       publishDate: DateTime.parse(map['publishDate']),
       expiryDate:
           map['expiryDate'] == null ? null : DateTime.parse(map['expiryDate']),
-      preparationDuration: Duration(milliseconds: map['preparationDuration']),
+      preparationDuration: Duration(microseconds: map['preparationDuration']),
       totalDuration: map['totalDuration'] == null
           ? null
-          : Duration(milliseconds: map['totalDuration']),
+          : Duration(microseconds: map['totalDuration']),
       isPublished: map['isPublished'] as bool,
       requiresRobot: map['requiresRobot'] as bool?,
       mainApplianceType: ApplianceType.values[map['mainApplianceType'] as int],
@@ -61,8 +61,8 @@ class $RecipeMapMapper extends MapMapper<Recipe> {
         .toList();
     map['publishDate'] = instance.publishDate.toIso8601String();
     map['expiryDate'] = instance.expiryDate?.toIso8601String();
-    map['preparationDuration'] = instance.preparationDuration.inMilliseconds;
-    map['totalDuration'] = instance.totalDuration?.inMilliseconds;
+    map['preparationDuration'] = instance.preparationDuration.inMicroseconds;
+    map['totalDuration'] = instance.totalDuration?.inMicroseconds;
     map['isPublished'] = instance.isPublished;
     map['requiresRobot'] = instance.requiresRobot;
     map['mainApplianceType'] = instance.mainApplianceType.index;

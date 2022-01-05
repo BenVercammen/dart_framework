@@ -1,3 +1,11 @@
+## 3.0.0
+### Breaking Change
+
+- This version deprecates the @mapMap annotation, which defines a millisecond precision for duration fields.
+- The substituting @mapMapped annotation defines a microsecond precision for duration fields unless configured
+otherwise in build.yaml (see example).
+
+
 ## 2.0.1
 
 - Updated dependencies

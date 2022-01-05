@@ -1,3 +1,7 @@
+## 2.0.3
+
+- Added extension to read TimePrecision from ConstantReader
+
 ## 2.0.2
 
 - Added TimePrecision enum

@@ -57,6 +57,9 @@ class FieldDescriptor extends FieldDescriptorBase {
         .firstAnnotationOf(parameterType.element!);
     return annotation != null;
   }
+
+  TimePrecision get durationPrecision =>
+      mapMapAnnotation.durationPrecision ?? TimePrecision.microseconds;
 }
 
 MapField? _getMapField(FieldElement fieldElement) {

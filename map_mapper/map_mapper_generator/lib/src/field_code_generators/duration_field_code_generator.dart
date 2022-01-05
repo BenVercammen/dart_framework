@@ -1,3 +1,5 @@
+import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+
 import '../field_code_generator.dart';
 import '../field_descriptor.dart';
 
@@ -7,12 +9,14 @@ class DurationFieldCodeGenerator extends FieldCodeGenerator {
       : super(fieldDescriptor, hasDefaultsProvider);
 
   @override
-  String get toMapExpression => 'instance.$fieldName.inMilliseconds';
+  String get toMapExpression =>
+      'instance.$fieldName.${fieldDescriptor.durationPrecision.fromDurationProperty}';
 
   @override
-  String get toNullableMapExpression => 'instance.$fieldName?.inMilliseconds';
+  String get toNullableMapExpression =>
+      'instance.$fieldName?.${fieldDescriptor.durationPrecision.fromDurationProperty}';
 
   @override
   String fromMapExpression(String sourceExpression) =>
-      'Duration(milliseconds: $sourceExpression)';
+      'Duration(${fieldDescriptor.durationPrecision.toDurationProperty}: $sourceExpression)';
 }

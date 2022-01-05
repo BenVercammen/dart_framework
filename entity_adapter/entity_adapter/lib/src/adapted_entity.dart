@@ -14,11 +14,11 @@ import 'package:squarealfa_generators_common/src/time_precision.dart';
 /// code generators to generate code as if driven by those attributes.
 ///
 /// Additionally, this class also has an added property, [rootEntityType]
-/// that drives further code generation when [EntityAdapted] is
+/// that drives further code generation when [AdaptedEntity] is
 /// applied to subclasses of [rootEntityType], like an [EntityAdapter]
 /// and an [EntityPermissions] subclass.
 
-class EntityAdapted
+class AdaptedEntity
     implements
         MapMap,
         Proto,
@@ -41,8 +41,7 @@ class EntityAdapted
   /// CRUD permissions of that PODO.
   final Type rootEntityType;
 
-  @deprecated
-  const EntityAdapted({
+  const AdaptedEntity({
     this.rootEntityType = Object,
     this.useDefaultsProvider = true,
     this.includeFieldsByDefault = true,
@@ -52,7 +51,7 @@ class EntityAdapted
     this.createValidatableBaseClass = false,
     this.createBuilderBaseClass = false,
     this.dateTimePrecision = TimePrecision.microseconds,
-    this.durationPrecision = TimePrecision.milliseconds,
+    this.durationPrecision = TimePrecision.microseconds,
     this.useProtoFieldNamingConventions = true,
   });
 

@@ -18,7 +18,7 @@ class $IngredientMapMapper extends MapMapper<Ingredient> {
       description: map['description'] as String,
       quantity: Decimal.parse(map['quantity']),
       precision: map['precision'] as double,
-      cookingDuration: Duration(milliseconds: map['cookingDuration']),
+      cookingDuration: Duration(microseconds: map['cookingDuration']),
       mainComponentKey: $kh.keyFromMap(map, 'mainComponentKey'),
       mainComponent: const $ComponentMapMapper().fromMap(map['mainComponent']),
       otherComponents: List<Component>.unmodifiable(map['otherComponents']
@@ -42,7 +42,7 @@ class $IngredientMapMapper extends MapMapper<Ingredient> {
     map['description'] = instance.description;
     map['quantity'] = instance.quantity.toString();
     map['precision'] = instance.precision;
-    map['cookingDuration'] = instance.cookingDuration.inMilliseconds;
+    map['cookingDuration'] = instance.cookingDuration.inMicroseconds;
     $kh.keyToMap(map, instance.mainComponentKey, 'mainComponentKey');
     map['mainComponent'] =
         const $ComponentMapMapper().toMap(instance.mainComponent);

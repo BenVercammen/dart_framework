@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:decimal/decimal.dart';

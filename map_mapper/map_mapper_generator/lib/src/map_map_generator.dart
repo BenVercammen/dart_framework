@@ -12,10 +12,14 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
   late final String _keyHandler;
   ClassElement? _classElement;
   String? _className;
+  late TimePrecision _durationPrecision;
 
   MapMapGenerator(this.options) {
     var config = options.config;
+
     _keyHandler = config['keyHandler'] as String? ?? 'DefaultKeyHandler';
+    _durationPrecision = TimePrecisionConversions.fromString(
+        config['durationPrecision'] as String? ?? 'microseconds');
   }
 
   @override
@@ -24,7 +28,8 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final readAnnotation = _hydrateAnnotation(annotation);
+    final readAnnotation =
+        _hydrateAnnotation(annotation, durationPrecision: _durationPrecision);
 
     if (element is! ClassElement) return null;
     _classElement = element;
@@ -190,12 +195,19 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   return fieldDescriptors;
 }
 
-MapMap _hydrateAnnotation(ConstantReader reader) {
+MapMap _hydrateAnnotation(
+  ConstantReader reader, {
+  required TimePrecision durationPrecision,
+}) {
+  final annotatedDurationPrecision =
+      reader.getTimePrecision('durationPrecision') ?? durationPrecision;
+
   var ret = MapMap(
     includeFieldsByDefault:
         reader.read('includeFieldsByDefault').literalValue as bool,
     useDefaultsProvider:
         reader.read('useDefaultsProvider').literalValue as bool,
+    durationPrecision: annotatedDurationPrecision,
   );
   return ret;
 }

@@ -27,9 +27,9 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   ProtoMapperGenerator(this.options) {
     var config = options.config;
     _prefix = config['prefix'] as String? ?? 'G';
-    _dateTimePrecision = _getDateTimePrecision(
+    _dateTimePrecision = TimePrecisionConversions.fromString(
         config['dateTimePrecision'] as String? ?? 'microseconds');
-    _durationPrecision = _getDateTimePrecision(
+    _durationPrecision = TimePrecisionConversions.fromString(
         config['durationPrecision'] as String? ?? 'microseconds');
   }
 
@@ -221,14 +221,6 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   }
 }
 
-TimePrecision _getDateTimePrecision(String name) {
-  try {
-    return TimePrecision.values.firstWhere((v) => (v.name == name));
-  } on Exception {
-    return TimePrecision.milliseconds;
-  }
-}
-
 MapProto? _hydrateAnnotation(
   ConstantReader reader, {
   String? prefix,
@@ -236,10 +228,10 @@ MapProto? _hydrateAnnotation(
   required TimePrecision durationPrecision,
 }) {
   final annotatedDateTimePrecision =
-      _getTimePrecision(reader, 'dateTimePrecision') ?? dateTimePrecision;
+      reader.getTimePrecision('dateTimePrecision') ?? dateTimePrecision;
 
   final annotatedDurationPrecision =
-      _getTimePrecision(reader, 'durationPrecision') ?? durationPrecision;
+      reader.getTimePrecision('durationPrecision') ?? durationPrecision;
 
   var ret = MapProto(
     prefix: reader.read('prefix').literalValue as String? ?? prefix,
@@ -263,18 +255,4 @@ class RenderMapperBuffers {
     required this.fromProtoFieldBuffer,
     required this.constructorFieldBuffer,
   });
-}
-
-TimePrecision? _getTimePrecision(ConstantReader reader, String propertyName) {
-  final constant = reader.read(propertyName);
-  if (constant.isNull) return null;
-  final List<String> keys =
-      List.of((constant.objectValue as dynamic).fields.keys);
-  if (keys.contains('microseconds')) {
-    return TimePrecision.microseconds;
-  }
-  if (keys.contains('milliseconds')) {
-    return TimePrecision.milliseconds;
-  }
-  throw UnimplementedError();
 }

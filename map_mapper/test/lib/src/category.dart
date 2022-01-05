@@ -4,7 +4,7 @@ import 'component.dart';
 
 part 'category.g.dart';
 
-@mapMap
+@mapMapped
 class Category {
   final String id;
   final String title;
