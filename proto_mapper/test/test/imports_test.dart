@@ -19,14 +19,13 @@ void main() {
 }
 
 Kitchen _kitchen() {
-  return Kitchen(
-    recipeList: [_recipe()],
-    recipeMap: {
-      'test1': _recipe(),
-      'test2': _recipe(),
-      'test3': _recipe(),
-    },
-  );
+  return Kitchen(recipeList: [
+    _recipe()
+  ], recipeMap: {
+    'test1': _recipe(),
+    'test2': _recipe(),
+    'test3': _recipe(),
+  }, nextInspectionDate: DateTime.now());
 }
 
 Recipe _recipe() {

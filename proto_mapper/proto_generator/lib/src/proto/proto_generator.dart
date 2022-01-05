@@ -11,6 +11,7 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
   final BuilderOptions options;
   late String _prefix;
   late String _defaultPackage;
+  late bool _useProtoFieldNamingConventions;
   String? prevBuildStepPath;
   final Set<String> alreadyImported = {};
 
@@ -18,6 +19,8 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     var config = options.config;
     _prefix = config['prefix'] as String? ?? 'G';
     _defaultPackage = config['package'] as String? ?? '';
+    _useProtoFieldNamingConventions =
+        config['useProtoFieldNamingConventions'] as bool? ?? true;
   }
 
   @override
@@ -26,7 +29,11 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
+    var readAnnotation = _hydrateAnnotation(
+      annotation,
+      prefix: _prefix,
+      useProtoFieldNamingConventions: _useProtoFieldNamingConventions,
+    );
 
     var classElement = element.asClassElement();
     var packageName = readAnnotation.packageName != '' ? '' : _defaultPackage;
@@ -65,7 +72,8 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     String packageDeclaration,
   ) {
     final externalProtoNames = <String>[];
-    var fieldDescriptors = _getFieldDescriptors(classElement, annotation);
+    var fieldDescriptors =
+        _getFieldDescriptors(classElement, annotation, forEnum: false);
     final fieldDeclarations =
         createFieldDeclarations(fieldDescriptors, externalProtoNames);
 
@@ -110,10 +118,8 @@ $messages
     String packageDeclaration,
   ) {
     var fieldBuffer = StringBuffer();
-    var fieldDescriptors = _getFieldDescriptors(
-      classElement,
-      annotation,
-    );
+    var fieldDescriptors =
+        _getFieldDescriptors(classElement, annotation, forEnum: true);
 
     var lineNumber = 0;
     for (var fieldDescriptor in fieldDescriptors) {
@@ -131,7 +137,7 @@ $fieldBuffer}
      
 message Nullable$_prefix$className
 {
-  bool hasValue = 1;
+  bool ${(annotation.useProtoFieldNamingConventions ?? true) ? 'has_value' : 'hasValue'} = 1;
   $_prefix$className value = 2;
 }
  
@@ -142,23 +148,26 @@ message Nullable$_prefix$className
 }
 
 Iterable<FieldDescriptor> _getFieldDescriptors(
-    ClassElement classElement, Proto annotation) {
+    ClassElement classElement, Proto annotation,
+    {bool forEnum = false}) {
   final fieldSet = classElement.getSortedFieldSet();
   final fieldDescriptors = fieldSet
-      .map((fieldElement) => FieldDescriptor.fromFieldElement(
-            fieldElement,
-            annotation,
-          ))
+      .map((fieldElement) =>
+          FieldDescriptor.fromFieldElement(fieldElement, annotation, forEnum))
       .where((element) => element.isProtoIncluded);
   return fieldDescriptors;
 }
 
-Proto _hydrateAnnotation(ConstantReader reader, {String prefix = ''}) {
+Proto _hydrateAnnotation(ConstantReader reader,
+    {String prefix = '', required bool useProtoFieldNamingConventions}) {
   var ret = Proto(
     prefix: reader.read('prefix').literalValue as String? ?? prefix,
     includeFieldsByDefault:
         reader.read('includeFieldsByDefault').literalValue as bool,
     packageName: reader.read('packageName').literalValue as String? ?? '',
+    useProtoFieldNamingConventions:
+        reader.read('useProtoFieldNamingConventions').literalValue as bool? ??
+            useProtoFieldNamingConventions,
   );
 
   return ret;

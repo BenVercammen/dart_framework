@@ -1,5 +1,6 @@
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:proto_annotations/proto_annotations.dart';
+import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
 import 'grpc/ingredient.pb.dart';
 
@@ -33,6 +34,15 @@ class MapEntity implements Proto, MapProto, MapMap {
     this.useDefaultsProvider = false,
     this.includeFieldsByDefault = true,
   });
+
+  @override
+  TimePrecision? get dateTimePrecision => null;
+
+  @override
+  TimePrecision? get durationPrecision => null;
+
+  @override
+  bool? get useProtoFieldNamingConventions => null;
 }
 
 const mapEntity = MapEntity();

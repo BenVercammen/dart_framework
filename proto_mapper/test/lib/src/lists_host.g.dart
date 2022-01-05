@@ -40,17 +40,17 @@ GListsHost _$ListsHostToProto(ListsHost instance) {
   proto.nvstringsHasValue = instance.nvstrings != null;
 
   proto.vdurations
-      .addAll(instance.vdurations.map((e) => e.inMilliseconds.toDouble()));
+      .addAll(instance.vdurations.map((e) => e.inMicroseconds.toDouble()));
 
   proto.nvdurations.addAll(
-      instance.nvdurations?.map((e) => e.inMilliseconds.toDouble()) ?? []);
+      instance.nvdurations?.map((e) => e.inMicroseconds.toDouble()) ?? []);
   proto.nvdurationsHasValue = instance.nvdurations != null;
 
   proto.vdatetimes
-      .addAll(instance.vdatetimes.map((e) => Int64(e.millisecondsSinceEpoch)));
+      .addAll(instance.vdatetimes.map((e) => Int64(e.microsecondsSinceEpoch)));
 
   proto.nvdatetimes.addAll(
-      instance.nvdatetimes?.map((e) => Int64(e.millisecondsSinceEpoch)) ?? []);
+      instance.nvdatetimes?.map((e) => Int64(e.microsecondsSinceEpoch)) ?? []);
   proto.nvdatetimesHasValue = instance.nvdatetimes != null;
 
   proto.vdecimals.addAll(instance.vdecimals.map((e) => e.toString()));
@@ -83,9 +83,9 @@ ListsHost _$ListsHostFromProto(GListsHost instance) => ListsHost(
       vbools: List<bool>.unmodifiable(instance.vbools.map((e) => e)),
       vstrings: List<String>.unmodifiable(instance.vstrings.map((e) => e)),
       vdurations: List<Duration>.unmodifiable(
-          instance.vdurations.map((e) => Duration(milliseconds: e.toInt()))),
+          instance.vdurations.map((e) => Duration(microseconds: e.toInt()))),
       vdatetimes: List<DateTime>.unmodifiable(instance.vdatetimes
-          .map((e) => DateTime.fromMillisecondsSinceEpoch(e.toInt()))),
+          .map((e) => DateTime.fromMicrosecondsSinceEpoch(e.toInt()))),
       vdecimals: List<Decimal>.unmodifiable(
           instance.vdecimals.map((e) => Decimal.parse(e))),
       vints: List<int>.unmodifiable(instance.vints.map((e) => e)),
@@ -100,11 +100,11 @@ ListsHost _$ListsHostFromProto(GListsHost instance) => ListsHost(
           : null),
       nvdurations: (instance.nvdurationsHasValue
           ? (List<Duration>.unmodifiable(instance.nvdurations
-              .map((e) => Duration(milliseconds: e.toInt()))))
+              .map((e) => Duration(microseconds: e.toInt()))))
           : null),
       nvdatetimes: (instance.nvdatetimesHasValue
           ? (List<DateTime>.unmodifiable(instance.nvdatetimes
-              .map((e) => DateTime.fromMillisecondsSinceEpoch(e.toInt()))))
+              .map((e) => DateTime.fromMicrosecondsSinceEpoch(e.toInt()))))
           : null),
       nvdecimals: (instance.nvdecimalsHasValue
           ? (List<Decimal>.unmodifiable(

@@ -739,8 +739,7 @@ class GConstructObject6 extends $pb.GeneratedMessage {
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nameHasValue',
-        protoName: 'nameHasValue')
+            : 'nameHasValue')
     ..a<$core.int>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -751,8 +750,7 @@ class GConstructObject6 extends $pb.GeneratedMessage {
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'numberHasValue',
-        protoName: 'numberHasValue')
+            : 'numberHasValue')
     ..hasRequiredFields = false;
 
   GConstructObject6._() : super();
@@ -927,8 +925,7 @@ class GConstructObject7 extends $pb.GeneratedMessage {
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'numberHasValue',
-        protoName: 'numberHasValue')
+            : 'numberHasValue')
     ..aOS(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1092,8 +1089,7 @@ class GConstructObject8 extends $pb.GeneratedMessage {
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'numberHasValue',
-        protoName: 'numberHasValue')
+            : 'numberHasValue')
     ..aOS(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')

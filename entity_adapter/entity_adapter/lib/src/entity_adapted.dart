@@ -2,6 +2,7 @@ import 'package:defaults_provider_annotations/defaults_provider_annotations.dart
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:proto_annotations/proto_annotations.dart';
 import 'package:squarealfa_entity_annotations/squarealfa_entity_annotations.dart';
+import 'package:squarealfa_generators_common/src/time_precision.dart';
 
 /// Annotation that instructs several code generators to
 /// generate added features to PODO classes.
@@ -48,6 +49,9 @@ class EntityAdapted
     this.createDefaultsProviderBaseClass = false,
     this.createValidatableBaseClass = false,
     this.createBuilderBaseClass = false,
+    this.dateTimePrecision = TimePrecision.microseconds,
+    this.durationPrecision = TimePrecision.microseconds,
+    this.useProtoFieldNamingConventions = true,
   });
 
   @override
@@ -70,4 +74,13 @@ class EntityAdapted
 
   @override
   final bool createBuilderBaseClass;
+
+  @override
+  final TimePrecision? dateTimePrecision;
+
+  @override
+  final TimePrecision? durationPrecision;
+
+  @override
+  final bool? useProtoFieldNamingConventions;
 }

@@ -1,3 +1,19 @@
+## 3.0.0
+
+### New features
+
+- Added "dateTimePrecision" option for increasing from default "milliseconds" to "microseconds" precision for datetimes.
+- Added "durationPrecision" option for increasing from default "milliseconds" to "microseconds" precision for durations.
+
+
+- Added "useProtoFieldNamingConventions" option for adhering to protobuf naming conventions in generated .proto files.
+
+### Breaking changes
+
+- Previously, fields inside protobuf messages were being generated without following the [proper naming conventions](https://developers.google.com/protocol-buffers/docs/style?csw=1). This version changes that, which means that, unless configured otherwise, generated .proto files from this version of the package will have different field names from previously generated .proto files. In order to restore the previous behaviour, set the ```useProtoFieldNamingConventions``` to false either in the global ```build.yaml``` configuration file or as the new property in the ```@Proto()``` annotation. Check out the example [build.yaml](https://github.com/squarealfa/dart_framework/blob/main/proto_mapper/example/build.yaml) file.
+
+
+
 ## 2.0.4
 
 - Updated depedencies

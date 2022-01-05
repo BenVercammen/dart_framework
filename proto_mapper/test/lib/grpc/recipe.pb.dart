@@ -35,8 +35,7 @@ class GRecipe extends $pb.GeneratedMessage {
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'descriptionHasValue',
-        protoName: 'descriptionHasValue')
+            : 'descriptionHasValue')
     ..aOM<$7.GCategory>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -54,66 +53,56 @@ class GRecipe extends $pb.GeneratedMessage {
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'publishDate',
-        protoName: 'publishDate')
+            : 'publishDate')
     ..aInt64(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'expiryDate',
-        protoName: 'expiryDate')
+            : 'expiryDate')
     ..aOB(
         8,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'expiryDateHasValue',
-        protoName: 'expiryDateHasValue')
+            : 'expiryDateHasValue')
     ..a<$core.double>(
         9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'preparationDuration',
-        $pb.PbFieldType.OD,
-        protoName: 'preparationDuration')
+        $pb.PbFieldType.OD)
     ..a<$core.double>(
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'totalDuration',
-        $pb.PbFieldType.OD,
-        protoName: 'totalDuration')
+        $pb.PbFieldType.OD)
     ..aOB(
         11,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'totalDurationHasValue',
-        protoName: 'totalDurationHasValue')
+            : 'totalDurationHasValue')
     ..aOB(
         12,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'isPublished',
-        protoName: 'isPublished')
+            : 'isPublished')
     ..aOB(
         13,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'requiresRobot',
-        protoName: 'requiresRobot')
+            : 'requiresRobot')
     ..aOB(
         14,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'requiresRobotHasValue',
-        protoName: 'requiresRobotHasValue')
+            : 'requiresRobotHasValue')
     ..e<$6.GApplianceType>(
         15,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'mainApplianceType',
         $pb.PbFieldType.OE,
-        protoName: 'mainApplianceType',
-        defaultOrMaker: $6.GApplianceType.heat,
+        defaultOrMaker: $6.GApplianceType.G_APPLIANCE_TYPE_HEAT,
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..e<$6.GApplianceType>(
@@ -122,16 +111,14 @@ class GRecipe extends $pb.GeneratedMessage {
             ? ''
             : 'secondaryApplianceType',
         $pb.PbFieldType.OE,
-        protoName: 'secondaryApplianceType',
-        defaultOrMaker: $6.GApplianceType.heat,
+        defaultOrMaker: $6.GApplianceType.G_APPLIANCE_TYPE_HEAT,
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..aOB(
         17,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'secondaryApplianceTypeHasValue',
-        protoName: 'secondaryApplianceTypeHasValue')
+            : 'secondaryApplianceTypeHasValue')
     ..pPS(
         18,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -141,14 +128,12 @@ class GRecipe extends $pb.GeneratedMessage {
         19,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'extraTags',
-        protoName: 'extraTags')
+            : 'extraTags')
     ..aOB(
         20,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'extraTagsHasValue',
-        protoName: 'extraTagsHasValue')
+            : 'extraTagsHasValue')
     ..hasRequiredFields = false;
 
   GRecipe._() : super();

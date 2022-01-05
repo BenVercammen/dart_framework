@@ -24,7 +24,7 @@ message GListOfKnife
 message GGarlicPress
 {
   string name = 1;
-  bool machineWashable = 2;
+  bool machine_washable = 2;
 }   
 
 message GListOfGarlicPress
@@ -41,6 +41,7 @@ message GKitchen
 {
   repeated GRecipe recipeList = 1;
   map<string, GRecipe> recipeMap = 2;
+  int64 nextInspectionDate = 3;
 }   
 
 message GListOfKitchen
@@ -55,9 +56,15 @@ import 'appliance_type.proto';
 
 message GChef
 {
-  GRecipe favoriteRecipe = 1;
-  GKnife favoriteKnife = 2;
-  GApplianceType favoriteApplianceType = 3;
+  GRecipe favorite_recipe = 1;
+  bool favorite_recipe_has_value = 2;
+  GKnife favorite_knife = 3;
+  bool favorite_knife_has_value = 4;
+  GApplianceType favorite_appliance_type = 5;
+  repeated string favorite_words = 6;
+  int64 birthdate = 7;
+  double shelf_life = 8;
+  bool shelf_life_has_value = 9;
 }   
 
 message GListOfChef
@@ -67,8 +74,10 @@ message GListOfChef
 
 message GInventory
 {
-  map<string, int32> numberOfThings = 1;
-  map<string, GRecipe> recipesByName = 2;
+  map<string, int32> number_of_things = 1;
+  map<string, GRecipe> recipes_by_name = 2;
+  double time_span = 3;
+  bool time_span_has_value = 4;
 }   
 
 message GListOfInventory
@@ -76,15 +85,40 @@ message GListOfInventory
   repeated GInventory items = 1;
 }
 
+message GPrecisionSubject
+{
+  int64 date_property = 1;
+  double duration_property = 2;
+}   
+
+message GListOfPrecisionSubject
+{
+  repeated GPrecisionSubject items = 1;
+}
+
 enum GKnifeType
 {
-  chefsKnife = 0;
-  paringKnife = 1;
-  breadKnife = 2;
+  G_KNIFE_TYPE_CHEFS_KNIFE = 0;
+  G_KNIFE_TYPE_PARING_KNIFE = 1;
+  G_KNIFE_TYPE_BREAD_KNIFE = 2;
 }   
      
 message NullableGKnifeType
 {
-  bool hasValue = 1;
+  bool has_value = 1;
   GKnifeType value = 2;
+}
+
+enum GChefType
+{
+  G_CHEF_TYPE_SENIOR_CHEF = 0;
+  G_CHEF_TYPE_SOUS_CHEF = 1;
+  G_CHEF_TYPE_PASTRY_CHEF = 2;
+  G_CHEF_TYPE_FISH_CHEF = 3;
+}   
+     
+message NullableGChefType
+{
+  bool has_value = 1;
+  GChefType value = 2;
 }

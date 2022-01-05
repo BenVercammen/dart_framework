@@ -1,5 +1,5 @@
 import 'package:analyzer/dart/element/type.dart';
-import 'package:decimal/decimal.dart';
+import 'package:proto_generator/src/proto_common.dart';
 
 import '../field_code_generator.dart';
 import '../field_descriptor.dart';
@@ -34,18 +34,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
         parameterType.isDartCoreString) {
       return parameterName;
     }
-    final fieldTypeName =
-        parameterType.getDisplayString(withNullability: false);
-    if (fieldTypeName == (Decimal).toString()) {
-      return '$parameterName.toString()';
-    }
-    if (fieldTypeName == (DateTime).toString()) {
-      return 'Int64($parameterName.millisecondsSinceEpoch)';
-    }
-    if (fieldTypeName == (Duration).toString()) {
-      return '$parameterName.inMilliseconds.toDouble()';
-    }
-    return ''' const \$${fieldTypeName}ProtoMapper().toProto($parameterName)''';
+    return collectionValueToProto(
+        fieldDescriptor, parameterType, parameterName);
   }
 
   String get _toProtoConversion {
@@ -72,19 +62,8 @@ class MapFieldCodeGenerator extends FieldCodeGenerator {
         parameterType.isDartCoreString) {
       return parameterName;
     }
-    final fieldTypeName =
-        parameterType.getDisplayString(withNullability: false);
-    if (fieldTypeName == (Decimal).toString()) {
-      return 'Decimal.parse($parameterName)';
-    }
-    if (fieldTypeName == (DateTime).toString()) {
-      return 'DateTime.fromMillisecondsSinceEpoch($parameterName.toInt())';
-    }
-    if (fieldTypeName == (Duration).toString()) {
-      return 'Duration(milliseconds: $parameterName.toInt())';
-    }
-
-    return ''' const \$${fieldTypeName}ProtoMapper().fromProto($parameterName)''';
+    return collectionProtoToValue(
+        fieldDescriptor, parameterType, parameterName);
   }
 
   String get _protoToValue {

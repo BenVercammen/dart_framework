@@ -16,13 +16,13 @@ message GIngredient
   string description = 1;
   string quantity = 2;
   double precision = 3;
-  double cookingDuration = 4;
-  GComponent mainComponent = 5;
-  repeated GComponent otherComponents = 6;
-  GComponent alternativeComponent = 7;
-  bool alternativeComponentHasValue = 8;
-  repeated GComponent secondaryComponents = 9;
-  bool secondaryComponentsHasValue = 10;
+  double cooking_duration = 4;
+  GComponent main_component = 5;
+  repeated GComponent other_components = 6;
+  GComponent alternative_component = 7;
+  bool alternative_component_has_value = 8;
+  repeated GComponent secondary_components = 9;
+  bool secondary_components_has_value = 10;
 }   
 
 message GListOfIngredient

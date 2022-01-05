@@ -17,24 +17,24 @@ message GRecipe
 {
   string title = 1;
   string description = 2;
-  bool descriptionHasValue = 3;
+  bool description_has_value = 3;
   GCategory category = 4;
   repeated GIngredient ingredients = 5;
-  int64 publishDate = 6;
-  int64 expiryDate = 7;
-  bool expiryDateHasValue = 8;
-  double preparationDuration = 9;
-  double totalDuration = 10;
-  bool totalDurationHasValue = 11;
-  bool isPublished = 12;
-  bool requiresRobot = 13;
-  bool requiresRobotHasValue = 14;
-  GApplianceType mainApplianceType = 15;
-  GApplianceType secondaryApplianceType = 16;
-  bool secondaryApplianceTypeHasValue = 17;
+  int64 publish_date = 6;
+  int64 expiry_date = 7;
+  bool expiry_date_has_value = 8;
+  double preparation_duration = 9;
+  double total_duration = 10;
+  bool total_duration_has_value = 11;
+  bool is_published = 12;
+  bool requires_robot = 13;
+  bool requires_robot_has_value = 14;
+  GApplianceType main_appliance_type = 15;
+  GApplianceType secondary_appliance_type = 16;
+  bool secondary_appliance_type_has_value = 17;
   repeated string tags = 18;
-  repeated string extraTags = 19;
-  bool extraTagsHasValue = 20;
+  repeated string extra_tags = 19;
+  bool extra_tags_has_value = 20;
 }   
 
 message GListOfRecipe

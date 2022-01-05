@@ -32,17 +32,6 @@ class FieldDescriptor extends FieldDescriptorBase {
         protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement),
         protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement),
         super.fromFieldElement(fieldElement);
-  // {
-  //   final protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement);
-  //   final protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement);
-
-  //   return FieldDescriptor(
-  //     fieldElement,
-  //     mapProtoBase,
-  //     protoFieldAnnotation: protoFieldAnnotation,
-  //     protoIgnoreAnnotation: protoIgnoreAnnotation,
-  //   );
-  // }
 
   String get prefix => protoMapperAnnotation.prefix ?? '';
 
@@ -62,6 +51,12 @@ class FieldDescriptor extends FieldDescriptorBase {
   @override
   bool get parameterTypeIsEnum =>
       parameterType.element!.kind == ElementKind.ENUM;
+
+  TimePrecision get dateTimePrecision =>
+      protoMapperAnnotation.dateTimePrecision ?? TimePrecision.microseconds;
+
+  TimePrecision get durationPrecision =>
+      protoMapperAnnotation.durationPrecision ?? TimePrecision.microseconds;
 }
 
 const _protoFieldChecker = TypeChecker.fromRuntime(ProtoField);

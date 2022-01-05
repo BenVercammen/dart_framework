@@ -68,9 +68,9 @@ message GListOfConstructObject5
 message GConstructObject6
 {
   string name = 1;
-  bool nameHasValue = 2;
+  bool name_has_value = 2;
   int32 number = 3;
-  bool numberHasValue = 4;
+  bool number_has_value = 4;
 }   
 
 message GListOfConstructObject6
@@ -81,7 +81,7 @@ message GListOfConstructObject6
 message GConstructObject7
 {
   int32 number = 1;
-  bool numberHasValue = 2;
+  bool number_has_value = 2;
   string name = 3;
 }   
 
@@ -93,7 +93,7 @@ message GListOfConstructObject7
 message GConstructObject8
 {
   int32 number = 1;
-  bool numberHasValue = 2;
+  bool number_has_value = 2;
   string name = 3;
 }   
 

@@ -14,12 +14,12 @@ import 'component.proto';
 message GCategory
 {
   string title = 1;
-  GComponent mainComponent = 2;
-  GComponent alternativeComponent = 3;
-  bool alternativeComponentHasValue = 4;
-  repeated GComponent otherComponents = 5;
-  repeated GComponent secondaryComponents = 6;
-  bool secondaryComponentsHasValue = 7;
+  GComponent main_component = 2;
+  GComponent alternative_component = 3;
+  bool alternative_component_has_value = 4;
+  repeated GComponent other_components = 5;
+  repeated GComponent secondary_components = 6;
+  bool secondary_components_has_value = 7;
 }   
 
 message GListOfCategory

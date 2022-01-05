@@ -4,12 +4,14 @@
 #       proto_generator:proto_mapper_generator:
 #         options:
 #           prefix: G # or '' for no prefix
-# #          generateProtoMapper: false
-# #          generateMapMapper: false
+#           dateTimePrecision: microseconds
+#           generateProtoMapper: false
+#           generateMapMapper: false
 
 
 #       proto_generator:proto_generator:
 #         options:
 #           prefix: G # or '' for no prefix
+#           useProtoFieldNamingConventions: true
 #           package: mentoralfa
       

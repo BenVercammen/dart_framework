@@ -23,15 +23,14 @@ class NullableGRecipeTypes extends $pb.GeneratedMessage {
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'hasValue',
-        protoName: 'hasValue')
+            : 'hasValue')
     ..e<GRecipeTypes>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.OE,
-        defaultOrMaker: GRecipeTypes.cook,
+        defaultOrMaker: GRecipeTypes.G_RECIPE_TYPES_COOK,
         valueOf: GRecipeTypes.valueOf,
         enumValues: GRecipeTypes.values)
     ..hasRequiredFields = false;

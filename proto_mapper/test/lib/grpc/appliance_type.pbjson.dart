@@ -13,20 +13,20 @@ import 'dart:typed_data' as $typed_data;
 const GApplianceType$json = {
   '1': 'GApplianceType',
   '2': [
-    {'1': 'heat', '2': 0},
-    {'1': 'cold', '2': 1},
-    {'1': 'cutlery', '2': 2},
+    {'1': 'G_APPLIANCE_TYPE_HEAT', '2': 0},
+    {'1': 'G_APPLIANCE_TYPE_COLD', '2': 1},
+    {'1': 'G_APPLIANCE_TYPE_CUTLERY', '2': 2},
   ],
 };
 
 /// Descriptor for `GApplianceType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List gApplianceTypeDescriptor = $convert.base64Decode(
-    'Cg5HQXBwbGlhbmNlVHlwZRIICgRoZWF0EAASCAoEY29sZBABEgsKB2N1dGxlcnkQAg==');
+    'Cg5HQXBwbGlhbmNlVHlwZRIZChVHX0FQUExJQU5DRV9UWVBFX0hFQVQQABIZChVHX0FQUExJQU5DRV9UWVBFX0NPTEQQARIcChhHX0FQUExJQU5DRV9UWVBFX0NVVExFUlkQAg==');
 @$core.Deprecated('Use nullableGApplianceTypeDescriptor instead')
 const NullableGApplianceType$json = {
   '1': 'NullableGApplianceType',
   '2': [
-    {'1': 'hasValue', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
+    {'1': 'has_value', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
     {
       '1': 'value',
       '3': 2,
@@ -41,4 +41,4 @@ const NullableGApplianceType$json = {
 /// Descriptor for `NullableGApplianceType`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List nullableGApplianceTypeDescriptor =
     $convert.base64Decode(
-        'ChZOdWxsYWJsZUdBcHBsaWFuY2VUeXBlEhoKCGhhc1ZhbHVlGAEgASgIUghoYXNWYWx1ZRIlCgV2YWx1ZRgCIAEoDjIPLkdBcHBsaWFuY2VUeXBlUgV2YWx1ZQ==');
+        'ChZOdWxsYWJsZUdBcHBsaWFuY2VUeXBlEhsKCWhhc192YWx1ZRgBIAEoCFIIaGFzVmFsdWUSJQoFdmFsdWUYAiABKA4yDy5HQXBwbGlhbmNlVHlwZVIFdmFsdWU=');

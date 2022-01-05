@@ -15,7 +15,7 @@ const GCategory$json = {
   '2': [
     {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
     {
-      '1': 'mainComponent',
+      '1': 'main_component',
       '3': 2,
       '4': 1,
       '5': 11,
@@ -23,7 +23,7 @@ const GCategory$json = {
       '10': 'mainComponent'
     },
     {
-      '1': 'alternativeComponent',
+      '1': 'alternative_component',
       '3': 3,
       '4': 1,
       '5': 11,
@@ -31,14 +31,14 @@ const GCategory$json = {
       '10': 'alternativeComponent'
     },
     {
-      '1': 'alternativeComponentHasValue',
+      '1': 'alternative_component_has_value',
       '3': 4,
       '4': 1,
       '5': 8,
       '10': 'alternativeComponentHasValue'
     },
     {
-      '1': 'otherComponents',
+      '1': 'other_components',
       '3': 5,
       '4': 3,
       '5': 11,
@@ -46,7 +46,7 @@ const GCategory$json = {
       '10': 'otherComponents'
     },
     {
-      '1': 'secondaryComponents',
+      '1': 'secondary_components',
       '3': 6,
       '4': 3,
       '5': 11,
@@ -54,7 +54,7 @@ const GCategory$json = {
       '10': 'secondaryComponents'
     },
     {
-      '1': 'secondaryComponentsHasValue',
+      '1': 'secondary_components_has_value',
       '3': 7,
       '4': 1,
       '5': 8,
@@ -65,7 +65,7 @@ const GCategory$json = {
 
 /// Descriptor for `GCategory`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List gCategoryDescriptor = $convert.base64Decode(
-    'CglHQ2F0ZWdvcnkSFAoFdGl0bGUYASABKAlSBXRpdGxlEjEKDW1haW5Db21wb25lbnQYAiABKAsyCy5HQ29tcG9uZW50Ug1tYWluQ29tcG9uZW50Ej8KFGFsdGVybmF0aXZlQ29tcG9uZW50GAMgASgLMgsuR0NvbXBvbmVudFIUYWx0ZXJuYXRpdmVDb21wb25lbnQSQgocYWx0ZXJuYXRpdmVDb21wb25lbnRIYXNWYWx1ZRgEIAEoCFIcYWx0ZXJuYXRpdmVDb21wb25lbnRIYXNWYWx1ZRI1Cg9vdGhlckNvbXBvbmVudHMYBSADKAsyCy5HQ29tcG9uZW50Ug9vdGhlckNvbXBvbmVudHMSPQoTc2Vjb25kYXJ5Q29tcG9uZW50cxgGIAMoCzILLkdDb21wb25lbnRSE3NlY29uZGFyeUNvbXBvbmVudHMSQAobc2Vjb25kYXJ5Q29tcG9uZW50c0hhc1ZhbHVlGAcgASgIUhtzZWNvbmRhcnlDb21wb25lbnRzSGFzVmFsdWU=');
+    'CglHQ2F0ZWdvcnkSFAoFdGl0bGUYASABKAlSBXRpdGxlEjIKDm1haW5fY29tcG9uZW50GAIgASgLMgsuR0NvbXBvbmVudFINbWFpbkNvbXBvbmVudBJAChVhbHRlcm5hdGl2ZV9jb21wb25lbnQYAyABKAsyCy5HQ29tcG9uZW50UhRhbHRlcm5hdGl2ZUNvbXBvbmVudBJFCh9hbHRlcm5hdGl2ZV9jb21wb25lbnRfaGFzX3ZhbHVlGAQgASgIUhxhbHRlcm5hdGl2ZUNvbXBvbmVudEhhc1ZhbHVlEjYKEG90aGVyX2NvbXBvbmVudHMYBSADKAsyCy5HQ29tcG9uZW50Ug9vdGhlckNvbXBvbmVudHMSPgoUc2Vjb25kYXJ5X2NvbXBvbmVudHMYBiADKAsyCy5HQ29tcG9uZW50UhNzZWNvbmRhcnlDb21wb25lbnRzEkMKHnNlY29uZGFyeV9jb21wb25lbnRzX2hhc192YWx1ZRgHIAEoCFIbc2Vjb25kYXJ5Q29tcG9uZW50c0hhc1ZhbHVl');
 @$core.Deprecated('Use gListOfCategoryDescriptor instead')
 const GListOfCategory$json = {
   '1': 'GListOfCategory',

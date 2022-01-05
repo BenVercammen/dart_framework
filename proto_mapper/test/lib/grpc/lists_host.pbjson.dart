@@ -15,11 +15,11 @@ const GListsHost$json = {
   '2': [
     {'1': 'vbools', '3': 1, '4': 3, '5': 8, '10': 'vbools'},
     {'1': 'nvbools', '3': 2, '4': 3, '5': 8, '10': 'nvbools'},
-    {'1': 'nvboolsHasValue', '3': 3, '4': 1, '5': 8, '10': 'nvboolsHasValue'},
+    {'1': 'nvbools_has_value', '3': 3, '4': 1, '5': 8, '10': 'nvboolsHasValue'},
     {'1': 'vstrings', '3': 4, '4': 3, '5': 9, '10': 'vstrings'},
     {'1': 'nvstrings', '3': 5, '4': 3, '5': 9, '10': 'nvstrings'},
     {
-      '1': 'nvstringsHasValue',
+      '1': 'nvstrings_has_value',
       '3': 6,
       '4': 1,
       '5': 8,
@@ -28,7 +28,7 @@ const GListsHost$json = {
     {'1': 'vdurations', '3': 7, '4': 3, '5': 1, '10': 'vdurations'},
     {'1': 'nvdurations', '3': 8, '4': 3, '5': 1, '10': 'nvdurations'},
     {
-      '1': 'nvdurationsHasValue',
+      '1': 'nvdurations_has_value',
       '3': 9,
       '4': 1,
       '5': 8,
@@ -37,7 +37,7 @@ const GListsHost$json = {
     {'1': 'vdatetimes', '3': 10, '4': 3, '5': 3, '10': 'vdatetimes'},
     {'1': 'nvdatetimes', '3': 11, '4': 3, '5': 3, '10': 'nvdatetimes'},
     {
-      '1': 'nvdatetimesHasValue',
+      '1': 'nvdatetimes_has_value',
       '3': 12,
       '4': 1,
       '5': 8,
@@ -46,7 +46,7 @@ const GListsHost$json = {
     {'1': 'vdecimals', '3': 13, '4': 3, '5': 9, '10': 'vdecimals'},
     {'1': 'nvdecimals', '3': 14, '4': 3, '5': 9, '10': 'nvdecimals'},
     {
-      '1': 'nvdecimalsHasValue',
+      '1': 'nvdecimals_has_value',
       '3': 15,
       '4': 1,
       '5': 8,
@@ -54,18 +54,18 @@ const GListsHost$json = {
     },
     {'1': 'vints', '3': 16, '4': 3, '5': 5, '10': 'vints'},
     {'1': 'nvints', '3': 17, '4': 3, '5': 5, '10': 'nvints'},
-    {'1': 'nvintsHasValue', '3': 18, '4': 1, '5': 8, '10': 'nvintsHasValue'},
+    {'1': 'nvints_has_value', '3': 18, '4': 1, '5': 8, '10': 'nvintsHasValue'},
     {'1': 'vdoubles', '3': 19, '4': 3, '5': 1, '10': 'vdoubles'},
     {'1': 'nvdoubles', '3': 20, '4': 3, '5': 1, '10': 'nvdoubles'},
     {
-      '1': 'nvdoublesHasValue',
+      '1': 'nvdoubles_has_value',
       '3': 21,
       '4': 1,
       '5': 8,
       '10': 'nvdoublesHasValue'
     },
     {
-      '1': 'vapplianceTypes',
+      '1': 'vappliance_types',
       '3': 22,
       '4': 3,
       '5': 14,
@@ -73,7 +73,7 @@ const GListsHost$json = {
       '10': 'vapplianceTypes'
     },
     {
-      '1': 'nvapplianceTypes',
+      '1': 'nvappliance_types',
       '3': 23,
       '4': 3,
       '5': 14,
@@ -81,7 +81,7 @@ const GListsHost$json = {
       '10': 'nvapplianceTypes'
     },
     {
-      '1': 'nvapplianceTypesHasValue',
+      '1': 'nvappliance_types_has_value',
       '3': 24,
       '4': 1,
       '5': 8,
@@ -92,7 +92,7 @@ const GListsHost$json = {
 
 /// Descriptor for `GListsHost`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List gListsHostDescriptor = $convert.base64Decode(
-    'CgpHTGlzdHNIb3N0EhYKBnZib29scxgBIAMoCFIGdmJvb2xzEhgKB252Ym9vbHMYAiADKAhSB252Ym9vbHMSKAoPbnZib29sc0hhc1ZhbHVlGAMgASgIUg9udmJvb2xzSGFzVmFsdWUSGgoIdnN0cmluZ3MYBCADKAlSCHZzdHJpbmdzEhwKCW52c3RyaW5ncxgFIAMoCVIJbnZzdHJpbmdzEiwKEW52c3RyaW5nc0hhc1ZhbHVlGAYgASgIUhFudnN0cmluZ3NIYXNWYWx1ZRIeCgp2ZHVyYXRpb25zGAcgAygBUgp2ZHVyYXRpb25zEiAKC252ZHVyYXRpb25zGAggAygBUgtudmR1cmF0aW9ucxIwChNudmR1cmF0aW9uc0hhc1ZhbHVlGAkgASgIUhNudmR1cmF0aW9uc0hhc1ZhbHVlEh4KCnZkYXRldGltZXMYCiADKANSCnZkYXRldGltZXMSIAoLbnZkYXRldGltZXMYCyADKANSC252ZGF0ZXRpbWVzEjAKE252ZGF0ZXRpbWVzSGFzVmFsdWUYDCABKAhSE252ZGF0ZXRpbWVzSGFzVmFsdWUSHAoJdmRlY2ltYWxzGA0gAygJUgl2ZGVjaW1hbHMSHgoKbnZkZWNpbWFscxgOIAMoCVIKbnZkZWNpbWFscxIuChJudmRlY2ltYWxzSGFzVmFsdWUYDyABKAhSEm52ZGVjaW1hbHNIYXNWYWx1ZRIUCgV2aW50cxgQIAMoBVIFdmludHMSFgoGbnZpbnRzGBEgAygFUgZudmludHMSJgoObnZpbnRzSGFzVmFsdWUYEiABKAhSDm52aW50c0hhc1ZhbHVlEhoKCHZkb3VibGVzGBMgAygBUgh2ZG91YmxlcxIcCgludmRvdWJsZXMYFCADKAFSCW52ZG91YmxlcxIsChFudmRvdWJsZXNIYXNWYWx1ZRgVIAEoCFIRbnZkb3VibGVzSGFzVmFsdWUSOQoPdmFwcGxpYW5jZVR5cGVzGBYgAygOMg8uR0FwcGxpYW5jZVR5cGVSD3ZhcHBsaWFuY2VUeXBlcxI7ChBudmFwcGxpYW5jZVR5cGVzGBcgAygOMg8uR0FwcGxpYW5jZVR5cGVSEG52YXBwbGlhbmNlVHlwZXMSOgoYbnZhcHBsaWFuY2VUeXBlc0hhc1ZhbHVlGBggASgIUhhudmFwcGxpYW5jZVR5cGVzSGFzVmFsdWU=');
+    'CgpHTGlzdHNIb3N0EhYKBnZib29scxgBIAMoCFIGdmJvb2xzEhgKB252Ym9vbHMYAiADKAhSB252Ym9vbHMSKgoRbnZib29sc19oYXNfdmFsdWUYAyABKAhSD252Ym9vbHNIYXNWYWx1ZRIaCgh2c3RyaW5ncxgEIAMoCVIIdnN0cmluZ3MSHAoJbnZzdHJpbmdzGAUgAygJUgludnN0cmluZ3MSLgoTbnZzdHJpbmdzX2hhc192YWx1ZRgGIAEoCFIRbnZzdHJpbmdzSGFzVmFsdWUSHgoKdmR1cmF0aW9ucxgHIAMoAVIKdmR1cmF0aW9ucxIgCgtudmR1cmF0aW9ucxgIIAMoAVILbnZkdXJhdGlvbnMSMgoVbnZkdXJhdGlvbnNfaGFzX3ZhbHVlGAkgASgIUhNudmR1cmF0aW9uc0hhc1ZhbHVlEh4KCnZkYXRldGltZXMYCiADKANSCnZkYXRldGltZXMSIAoLbnZkYXRldGltZXMYCyADKANSC252ZGF0ZXRpbWVzEjIKFW52ZGF0ZXRpbWVzX2hhc192YWx1ZRgMIAEoCFITbnZkYXRldGltZXNIYXNWYWx1ZRIcCgl2ZGVjaW1hbHMYDSADKAlSCXZkZWNpbWFscxIeCgpudmRlY2ltYWxzGA4gAygJUgpudmRlY2ltYWxzEjAKFG52ZGVjaW1hbHNfaGFzX3ZhbHVlGA8gASgIUhJudmRlY2ltYWxzSGFzVmFsdWUSFAoFdmludHMYECADKAVSBXZpbnRzEhYKBm52aW50cxgRIAMoBVIGbnZpbnRzEigKEG52aW50c19oYXNfdmFsdWUYEiABKAhSDm52aW50c0hhc1ZhbHVlEhoKCHZkb3VibGVzGBMgAygBUgh2ZG91YmxlcxIcCgludmRvdWJsZXMYFCADKAFSCW52ZG91YmxlcxIuChNudmRvdWJsZXNfaGFzX3ZhbHVlGBUgASgIUhFudmRvdWJsZXNIYXNWYWx1ZRI6ChB2YXBwbGlhbmNlX3R5cGVzGBYgAygOMg8uR0FwcGxpYW5jZVR5cGVSD3ZhcHBsaWFuY2VUeXBlcxI8ChFudmFwcGxpYW5jZV90eXBlcxgXIAMoDjIPLkdBcHBsaWFuY2VUeXBlUhBudmFwcGxpYW5jZVR5cGVzEj0KG252YXBwbGlhbmNlX3R5cGVzX2hhc192YWx1ZRgYIAEoCFIYbnZhcHBsaWFuY2VUeXBlc0hhc1ZhbHVl');
 @$core.Deprecated('Use gListOfListsHostDescriptor instead')
 const GListOfListsHost$json = {
   '1': 'GListOfListsHost',

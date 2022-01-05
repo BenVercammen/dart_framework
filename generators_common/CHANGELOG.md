@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Added TimePrecision enum
+
 ## 2.0.1
 
 - Upgraded dependencies
@@ -9,7 +13,6 @@
 ## 1.0.0
 
 - Initial published version
-
 
 ## 1.0.1
 

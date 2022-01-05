@@ -13,21 +13,21 @@ import 'dart:typed_data' as $typed_data;
 const GRecipeTypes$json = {
   '1': 'GRecipeTypes',
   '2': [
-    {'1': 'cook', '2': 0},
-    {'1': 'grill', '2': 1},
-    {'1': 'fry', '2': 2},
-    {'1': 'stew', '2': 3},
+    {'1': 'G_RECIPE_TYPES_COOK', '2': 0},
+    {'1': 'G_RECIPE_TYPES_GRILL', '2': 1},
+    {'1': 'G_RECIPE_TYPES_FRY', '2': 2},
+    {'1': 'G_RECIPE_TYPES_STEW', '2': 3},
   ],
 };
 
 /// Descriptor for `GRecipeTypes`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List gRecipeTypesDescriptor = $convert.base64Decode(
-    'CgxHUmVjaXBlVHlwZXMSCAoEY29vaxAAEgkKBWdyaWxsEAESBwoDZnJ5EAISCAoEc3RldxAD');
+    'CgxHUmVjaXBlVHlwZXMSFwoTR19SRUNJUEVfVFlQRVNfQ09PSxAAEhgKFEdfUkVDSVBFX1RZUEVTX0dSSUxMEAESFgoSR19SRUNJUEVfVFlQRVNfRlJZEAISFwoTR19SRUNJUEVfVFlQRVNfU1RFVxAD');
 @$core.Deprecated('Use nullableGRecipeTypesDescriptor instead')
 const NullableGRecipeTypes$json = {
   '1': 'NullableGRecipeTypes',
   '2': [
-    {'1': 'hasValue', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
+    {'1': 'has_value', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
     {
       '1': 'value',
       '3': 2,
@@ -41,4 +41,4 @@ const NullableGRecipeTypes$json = {
 
 /// Descriptor for `NullableGRecipeTypes`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List nullableGRecipeTypesDescriptor = $convert.base64Decode(
-    'ChROdWxsYWJsZUdSZWNpcGVUeXBlcxIaCghoYXNWYWx1ZRgBIAEoCFIIaGFzVmFsdWUSIwoFdmFsdWUYAiABKA4yDS5HUmVjaXBlVHlwZXNSBXZhbHVl');
+    'ChROdWxsYWJsZUdSZWNpcGVUeXBlcxIbCgloYXNfdmFsdWUYASABKAhSCGhhc1ZhbHVlEiMKBXZhbHVlGAIgASgOMg0uR1JlY2lwZVR5cGVzUgV2YWx1ZQ==');

@@ -13,8 +13,13 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   final BuilderOptions options;
   String? _prefix;
 
+  late TimePrecision _dateTimePrecision;
+  late TimePrecision _durationPrecision;
+
   ClassElement? _classElement;
+
   ClassElement? get classElement => _classElement;
+
   String? get className => _classElement?.name;
 
   String? get prefix => _prefix;
@@ -22,6 +27,10 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   ProtoMapperGenerator(this.options) {
     var config = options.config;
     _prefix = config['prefix'] as String? ?? 'G';
+    _dateTimePrecision = _getDateTimePrecision(
+        config['dateTimePrecision'] as String? ?? 'microseconds');
+    _durationPrecision = _getDateTimePrecision(
+        config['durationPrecision'] as String? ?? 'microseconds');
   }
 
   @override
@@ -30,7 +39,12 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var readAnnotation = _hydrateAnnotation(annotation, prefix: _prefix);
+    var readAnnotation = _hydrateAnnotation(
+      annotation,
+      prefix: _prefix,
+      dateTimePrecision: _dateTimePrecision,
+      durationPrecision: _durationPrecision,
+    );
     if (readAnnotation == null) return '';
     _prefix = readAnnotation.prefix ?? _prefix;
 
@@ -207,10 +221,31 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   }
 }
 
-MapProto? _hydrateAnnotation(ConstantReader reader, {String? prefix}) {
+TimePrecision _getDateTimePrecision(String name) {
+  try {
+    return TimePrecision.values.firstWhere((v) => (v.name == name));
+  } on Exception {
+    return TimePrecision.milliseconds;
+  }
+}
+
+MapProto? _hydrateAnnotation(
+  ConstantReader reader, {
+  String? prefix,
+  required TimePrecision dateTimePrecision,
+  required TimePrecision durationPrecision,
+}) {
+  final annotatedDateTimePrecision =
+      _getTimePrecision(reader, 'dateTimePrecision') ?? dateTimePrecision;
+
+  final annotatedDurationPrecision =
+      _getTimePrecision(reader, 'durationPrecision') ?? durationPrecision;
+
   var ret = MapProto(
     prefix: reader.read('prefix').literalValue as String? ?? prefix,
     packageName: reader.read('packageName').literalValue as String,
+    dateTimePrecision: annotatedDateTimePrecision,
+    durationPrecision: annotatedDurationPrecision,
   );
 
   return ret;
@@ -228,4 +263,18 @@ class RenderMapperBuffers {
     required this.fromProtoFieldBuffer,
     required this.constructorFieldBuffer,
   });
+}
+
+TimePrecision? _getTimePrecision(ConstantReader reader, String propertyName) {
+  final constant = reader.read(propertyName);
+  if (constant.isNull) return null;
+  final List<String> keys =
+      List.of((constant.objectValue as dynamic).fields.keys);
+  if (keys.contains('microseconds')) {
+    return TimePrecision.microseconds;
+  }
+  if (keys.contains('milliseconds')) {
+    return TimePrecision.milliseconds;
+  }
+  throw UnimplementedError();
 }

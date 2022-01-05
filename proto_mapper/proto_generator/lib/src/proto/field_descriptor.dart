@@ -4,11 +4,13 @@ import 'package:proto_annotations/proto_annotations.dart';
 import 'package:proto_generator/src/proto_common.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:recase/recase.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {
   final Proto protoAnnotation;
   final ProtoField? protoFieldAnnotation;
   final ProtoIgnore? protoIgnoreAnnotation;
+  final bool forEnum;
 
   FieldDescriptor(
     this.protoAnnotation, {
@@ -18,6 +20,7 @@ class FieldDescriptor extends FieldDescriptorBase {
     required DartType fieldElementType,
     this.protoFieldAnnotation,
     this.protoIgnoreAnnotation,
+    this.forEnum = false,
   }) : super(
           displayName: displayName,
           name: name,
@@ -26,7 +29,7 @@ class FieldDescriptor extends FieldDescriptorBase {
         );
 
   FieldDescriptor.fromFieldElement(
-      FieldElement fieldElement, this.protoAnnotation)
+      FieldElement fieldElement, this.protoAnnotation, this.forEnum)
       : protoFieldAnnotation = _getProtoFieldAnnotation(fieldElement),
         protoIgnoreAnnotation = _getProtoIgnoreAnnotation(fieldElement),
         super.fromFieldElement(fieldElement);
@@ -41,11 +44,27 @@ class FieldDescriptor extends FieldDescriptorBase {
   bool get _hasProtoIgnore => protoIgnoreAnnotation != null;
   bool get _hasProtoField => protoFieldAnnotation != null;
 
-  String get protoFieldName => protoFieldAnnotation?.name ?? name;
+  String get protoFieldName {
+    if (null != protoFieldAnnotation && null != protoFieldAnnotation?.name) {
+      return protoFieldAnnotation!.name!;
+    }
+    if (useProtoFieldNamingConventions) {
+      if (forEnum) {
+        return '${prefix}_${fieldElementTypeName}_$name'
+            .snakeCase
+            .toUpperCase();
+      }
+      return name.snakeCase;
+    }
+    return name;
+  }
 
   bool get isProtoIncluded =>
       !_hasProtoIgnore &&
       (protoAnnotation.includeFieldsByDefault || _hasProtoField);
+
+  bool get useProtoFieldNamingConventions =>
+      protoAnnotation.useProtoFieldNamingConventions ?? true;
 
   bool get typeHasProtoAnnotation => fieldElementType.hasMapProto;
 

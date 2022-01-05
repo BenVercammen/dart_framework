@@ -1,3 +1,9 @@
+## 2.0.3
+
+- Added "useProtoFieldNamingConventions" option to @Proto annotation
+- Added "dateTimePrecision" option to @MapProto annotation
+- Added "durationPrecision" option to @MapProto annotation
+
 ## 2.0.2
 
 - Updated dependencies

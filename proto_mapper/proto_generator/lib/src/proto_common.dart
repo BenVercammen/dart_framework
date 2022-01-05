@@ -1,14 +1,18 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:decimal/decimal.dart';
 import 'package:proto_annotations/proto_annotations.dart';
-import 'package:proto_generator/src/proto/field_descriptor.dart';
+import 'package:proto_generator/src/proto/field_descriptor.dart' as protofield;
+import 'package:proto_generator/src/proto_mapper/field_descriptor.dart'
+    as mapperfield;
 import 'package:source_gen/source_gen.dart';
+import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
 import 'proto/field_code_generator.dart';
 import 'proto/field_code_generators/external_proto_name.dart';
 
 String createFieldDeclarations(
-  Iterable<FieldDescriptor> fieldDescriptors,
+  Iterable<protofield.FieldDescriptor> fieldDescriptors,
   List<String> externalProtoNames,
 ) {
   final fieldBuffer = StringBuffer();
@@ -77,4 +81,46 @@ extension ProtoMethodElementExtension on MethodElement {
             null;
     return ret;
   }
+}
+
+String collectionProtoToValue(mapperfield.FieldDescriptor fieldDescriptor,
+    DartType parameterType, String parameterName) {
+  final fieldTypeName = parameterType.getDisplayString(withNullability: false);
+  if (fieldTypeName == (Decimal).toString()) {
+    return 'Decimal.parse($parameterName)';
+  }
+  if (fieldTypeName == (DateTime).toString()) {
+    if (fieldDescriptor.dateTimePrecision == TimePrecision.microseconds) {
+      return 'DateTime.fromMicrosecondsSinceEpoch($parameterName.toInt())';
+    }
+    return 'DateTime.fromMillisecondsSinceEpoch($parameterName.toInt())';
+  }
+  if (fieldTypeName == (Duration).toString()) {
+    if (fieldDescriptor.durationPrecision == TimePrecision.microseconds) {
+      return 'Duration(microseconds: $parameterName.toInt())';
+    }
+    return 'Duration(milliseconds: $parameterName.toInt())';
+  }
+  return ''' const \$${fieldTypeName}ProtoMapper().fromProto($parameterName)''';
+}
+
+String collectionValueToProto(mapperfield.FieldDescriptor fieldDescriptor,
+    DartType parameterType, String parameterName) {
+  final fieldTypeName = parameterType.getDisplayString(withNullability: false);
+  if (fieldTypeName == (Decimal).toString()) {
+    return '$parameterName.toString()';
+  }
+  if (fieldTypeName == (DateTime).toString()) {
+    if (fieldDescriptor.dateTimePrecision == TimePrecision.microseconds) {
+      return 'Int64($parameterName.microsecondsSinceEpoch)';
+    }
+    return 'Int64($parameterName.millisecondsSinceEpoch)';
+  }
+  if (fieldTypeName == (Duration).toString()) {
+    if (fieldDescriptor.durationPrecision == TimePrecision.microseconds) {
+      return '$parameterName.inMicroseconds.toDouble()';
+    }
+    return '$parameterName.inMilliseconds.toDouble()';
+  }
+  return ''' const \$${fieldTypeName}ProtoMapper().toProto($parameterName)''';
 }

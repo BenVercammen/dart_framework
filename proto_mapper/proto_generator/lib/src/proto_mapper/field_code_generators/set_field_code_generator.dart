@@ -1,4 +1,4 @@
-import 'package:decimal/decimal.dart';
+import 'package:proto_generator/src/proto_common.dart';
 
 import '../field_code_generator.dart';
 import '../field_descriptor.dart';
@@ -15,18 +15,8 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
         );
 
   String get _valueToProto {
-    final fieldTypeName = fieldDescriptor.setParameterType!
-        .getDisplayString(withNullability: false);
-    if (fieldTypeName == (Decimal).toString()) {
-      return 'e.toString()';
-    }
-    if (fieldTypeName == (DateTime).toString()) {
-      return 'Int64(e.millisecondsSinceEpoch)';
-    }
-    if (fieldTypeName == (Duration).toString()) {
-      return 'e.inMilliseconds.toDouble()';
-    }
-    return ''' const \$${fieldDescriptor.parameterTypeName}ProtoMapper().toProto(e)''';
+    return collectionValueToProto(
+        fieldDescriptor, fieldDescriptor.setParameterType!, 'e');
   }
 
   String get _toProtoConversion {
@@ -62,19 +52,7 @@ class SetFieldCodeGenerator extends FieldCodeGenerator {
         setParameterType.isDartCoreString) {
       return 'e';
     }
-    final fieldTypeName = fieldDescriptor.setParameterType!
-        .getDisplayString(withNullability: false);
-    if (fieldTypeName == (Decimal).toString()) {
-      return 'Decimal.parse(e)';
-    }
-    if (fieldTypeName == (DateTime).toString()) {
-      return 'DateTime.fromMillisecondsSinceEpoch(e.toInt())';
-    }
-    if (fieldTypeName == (Duration).toString()) {
-      return 'Duration(milliseconds: e.toInt())';
-    }
-
-    return ''' const \$${fieldDescriptor.parameterTypeName}ProtoMapper().fromProto(e)''';
+    return collectionProtoToValue(fieldDescriptor, setParameterType, 'e');
   }
 
   @override

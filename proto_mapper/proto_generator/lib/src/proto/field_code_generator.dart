@@ -21,7 +21,8 @@ abstract class FieldCodeGenerator {
       '$fieldType ${fieldDescriptor.protoFieldName} = $lineNumber;';
 
   String? get hasValueLine => fieldDescriptor.isNullable
-      ? 'bool ${fieldDescriptor.protoFieldName}HasValue = ${lineNumber + 1};'
+      ? 'bool ${fieldDescriptor.protoFieldName}'
+          '${fieldDescriptor.useProtoFieldNamingConventions ? '_has_value' : 'HasValue'} = ${lineNumber + 1};'
       : null;
 
   String? get fieldType;

@@ -1,3 +1,4 @@
+import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 import 'package:proto_annotations/proto_annotations.dart';
 import 'package:proto_generator_test/grpc/appliance_type.pbenum.dart';
 import 'package:proto_generator_test/grpc/utensils.pb.dart';
@@ -7,9 +8,13 @@ import 'recipe.dart';
 
 part 'utensils.g.dart';
 
-@proto
+@Proto(useProtoFieldNamingConventions: true)
 @mapProto
 enum KnifeType { chefsKnife, paringKnife, breadKnife }
+
+@proto
+@mapProto
+enum ChefType { seniorChef, sousChef, pastryChef, fishChef }
 
 @proto
 @mapProto
@@ -29,39 +34,65 @@ class GarlicPress {
   GarlicPress({required this.name, required this.machineWashable});
 }
 
-@proto
-@mapProto
+@Proto(useProtoFieldNamingConventions: false)
+@MapProto(dateTimePrecision: TimePrecision.milliseconds)
 class Kitchen {
   final List<Recipe> recipeList;
   final Map<String, Recipe> recipeMap;
+  final DateTime nextInspectionDate;
 
   const Kitchen({
     required this.recipeList,
     required this.recipeMap,
+    required this.nextInspectionDate,
+  });
+}
+
+@Proto(useProtoFieldNamingConventions: true)
+@MapProto(
+  dateTimePrecision: TimePrecision.microseconds,
+  durationPrecision: TimePrecision.milliseconds,
+)
+class Chef {
+  final Recipe? favoriteRecipe;
+  final Knife? favoriteKnife;
+  final ApplianceType favoriteApplianceType;
+  final List<String> favoriteWords;
+  final DateTime birthdate;
+  final Duration? shelfLife;
+
+  Chef({
+    this.favoriteRecipe,
+    required this.favoriteKnife,
+    required this.favoriteApplianceType,
+    this.favoriteWords = const [],
+    required this.birthdate,
+    this.shelfLife,
   });
 }
 
 @proto
-@mapProto
-class Chef {
-  final Recipe favoriteRecipe;
-  final Knife favoriteKnife;
-  final ApplianceType favoriteApplianceType;
-
-  Chef(
-      {required this.favoriteRecipe,
-      required this.favoriteKnife,
-      required this.favoriteApplianceType});
-}
-
-@proto
-@mapProto
+@MapProto(durationPrecision: TimePrecision.microseconds)
 class Inventory {
   final Map<String, int> numberOfThings;
   final Map<String, Recipe> recipesByName;
+  final Duration? timeSpan;
 
   const Inventory({
     required this.numberOfThings,
     required this.recipesByName,
+    this.timeSpan,
+  });
+}
+
+@proto
+@MapProto()
+class PrecisionSubject {
+  final DateTime dateProperty;
+  final Duration durationProperty;
+
+  const PrecisionSubject({
+    required this.dateProperty,
+    required this.durationProperty,
   });
 }

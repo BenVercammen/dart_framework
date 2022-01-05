@@ -23,15 +23,14 @@ class NullableGApplianceType extends $pb.GeneratedMessage {
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'hasValue',
-        protoName: 'hasValue')
+            : 'hasValue')
     ..e<GApplianceType>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.OE,
-        defaultOrMaker: GApplianceType.heat,
+        defaultOrMaker: GApplianceType.G_APPLIANCE_TYPE_HEAT,
         valueOf: GApplianceType.valueOf,
         enumValues: GApplianceType.values)
     ..hasRequiredFields = false;

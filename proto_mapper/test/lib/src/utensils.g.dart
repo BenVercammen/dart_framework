@@ -130,6 +130,9 @@ GKitchen _$KitchenToProto(Kitchen instance) {
   proto.recipeMap.addAll(instance.recipeMap
       .map((k, v) => MapEntry(k, const $RecipeProtoMapper().toProto(v))));
 
+  proto.nextInspectionDate =
+      Int64(instance.nextInspectionDate.millisecondsSinceEpoch);
+
   return proto;
 }
 
@@ -138,6 +141,8 @@ Kitchen _$KitchenFromProto(GKitchen instance) => Kitchen(
           .map((e) => const $RecipeProtoMapper().fromProto(e))),
       recipeMap: instance.recipeMap
           .map((k, v) => MapEntry(k, const $RecipeProtoMapper().fromProto(v))),
+      nextInspectionDate: DateTime.fromMillisecondsSinceEpoch(
+          instance.nextInspectionDate.toInt()),
     );
 
 extension $KitchenProtoExtension on Kitchen {
@@ -175,23 +180,47 @@ class $ChefProtoMapper implements ProtoMapper<Chef, GChef> {
 GChef _$ChefToProto(Chef instance) {
   var proto = GChef();
 
-  proto.favoriteRecipe =
-      const $RecipeProtoMapper().toProto(instance.favoriteRecipe);
-  proto.favoriteKnife =
-      const $KnifeProtoMapper().toProto(instance.favoriteKnife);
+  if (instance.favoriteRecipe != null) {
+    proto.favoriteRecipe =
+        const $RecipeProtoMapper().toProto(instance.favoriteRecipe!);
+  }
+  proto.favoriteRecipeHasValue = instance.favoriteRecipe != null;
+
+  if (instance.favoriteKnife != null) {
+    proto.favoriteKnife =
+        const $KnifeProtoMapper().toProto(instance.favoriteKnife!);
+  }
+  proto.favoriteKnifeHasValue = instance.favoriteKnife != null;
+
   proto.favoriteApplianceType =
       GApplianceType.valueOf(instance.favoriteApplianceType.index)!;
+  proto.favoriteWords.addAll(instance.favoriteWords);
+
+  proto.birthdate = Int64(instance.birthdate.microsecondsSinceEpoch);
+  if (instance.shelfLife != null) {
+    proto.shelfLife = instance.shelfLife!.inMilliseconds.toDouble();
+  }
+  proto.shelfLifeHasValue = instance.shelfLife != null;
 
   return proto;
 }
 
 Chef _$ChefFromProto(GChef instance) => Chef(
-      favoriteRecipe:
-          const $RecipeProtoMapper().fromProto(instance.favoriteRecipe),
-      favoriteKnife:
-          const $KnifeProtoMapper().fromProto(instance.favoriteKnife),
+      favoriteRecipe: (instance.favoriteRecipeHasValue
+          ? (const $RecipeProtoMapper().fromProto(instance.favoriteRecipe))
+          : null),
+      favoriteKnife: (instance.favoriteKnifeHasValue
+          ? (const $KnifeProtoMapper().fromProto(instance.favoriteKnife))
+          : null),
       favoriteApplianceType:
           ApplianceType.values[instance.favoriteApplianceType.value],
+      favoriteWords:
+          List<String>.unmodifiable(instance.favoriteWords.map((e) => e)),
+      birthdate:
+          DateTime.fromMicrosecondsSinceEpoch(instance.birthdate.toInt()),
+      shelfLife: (instance.shelfLifeHasValue
+          ? (Duration(milliseconds: instance.shelfLife.toInt()))
+          : null),
     );
 
 extension $ChefProtoExtension on Chef {
@@ -235,6 +264,11 @@ GInventory _$InventoryToProto(Inventory instance) {
   proto.recipesByName.addAll(instance.recipesByName
       .map((k, v) => MapEntry(k, const $RecipeProtoMapper().toProto(v))));
 
+  if (instance.timeSpan != null) {
+    proto.timeSpan = instance.timeSpan!.inMicroseconds.toDouble();
+  }
+  proto.timeSpanHasValue = instance.timeSpan != null;
+
   return proto;
 }
 
@@ -242,6 +276,9 @@ Inventory _$InventoryFromProto(GInventory instance) => Inventory(
       numberOfThings: instance.numberOfThings.map((k, v) => MapEntry(k, v)),
       recipesByName: instance.recipesByName
           .map((k, v) => MapEntry(k, const $RecipeProtoMapper().fromProto(v))),
+      timeSpan: (instance.timeSpanHasValue
+          ? (Duration(microseconds: instance.timeSpan.toInt()))
+          : null),
     );
 
 extension $InventoryProtoExtension on Inventory {
@@ -257,6 +294,62 @@ extension $GInventoryProtoExtension on GInventory {
   Inventory toInventory() => _$InventoryFromProto(this);
 }
 
+class $PrecisionSubjectProtoMapper
+    implements ProtoMapper<PrecisionSubject, GPrecisionSubject> {
+  const $PrecisionSubjectProtoMapper();
+
+  @override
+  PrecisionSubject fromProto(GPrecisionSubject proto) =>
+      _$PrecisionSubjectFromProto(proto);
+
+  @override
+  GPrecisionSubject toProto(PrecisionSubject entity) =>
+      _$PrecisionSubjectToProto(entity);
+
+  PrecisionSubject fromJson(String json) =>
+      _$PrecisionSubjectFromProto(GPrecisionSubject.fromJson(json));
+  String toJson(PrecisionSubject entity) =>
+      _$PrecisionSubjectToProto(entity).writeToJson();
+
+  String toBase64Proto(PrecisionSubject entity) =>
+      base64Encode(utf8.encode(entity.toProto().writeToJson()));
+
+  PrecisionSubject fromBase64Proto(String base64Proto) =>
+      GPrecisionSubject.fromJson(utf8.decode(base64Decode(base64Proto)))
+          .toPrecisionSubject();
+}
+
+GPrecisionSubject _$PrecisionSubjectToProto(PrecisionSubject instance) {
+  var proto = GPrecisionSubject();
+
+  proto.dateProperty = Int64(instance.dateProperty.microsecondsSinceEpoch);
+  proto.durationProperty = instance.durationProperty.inMicroseconds.toDouble();
+
+  return proto;
+}
+
+PrecisionSubject _$PrecisionSubjectFromProto(GPrecisionSubject instance) =>
+    PrecisionSubject(
+      dateProperty:
+          DateTime.fromMicrosecondsSinceEpoch(instance.dateProperty.toInt()),
+      durationProperty:
+          Duration(microseconds: instance.durationProperty.toInt()),
+    );
+
+extension $PrecisionSubjectProtoExtension on PrecisionSubject {
+  GPrecisionSubject toProto() => _$PrecisionSubjectToProto(this);
+  String toJson() => _$PrecisionSubjectToProto(this).writeToJson();
+
+  static PrecisionSubject fromProto(GPrecisionSubject proto) =>
+      _$PrecisionSubjectFromProto(proto);
+  static PrecisionSubject fromJson(String json) =>
+      _$PrecisionSubjectFromProto(GPrecisionSubject.fromJson(json));
+}
+
+extension $GPrecisionSubjectProtoExtension on GPrecisionSubject {
+  PrecisionSubject toPrecisionSubject() => _$PrecisionSubjectFromProto(this);
+}
+
 class $KnifeTypeProtoMapper implements ProtoMapper<KnifeType, GKnifeType> {
   const $KnifeTypeProtoMapper();
 
@@ -269,4 +362,18 @@ class $KnifeTypeProtoMapper implements ProtoMapper<KnifeType, GKnifeType> {
 
 extension $GKnifeTypeProtoExtension on GKnifeType {
   KnifeType toKnifeType() => const $KnifeTypeProtoMapper().fromProto(this);
+}
+
+class $ChefTypeProtoMapper implements ProtoMapper<ChefType, GChefType> {
+  const $ChefTypeProtoMapper();
+
+  @override
+  ChefType fromProto(GChefType proto) => ChefType.values[proto.value];
+
+  @override
+  GChefType toProto(ChefType entity) => GChefType.valueOf(entity.index)!;
+}
+
+extension $GChefTypeProtoExtension on GChefType {
+  ChefType toChefType() => const $ChefTypeProtoMapper().fromProto(this);
 }

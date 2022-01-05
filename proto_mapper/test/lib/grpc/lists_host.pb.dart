@@ -34,8 +34,7 @@ class GListsHost extends $pb.GeneratedMessage {
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvboolsHasValue',
-        protoName: 'nvboolsHasValue')
+            : 'nvboolsHasValue')
     ..pPS(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -50,8 +49,7 @@ class GListsHost extends $pb.GeneratedMessage {
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvstringsHasValue',
-        protoName: 'nvstringsHasValue')
+            : 'nvstringsHasValue')
     ..p<$core.double>(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -68,8 +66,7 @@ class GListsHost extends $pb.GeneratedMessage {
         9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvdurationsHasValue',
-        protoName: 'nvdurationsHasValue')
+            : 'nvdurationsHasValue')
     ..p<$fixnum.Int64>(
         10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -86,8 +83,7 @@ class GListsHost extends $pb.GeneratedMessage {
         12,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvdatetimesHasValue',
-        protoName: 'nvdatetimesHasValue')
+            : 'nvdatetimesHasValue')
     ..pPS(
         13,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -102,8 +98,7 @@ class GListsHost extends $pb.GeneratedMessage {
         15,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvdecimalsHasValue',
-        protoName: 'nvdecimalsHasValue')
+            : 'nvdecimalsHasValue')
     ..p<$core.int>(
         16,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -120,8 +115,7 @@ class GListsHost extends $pb.GeneratedMessage {
         18,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvintsHasValue',
-        protoName: 'nvintsHasValue')
+            : 'nvintsHasValue')
     ..p<$core.double>(
         19,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -138,15 +132,13 @@ class GListsHost extends $pb.GeneratedMessage {
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvdoublesHasValue',
-        protoName: 'nvdoublesHasValue')
+            : 'nvdoublesHasValue')
     ..pc<$6.GApplianceType>(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'vapplianceTypes',
         $pb.PbFieldType.PE,
-        protoName: 'vapplianceTypes',
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..pc<$6.GApplianceType>(
@@ -155,15 +147,13 @@ class GListsHost extends $pb.GeneratedMessage {
             ? ''
             : 'nvapplianceTypes',
         $pb.PbFieldType.PE,
-        protoName: 'nvapplianceTypes',
         valueOf: $6.GApplianceType.valueOf,
         enumValues: $6.GApplianceType.values)
     ..aOB(
         24,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'nvapplianceTypesHasValue',
-        protoName: 'nvapplianceTypesHasValue')
+            : 'nvapplianceTypesHasValue')
     ..hasRequiredFields = false;
 
   GListsHost._() : super();

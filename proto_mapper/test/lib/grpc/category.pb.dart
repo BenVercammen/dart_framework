@@ -27,28 +27,24 @@ class GCategory extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'mainComponent',
-        protoName: 'mainComponent',
         subBuilder: $5.GComponent.create)
     ..aOM<$5.GComponent>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'alternativeComponent',
-        protoName: 'alternativeComponent',
         subBuilder: $5.GComponent.create)
     ..aOB(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'alternativeComponentHasValue',
-        protoName: 'alternativeComponentHasValue')
+            : 'alternativeComponentHasValue')
     ..pc<$5.GComponent>(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'otherComponents',
         $pb.PbFieldType.PM,
-        protoName: 'otherComponents',
         subBuilder: $5.GComponent.create)
     ..pc<$5.GComponent>(
         6,
@@ -56,14 +52,12 @@ class GCategory extends $pb.GeneratedMessage {
             ? ''
             : 'secondaryComponents',
         $pb.PbFieldType.PM,
-        protoName: 'secondaryComponents',
         subBuilder: $5.GComponent.create)
     ..aOB(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'secondaryComponentsHasValue',
-        protoName: 'secondaryComponentsHasValue')
+            : 'secondaryComponentsHasValue')
     ..hasRequiredFields = false;
 
   GCategory._() : super();

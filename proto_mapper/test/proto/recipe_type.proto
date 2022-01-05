@@ -10,14 +10,14 @@ syntax = "proto3";
     
 enum GRecipeTypes
 {
-  cook = 0;
-  grill = 1;
-  fry = 2;
-  stew = 3;
+  G_RECIPE_TYPES_COOK = 0;
+  G_RECIPE_TYPES_GRILL = 1;
+  G_RECIPE_TYPES_FRY = 2;
+  G_RECIPE_TYPES_STEW = 3;
 }   
      
 message NullableGRecipeTypes
 {
-  bool hasValue = 1;
+  bool has_value = 1;
   GRecipeTypes value = 2;
 }

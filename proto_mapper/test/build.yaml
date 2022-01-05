@@ -1,0 +1,11 @@
+# Read about `build.yaml` at https://pub.dev/packages/build_config
+targets:
+  $default:
+    builders:
+      # proto_generator:proto_generator:
+        # options:
+          # useProtoFieldNamingConventions: true
+      proto_generator:proto_mapper_generator:
+        options:
+          dateTimePrecision: microseconds
+          durationPrecision: microseconds

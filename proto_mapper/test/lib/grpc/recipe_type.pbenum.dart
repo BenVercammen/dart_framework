@@ -10,20 +10,32 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class GRecipeTypes extends $pb.ProtobufEnum {
-  static const GRecipeTypes cook = GRecipeTypes._(
-      0, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'cook');
-  static const GRecipeTypes grill = GRecipeTypes._(
-      1, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'grill');
-  static const GRecipeTypes fry = GRecipeTypes._(
-      2, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'fry');
-  static const GRecipeTypes stew = GRecipeTypes._(
-      3, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'stew');
+  static const GRecipeTypes G_RECIPE_TYPES_COOK = GRecipeTypes._(
+      0,
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'G_RECIPE_TYPES_COOK');
+  static const GRecipeTypes G_RECIPE_TYPES_GRILL = GRecipeTypes._(
+      1,
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'G_RECIPE_TYPES_GRILL');
+  static const GRecipeTypes G_RECIPE_TYPES_FRY = GRecipeTypes._(
+      2,
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'G_RECIPE_TYPES_FRY');
+  static const GRecipeTypes G_RECIPE_TYPES_STEW = GRecipeTypes._(
+      3,
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'G_RECIPE_TYPES_STEW');
 
   static const $core.List<GRecipeTypes> values = <GRecipeTypes>[
-    cook,
-    grill,
-    fry,
-    stew,
+    G_RECIPE_TYPES_COOK,
+    G_RECIPE_TYPES_GRILL,
+    G_RECIPE_TYPES_FRY,
+    G_RECIPE_TYPES_STEW,
   ];
 
   static final $core.Map<$core.int, GRecipeTypes> _byValue =

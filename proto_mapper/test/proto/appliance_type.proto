@@ -10,13 +10,13 @@ syntax = "proto3";
     
 enum GApplianceType
 {
-  heat = 0;
-  cold = 1;
-  cutlery = 2;
+  G_APPLIANCE_TYPE_HEAT = 0;
+  G_APPLIANCE_TYPE_COLD = 1;
+  G_APPLIANCE_TYPE_CUTLERY = 2;
 }   
      
 message NullableGApplianceType
 {
-  bool hasValue = 1;
+  bool has_value = 1;
   GApplianceType value = 2;
 }

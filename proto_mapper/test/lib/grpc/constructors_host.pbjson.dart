@@ -169,15 +169,15 @@ const GConstructObject6$json = {
   '1': 'GConstructObject6',
   '2': [
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'nameHasValue', '3': 2, '4': 1, '5': 8, '10': 'nameHasValue'},
+    {'1': 'name_has_value', '3': 2, '4': 1, '5': 8, '10': 'nameHasValue'},
     {'1': 'number', '3': 3, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'numberHasValue', '3': 4, '4': 1, '5': 8, '10': 'numberHasValue'},
+    {'1': 'number_has_value', '3': 4, '4': 1, '5': 8, '10': 'numberHasValue'},
   ],
 };
 
 /// Descriptor for `GConstructObject6`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List gConstructObject6Descriptor = $convert.base64Decode(
-    'ChFHQ29uc3RydWN0T2JqZWN0NhISCgRuYW1lGAEgASgJUgRuYW1lEiIKDG5hbWVIYXNWYWx1ZRgCIAEoCFIMbmFtZUhhc1ZhbHVlEhYKBm51bWJlchgDIAEoBVIGbnVtYmVyEiYKDm51bWJlckhhc1ZhbHVlGAQgASgIUg5udW1iZXJIYXNWYWx1ZQ==');
+    'ChFHQ29uc3RydWN0T2JqZWN0NhISCgRuYW1lGAEgASgJUgRuYW1lEiQKDm5hbWVfaGFzX3ZhbHVlGAIgASgIUgxuYW1lSGFzVmFsdWUSFgoGbnVtYmVyGAMgASgFUgZudW1iZXISKAoQbnVtYmVyX2hhc192YWx1ZRgEIAEoCFIObnVtYmVySGFzVmFsdWU=');
 @$core.Deprecated('Use gListOfConstructObject6Descriptor instead')
 const GListOfConstructObject6$json = {
   '1': 'GListOfConstructObject6',
@@ -202,14 +202,14 @@ const GConstructObject7$json = {
   '1': 'GConstructObject7',
   '2': [
     {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'numberHasValue', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
+    {'1': 'number_has_value', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
     {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
 /// Descriptor for `GConstructObject7`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List gConstructObject7Descriptor = $convert.base64Decode(
-    'ChFHQ29uc3RydWN0T2JqZWN0NxIWCgZudW1iZXIYASABKAVSBm51bWJlchImCg5udW1iZXJIYXNWYWx1ZRgCIAEoCFIObnVtYmVySGFzVmFsdWUSEgoEbmFtZRgDIAEoCVIEbmFtZQ==');
+    'ChFHQ29uc3RydWN0T2JqZWN0NxIWCgZudW1iZXIYASABKAVSBm51bWJlchIoChBudW1iZXJfaGFzX3ZhbHVlGAIgASgIUg5udW1iZXJIYXNWYWx1ZRISCgRuYW1lGAMgASgJUgRuYW1l');
 @$core.Deprecated('Use gListOfConstructObject7Descriptor instead')
 const GListOfConstructObject7$json = {
   '1': 'GListOfConstructObject7',
@@ -234,14 +234,14 @@ const GConstructObject8$json = {
   '1': 'GConstructObject8',
   '2': [
     {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'numberHasValue', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
+    {'1': 'number_has_value', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
     {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
 /// Descriptor for `GConstructObject8`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List gConstructObject8Descriptor = $convert.base64Decode(
-    'ChFHQ29uc3RydWN0T2JqZWN0OBIWCgZudW1iZXIYASABKAVSBm51bWJlchImCg5udW1iZXJIYXNWYWx1ZRgCIAEoCFIObnVtYmVySGFzVmFsdWUSEgoEbmFtZRgDIAEoCVIEbmFtZQ==');
+    'ChFHQ29uc3RydWN0T2JqZWN0OBIWCgZudW1iZXIYASABKAVSBm51bWJlchIoChBudW1iZXJfaGFzX3ZhbHVlGAIgASgIUg5udW1iZXJIYXNWYWx1ZRISCgRuYW1lGAMgASgJUgRuYW1l');
 @$core.Deprecated('Use gListOfConstructObject8Descriptor instead')
 const GListOfConstructObject8$json = {
   '1': 'GListOfConstructObject8',

@@ -38,16 +38,16 @@ GRecipe _$RecipeToProto(Recipe instance) {
   proto.ingredients.addAll(instance.ingredients
       .map((e) => const $IngredientProtoMapper().toProto(e)));
 
-  proto.publishDate = Int64(instance.publishDate.millisecondsSinceEpoch);
+  proto.publishDate = Int64(instance.publishDate.microsecondsSinceEpoch);
   if (instance.expiryDate != null) {
-    proto.expiryDate = Int64(instance.expiryDate!.millisecondsSinceEpoch);
+    proto.expiryDate = Int64(instance.expiryDate!.microsecondsSinceEpoch);
   }
   proto.expiryDateHasValue = instance.expiryDate != null;
 
   proto.preparationDuration =
-      instance.preparationDuration.inMilliseconds.toDouble();
+      instance.preparationDuration.inMicroseconds.toDouble();
   if (instance.totalDuration != null) {
-    proto.totalDuration = instance.totalDuration!.inMilliseconds.toDouble();
+    proto.totalDuration = instance.totalDuration!.inMicroseconds.toDouble();
   }
   proto.totalDurationHasValue = instance.totalDuration != null;
 
@@ -80,19 +80,19 @@ Recipe _$RecipeFromProto(GRecipe instance) => Recipe(
       ingredients: List<Ingredient>.unmodifiable(instance.ingredients
           .map((e) => const $IngredientProtoMapper().fromProto(e))),
       publishDate:
-          DateTime.fromMillisecondsSinceEpoch(instance.publishDate.toInt()),
+          DateTime.fromMicrosecondsSinceEpoch(instance.publishDate.toInt()),
       preparationDuration:
-          Duration(milliseconds: instance.preparationDuration.toInt()),
+          Duration(microseconds: instance.preparationDuration.toInt()),
       isPublished: instance.isPublished,
       mainApplianceType: ApplianceType.values[instance.mainApplianceType.value],
       tags: List<String>.unmodifiable(instance.tags.map((e) => e)),
       description:
           (instance.descriptionHasValue ? (instance.description) : null),
       expiryDate: (instance.expiryDateHasValue
-          ? (DateTime.fromMillisecondsSinceEpoch(instance.expiryDate.toInt()))
+          ? (DateTime.fromMicrosecondsSinceEpoch(instance.expiryDate.toInt()))
           : null),
       totalDuration: (instance.totalDurationHasValue
-          ? (Duration(milliseconds: instance.totalDuration.toInt()))
+          ? (Duration(microseconds: instance.totalDuration.toInt()))
           : null),
       requiresRobot:
           (instance.requiresRobotHasValue ? (instance.requiresRobot) : null),
