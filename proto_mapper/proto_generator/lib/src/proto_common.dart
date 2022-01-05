@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:decimal/decimal.dart';
@@ -16,19 +17,28 @@ String createFieldDeclarations(
   List<String> externalProtoNames,
 ) {
   final fieldBuffer = StringBuffer();
-  var lineNumber = 1;
+  final lineNumbers = fieldDescriptors
+      .where((fd) =>
+          fd.number != null || (fd.isNullable && fd.hasValueNumber != null))
+      .expand((fd) => [
+            if (fd.number != null) fd.number!,
+            if (fd.isNullable && fd.hasValueNumber != null) fd.hasValueNumber!,
+          ])
+      .toList();
+
   for (var fieldDescriptor in fieldDescriptors) {
-    var fieldCodeGenerator = FieldCodeGenerator.fromFieldDescriptor(
-      fieldDescriptor,
-      lineNumber++,
-    );
+    // final num = fieldDescriptor.number ?? _nextAvailable(lineNumbers);
+    // lineNumbers.add(num);
+    // final hasValueNum = null as int?;
+
+    var fieldCodeGenerator =
+        FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor, lineNumbers);
 
     var fieldLine = fieldCodeGenerator.fieldLine;
     fieldBuffer.writeln(
         '  ${fieldDescriptor.isRepeated ? 'repeated ' : ''}$fieldLine');
     if (fieldDescriptor.isNullable) {
       fieldBuffer.writeln('  ${fieldCodeGenerator.hasValueLine}');
-      lineNumber++;
     }
 
     if (fieldCodeGenerator is! ExternalProtoNames) continue;
@@ -44,6 +54,28 @@ String createFieldDeclarations(
   }
 
   return fieldBuffer.toString();
+}
+
+_nextAvailable(List<int> numbers) {
+  // Compute XOR of all the elements in the array
+  int xor = 0;
+  for (final i in numbers) {
+    xor = xor ^ i;
+  }
+
+  // Compute XOR of all the elements from 1 to `n+1`
+  final n = numbers.length;
+  for (int i = 1; i <= n + 1; i++) {
+    xor = xor ^ i;
+  }
+
+  return xor;
+}
+
+void main() {
+  final x = <int>[];
+  final avail = _nextAvailable(x);
+  print(avail);
 }
 
 extension ProtoDartTypeExtension on DartType {

@@ -10,11 +10,11 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gConstructObject1Descriptor instead')
-const GConstructObject1$json = {
+const GConstructObject1$json = const {
   '1': 'GConstructObject1',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
   ],
 };
 
@@ -22,10 +22,10 @@ const GConstructObject1$json = {
 final $typed_data.Uint8List gConstructObject1Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0MRISCgRuYW1lGAEgASgJUgRuYW1lEhYKBm51bWJlchgCIAEoBVIGbnVtYmVy');
 @$core.Deprecated('Use gListOfConstructObject1Descriptor instead')
-const GListOfConstructObject1$json = {
+const GListOfConstructObject1$json = const {
   '1': 'GListOfConstructObject1',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -41,11 +41,11 @@ final $typed_data.Uint8List gListOfConstructObject1Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0MRIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3QxUgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject2Descriptor instead')
-const GConstructObject2$json = {
+const GConstructObject2$json = const {
   '1': 'GConstructObject2',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
   ],
 };
 
@@ -53,10 +53,10 @@ const GConstructObject2$json = {
 final $typed_data.Uint8List gConstructObject2Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0MhISCgRuYW1lGAEgASgJUgRuYW1lEhYKBm51bWJlchgCIAEoBVIGbnVtYmVy');
 @$core.Deprecated('Use gListOfConstructObject2Descriptor instead')
-const GListOfConstructObject2$json = {
+const GListOfConstructObject2$json = const {
   '1': 'GListOfConstructObject2',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -72,11 +72,11 @@ final $typed_data.Uint8List gListOfConstructObject2Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0MhIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3QyUgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject3Descriptor instead')
-const GConstructObject3$json = {
+const GConstructObject3$json = const {
   '1': 'GConstructObject3',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
   ],
 };
 
@@ -84,10 +84,10 @@ const GConstructObject3$json = {
 final $typed_data.Uint8List gConstructObject3Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0MxISCgRuYW1lGAEgASgJUgRuYW1lEhYKBm51bWJlchgCIAEoBVIGbnVtYmVy');
 @$core.Deprecated('Use gListOfConstructObject3Descriptor instead')
-const GListOfConstructObject3$json = {
+const GListOfConstructObject3$json = const {
   '1': 'GListOfConstructObject3',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -103,11 +103,11 @@ final $typed_data.Uint8List gListOfConstructObject3Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0MxIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3QzUgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject4Descriptor instead')
-const GConstructObject4$json = {
+const GConstructObject4$json = const {
   '1': 'GConstructObject4',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
   ],
 };
 
@@ -115,10 +115,10 @@ const GConstructObject4$json = {
 final $typed_data.Uint8List gConstructObject4Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0NBISCgRuYW1lGAEgASgJUgRuYW1lEhYKBm51bWJlchgCIAEoBVIGbnVtYmVy');
 @$core.Deprecated('Use gListOfConstructObject4Descriptor instead')
-const GListOfConstructObject4$json = {
+const GListOfConstructObject4$json = const {
   '1': 'GListOfConstructObject4',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -134,11 +134,11 @@ final $typed_data.Uint8List gListOfConstructObject4Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0NBIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3Q0UgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject5Descriptor instead')
-const GConstructObject5$json = {
+const GConstructObject5$json = const {
   '1': 'GConstructObject5',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'number', '3': 2, '4': 1, '5': 5, '10': 'number'},
   ],
 };
 
@@ -146,10 +146,10 @@ const GConstructObject5$json = {
 final $typed_data.Uint8List gConstructObject5Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0NRISCgRuYW1lGAEgASgJUgRuYW1lEhYKBm51bWJlchgCIAEoBVIGbnVtYmVy');
 @$core.Deprecated('Use gListOfConstructObject5Descriptor instead')
-const GListOfConstructObject5$json = {
+const GListOfConstructObject5$json = const {
   '1': 'GListOfConstructObject5',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -165,13 +165,19 @@ final $typed_data.Uint8List gListOfConstructObject5Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0NRIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3Q1UgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject6Descriptor instead')
-const GConstructObject6$json = {
+const GConstructObject6$json = const {
   '1': 'GConstructObject6',
-  '2': [
-    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'name_has_value', '3': 2, '4': 1, '5': 8, '10': 'nameHasValue'},
-    {'1': 'number', '3': 3, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'number_has_value', '3': 4, '4': 1, '5': 8, '10': 'numberHasValue'},
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'name_has_value', '3': 2, '4': 1, '5': 8, '10': 'nameHasValue'},
+    const {'1': 'number', '3': 3, '4': 1, '5': 5, '10': 'number'},
+    const {
+      '1': 'number_has_value',
+      '3': 4,
+      '4': 1,
+      '5': 8,
+      '10': 'numberHasValue'
+    },
   ],
 };
 
@@ -179,10 +185,10 @@ const GConstructObject6$json = {
 final $typed_data.Uint8List gConstructObject6Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0NhISCgRuYW1lGAEgASgJUgRuYW1lEiQKDm5hbWVfaGFzX3ZhbHVlGAIgASgIUgxuYW1lSGFzVmFsdWUSFgoGbnVtYmVyGAMgASgFUgZudW1iZXISKAoQbnVtYmVyX2hhc192YWx1ZRgEIAEoCFIObnVtYmVySGFzVmFsdWU=');
 @$core.Deprecated('Use gListOfConstructObject6Descriptor instead')
-const GListOfConstructObject6$json = {
+const GListOfConstructObject6$json = const {
   '1': 'GListOfConstructObject6',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -198,12 +204,18 @@ final $typed_data.Uint8List gListOfConstructObject6Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0NhIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3Q2UgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject7Descriptor instead')
-const GConstructObject7$json = {
+const GConstructObject7$json = const {
   '1': 'GConstructObject7',
-  '2': [
-    {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'number_has_value', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
-    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+  '2': const [
+    const {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
+    const {
+      '1': 'number_has_value',
+      '3': 2,
+      '4': 1,
+      '5': 8,
+      '10': 'numberHasValue'
+    },
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
@@ -211,10 +223,10 @@ const GConstructObject7$json = {
 final $typed_data.Uint8List gConstructObject7Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0NxIWCgZudW1iZXIYASABKAVSBm51bWJlchIoChBudW1iZXJfaGFzX3ZhbHVlGAIgASgIUg5udW1iZXJIYXNWYWx1ZRISCgRuYW1lGAMgASgJUgRuYW1l');
 @$core.Deprecated('Use gListOfConstructObject7Descriptor instead')
-const GListOfConstructObject7$json = {
+const GListOfConstructObject7$json = const {
   '1': 'GListOfConstructObject7',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,
@@ -230,12 +242,18 @@ final $typed_data.Uint8List gListOfConstructObject7Descriptor =
     $convert.base64Decode(
         'ChdHTGlzdE9mQ29uc3RydWN0T2JqZWN0NxIoCgVpdGVtcxgBIAMoCzISLkdDb25zdHJ1Y3RPYmplY3Q3UgVpdGVtcw==');
 @$core.Deprecated('Use gConstructObject8Descriptor instead')
-const GConstructObject8$json = {
+const GConstructObject8$json = const {
   '1': 'GConstructObject8',
-  '2': [
-    {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
-    {'1': 'number_has_value', '3': 2, '4': 1, '5': 8, '10': 'numberHasValue'},
-    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+  '2': const [
+    const {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
+    const {
+      '1': 'number_has_value',
+      '3': 2,
+      '4': 1,
+      '5': 8,
+      '10': 'numberHasValue'
+    },
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
   ],
 };
 
@@ -243,10 +261,10 @@ const GConstructObject8$json = {
 final $typed_data.Uint8List gConstructObject8Descriptor = $convert.base64Decode(
     'ChFHQ29uc3RydWN0T2JqZWN0OBIWCgZudW1iZXIYASABKAVSBm51bWJlchIoChBudW1iZXJfaGFzX3ZhbHVlGAIgASgIUg5udW1iZXJIYXNWYWx1ZRISCgRuYW1lGAMgASgJUgRuYW1l');
 @$core.Deprecated('Use gListOfConstructObject8Descriptor instead')
-const GListOfConstructObject8$json = {
+const GListOfConstructObject8$json = const {
   '1': 'GListOfConstructObject8',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,

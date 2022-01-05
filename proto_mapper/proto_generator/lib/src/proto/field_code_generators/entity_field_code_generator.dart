@@ -6,8 +6,9 @@ import 'external_proto_name.dart';
 
 class EntityFieldCodeGenerator extends FieldCodeGenerator
     implements ExternalProtoNames {
-  EntityFieldCodeGenerator(FieldDescriptor fieldDescriptor, int lineNumber)
-      : super(fieldDescriptor, lineNumber) {
+  EntityFieldCodeGenerator(
+      FieldDescriptor fieldDescriptor, List<int> lineNumbers)
+      : super(fieldDescriptor, lineNumbers) {
     final fieldElementType = fieldDescriptor.itemType;
 
     final packageName = fieldElementType.packageName;

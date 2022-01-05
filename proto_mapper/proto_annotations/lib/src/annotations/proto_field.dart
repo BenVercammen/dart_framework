@@ -1,6 +1,13 @@
 class ProtoField {
   final String? name;
-  const ProtoField({this.name});
+  final int? number;
+  final int? hasValueNumber;
+
+  const ProtoField({
+    this.name,
+    this.number,
+    this.hasValueNumber,
+  });
 }
 
 const protoField = ProtoField();

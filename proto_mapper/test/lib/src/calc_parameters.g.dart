@@ -36,6 +36,17 @@ GCalcParameters _$CalcParametersToProto(CalcParameters instance) {
 
   proto.parameter1 = instance.parameter1;
   proto.parameter2 = instance.parameter2;
+  if (instance.parameter3 != null) {
+    proto.parameter3 = instance.parameter3!;
+  }
+  proto.parameter3HasValue = instance.parameter3 != null;
+
+  if (instance.parameter4 != null) {
+    proto.parameter4 = instance.parameter4!;
+  }
+  proto.parameter4HasValue = instance.parameter4 != null;
+
+  proto.parameter5 = instance.parameter5;
 
   return proto;
 }
@@ -44,6 +55,9 @@ CalcParameters _$CalcParametersFromProto(GCalcParameters instance) =>
     CalcParameters(
       parameter1: instance.parameter1,
       parameter2: instance.parameter2,
+      parameter3: (instance.parameter3HasValue ? (instance.parameter3) : null),
+      parameter4: (instance.parameter4HasValue ? (instance.parameter4) : null),
+      parameter5: instance.parameter5,
     );
 
 extension $CalcParametersProtoExtension on CalcParameters {

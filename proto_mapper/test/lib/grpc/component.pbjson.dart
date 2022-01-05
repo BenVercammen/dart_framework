@@ -10,10 +10,10 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gComponentDescriptor instead')
-const GComponent$json = {
+const GComponent$json = const {
   '1': 'GComponent',
-  '2': [
-    {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
+  '2': const [
+    const {'1': 'description', '3': 1, '4': 1, '5': 9, '10': 'description'},
   ],
 };
 
@@ -21,10 +21,17 @@ const GComponent$json = {
 final $typed_data.Uint8List gComponentDescriptor = $convert.base64Decode(
     'CgpHQ29tcG9uZW50EiAKC2Rlc2NyaXB0aW9uGAEgASgJUgtkZXNjcmlwdGlvbg==');
 @$core.Deprecated('Use gListOfComponentDescriptor instead')
-const GListOfComponent$json = {
+const GListOfComponent$json = const {
   '1': 'GListOfComponent',
-  '2': [
-    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GComponent', '10': 'items'},
+  '2': const [
+    const {
+      '1': 'items',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.GComponent',
+      '10': 'items'
+    },
   ],
 };
 

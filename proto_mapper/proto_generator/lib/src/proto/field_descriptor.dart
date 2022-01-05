@@ -68,6 +68,9 @@ class FieldDescriptor extends FieldDescriptorBase {
 
   bool get typeHasProtoAnnotation => fieldElementType.hasMapProto;
 
+  int? get number => protoFieldAnnotation?.number;
+  int? get hasValueNumber => protoFieldAnnotation?.hasValueNumber;
+
   @override
   bool get parameterTypeIsEnum =>
       parameterType.element!.kind == ElementKind.ENUM;
@@ -76,10 +79,24 @@ class FieldDescriptor extends FieldDescriptorBase {
 const _protoFieldChecker = TypeChecker.fromRuntime(ProtoField);
 
 ProtoField? _getProtoFieldAnnotation(FieldElement fieldElement) {
-  var annotation = _protoFieldChecker.getFieldAnnotation(fieldElement);
-  if (annotation == null) return null;
-  var name = annotation.getField('name')!.toStringValue();
-  var ret = ProtoField(name: name);
+  final annotation = _protoFieldChecker.getFieldAnnotation(fieldElement);
+  if (annotation == null) {
+    return null;
+  }
+  final name = annotation.getField('name')!.toStringValue();
+  final numberObj = annotation.getField('number')!;
+  final hasValueNumberObj = annotation.getField('hasValueNumber')!;
+
+  final number = numberObj.isNull ? null : numberObj.toIntValue();
+
+  final hasValueNumber =
+      hasValueNumberObj.isNull ? null : hasValueNumberObj.toIntValue();
+
+  var ret = ProtoField(
+    name: name,
+    number: number,
+    hasValueNumber: hasValueNumber,
+  );
   return ret;
 }
 

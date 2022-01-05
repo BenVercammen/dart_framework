@@ -13,50 +13,72 @@ import 'field_descriptor.dart';
 
 abstract class FieldCodeGenerator {
   final FieldDescriptor fieldDescriptor;
-  final int lineNumber;
+  late final int lineNumber;
+  late final int? hasValueLineNumber;
 
-  FieldCodeGenerator(this.fieldDescriptor, this.lineNumber);
+  FieldCodeGenerator(
+    this.fieldDescriptor,
+    List<int> lineNumbers,
+  ) {
+    lineNumber = fieldDescriptor.number ?? _nextAvailable(lineNumbers);
+    final hasValueLineNum = fieldDescriptor.isNullable
+        ? (fieldDescriptor.hasValueNumber ?? _nextAvailable(lineNumbers))
+        : null;
+    hasValueLineNumber = hasValueLineNum;
+
+    print(
+        '###### ${fieldDescriptor.name} number: $lineNumber / hasValueNumber: $hasValueLine / lineNumbers: $lineNumbers');
+  }
 
   String get fieldLine =>
       '$fieldType ${fieldDescriptor.protoFieldName} = $lineNumber;';
 
-  String? get hasValueLine => fieldDescriptor.isNullable
+  String? get hasValueLine => hasValueLineNumber != null
       ? 'bool ${fieldDescriptor.protoFieldName}'
-          '${fieldDescriptor.useProtoFieldNamingConventions ? '_has_value' : 'HasValue'} = ${lineNumber + 1};'
+          '${fieldDescriptor.useProtoFieldNamingConventions ? '_has_value' : 'HasValue'} = $hasValueLineNumber;'
       : null;
 
   String? get fieldType;
 
   factory FieldCodeGenerator.fromFieldDescriptor(
-      FieldDescriptor fieldDescriptor, int lineNumber) {
-    var type = fieldDescriptor.itemType;
-    var typeName =
+    FieldDescriptor fieldDescriptor,
+    List<int> lineNumbers,
+  ) {
+    final type = fieldDescriptor.itemType;
+    final typeName =
         fieldDescriptor.itemType.getDisplayString(withNullability: false);
 
     if (type.isDartCoreString) {
-      return StringFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return StringFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (type.isDartCoreBool) {
-      return BoolFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return BoolFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (type.isDartCoreInt) {
-      return IntFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return IntFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (type.isDartCoreDouble) {
-      return DoubleFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return DoubleFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (typeName == (DateTime).toString()) {
-      return DateTimeFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return DateTimeFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (typeName == (Duration).toString()) {
-      return DurationFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return DurationFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (type.hasProto) {
-      return EntityFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return EntityFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
     if (type.isDartCoreMap) {
-      return MapFieldCodeGenerator(fieldDescriptor, lineNumber);
+      return MapFieldCodeGenerator(fieldDescriptor, lineNumbers);
     }
-    return GenericFieldCodeGenerator(fieldDescriptor, lineNumber);
+    return GenericFieldCodeGenerator(fieldDescriptor, lineNumbers);
   }
+}
+
+int _nextAvailable(List<int> numbers) {
+  int i = 0;
+  while (numbers.contains(++i)) {}
+  numbers.add(i);
+  return i;
 }

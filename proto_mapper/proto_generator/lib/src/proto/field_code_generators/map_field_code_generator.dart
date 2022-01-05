@@ -7,8 +7,8 @@ import 'external_proto_name.dart';
 
 class MapFieldCodeGenerator extends FieldCodeGenerator
     implements ExternalProtoNames {
-  MapFieldCodeGenerator(FieldDescriptor fieldDescriptor, int lineNumber)
-      : super(fieldDescriptor, lineNumber) {
+  MapFieldCodeGenerator(FieldDescriptor fieldDescriptor, List<int> lineNumbers)
+      : super(fieldDescriptor, lineNumbers) {
     final fieldElementType = fieldDescriptor.itemType;
 
     final packageName = fieldElementType.packageName;
