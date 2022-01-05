@@ -3,6 +3,37 @@
 part of 'recipe.dart';
 
 // **************************************************************************
+// AdaptedEntityGenerator
+// **************************************************************************
+
+class $RecipePermissions extends EntityPermissions {
+  const $RecipePermissions();
+
+  @override
+  String get create => 'create_recipe';
+
+  @override
+  String get delete => 'delete_recipe';
+
+  @override
+  String get read => 'read_recipe';
+
+  @override
+  String get update => 'update_recipe';
+}
+
+class $RecipeEntityAdapter implements EntityAdapter<Recipe> {
+  @override
+  final MapMapper<Recipe> mapMapper = const $RecipeMapMapper();
+
+  @override
+  final Validator validator = const $RecipeValidator();
+
+  @override
+  final EntityPermissions permissions = const $RecipePermissions();
+}
+
+// **************************************************************************
 // BuilderGenerator
 // **************************************************************************
 
@@ -91,37 +122,6 @@ class $RecipeDefaultsProvider {
   }
 
   String get title => '';
-}
-
-// **************************************************************************
-// EntityAdapterGenerator
-// **************************************************************************
-
-class $RecipePermissions extends EntityPermissions {
-  const $RecipePermissions();
-
-  @override
-  String get create => 'create_recipe';
-
-  @override
-  String get delete => 'delete_recipe';
-
-  @override
-  String get read => 'read_recipe';
-
-  @override
-  String get update => 'update_recipe';
-}
-
-class $RecipeEntityAdapter implements EntityAdapter<Recipe> {
-  @override
-  final MapMapper<Recipe> mapMapper = const $RecipeMapMapper();
-
-  @override
-  final Validator validator = const $RecipeValidator();
-
-  @override
-  final EntityPermissions permissions = const $RecipePermissions();
 }
 
 // **************************************************************************

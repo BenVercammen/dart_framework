@@ -8,6 +8,14 @@ builders:
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
 
+  adapted_entity_generator:
+    import: "package:squarealfa_entity_adapter_generator/squarealfa_entity_adapter_generator.dart"
+    builder_factories: ["adaptedEntityBuilder"]
+    build_extensions: {".dart": ["adapted_entity.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
+
   map_map_generator:
     import: "package:map_mapper_generator/map_mapper_generator.dart"
     builder_factories: ["mapMapBuilder"]
@@ -87,4 +95,3 @@ builders:
     auto_apply: dependents
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
-

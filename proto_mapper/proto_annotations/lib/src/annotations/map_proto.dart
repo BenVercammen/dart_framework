@@ -1,4 +1,4 @@
-import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 class MapProto {
   const MapProto({

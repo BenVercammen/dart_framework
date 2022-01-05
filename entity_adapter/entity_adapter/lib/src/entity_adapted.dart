@@ -2,7 +2,7 @@ import 'package:defaults_provider_annotations/defaults_provider_annotations.dart
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:proto_annotations/proto_annotations.dart';
 import 'package:squarealfa_entity_annotations/squarealfa_entity_annotations.dart';
-import 'package:squarealfa_generators_common/src/time_precision.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 /// Annotation that instructs several code generators to
 /// generate added features to PODO classes.

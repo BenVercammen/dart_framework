@@ -2,27 +2,28 @@ name: proto_generator
 description: Code generation of .proto and Dart mapper classes to facilitate the usage of PODOs (plain-old-dart-objects) with gRPC
 homepage: https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/proto_generator
 repository: https://github.com/squarealfa/dart_framework
-version: 3.0.0
+version: 3.0.1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   source_gen: ^1.2.1
-  proto_annotations: ^2.0.3
-  squarealfa_generators_common: ^2.0.1
+  proto_annotations: ^2.0.4
   decimal: ^2.0.0
   grpc: ^3.0.2
   analyzer: ^3.0.0
   build: ^2.0.0
   recase: ^4.0.0
+  squarealfa_common_types: ^1.0.0
+  squarealfa_generators_common: ^2.1.0
 
 dev_dependencies:
   lints: ^1.0.1
   test: ^1.17.0
 
-dependency_overrides:
-  proto_annotations:
-    path: ../proto_annotations
-  squarealfa_generators_common:
-    path: ../../generators_common
+# dependency_overrides:
+#   proto_annotations:
+#     path: ../proto_annotations
+#   squarealfa_generators_common:
+#     path: ../../generators_common

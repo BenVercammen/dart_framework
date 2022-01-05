@@ -9,3 +9,4 @@ export 'package:squarealfa_entity_annotations/squarealfa_entity_annotations.dart
 
 export 'package:defaults_provider_annotations/defaults_provider_annotations.dart';
 export 'package:squarealfa_entity_annotations/squarealfa_entity_annotations.dart';
+export 'package:squarealfa_common_types/squarealfa_common_types.dart';

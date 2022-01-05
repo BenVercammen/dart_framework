@@ -1,4 +1,4 @@
-import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 /// Annotate PODO class with MapMap in order to
 /// signal the code generator that it is to produce

@@ -5,7 +5,7 @@
 // **************************************************************************
 
 syntax = "proto3";
-
+      
 
 
 
@@ -14,7 +14,7 @@ message GRecipe
 {
   string title = 1;
   string description = 2;
-  bool descriptionHasValue = 3;
+  bool description_has_value = 3;
 }   
 
 message GListOfRecipe

@@ -2,7 +2,7 @@ import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 
 part 'ingredient.g.dart';
 
-@mapMap
+@mapMapped
 class Ingredient {
   final String description;
   final double quantity;

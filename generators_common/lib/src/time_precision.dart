@@ -1,9 +1,5 @@
 import 'package:source_gen/source_gen.dart';
-
-enum TimePrecision {
-  milliseconds,
-  microseconds,
-}
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 extension TimePrecisionConversions on TimePrecision {
   String get fromDurationProperty {

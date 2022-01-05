@@ -1,0 +1,4 @@
+enum TimePrecision {
+  milliseconds,
+  microseconds,
+}

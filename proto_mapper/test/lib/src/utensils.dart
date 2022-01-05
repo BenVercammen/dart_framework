@@ -1,7 +1,7 @@
-import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 import 'package:proto_annotations/proto_annotations.dart';
 import 'package:proto_generator_test/grpc/appliance_type.pbenum.dart';
 import 'package:proto_generator_test/grpc/utensils.pb.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 import 'appliance_type.dart';
 import 'recipe.dart';

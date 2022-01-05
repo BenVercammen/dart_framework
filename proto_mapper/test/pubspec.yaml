@@ -16,8 +16,8 @@ dev_dependencies:
   lints: ^1.0.1
   test: ^1.17.0
 
-dependency_overrides:
-  proto_annotations:
-    path: ../proto_annotations
-  squarealfa_generators_common:
-    path: ../../generators_common
+# dependency_overrides:
+#   proto_annotations:
+#     path: ../proto_annotations
+#   squarealfa_generators_common:
+#     path: ../../generators_common

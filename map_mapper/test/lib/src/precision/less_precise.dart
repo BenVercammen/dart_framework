@@ -1,5 +1,5 @@
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
-import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 part 'less_precise.g.dart';
 

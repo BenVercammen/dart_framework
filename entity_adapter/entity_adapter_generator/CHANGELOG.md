@@ -1,3 +1,15 @@
+## 3.0.3
+
+- Updated dependencies
+
+## 3.0.2
+
+- Fixed missing adapted_entity build declaration
+
+## 3.0.1
+
+- Fixed outdated dependency
+
 ## 3.0.0
 
 ### Breaking change

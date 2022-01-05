@@ -3,6 +3,7 @@ import 'package:analyzer/dart/element/type.dart';
 import 'package:proto_annotations/proto_annotations.dart';
 import 'package:proto_generator/src/proto_common.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {

@@ -29,8 +29,7 @@ class GRecipe extends $pb.GeneratedMessage {
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'descriptionHasValue',
-        protoName: 'descriptionHasValue')
+            : 'descriptionHasValue')
     ..hasRequiredFields = false;
 
   GRecipe._() : super();

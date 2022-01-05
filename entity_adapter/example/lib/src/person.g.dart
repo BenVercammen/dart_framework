@@ -3,6 +3,37 @@
 part of 'person.dart';
 
 // **************************************************************************
+// AdaptedEntityGenerator
+// **************************************************************************
+
+class $PersonPermissions extends EntityPermissions {
+  const $PersonPermissions();
+
+  @override
+  String get create => 'create_person';
+
+  @override
+  String get delete => 'delete_person';
+
+  @override
+  String get read => 'read_person';
+
+  @override
+  String get update => 'update_person';
+}
+
+class $PersonEntityAdapter implements EntityAdapter<Person> {
+  @override
+  final MapMapper<Person> mapMapper = const $PersonMapMapper();
+
+  @override
+  final Validator validator = const $PersonValidator();
+
+  @override
+  final EntityPermissions permissions = const $PersonPermissions();
+}
+
+// **************************************************************************
 // BuilderGenerator
 // **************************************************************************
 
@@ -91,37 +122,6 @@ class $PersonDefaultsProvider {
 
   List<Asset> get assets => const [];
   String get name => '';
-}
-
-// **************************************************************************
-// EntityAdapterGenerator
-// **************************************************************************
-
-class $PersonPermissions extends EntityPermissions {
-  const $PersonPermissions();
-
-  @override
-  String get create => 'create_person';
-
-  @override
-  String get delete => 'delete_person';
-
-  @override
-  String get read => 'read_person';
-
-  @override
-  String get update => 'update_person';
-}
-
-class $PersonEntityAdapter implements EntityAdapter<Person> {
-  @override
-  final MapMapper<Person> mapMapper = const $PersonMapMapper();
-
-  @override
-  final Validator validator = const $PersonValidator();
-
-  @override
-  final EntityPermissions permissions = const $PersonPermissions();
 }
 
 // **************************************************************************

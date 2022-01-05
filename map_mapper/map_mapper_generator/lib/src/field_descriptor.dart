@@ -2,6 +2,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {
   final MapMap mapMapAnnotation;

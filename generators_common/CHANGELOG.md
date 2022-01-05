@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Moved TimePrecision from this package to a dependency
+
 ## 2.0.3
 
 - Added extension to read TimePrecision from ConstantReader

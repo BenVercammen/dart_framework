@@ -1,3 +1,6 @@
+## 3.0.1
+- Exposing TimePrecision
+
 ## 3.0.0
 
 ### Breaking change

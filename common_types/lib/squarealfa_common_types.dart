@@ -1,8 +1,6 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library proto_mapper_example;
+library squarealfa_common_types;
 
-export 'src/recipe.dart';
-
-void main() {}
+export 'src/time_precision.dart';
