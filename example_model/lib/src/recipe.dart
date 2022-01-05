@@ -9,7 +9,7 @@ part 'recipe.g.dart';
 @proto // generate .proto message based on this .dart file
 // generate mapping code between the protoc generated code and this class.
 @mapProto
-@mapMap
+@mapMapped
 class Recipe {
   final String key;
 

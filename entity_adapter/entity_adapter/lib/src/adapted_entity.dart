@@ -50,8 +50,8 @@ class AdaptedEntity
     this.createDefaultsProviderBaseClass = false,
     this.createValidatableBaseClass = false,
     this.createBuilderBaseClass = false,
-    this.dateTimePrecision = TimePrecision.microseconds,
-    this.durationPrecision = TimePrecision.microseconds,
+    this.dateTimePrecision,
+    this.durationPrecision,
     this.useProtoFieldNamingConventions = true,
   });
 

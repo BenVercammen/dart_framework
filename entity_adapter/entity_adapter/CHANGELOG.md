@@ -1,3 +1,10 @@
+## 3.0.3
+- AdaptedEntity annotation does not set default precisions
+- Restored default precisions for EntityAdapted
+
+## 3.0.2
+- EntityAdapted annotation does not set default precisions
+
 ## 3.0.1
 - Exposing TimePrecision
 

@@ -1,17 +1,15 @@
-# targets:
-#   $default:
-#     builders:
-#       proto_generator:proto_mapper_generator:
-#         options:
-#           prefix: G # or '' for no prefix
-#           dateTimePrecision: microseconds
-#           generateProtoMapper: false
-#           generateMapMapper: false
+targets:
+  $default:
+    builders:
+      squarealfa_entity_adapter_generator:map_map_generator:
+        options:
+          durationPrecision: microseconds #may be milliseconds
 
+      squarealfa_entity_adapter_generator:proto_mapper_generator:
+        options:
+          durationPrecision: microseconds #may be milliseconds
+          dateTimePrecision: microseconds #may be milliseconds
 
-#       proto_generator:proto_generator:
-#         options:
-#           prefix: G # or '' for no prefix
-#           useProtoFieldNamingConventions: true
-#           package: mentoralfa
-      
+#          prefix: G # or '' for no prefix
+#          package: package_name
+

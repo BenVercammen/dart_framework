@@ -1,7 +1,6 @@
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:proto_annotations/proto_annotations.dart';
-import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
-
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 import 'grpc/ingredient.pb.dart';
 
 part 'ingredient.g.dart';

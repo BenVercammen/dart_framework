@@ -10,11 +10,11 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gCategoryDescriptor instead')
-const GCategory$json = const {
+const GCategory$json = {
   '1': 'GCategory',
-  '2': const [
-    const {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
-    const {
+  '2': [
+    {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
+    {
       '1': 'main_component',
       '3': 2,
       '4': 1,
@@ -22,7 +22,7 @@ const GCategory$json = const {
       '6': '.GComponent',
       '10': 'mainComponent'
     },
-    const {
+    {
       '1': 'alternative_component',
       '3': 3,
       '4': 1,
@@ -30,14 +30,14 @@ const GCategory$json = const {
       '6': '.GComponent',
       '10': 'alternativeComponent'
     },
-    const {
+    {
       '1': 'alternative_component_has_value',
       '3': 4,
       '4': 1,
       '5': 8,
       '10': 'alternativeComponentHasValue'
     },
-    const {
+    {
       '1': 'other_components',
       '3': 5,
       '4': 3,
@@ -45,7 +45,7 @@ const GCategory$json = const {
       '6': '.GComponent',
       '10': 'otherComponents'
     },
-    const {
+    {
       '1': 'secondary_components',
       '3': 6,
       '4': 3,
@@ -53,7 +53,7 @@ const GCategory$json = const {
       '6': '.GComponent',
       '10': 'secondaryComponents'
     },
-    const {
+    {
       '1': 'secondary_components_has_value',
       '3': 7,
       '4': 1,
@@ -67,17 +67,10 @@ const GCategory$json = const {
 final $typed_data.Uint8List gCategoryDescriptor = $convert.base64Decode(
     'CglHQ2F0ZWdvcnkSFAoFdGl0bGUYASABKAlSBXRpdGxlEjIKDm1haW5fY29tcG9uZW50GAIgASgLMgsuR0NvbXBvbmVudFINbWFpbkNvbXBvbmVudBJAChVhbHRlcm5hdGl2ZV9jb21wb25lbnQYAyABKAsyCy5HQ29tcG9uZW50UhRhbHRlcm5hdGl2ZUNvbXBvbmVudBJFCh9hbHRlcm5hdGl2ZV9jb21wb25lbnRfaGFzX3ZhbHVlGAQgASgIUhxhbHRlcm5hdGl2ZUNvbXBvbmVudEhhc1ZhbHVlEjYKEG90aGVyX2NvbXBvbmVudHMYBSADKAsyCy5HQ29tcG9uZW50Ug9vdGhlckNvbXBvbmVudHMSPgoUc2Vjb25kYXJ5X2NvbXBvbmVudHMYBiADKAsyCy5HQ29tcG9uZW50UhNzZWNvbmRhcnlDb21wb25lbnRzEkMKHnNlY29uZGFyeV9jb21wb25lbnRzX2hhc192YWx1ZRgHIAEoCFIbc2Vjb25kYXJ5Q29tcG9uZW50c0hhc1ZhbHVl');
 @$core.Deprecated('Use gListOfCategoryDescriptor instead')
-const GListOfCategory$json = const {
+const GListOfCategory$json = {
   '1': 'GListOfCategory',
-  '2': const [
-    const {
-      '1': 'items',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.GCategory',
-      '10': 'items'
-    },
+  '2': [
+    {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.GCategory', '10': 'items'},
   ],
 };
 
