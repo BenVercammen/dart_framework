@@ -1,3 +1,6 @@
+## 3.0.2
+- Use double instead of single quotes for import statements in `.proto`  files
+
 ## 3.0.1
 - Updated dependencies
 

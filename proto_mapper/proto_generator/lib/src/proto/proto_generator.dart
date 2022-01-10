@@ -81,7 +81,7 @@ class ProtoGenerator extends GeneratorForAnnotation<Proto> {
     for (var externalProtoName in externalProtoNames) {
       // Prevent .proto file from importing itself or multiple imports
       if (!alreadyImported.contains(externalProtoName)) {
-        imports.writeln('import \'$externalProtoName\';');
+        imports.writeln('import "$externalProtoName";');
         alreadyImported.add(externalProtoName);
       }
     }

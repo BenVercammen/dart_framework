@@ -71,7 +71,7 @@ class _Generator extends ProtoServicesGeneratorBase {
 
     var imports = StringBuffer();
     for (var externalProtoName in externalProtoNames) {
-      imports.writeln('import \'$externalProtoName\';');
+      imports.writeln('import "$externalProtoName";');
     }
 
     final services = methodDeclarations == ''

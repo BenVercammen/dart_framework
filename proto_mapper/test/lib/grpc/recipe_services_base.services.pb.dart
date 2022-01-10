@@ -5,13 +5,17 @@
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'recipe.pb.dart' as $0;
+import 'recipe.pb.dart' as $4;
+import 'key.pb.dart' as $5;
+import 'calc_parameters.pb.dart' as $6;
+import 'calc_result.pb.dart' as $7;
 
-import 'recipe_type.pbenum.dart' as $9;
+import 'recipe_type.pbenum.dart' as $8;
 
 class G_GRecipeService_Delete_Return extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -149,13 +153,13 @@ class G_GRecipeService_SearchNullable_Return extends $pb.GeneratedMessage {
           ? ''
           : 'G_GRecipeService_SearchNullable_Return',
       createEmptyInstance: create)
-    ..pc<$0.GRecipe>(
+    ..pc<$4.GRecipe>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -165,7 +169,7 @@ class G_GRecipeService_SearchNullable_Return extends $pb.GeneratedMessage {
 
   G_GRecipeService_SearchNullable_Return._() : super();
   factory G_GRecipeService_SearchNullable_Return({
-    $core.Iterable<$0.GRecipe>? value,
+    $core.Iterable<$4.GRecipe>? value,
     $core.bool? valueHasValue,
   }) {
     final _result = create();
@@ -211,7 +215,7 @@ class G_GRecipeService_SearchNullable_Return extends $pb.GeneratedMessage {
   static G_GRecipeService_SearchNullable_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$0.GRecipe> get value => $_getList(0);
+  $core.List<$4.GRecipe> get value => $_getList(0);
 
   @$pb.TagNumber(2)
   $core.bool get valueHasValue => $_getBF(1);
@@ -319,12 +323,12 @@ class G_GRecipeService_GetNullable_Return extends $pb.GeneratedMessage {
           ? ''
           : 'G_GRecipeService_GetNullable_Return',
       createEmptyInstance: create)
-    ..aOM<$0.GRecipe>(
+    ..aOM<$4.GRecipe>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -334,7 +338,7 @@ class G_GRecipeService_GetNullable_Return extends $pb.GeneratedMessage {
 
   G_GRecipeService_GetNullable_Return._() : super();
   factory G_GRecipeService_GetNullable_Return({
-    $0.GRecipe? value,
+    $4.GRecipe? value,
     $core.bool? valueHasValue,
   }) {
     final _result = create();
@@ -380,9 +384,9 @@ class G_GRecipeService_GetNullable_Return extends $pb.GeneratedMessage {
   static G_GRecipeService_GetNullable_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $0.GRecipe get value => $_getN(0);
+  $4.GRecipe get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($0.GRecipe v) {
+  set value($4.GRecipe v) {
     setField(1, v);
   }
 
@@ -391,7 +395,7 @@ class G_GRecipeService_GetNullable_Return extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearValue() => clearField(1);
   @$pb.TagNumber(1)
-  $0.GRecipe ensureValue() => $_ensure(0);
+  $4.GRecipe ensureValue() => $_ensure(0);
 
   @$pb.TagNumber(2)
   $core.bool get valueHasValue => $_getBF(1);
@@ -819,20 +823,20 @@ class G_GRecipeService_GetMainRecipeType_Return extends $pb.GeneratedMessage {
           ? ''
           : 'G_GRecipeService_GetMainRecipeType_Return',
       createEmptyInstance: create)
-    ..e<$9.GRecipeTypes>(
+    ..e<$8.GRecipeTypes>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $9.GRecipeTypes.G_RECIPE_TYPES_COOK,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        defaultOrMaker: $8.GRecipeTypes.G_RECIPE_TYPES_COOK,
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..hasRequiredFields = false;
 
   G_GRecipeService_GetMainRecipeType_Return._() : super();
   factory G_GRecipeService_GetMainRecipeType_Return({
-    $9.GRecipeTypes? value,
+    $8.GRecipeTypes? value,
   }) {
     final _result = create();
     if (value != null) {
@@ -875,9 +879,9 @@ class G_GRecipeService_GetMainRecipeType_Return extends $pb.GeneratedMessage {
   static G_GRecipeService_GetMainRecipeType_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $9.GRecipeTypes get value => $_getN(0);
+  $8.GRecipeTypes get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($9.GRecipeTypes v) {
+  set value($8.GRecipeTypes v) {
     setField(1, v);
   }
 
@@ -945,15 +949,15 @@ class G_GRecipeService_GetMainRecipeTypeNullable_Return
           ? ''
           : 'G_GRecipeService_GetMainRecipeTypeNullable_Return',
       createEmptyInstance: create)
-    ..e<$9.GRecipeTypes>(
+    ..e<$8.GRecipeTypes>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $9.GRecipeTypes.G_RECIPE_TYPES_COOK,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        defaultOrMaker: $8.GRecipeTypes.G_RECIPE_TYPES_COOK,
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -963,7 +967,7 @@ class G_GRecipeService_GetMainRecipeTypeNullable_Return
 
   G_GRecipeService_GetMainRecipeTypeNullable_Return._() : super();
   factory G_GRecipeService_GetMainRecipeTypeNullable_Return({
-    $9.GRecipeTypes? value,
+    $8.GRecipeTypes? value,
     $core.bool? valueHasValue,
   }) {
     final _result = create();
@@ -1014,9 +1018,9 @@ class G_GRecipeService_GetMainRecipeTypeNullable_Return
   static G_GRecipeService_GetMainRecipeTypeNullable_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $9.GRecipeTypes get value => $_getN(0);
+  $8.GRecipeTypes get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($9.GRecipeTypes v) {
+  set value($8.GRecipeTypes v) {
     setField(1, v);
   }
 
@@ -1092,19 +1096,19 @@ class G_GRecipeService_GetRecipeTypeList_Return extends $pb.GeneratedMessage {
           ? ''
           : 'G_GRecipeService_GetRecipeTypeList_Return',
       createEmptyInstance: create)
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..hasRequiredFields = false;
 
   G_GRecipeService_GetRecipeTypeList_Return._() : super();
   factory G_GRecipeService_GetRecipeTypeList_Return({
-    $core.Iterable<$9.GRecipeTypes>? value,
+    $core.Iterable<$8.GRecipeTypes>? value,
   }) {
     final _result = create();
     if (value != null) {
@@ -1147,7 +1151,7 @@ class G_GRecipeService_GetRecipeTypeList_Return extends $pb.GeneratedMessage {
   static G_GRecipeService_GetRecipeTypeList_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$9.GRecipeTypes> get value => $_getList(0);
+  $core.List<$8.GRecipeTypes> get value => $_getList(0);
 }
 
 class G_GRecipeService_GetRecipeTypeListNullable_Parameters
@@ -1208,14 +1212,14 @@ class G_GRecipeService_GetRecipeTypeListNullable_Return
           ? ''
           : 'G_GRecipeService_GetRecipeTypeListNullable_Return',
       createEmptyInstance: create)
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'value',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1225,7 +1229,7 @@ class G_GRecipeService_GetRecipeTypeListNullable_Return
 
   G_GRecipeService_GetRecipeTypeListNullable_Return._() : super();
   factory G_GRecipeService_GetRecipeTypeListNullable_Return({
-    $core.Iterable<$9.GRecipeTypes>? value,
+    $core.Iterable<$8.GRecipeTypes>? value,
     $core.bool? valueHasValue,
   }) {
     final _result = create();
@@ -1276,7 +1280,7 @@ class G_GRecipeService_GetRecipeTypeListNullable_Return
   static G_GRecipeService_GetRecipeTypeListNullable_Return? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$9.GRecipeTypes> get value => $_getList(0);
+  $core.List<$8.GRecipeTypes> get value => $_getList(0);
 
   @$pb.TagNumber(2)
   $core.bool get valueHasValue => $_getBF(1);
@@ -1551,21 +1555,21 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
             ? ''
             : 'pInt',
         $pb.PbFieldType.O3)
-    ..e<$9.GRecipeTypes>(
+    ..e<$8.GRecipeTypes>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pRecipeTypes',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $9.GRecipeTypes.G_RECIPE_TYPES_COOK,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
-    ..aOM<$0.GRecipe>(
+        defaultOrMaker: $8.GRecipeTypes.G_RECIPE_TYPES_COOK,
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
+    ..aOM<$4.GRecipe>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pRecipe',
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..pPS(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1577,21 +1581,21 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
             ? ''
             : 'pListInts',
         $pb.PbFieldType.P3)
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
-    ..pc<$0.GRecipe>(
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
+    ..pc<$4.GRecipe>(
         8,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListRecipes',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..pPS(
         9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1603,21 +1607,21 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
             ? ''
             : 'pSetInt',
         $pb.PbFieldType.P3)
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         11,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
-    ..pc<$0.GRecipe>(
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
+    ..pc<$4.GRecipe>(
         12,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetRecipe',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..pPS(
         13,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1629,41 +1633,41 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
             ? ''
             : 'pIterableInt',
         $pb.PbFieldType.P3)
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         15,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
-    ..pc<$0.GRecipe>(
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
+    ..pc<$4.GRecipe>(
         16,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableRecipe',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..hasRequiredFields = false;
 
   G_GRecipeService_ReceiveLotsOfArgs_Parameters._() : super();
   factory G_GRecipeService_ReceiveLotsOfArgs_Parameters({
     $core.String? pString,
     $core.int? pInt,
-    $9.GRecipeTypes? pRecipeTypes,
-    $0.GRecipe? pRecipe,
+    $8.GRecipeTypes? pRecipeTypes,
+    $4.GRecipe? pRecipe,
     $core.Iterable<$core.String>? pListStrings,
     $core.Iterable<$core.int>? pListInts,
-    $core.Iterable<$9.GRecipeTypes>? pListRecipeTypes,
-    $core.Iterable<$0.GRecipe>? pListRecipes,
+    $core.Iterable<$8.GRecipeTypes>? pListRecipeTypes,
+    $core.Iterable<$4.GRecipe>? pListRecipes,
     $core.Iterable<$core.String>? pSetString,
     $core.Iterable<$core.int>? pSetInt,
-    $core.Iterable<$9.GRecipeTypes>? pSetRecipeTypes,
-    $core.Iterable<$0.GRecipe>? pSetRecipe,
+    $core.Iterable<$8.GRecipeTypes>? pSetRecipeTypes,
+    $core.Iterable<$4.GRecipe>? pSetRecipe,
     $core.Iterable<$core.String>? pIterableString,
     $core.Iterable<$core.int>? pIterableInt,
-    $core.Iterable<$9.GRecipeTypes>? pIterableRecipeTypes,
-    $core.Iterable<$0.GRecipe>? pIterableRecipe,
+    $core.Iterable<$8.GRecipeTypes>? pIterableRecipeTypes,
+    $core.Iterable<$4.GRecipe>? pIterableRecipe,
   }) {
     final _result = create();
     if (pString != null) {
@@ -1777,9 +1781,9 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   void clearPInt() => clearField(2);
 
   @$pb.TagNumber(3)
-  $9.GRecipeTypes get pRecipeTypes => $_getN(2);
+  $8.GRecipeTypes get pRecipeTypes => $_getN(2);
   @$pb.TagNumber(3)
-  set pRecipeTypes($9.GRecipeTypes v) {
+  set pRecipeTypes($8.GRecipeTypes v) {
     setField(3, v);
   }
 
@@ -1789,9 +1793,9 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   void clearPRecipeTypes() => clearField(3);
 
   @$pb.TagNumber(4)
-  $0.GRecipe get pRecipe => $_getN(3);
+  $4.GRecipe get pRecipe => $_getN(3);
   @$pb.TagNumber(4)
-  set pRecipe($0.GRecipe v) {
+  set pRecipe($4.GRecipe v) {
     setField(4, v);
   }
 
@@ -1800,7 +1804,7 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   @$pb.TagNumber(4)
   void clearPRecipe() => clearField(4);
   @$pb.TagNumber(4)
-  $0.GRecipe ensurePRecipe() => $_ensure(3);
+  $4.GRecipe ensurePRecipe() => $_ensure(3);
 
   @$pb.TagNumber(5)
   $core.List<$core.String> get pListStrings => $_getList(4);
@@ -1809,10 +1813,10 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   $core.List<$core.int> get pListInts => $_getList(5);
 
   @$pb.TagNumber(7)
-  $core.List<$9.GRecipeTypes> get pListRecipeTypes => $_getList(6);
+  $core.List<$8.GRecipeTypes> get pListRecipeTypes => $_getList(6);
 
   @$pb.TagNumber(8)
-  $core.List<$0.GRecipe> get pListRecipes => $_getList(7);
+  $core.List<$4.GRecipe> get pListRecipes => $_getList(7);
 
   @$pb.TagNumber(9)
   $core.List<$core.String> get pSetString => $_getList(8);
@@ -1821,10 +1825,10 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   $core.List<$core.int> get pSetInt => $_getList(9);
 
   @$pb.TagNumber(11)
-  $core.List<$9.GRecipeTypes> get pSetRecipeTypes => $_getList(10);
+  $core.List<$8.GRecipeTypes> get pSetRecipeTypes => $_getList(10);
 
   @$pb.TagNumber(12)
-  $core.List<$0.GRecipe> get pSetRecipe => $_getList(11);
+  $core.List<$4.GRecipe> get pSetRecipe => $_getList(11);
 
   @$pb.TagNumber(13)
   $core.List<$core.String> get pIterableString => $_getList(12);
@@ -1833,10 +1837,10 @@ class G_GRecipeService_ReceiveLotsOfArgs_Parameters
   $core.List<$core.int> get pIterableInt => $_getList(13);
 
   @$pb.TagNumber(15)
-  $core.List<$9.GRecipeTypes> get pIterableRecipeTypes => $_getList(14);
+  $core.List<$8.GRecipeTypes> get pIterableRecipeTypes => $_getList(14);
 
   @$pb.TagNumber(16)
-  $core.List<$0.GRecipe> get pIterableRecipe => $_getList(15);
+  $core.List<$4.GRecipe> get pIterableRecipe => $_getList(15);
 }
 
 class G_GRecipeService_ReceiveLotsOfArgs_Return extends $pb.GeneratedMessage {
@@ -1912,26 +1916,26 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIntHasValue')
-    ..e<$9.GRecipeTypes>(
+    ..e<$8.GRecipeTypes>(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pRecipeTypes',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $9.GRecipeTypes.G_RECIPE_TYPES_COOK,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        defaultOrMaker: $8.GRecipeTypes.G_RECIPE_TYPES_COOK,
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pRecipeTypesHasValue')
-    ..aOM<$0.GRecipe>(
+    ..aOM<$4.GRecipe>(
         7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pRecipe',
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         8,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -1958,26 +1962,26 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListIntsHasValue')
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         13,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         14,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListRecipeTypesHasValue')
-    ..pc<$0.GRecipe>(
+    ..pc<$4.GRecipe>(
         15,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pListRecipes',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         16,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -2004,26 +2008,26 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetIntHasValue')
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         21,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         22,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetRecipeTypesHasValue')
-    ..pc<$0.GRecipe>(
+    ..pc<$4.GRecipe>(
         23,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pSetRecipe',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         24,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -2050,26 +2054,26 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableIntHasValue')
-    ..pc<$9.GRecipeTypes>(
+    ..pc<$8.GRecipeTypes>(
         29,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableRecipeTypes',
         $pb.PbFieldType.PE,
-        valueOf: $9.GRecipeTypes.valueOf,
-        enumValues: $9.GRecipeTypes.values)
+        valueOf: $8.GRecipeTypes.valueOf,
+        enumValues: $8.GRecipeTypes.values)
     ..aOB(
         30,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableRecipeTypesHasValue')
-    ..pc<$0.GRecipe>(
+    ..pc<$4.GRecipe>(
         31,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'pIterableRecipe',
         $pb.PbFieldType.PM,
-        subBuilder: $0.GRecipe.create)
+        subBuilder: $4.GRecipe.create)
     ..aOB(
         32,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -2083,33 +2087,33 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
     $core.bool? pStringHasValue,
     $core.int? pInt,
     $core.bool? pIntHasValue,
-    $9.GRecipeTypes? pRecipeTypes,
+    $8.GRecipeTypes? pRecipeTypes,
     $core.bool? pRecipeTypesHasValue,
-    $0.GRecipe? pRecipe,
+    $4.GRecipe? pRecipe,
     $core.bool? pRecipeHasValue,
     $core.Iterable<$core.String>? pListStrings,
     $core.bool? pListStringsHasValue,
     $core.Iterable<$core.int>? pListInts,
     $core.bool? pListIntsHasValue,
-    $core.Iterable<$9.GRecipeTypes>? pListRecipeTypes,
+    $core.Iterable<$8.GRecipeTypes>? pListRecipeTypes,
     $core.bool? pListRecipeTypesHasValue,
-    $core.Iterable<$0.GRecipe>? pListRecipes,
+    $core.Iterable<$4.GRecipe>? pListRecipes,
     $core.bool? pListRecipesHasValue,
     $core.Iterable<$core.String>? pSetString,
     $core.bool? pSetStringHasValue,
     $core.Iterable<$core.int>? pSetInt,
     $core.bool? pSetIntHasValue,
-    $core.Iterable<$9.GRecipeTypes>? pSetRecipeTypes,
+    $core.Iterable<$8.GRecipeTypes>? pSetRecipeTypes,
     $core.bool? pSetRecipeTypesHasValue,
-    $core.Iterable<$0.GRecipe>? pSetRecipe,
+    $core.Iterable<$4.GRecipe>? pSetRecipe,
     $core.bool? pSetRecipeHasValue,
     $core.Iterable<$core.String>? pIterableString,
     $core.bool? pIterableStringHasValue,
     $core.Iterable<$core.int>? pIterableInt,
     $core.bool? pIterableIntHasValue,
-    $core.Iterable<$9.GRecipeTypes>? pIterableRecipeTypes,
+    $core.Iterable<$8.GRecipeTypes>? pIterableRecipeTypes,
     $core.bool? pIterableRecipeTypesHasValue,
-    $core.Iterable<$0.GRecipe>? pIterableRecipe,
+    $core.Iterable<$4.GRecipe>? pIterableRecipe,
     $core.bool? pIterableRecipeHasValue,
   }) {
     final _result = create();
@@ -2299,9 +2303,9 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPIntHasValue() => clearField(4);
 
   @$pb.TagNumber(5)
-  $9.GRecipeTypes get pRecipeTypes => $_getN(4);
+  $8.GRecipeTypes get pRecipeTypes => $_getN(4);
   @$pb.TagNumber(5)
-  set pRecipeTypes($9.GRecipeTypes v) {
+  set pRecipeTypes($8.GRecipeTypes v) {
     setField(5, v);
   }
 
@@ -2323,9 +2327,9 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPRecipeTypesHasValue() => clearField(6);
 
   @$pb.TagNumber(7)
-  $0.GRecipe get pRecipe => $_getN(6);
+  $4.GRecipe get pRecipe => $_getN(6);
   @$pb.TagNumber(7)
-  set pRecipe($0.GRecipe v) {
+  set pRecipe($4.GRecipe v) {
     setField(7, v);
   }
 
@@ -2334,7 +2338,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   @$pb.TagNumber(7)
   void clearPRecipe() => clearField(7);
   @$pb.TagNumber(7)
-  $0.GRecipe ensurePRecipe() => $_ensure(6);
+  $4.GRecipe ensurePRecipe() => $_ensure(6);
 
   @$pb.TagNumber(8)
   $core.bool get pRecipeHasValue => $_getBF(7);
@@ -2379,7 +2383,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPListIntsHasValue() => clearField(12);
 
   @$pb.TagNumber(13)
-  $core.List<$9.GRecipeTypes> get pListRecipeTypes => $_getList(12);
+  $core.List<$8.GRecipeTypes> get pListRecipeTypes => $_getList(12);
 
   @$pb.TagNumber(14)
   $core.bool get pListRecipeTypesHasValue => $_getBF(13);
@@ -2394,7 +2398,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPListRecipeTypesHasValue() => clearField(14);
 
   @$pb.TagNumber(15)
-  $core.List<$0.GRecipe> get pListRecipes => $_getList(14);
+  $core.List<$4.GRecipe> get pListRecipes => $_getList(14);
 
   @$pb.TagNumber(16)
   $core.bool get pListRecipesHasValue => $_getBF(15);
@@ -2439,7 +2443,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPSetIntHasValue() => clearField(20);
 
   @$pb.TagNumber(21)
-  $core.List<$9.GRecipeTypes> get pSetRecipeTypes => $_getList(20);
+  $core.List<$8.GRecipeTypes> get pSetRecipeTypes => $_getList(20);
 
   @$pb.TagNumber(22)
   $core.bool get pSetRecipeTypesHasValue => $_getBF(21);
@@ -2454,7 +2458,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPSetRecipeTypesHasValue() => clearField(22);
 
   @$pb.TagNumber(23)
-  $core.List<$0.GRecipe> get pSetRecipe => $_getList(22);
+  $core.List<$4.GRecipe> get pSetRecipe => $_getList(22);
 
   @$pb.TagNumber(24)
   $core.bool get pSetRecipeHasValue => $_getBF(23);
@@ -2499,7 +2503,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPIterableIntHasValue() => clearField(28);
 
   @$pb.TagNumber(29)
-  $core.List<$9.GRecipeTypes> get pIterableRecipeTypes => $_getList(28);
+  $core.List<$8.GRecipeTypes> get pIterableRecipeTypes => $_getList(28);
 
   @$pb.TagNumber(30)
   $core.bool get pIterableRecipeTypesHasValue => $_getBF(29);
@@ -2514,7 +2518,7 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters
   void clearPIterableRecipeTypesHasValue() => clearField(30);
 
   @$pb.TagNumber(31)
-  $core.List<$0.GRecipe> get pIterableRecipe => $_getList(30);
+  $core.List<$4.GRecipe> get pIterableRecipe => $_getList(30);
 
   @$pb.TagNumber(32)
   $core.bool get pIterableRecipeHasValue => $_getBF(31);
@@ -2594,4 +2598,169 @@ class G_GRecipeService_ReceiveLotsOfNullableArgs_Return
 
   @$pb.TagNumber(1)
   $core.List<$core.int> get value => $_getList(0);
+}
+
+class GRecipeServiceApi {
+  $pb.RpcClient _client;
+  GRecipeServiceApi(this._client);
+
+  $async.Future<$4.GRecipe> create_(
+      $pb.ClientContext? ctx, $4.GRecipe request) {
+    var emptyResponse = $4.GRecipe();
+    return _client.invoke<$4.GRecipe>(
+        ctx, 'GRecipeService', 'Create', request, emptyResponse);
+  }
+
+  $async.Future<$4.GRecipe> update($pb.ClientContext? ctx, $4.GRecipe request) {
+    var emptyResponse = $4.GRecipe();
+    return _client.invoke<$4.GRecipe>(
+        ctx, 'GRecipeService', 'Update', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_Delete_Return> delete(
+      $pb.ClientContext? ctx, $5.GKey request) {
+    var emptyResponse = G_GRecipeService_Delete_Return();
+    return _client.invoke<G_GRecipeService_Delete_Return>(
+        ctx, 'GRecipeService', 'Delete', request, emptyResponse);
+  }
+
+  $async.Future<$4.GRecipe> get($pb.ClientContext? ctx, $5.GKey request) {
+    var emptyResponse = $4.GRecipe();
+    return _client.invoke<$4.GRecipe>(
+        ctx, 'GRecipeService', 'Get', request, emptyResponse);
+  }
+
+  $async.Future<$4.GListOfRecipe> search(
+      $pb.ClientContext? ctx, G_GRecipeService_Search_Parameters request) {
+    var emptyResponse = $4.GListOfRecipe();
+    return _client.invoke<$4.GListOfRecipe>(
+        ctx, 'GRecipeService', 'Search', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_SearchNullable_Return> searchNullable(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_SearchNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_SearchNullable_Return();
+    return _client.invoke<G_GRecipeService_SearchNullable_Return>(
+        ctx, 'GRecipeService', 'SearchNullable', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_InsertMany_Return> insertMany(
+      $pb.ClientContext? ctx, $4.GListOfRecipe request) {
+    var emptyResponse = G_GRecipeService_InsertMany_Return();
+    return _client.invoke<G_GRecipeService_InsertMany_Return>(
+        ctx, 'GRecipeService', 'InsertMany', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetNullable_Return> getNullable(
+      $pb.ClientContext? ctx, G_GRecipeService_GetNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetNullable_Return();
+    return _client.invoke<G_GRecipeService_GetNullable_Return>(
+        ctx, 'GRecipeService', 'GetNullable', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_Count_Return> count(
+      $pb.ClientContext? ctx, G_GRecipeService_Count_Parameters request) {
+    var emptyResponse = G_GRecipeService_Count_Return();
+    return _client.invoke<G_GRecipeService_Count_Return>(
+        ctx, 'GRecipeService', 'Count', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_CountNullable_Return> countNullable(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_CountNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_CountNullable_Return();
+    return _client.invoke<G_GRecipeService_CountNullable_Return>(
+        ctx, 'GRecipeService', 'CountNullable', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_Reindex_Return> reindex(
+      $pb.ClientContext? ctx, G_GRecipeService_Reindex_Parameters request) {
+    var emptyResponse = G_GRecipeService_Reindex_Return();
+    return _client.invoke<G_GRecipeService_Reindex_Return>(
+        ctx, 'GRecipeService', 'Reindex', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetMainRecipeType_Return> getMainRecipeType(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_GetMainRecipeType_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetMainRecipeType_Return();
+    return _client.invoke<G_GRecipeService_GetMainRecipeType_Return>(
+        ctx, 'GRecipeService', 'GetMainRecipeType', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetMainRecipeTypeNullable_Return>
+      getMainRecipeTypeNullable($pb.ClientContext? ctx,
+          G_GRecipeService_GetMainRecipeTypeNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetMainRecipeTypeNullable_Return();
+    return _client.invoke<G_GRecipeService_GetMainRecipeTypeNullable_Return>(
+        ctx,
+        'GRecipeService',
+        'GetMainRecipeTypeNullable',
+        request,
+        emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetRecipeTypeList_Return> getRecipeTypeList(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_GetRecipeTypeList_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetRecipeTypeList_Return();
+    return _client.invoke<G_GRecipeService_GetRecipeTypeList_Return>(
+        ctx, 'GRecipeService', 'GetRecipeTypeList', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetRecipeTypeListNullable_Return>
+      getRecipeTypeListNullable($pb.ClientContext? ctx,
+          G_GRecipeService_GetRecipeTypeListNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetRecipeTypeListNullable_Return();
+    return _client.invoke<G_GRecipeService_GetRecipeTypeListNullable_Return>(
+        ctx,
+        'GRecipeService',
+        'GetRecipeTypeListNullable',
+        request,
+        emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetListOfInts_Return> getListOfInts(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_GetListOfInts_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetListOfInts_Return();
+    return _client.invoke<G_GRecipeService_GetListOfInts_Return>(
+        ctx, 'GRecipeService', 'GetListOfInts', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_GetListOfIntsNullable_Return>
+      getListOfIntsNullable($pb.ClientContext? ctx,
+          G_GRecipeService_GetListOfIntsNullable_Parameters request) {
+    var emptyResponse = G_GRecipeService_GetListOfIntsNullable_Return();
+    return _client.invoke<G_GRecipeService_GetListOfIntsNullable_Return>(
+        ctx, 'GRecipeService', 'GetListOfIntsNullable', request, emptyResponse);
+  }
+
+  $async.Future<$7.GCalcResult> doCalculation(
+      $pb.ClientContext? ctx, $6.GCalcParameters request) {
+    var emptyResponse = $7.GCalcResult();
+    return _client.invoke<$7.GCalcResult>(
+        ctx, 'GRecipeService', 'DoCalculation', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_ReceiveLotsOfArgs_Return> receiveLotsOfArgs(
+      $pb.ClientContext? ctx,
+      G_GRecipeService_ReceiveLotsOfArgs_Parameters request) {
+    var emptyResponse = G_GRecipeService_ReceiveLotsOfArgs_Return();
+    return _client.invoke<G_GRecipeService_ReceiveLotsOfArgs_Return>(
+        ctx, 'GRecipeService', 'ReceiveLotsOfArgs', request, emptyResponse);
+  }
+
+  $async.Future<G_GRecipeService_ReceiveLotsOfNullableArgs_Return>
+      receiveLotsOfNullableArgs($pb.ClientContext? ctx,
+          G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters request) {
+    var emptyResponse = G_GRecipeService_ReceiveLotsOfNullableArgs_Return();
+    return _client.invoke<G_GRecipeService_ReceiveLotsOfNullableArgs_Return>(
+        ctx,
+        'GRecipeService',
+        'ReceiveLotsOfNullableArgs',
+        request,
+        emptyResponse);
+  }
 }

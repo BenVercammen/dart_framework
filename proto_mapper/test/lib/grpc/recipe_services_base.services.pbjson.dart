@@ -8,6 +8,13 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+import 'recipe.pbjson.dart' as $4;
+import 'category.pbjson.dart' as $2;
+import 'component.pbjson.dart' as $0;
+import 'ingredient.pbjson.dart' as $3;
+import 'key.pbjson.dart' as $5;
+import 'calc_parameters.pbjson.dart' as $6;
+import 'calc_result.pbjson.dart' as $7;
 
 @$core.Deprecated('Use g_GRecipeService_Delete_ReturnDescriptor instead')
 const G_GRecipeService_Delete_Return$json = {
@@ -632,3 +639,159 @@ final $typed_data.Uint8List
     g_GRecipeService_ReceiveLotsOfNullableArgs_ReturnDescriptor =
     $convert.base64Decode(
         'CjFHX0dSZWNpcGVTZXJ2aWNlX1JlY2VpdmVMb3RzT2ZOdWxsYWJsZUFyZ3NfUmV0dXJuEhQKBXZhbHVlGAEgAygFUgV2YWx1ZQ==');
+const $core.Map<$core.String, $core.dynamic> GRecipeServiceBase$json = {
+  '1': 'GRecipeService',
+  '2': [
+    {'1': 'Create', '2': '.GRecipe', '3': '.GRecipe'},
+    {'1': 'Update', '2': '.GRecipe', '3': '.GRecipe'},
+    {'1': 'Delete', '2': '.GKey', '3': '.G_GRecipeService_Delete_Return'},
+    {'1': 'Get', '2': '.GKey', '3': '.GRecipe'},
+    {
+      '1': 'Search',
+      '2': '.G_GRecipeService_Search_Parameters',
+      '3': '.GListOfRecipe'
+    },
+    {
+      '1': 'SearchNullable',
+      '2': '.G_GRecipeService_SearchNullable_Parameters',
+      '3': '.G_GRecipeService_SearchNullable_Return'
+    },
+    {
+      '1': 'InsertMany',
+      '2': '.GListOfRecipe',
+      '3': '.G_GRecipeService_InsertMany_Return'
+    },
+    {
+      '1': 'GetNullable',
+      '2': '.G_GRecipeService_GetNullable_Parameters',
+      '3': '.G_GRecipeService_GetNullable_Return'
+    },
+    {
+      '1': 'Count',
+      '2': '.G_GRecipeService_Count_Parameters',
+      '3': '.G_GRecipeService_Count_Return'
+    },
+    {
+      '1': 'CountNullable',
+      '2': '.G_GRecipeService_CountNullable_Parameters',
+      '3': '.G_GRecipeService_CountNullable_Return'
+    },
+    {
+      '1': 'Reindex',
+      '2': '.G_GRecipeService_Reindex_Parameters',
+      '3': '.G_GRecipeService_Reindex_Return'
+    },
+    {
+      '1': 'GetMainRecipeType',
+      '2': '.G_GRecipeService_GetMainRecipeType_Parameters',
+      '3': '.G_GRecipeService_GetMainRecipeType_Return'
+    },
+    {
+      '1': 'GetMainRecipeTypeNullable',
+      '2': '.G_GRecipeService_GetMainRecipeTypeNullable_Parameters',
+      '3': '.G_GRecipeService_GetMainRecipeTypeNullable_Return'
+    },
+    {
+      '1': 'GetRecipeTypeList',
+      '2': '.G_GRecipeService_GetRecipeTypeList_Parameters',
+      '3': '.G_GRecipeService_GetRecipeTypeList_Return'
+    },
+    {
+      '1': 'GetRecipeTypeListNullable',
+      '2': '.G_GRecipeService_GetRecipeTypeListNullable_Parameters',
+      '3': '.G_GRecipeService_GetRecipeTypeListNullable_Return'
+    },
+    {
+      '1': 'GetListOfInts',
+      '2': '.G_GRecipeService_GetListOfInts_Parameters',
+      '3': '.G_GRecipeService_GetListOfInts_Return'
+    },
+    {
+      '1': 'GetListOfIntsNullable',
+      '2': '.G_GRecipeService_GetListOfIntsNullable_Parameters',
+      '3': '.G_GRecipeService_GetListOfIntsNullable_Return'
+    },
+    {'1': 'DoCalculation', '2': '.GCalcParameters', '3': '.GCalcResult'},
+    {
+      '1': 'ReceiveLotsOfArgs',
+      '2': '.G_GRecipeService_ReceiveLotsOfArgs_Parameters',
+      '3': '.G_GRecipeService_ReceiveLotsOfArgs_Return'
+    },
+    {
+      '1': 'ReceiveLotsOfNullableArgs',
+      '2': '.G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters',
+      '3': '.G_GRecipeService_ReceiveLotsOfNullableArgs_Return'
+    },
+  ],
+};
+
+@$core.Deprecated('Use gRecipeServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
+    GRecipeServiceBase$messageJson = {
+  '.GRecipe': $4.GRecipe$json,
+  '.GCategory': $2.GCategory$json,
+  '.GComponent': $0.GComponent$json,
+  '.GIngredient': $3.GIngredient$json,
+  '.GKey': $5.GKey$json,
+  '.G_GRecipeService_Delete_Return': G_GRecipeService_Delete_Return$json,
+  '.G_GRecipeService_Search_Parameters':
+      G_GRecipeService_Search_Parameters$json,
+  '.GListOfRecipe': $4.GListOfRecipe$json,
+  '.G_GRecipeService_SearchNullable_Parameters':
+      G_GRecipeService_SearchNullable_Parameters$json,
+  '.G_GRecipeService_SearchNullable_Return':
+      G_GRecipeService_SearchNullable_Return$json,
+  '.G_GRecipeService_InsertMany_Return':
+      G_GRecipeService_InsertMany_Return$json,
+  '.G_GRecipeService_GetNullable_Parameters':
+      G_GRecipeService_GetNullable_Parameters$json,
+  '.G_GRecipeService_GetNullable_Return':
+      G_GRecipeService_GetNullable_Return$json,
+  '.G_GRecipeService_Count_Parameters': G_GRecipeService_Count_Parameters$json,
+  '.G_GRecipeService_Count_Return': G_GRecipeService_Count_Return$json,
+  '.G_GRecipeService_CountNullable_Parameters':
+      G_GRecipeService_CountNullable_Parameters$json,
+  '.G_GRecipeService_CountNullable_Return':
+      G_GRecipeService_CountNullable_Return$json,
+  '.G_GRecipeService_Reindex_Parameters':
+      G_GRecipeService_Reindex_Parameters$json,
+  '.G_GRecipeService_Reindex_Return': G_GRecipeService_Reindex_Return$json,
+  '.G_GRecipeService_GetMainRecipeType_Parameters':
+      G_GRecipeService_GetMainRecipeType_Parameters$json,
+  '.G_GRecipeService_GetMainRecipeType_Return':
+      G_GRecipeService_GetMainRecipeType_Return$json,
+  '.G_GRecipeService_GetMainRecipeTypeNullable_Parameters':
+      G_GRecipeService_GetMainRecipeTypeNullable_Parameters$json,
+  '.G_GRecipeService_GetMainRecipeTypeNullable_Return':
+      G_GRecipeService_GetMainRecipeTypeNullable_Return$json,
+  '.G_GRecipeService_GetRecipeTypeList_Parameters':
+      G_GRecipeService_GetRecipeTypeList_Parameters$json,
+  '.G_GRecipeService_GetRecipeTypeList_Return':
+      G_GRecipeService_GetRecipeTypeList_Return$json,
+  '.G_GRecipeService_GetRecipeTypeListNullable_Parameters':
+      G_GRecipeService_GetRecipeTypeListNullable_Parameters$json,
+  '.G_GRecipeService_GetRecipeTypeListNullable_Return':
+      G_GRecipeService_GetRecipeTypeListNullable_Return$json,
+  '.G_GRecipeService_GetListOfInts_Parameters':
+      G_GRecipeService_GetListOfInts_Parameters$json,
+  '.G_GRecipeService_GetListOfInts_Return':
+      G_GRecipeService_GetListOfInts_Return$json,
+  '.G_GRecipeService_GetListOfIntsNullable_Parameters':
+      G_GRecipeService_GetListOfIntsNullable_Parameters$json,
+  '.G_GRecipeService_GetListOfIntsNullable_Return':
+      G_GRecipeService_GetListOfIntsNullable_Return$json,
+  '.GCalcParameters': $6.GCalcParameters$json,
+  '.GCalcResult': $7.GCalcResult$json,
+  '.G_GRecipeService_ReceiveLotsOfArgs_Parameters':
+      G_GRecipeService_ReceiveLotsOfArgs_Parameters$json,
+  '.G_GRecipeService_ReceiveLotsOfArgs_Return':
+      G_GRecipeService_ReceiveLotsOfArgs_Return$json,
+  '.G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters':
+      G_GRecipeService_ReceiveLotsOfNullableArgs_Parameters$json,
+  '.G_GRecipeService_ReceiveLotsOfNullableArgs_Return':
+      G_GRecipeService_ReceiveLotsOfNullableArgs_Return$json,
+};
+
+/// Descriptor for `GRecipeService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List gRecipeServiceDescriptor = $convert.base64Decode(
+    'Cg5HUmVjaXBlU2VydmljZRIcCgZDcmVhdGUSCC5HUmVjaXBlGgguR1JlY2lwZRIcCgZVcGRhdGUSCC5HUmVjaXBlGgguR1JlY2lwZRIwCgZEZWxldGUSBS5HS2V5Gh8uR19HUmVjaXBlU2VydmljZV9EZWxldGVfUmV0dXJuEhYKA0dldBIFLkdLZXkaCC5HUmVjaXBlEj0KBlNlYXJjaBIjLkdfR1JlY2lwZVNlcnZpY2VfU2VhcmNoX1BhcmFtZXRlcnMaDi5HTGlzdE9mUmVjaXBlEmYKDlNlYXJjaE51bGxhYmxlEisuR19HUmVjaXBlU2VydmljZV9TZWFyY2hOdWxsYWJsZV9QYXJhbWV0ZXJzGicuR19HUmVjaXBlU2VydmljZV9TZWFyY2hOdWxsYWJsZV9SZXR1cm4SQQoKSW5zZXJ0TWFueRIOLkdMaXN0T2ZSZWNpcGUaIy5HX0dSZWNpcGVTZXJ2aWNlX0luc2VydE1hbnlfUmV0dXJuEl0KC0dldE51bGxhYmxlEiguR19HUmVjaXBlU2VydmljZV9HZXROdWxsYWJsZV9QYXJhbWV0ZXJzGiQuR19HUmVjaXBlU2VydmljZV9HZXROdWxsYWJsZV9SZXR1cm4SSwoFQ291bnQSIi5HX0dSZWNpcGVTZXJ2aWNlX0NvdW50X1BhcmFtZXRlcnMaHi5HX0dSZWNpcGVTZXJ2aWNlX0NvdW50X1JldHVybhJjCg1Db3VudE51bGxhYmxlEiouR19HUmVjaXBlU2VydmljZV9Db3VudE51bGxhYmxlX1BhcmFtZXRlcnMaJi5HX0dSZWNpcGVTZXJ2aWNlX0NvdW50TnVsbGFibGVfUmV0dXJuElEKB1JlaW5kZXgSJC5HX0dSZWNpcGVTZXJ2aWNlX1JlaW5kZXhfUGFyYW1ldGVycxogLkdfR1JlY2lwZVNlcnZpY2VfUmVpbmRleF9SZXR1cm4SbwoRR2V0TWFpblJlY2lwZVR5cGUSLi5HX0dSZWNpcGVTZXJ2aWNlX0dldE1haW5SZWNpcGVUeXBlX1BhcmFtZXRlcnMaKi5HX0dSZWNpcGVTZXJ2aWNlX0dldE1haW5SZWNpcGVUeXBlX1JldHVybhKHAQoZR2V0TWFpblJlY2lwZVR5cGVOdWxsYWJsZRI2LkdfR1JlY2lwZVNlcnZpY2VfR2V0TWFpblJlY2lwZVR5cGVOdWxsYWJsZV9QYXJhbWV0ZXJzGjIuR19HUmVjaXBlU2VydmljZV9HZXRNYWluUmVjaXBlVHlwZU51bGxhYmxlX1JldHVybhJvChFHZXRSZWNpcGVUeXBlTGlzdBIuLkdfR1JlY2lwZVNlcnZpY2VfR2V0UmVjaXBlVHlwZUxpc3RfUGFyYW1ldGVycxoqLkdfR1JlY2lwZVNlcnZpY2VfR2V0UmVjaXBlVHlwZUxpc3RfUmV0dXJuEocBChlHZXRSZWNpcGVUeXBlTGlzdE51bGxhYmxlEjYuR19HUmVjaXBlU2VydmljZV9HZXRSZWNpcGVUeXBlTGlzdE51bGxhYmxlX1BhcmFtZXRlcnMaMi5HX0dSZWNpcGVTZXJ2aWNlX0dldFJlY2lwZVR5cGVMaXN0TnVsbGFibGVfUmV0dXJuEmMKDUdldExpc3RPZkludHMSKi5HX0dSZWNpcGVTZXJ2aWNlX0dldExpc3RPZkludHNfUGFyYW1ldGVycxomLkdfR1JlY2lwZVNlcnZpY2VfR2V0TGlzdE9mSW50c19SZXR1cm4SewoVR2V0TGlzdE9mSW50c051bGxhYmxlEjIuR19HUmVjaXBlU2VydmljZV9HZXRMaXN0T2ZJbnRzTnVsbGFibGVfUGFyYW1ldGVycxouLkdfR1JlY2lwZVNlcnZpY2VfR2V0TGlzdE9mSW50c051bGxhYmxlX1JldHVybhIvCg1Eb0NhbGN1bGF0aW9uEhAuR0NhbGNQYXJhbWV0ZXJzGgwuR0NhbGNSZXN1bHQSbwoRUmVjZWl2ZUxvdHNPZkFyZ3MSLi5HX0dSZWNpcGVTZXJ2aWNlX1JlY2VpdmVMb3RzT2ZBcmdzX1BhcmFtZXRlcnMaKi5HX0dSZWNpcGVTZXJ2aWNlX1JlY2VpdmVMb3RzT2ZBcmdzX1JldHVybhKHAQoZUmVjZWl2ZUxvdHNPZk51bGxhYmxlQXJncxI2LkdfR1JlY2lwZVNlcnZpY2VfUmVjZWl2ZUxvdHNPZk51bGxhYmxlQXJnc19QYXJhbWV0ZXJzGjIuR19HUmVjaXBlU2VydmljZV9SZWNlaXZlTG90c09mTnVsbGFibGVBcmdzX1JldHVybg==');
