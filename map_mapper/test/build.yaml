@@ -1,7 +1,9 @@
-# # Read about `build.yaml` at https://pub.dev/packages/build_config
-# targets:
-#   $default:
-#     builders:
-#       map_mapper_generator:map_map_generator:
-#         options:
-#           durationPrecision: microseconds
+# Read about `build.yaml` at https://pub.dev/packages/build_config
+targets:
+  $default:
+    builders:
+      map_mapper_generator:map_map_generator:
+        options:
+          durationPrecision: microseconds
+          dateTimeRepresentation: millisecondsSinceEpoch
+

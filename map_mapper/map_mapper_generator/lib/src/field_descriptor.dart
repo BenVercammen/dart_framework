@@ -5,7 +5,7 @@ import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 class FieldDescriptor extends FieldDescriptorBase {
-  final MapMap mapMapAnnotation;
+  final MapMapped mapMapAnnotation;
 
   final MapField? mapFieldAnnotation;
   final MapIgnore? mapIgnoreAnnotation;
@@ -25,7 +25,7 @@ class FieldDescriptor extends FieldDescriptorBase {
 
   factory FieldDescriptor.fromFieldElement(
     FieldElement fieldElement,
-    MapMap mapEntityAnnotation,
+    MapMapped mapEntityAnnotation,
   ) {
     final mapFieldAnnotation = _getMapField(fieldElement);
     final mapIgnoreAnnotation = _getMapIgnore(fieldElement);
@@ -48,19 +48,22 @@ class FieldDescriptor extends FieldDescriptorBase {
   String get mapName => mapFieldAnnotation?.name ?? displayName;
 
   bool get typeHasMapMapAnnotation {
-    var annotation = TypeChecker.fromRuntime(MapMap)
+    var annotation = TypeChecker.fromRuntime(MapMapped)
         .firstAnnotationOf(fieldElementType.element!);
     return annotation != null;
   }
 
   bool get parameterTypeHasMapMapAnnotation {
-    var annotation = TypeChecker.fromRuntime(MapMap)
+    var annotation = TypeChecker.fromRuntime(MapMapped)
         .firstAnnotationOf(parameterType.element!);
     return annotation != null;
   }
 
   TimePrecision get durationPrecision =>
       mapMapAnnotation.durationPrecision ?? TimePrecision.microseconds;
+  DateTimeRepresentation get dateTimeRepresentation =>
+      mapMapAnnotation.dateTimeRepresentation ??
+      DateTimeRepresentation.microsecondsSinceEpoch;
 }
 
 MapField? _getMapField(FieldElement fieldElement) {

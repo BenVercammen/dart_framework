@@ -8,7 +8,7 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 /// generate added features to PODO classes.
 ///
 /// As an annotation, it is a substitute for applying
-/// the [MapMap], the [Proto], the [MapProto], the
+/// the [MapMapped], the [Proto], the [MapProto], the
 /// [DefaultsProvider], the [Validatable], the [BuildBuilder]
 /// and the [CopyWith] attributes, driving all the corresponding
 /// code generators to generate code as if driven by those attributes.
@@ -20,7 +20,7 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 class AdaptedEntity
     implements
-        MapMap,
+        MapMapped,
         Proto,
         MapProto,
         DefaultsProvider,
@@ -52,6 +52,7 @@ class AdaptedEntity
     this.createBuilderBaseClass = false,
     this.dateTimePrecision,
     this.durationPrecision,
+    this.dateTimeRepresentation,
     this.useProtoFieldNamingConventions = true,
   });
 
@@ -84,4 +85,7 @@ class AdaptedEntity
 
   @override
   final bool? useProtoFieldNamingConventions;
+
+  @override
+  final DateTimeRepresentation? dateTimeRepresentation;
 }

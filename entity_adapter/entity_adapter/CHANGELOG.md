@@ -1,3 +1,6 @@
+## 3.0.4
+- Added support for DateTimeRepresentation
+
 ## 3.0.3
 - AdaptedEntity annotation does not set default precisions
 - Restored default precisions for EntityAdapted

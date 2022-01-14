@@ -1,3 +1,7 @@
+## 3.0.4
+
+- Added support for DateTimeRepresentation
+
 ## 3.0.3
 
 - Updated dependencies

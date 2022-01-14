@@ -8,19 +8,23 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 import 'field_code_generator.dart';
 import 'field_descriptor.dart';
 
-class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
+class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
   final BuilderOptions options;
   late final String _keyHandler;
   ClassElement? _classElement;
   String? _className;
   late TimePrecision _durationPrecision;
+  late DateTimeRepresentation _dateTimeRepresentation;
 
   MapMapGenerator(this.options) {
     var config = options.config;
 
     _keyHandler = config['keyHandler'] as String? ?? 'DefaultKeyHandler';
-    _durationPrecision = TimePrecisionConversions.fromString(
+    _durationPrecision = _getTimePrecision(
         config['durationPrecision'] as String? ?? 'microseconds');
+    _dateTimeRepresentation = _getDateTimeRepresetation(
+        config['dateTimeRepresentation'] as String? ??
+            'microsecondsSinceEpoch');
   }
 
   @override
@@ -29,8 +33,11 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    final readAnnotation =
-        _hydrateAnnotation(annotation, durationPrecision: _durationPrecision);
+    final readAnnotation = _hydrateAnnotation(
+      annotation,
+      durationPrecision: _durationPrecision,
+      dateTimeRepresentation: _dateTimeRepresentation,
+    );
 
     if (element is! ClassElement) return null;
     _classElement = element;
@@ -171,7 +178,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
 
   static String? getDefaultsProvider(
     ClassElement? classElement,
-    MapMap annotation,
+    MapMapped annotation,
     Iterable<FieldDescriptor> fieldDescriptors,
   ) {
     if (annotation.useDefaultsProvider == false) {
@@ -185,7 +192,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMap> {
 }
 
 Iterable<FieldDescriptor> _getFieldDescriptors(
-    ClassElement classElement, MapMap annotation) {
+    ClassElement classElement, MapMapped annotation) {
   final fieldSet = classElement.getSortedFieldSet();
   final fieldDescriptors = fieldSet
       .map((fieldElement) => FieldDescriptor.fromFieldElement(
@@ -196,19 +203,41 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   return fieldDescriptors;
 }
 
-MapMap _hydrateAnnotation(
+MapMapped _hydrateAnnotation(
   ConstantReader reader, {
   required TimePrecision durationPrecision,
+  required DateTimeRepresentation dateTimeRepresentation,
 }) {
   final annotatedDurationPrecision =
       reader.getTimePrecision('durationPrecision') ?? durationPrecision;
 
-  var ret = MapMap(
+  final annotatedDateTimePrecision =
+      reader.getDateTimeRepresentation('dateTimeRepresentation') ??
+          dateTimeRepresentation;
+
+  var ret = MapMapped(
     includeFieldsByDefault:
         reader.read('includeFieldsByDefault').literalValue as bool,
     useDefaultsProvider:
         reader.read('useDefaultsProvider').literalValue as bool,
     durationPrecision: annotatedDurationPrecision,
+    dateTimeRepresentation: annotatedDateTimePrecision,
   );
   return ret;
+}
+
+TimePrecision _getTimePrecision(String value) {
+  final values = TimePrecision.values.where((tp) => tp.name == value);
+  if (values.isEmpty) {
+    throw UnimplementedError();
+  }
+  return values.first;
+}
+
+DateTimeRepresentation _getDateTimeRepresetation(String value) {
+  final values = DateTimeRepresentation.values.where((tp) => tp.name == value);
+  if (values.isEmpty) {
+    throw UnimplementedError();
+  }
+  return values.first;
 }

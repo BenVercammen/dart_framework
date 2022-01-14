@@ -3,6 +3,7 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 
 part 'less_precise.g.dart';
 
+// ignore: deprecated_member_use
 @MapMap(durationPrecision: TimePrecision.milliseconds)
 class LessPrecise {
   final Duration prop1;

@@ -8,7 +8,7 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 /// generate added features to PODO classes.
 ///
 /// As an annotation, it is a substitute for applying
-/// the [MapMap], the [Proto], the [MapProto], the
+/// the [MapMapped], the [Proto], the [MapProto], the
 /// [DefaultsProvider], the [Validatable], the [BuildBuilder]
 /// and the [CopyWith] attributes, driving all the corresponding
 /// code generators to generate code as if driven by those attributes.
@@ -17,7 +17,25 @@ import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 /// that drives further code generation when [EntityAdapted] is
 /// applied to subclasses of [rootEntityType], like an [EntityAdapter]
 /// and an [EntityPermissions] subclass.
+@Deprecated(
+    '''Use the [AdaptedEntity] annotation, having in attention that [AdaptedEntity] has different default precisions, 
+which is a breaking change from versions below 3.0.0. 
 
+In order to restore the previous defaults, add a build.yaml file containing the following:
+
+# Read about `build.yaml` at https://pub.dev/packages/build_config
+targets:
+  \$default:
+    builders:
+      squarealfa_entity_adapter_generator:map_map_generator:
+        options:
+          durationPrecision: milliseconds
+
+      squarealfa_entity_adapter_generator:proto_mapper_generator:
+        options:
+          durationPrecision: milliseconds
+          dateTimePrecision: milliseconds
+''')
 class EntityAdapted
     implements
         MapMap,
@@ -41,7 +59,6 @@ class EntityAdapted
   /// CRUD permissions of that PODO.
   final Type rootEntityType;
 
-  @deprecated
   const EntityAdapted({
     this.rootEntityType = Object,
     this.useDefaultsProvider = true,
@@ -53,6 +70,7 @@ class EntityAdapted
     this.createBuilderBaseClass = false,
     this.dateTimePrecision = TimePrecision.microseconds,
     this.durationPrecision = TimePrecision.milliseconds,
+    this.dateTimeRepresentation = DateTimeRepresentation.iso8601String,
     this.useProtoFieldNamingConventions = true,
   });
 
@@ -82,6 +100,9 @@ class EntityAdapted
 
   @override
   final TimePrecision? durationPrecision;
+
+  @override
+  final DateTimeRepresentation? dateTimeRepresentation;
 
   @override
   final bool? useProtoFieldNamingConventions;

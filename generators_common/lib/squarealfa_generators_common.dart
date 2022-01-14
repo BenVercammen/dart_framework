@@ -8,5 +8,6 @@ export 'src/element_extensions.dart';
 export 'src/field_descriptor_base.dart';
 export 'src/field_element_descriptor_base.dart';
 export 'src/method_descriptor_base.dart';
+export 'src/constant_reader_time_precision_extension.dart';
+export 'src/constant_reader_date_time_representation_extension.dart';
 export 'src/type_checker_extensions.dart';
-export 'src/time_precision.dart';

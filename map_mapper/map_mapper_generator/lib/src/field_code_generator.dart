@@ -1,9 +1,13 @@
 import 'package:decimal/decimal.dart';
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
 import 'package:map_mapper_generator/src/field_code_generators/key_field_code_generator.dart';
-import 'field_code_generators/date_time_field_code_generator.dart';
+import 'package:squarealfa_common_types/squarealfa_common_types.dart';
+import 'field_code_generators/date_time/iso8601_date_time_field_code_generator.dart';
+import 'field_code_generators/date_time/microseconds_date_time_field_code_generator.dart';
+import 'field_code_generators/date_time/milliseconds_date_time_field_code_generator.dart';
 import 'field_code_generators/decimal_field_code_generator.dart';
-import 'field_code_generators/duration_field_code_generator.dart';
+import 'field_code_generators/duration/microseconds_duration_field_code_generator.dart';
+import 'field_code_generators/duration/milliseconds_duration_field_code_generator.dart';
 import 'field_code_generators/entity_field_code_generator.dart';
 import 'field_code_generators/enum_field_code_generator.dart';
 import 'field_code_generators/generic_field_code_generator.dart';
@@ -15,7 +19,7 @@ abstract class FieldCodeGenerator {
   final FieldDescriptor fieldDescriptor;
   final bool hasDefaultsProvider;
 
-  MapMap get mapEntityAnnotation => fieldDescriptor.mapMapAnnotation;
+  MapMapped get mapEntityAnnotation => fieldDescriptor.mapMapAnnotation;
   String get mapName => fieldDescriptor.mapName;
 
   FieldCodeGenerator(this.fieldDescriptor, this.hasDefaultsProvider);
@@ -69,10 +73,31 @@ abstract class FieldCodeGenerator {
       return DecimalFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
     }
     if (fieldDescriptor.fieldElementTypeName == (DateTime).toString()) {
-      return DateTimeFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
+      switch (fieldDescriptor.dateTimeRepresentation) {
+        case DateTimeRepresentation.iso8601String:
+          return Iso8601DateTimeFieldCodeGenerator(
+              fieldDescriptor, hasDefaultsProvider);
+        case DateTimeRepresentation.millisecondsSinceEpoch:
+          return MillisecondsDateTimeFieldCodeGenerator(
+              fieldDescriptor, hasDefaultsProvider);
+        case DateTimeRepresentation.microsecondsSinceEpoch:
+          return MicrosecondsDateTimeFieldCodeGenerator(
+              fieldDescriptor, hasDefaultsProvider);
+        default:
+          throw UnimplementedError();
+      }
     }
     if (fieldDescriptor.fieldElementTypeName == (Duration).toString()) {
-      return DurationFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);
+      switch (fieldDescriptor.durationPrecision) {
+        case TimePrecision.milliseconds:
+          return MillisecondsDurationFieldCodeGenerator(
+              fieldDescriptor, hasDefaultsProvider);
+        case TimePrecision.microseconds:
+          return MicrosecondsDurationFieldCodeGenerator(
+              fieldDescriptor, hasDefaultsProvider);
+        default:
+          throw UnimplementedError();
+      }
     }
     if (fieldDescriptor.typeIsEnum) {
       return EnumFieldCodeGenerator(fieldDescriptor, hasDefaultsProvider);

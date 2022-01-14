@@ -4,4 +4,5 @@ export 'src/recipe.dart';
 export 'src/lists_host.dart';
 export 'src/appliance_type.dart';
 export 'src/component.dart';
-export 'src/precision.dart';
+export 'src/duration_precision.dart';
+export 'src/date_time_representation.dart';

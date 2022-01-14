@@ -1,3 +1,7 @@
+## 2.1.1
+
+- Added support for DateTimeRepresentation
+
 ## 2.1.0
 
 - Moved TimePrecision from this package to a dependency

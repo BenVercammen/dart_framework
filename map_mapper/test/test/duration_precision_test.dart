@@ -2,7 +2,7 @@ import 'package:map_mapper_generator_test/map_mapper_generator_test.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('precision tests', () {
+  group('duration precision tests', () {
     test('less precise', () {
       var sub = LessPrecise(
         prop1: Duration(seconds: 27, milliseconds: 13, microseconds: 9),
