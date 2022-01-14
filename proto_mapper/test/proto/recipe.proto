@@ -6,9 +6,9 @@
 
 syntax = "proto3";
       
-import 'category.proto';
-import 'ingredient.proto';
-import 'appliance_type.proto';
+import "category.proto";
+import "ingredient.proto";
+import "appliance_type.proto";
 
 
 

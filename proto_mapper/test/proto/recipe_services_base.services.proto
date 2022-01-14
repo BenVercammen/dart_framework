@@ -6,11 +6,11 @@
 
 syntax = "proto3";
 
-import 'recipe.proto';
-import 'key.proto';
-import 'recipe_type.proto';
-import 'calc_parameters.proto';
-import 'calc_result.proto';
+import "recipe.proto";
+import "key.proto";
+import "recipe_type.proto";
+import "calc_parameters.proto";
+import "calc_result.proto";
 
 
 

@@ -6,7 +6,7 @@
 
 syntax = "proto3";
       
-import 'appliance_type.proto';
+import "appliance_type.proto";
 
 
 

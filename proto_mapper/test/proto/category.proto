@@ -6,7 +6,7 @@
 
 syntax = "proto3";
       
-import 'component.proto';
+import "component.proto";
 
 
 
