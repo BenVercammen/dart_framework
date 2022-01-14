@@ -1,3 +1,11 @@
+## 3.0.7
+
+- Upgraded dependencies
+
+## 3.0.6
+
+- Upgraded dependencies
+
 ## 3.0.5
 
 - Upgraded dependencies

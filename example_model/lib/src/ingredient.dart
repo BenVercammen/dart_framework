@@ -16,7 +16,7 @@ class Ingredient {
   });
 }
 
-class MapEntity implements Proto, MapProto, MapMap {
+class MapEntity implements Proto, MapProto, MapMapped {
   @override
   final String packageName;
   @override
@@ -42,6 +42,9 @@ class MapEntity implements Proto, MapProto, MapMap {
 
   @override
   bool? get useProtoFieldNamingConventions => null;
+
+  @override
+  DateTimeRepresentation? get dateTimeRepresentation => null;
 }
 
 const mapEntity = MapEntity();

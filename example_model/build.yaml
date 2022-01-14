@@ -8,7 +8,7 @@ targets:
       squarealfa_entity_adapter_generator:proto_mapper_generator:
         options:
           durationPrecision: microseconds #may be milliseconds
-          dateTimePrecision: microseconds #may be milliseconds
+          dateTimeRepresentation: microseconds #may be milliseconds
 
 #          prefix: G # or '' for no prefix
 #          package: package_name

@@ -5,20 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Dart: Attach to Process",
+            "name": "Debug build Test",
             "type": "dart",
-            "request": "attach"
-        },
-        {
-            "name": "proto_generator",
             "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "test",
-            "cwd": "test",
-            "request": "launch",
-            "type": "dart"
+            "program": "/home/ruicraveiro/sources/dart_framework/proto_mapper/test/.dart_tool/build/entrypoint/build.dart",
+            "args": ["build"],
+            "cwd": "/home/ruicraveiro/sources/dart_framework/proto_mapper/test"
         }
     ]
 }

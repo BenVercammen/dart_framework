@@ -12,17 +12,17 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class GApplianceType extends $pb.ProtobufEnum {
   static const GApplianceType G_APPLIANCE_TYPE_HEAT = GApplianceType._(
       0,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_APPLIANCE_TYPE_HEAT');
   static const GApplianceType G_APPLIANCE_TYPE_COLD = GApplianceType._(
       1,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_APPLIANCE_TYPE_COLD');
   static const GApplianceType G_APPLIANCE_TYPE_CUTLERY = GApplianceType._(
       2,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_APPLIANCE_TYPE_CUTLERY');
 

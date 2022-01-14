@@ -10,11 +10,20 @@ part 'utensils.g.dart';
 
 @Proto(useProtoFieldNamingConventions: true)
 @mapProto
-enum KnifeType { chefsKnife, paringKnife, breadKnife }
+enum KnifeType {
+  chefsKnife,
+  paringKnife,
+  breadKnife,
+}
 
 @proto
 @mapProto
-enum ChefType { seniorChef, sousChef, pastryChef, fishChef }
+enum ChefType {
+  seniorChef,
+  sousChef,
+  pastryChef,
+  fishChef,
+}
 
 @proto
 @mapProto

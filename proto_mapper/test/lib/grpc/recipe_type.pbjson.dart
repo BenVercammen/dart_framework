@@ -10,13 +10,13 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gRecipeTypesDescriptor instead')
-const GRecipeTypes$json = {
+const GRecipeTypes$json = const {
   '1': 'GRecipeTypes',
-  '2': [
-    {'1': 'G_RECIPE_TYPES_COOK', '2': 0},
-    {'1': 'G_RECIPE_TYPES_GRILL', '2': 1},
-    {'1': 'G_RECIPE_TYPES_FRY', '2': 2},
-    {'1': 'G_RECIPE_TYPES_STEW', '2': 3},
+  '2': const [
+    const {'1': 'G_RECIPE_TYPES_COOK', '2': 0},
+    const {'1': 'G_RECIPE_TYPES_GRILL', '2': 1},
+    const {'1': 'G_RECIPE_TYPES_FRY', '2': 2},
+    const {'1': 'G_RECIPE_TYPES_STEW', '2': 3},
   ],
 };
 
@@ -24,11 +24,11 @@ const GRecipeTypes$json = {
 final $typed_data.Uint8List gRecipeTypesDescriptor = $convert.base64Decode(
     'CgxHUmVjaXBlVHlwZXMSFwoTR19SRUNJUEVfVFlQRVNfQ09PSxAAEhgKFEdfUkVDSVBFX1RZUEVTX0dSSUxMEAESFgoSR19SRUNJUEVfVFlQRVNfRlJZEAISFwoTR19SRUNJUEVfVFlQRVNfU1RFVxAD');
 @$core.Deprecated('Use nullableGRecipeTypesDescriptor instead')
-const NullableGRecipeTypes$json = {
+const NullableGRecipeTypes$json = const {
   '1': 'NullableGRecipeTypes',
-  '2': [
-    {'1': 'has_value', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
-    {
+  '2': const [
+    const {'1': 'has_value', '3': 1, '4': 1, '5': 8, '10': 'hasValue'},
+    const {
       '1': 'value',
       '3': 2,
       '4': 1,

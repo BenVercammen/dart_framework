@@ -5,5 +5,5 @@ targets:
       map_mapper_generator:map_map_generator:
         options:
           durationPrecision: microseconds
-          dateTimeRepresentation: millisecondsSinceEpoch
+#          dateTimeRepresentation: millisecondsSinceEpoch
 

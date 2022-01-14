@@ -9,7 +9,7 @@ dependencies:
   fixnum: ^1.0.0
 
 dev_dependencies:
-  squarealfa_entity_generator: ^2.0.1
+  squarealfa_entity_generator: ^2.0.2
   build_runner: ^2.1.7
   build_verify: ^3.0.0
   lints: ^1.0.1

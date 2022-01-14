@@ -10,10 +10,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'recipe.pb.dart' as $4;
+import 'recipe.pb.dart' as $0;
 
 import 'utensils.pbenum.dart';
-import 'appliance_type.pbenum.dart' as $1;
+import 'appliance_type.pbenum.dart' as $6;
 
 export 'utensils.pbenum.dart';
 
@@ -306,15 +306,15 @@ class GKitchen extends $pb.GeneratedMessage {
           ? ''
           : 'GKitchen',
       createEmptyInstance: create)
-    ..pc<$4.GRecipe>(
+    ..pc<$0.GRecipe>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'recipeList',
         $pb.PbFieldType.PM,
         protoName: 'recipeList',
-        subBuilder: $4.GRecipe.create)
-    ..m<$core.String, $4.GRecipe>(
+        subBuilder: $0.GRecipe.create)
+    ..m<$core.String, $0.GRecipe>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -323,7 +323,7 @@ class GKitchen extends $pb.GeneratedMessage {
         entryClassName: 'GKitchen.RecipeMapEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $4.GRecipe.create)
+        valueCreator: $0.GRecipe.create)
     ..aInt64(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -334,8 +334,8 @@ class GKitchen extends $pb.GeneratedMessage {
 
   GKitchen._() : super();
   factory GKitchen({
-    $core.Iterable<$4.GRecipe>? recipeList,
-    $core.Map<$core.String, $4.GRecipe>? recipeMap,
+    $core.Iterable<$0.GRecipe>? recipeList,
+    $core.Map<$core.String, $0.GRecipe>? recipeMap,
     $fixnum.Int64? nextInspectionDate,
   }) {
     final _result = create();
@@ -377,10 +377,10 @@ class GKitchen extends $pb.GeneratedMessage {
   static GKitchen? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$4.GRecipe> get recipeList => $_getList(0);
+  $core.List<$0.GRecipe> get recipeList => $_getList(0);
 
   @$pb.TagNumber(2)
-  $core.Map<$core.String, $4.GRecipe> get recipeMap => $_getMap(1);
+  $core.Map<$core.String, $0.GRecipe> get recipeMap => $_getMap(1);
 
   @$pb.TagNumber(3)
   $fixnum.Int64 get nextInspectionDate => $_getI64(2);
@@ -457,12 +457,12 @@ class GChef extends $pb.GeneratedMessage {
           ? ''
           : 'GChef',
       createEmptyInstance: create)
-    ..aOM<$4.GRecipe>(
+    ..aOM<$0.GRecipe>(
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'favoriteRecipe',
-        subBuilder: $4.GRecipe.create)
+        subBuilder: $0.GRecipe.create)
     ..aOB(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -479,15 +479,15 @@ class GChef extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'favoriteKnifeHasValue')
-    ..e<$1.GApplianceType>(
+    ..e<$6.GApplianceType>(
         5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'favoriteApplianceType',
         $pb.PbFieldType.OE,
-        defaultOrMaker: $1.GApplianceType.G_APPLIANCE_TYPE_HEAT,
-        valueOf: $1.GApplianceType.valueOf,
-        enumValues: $1.GApplianceType.values)
+        defaultOrMaker: $6.GApplianceType.G_APPLIANCE_TYPE_HEAT,
+        valueOf: $6.GApplianceType.valueOf,
+        enumValues: $6.GApplianceType.values)
     ..pPS(
         6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -513,11 +513,11 @@ class GChef extends $pb.GeneratedMessage {
 
   GChef._() : super();
   factory GChef({
-    $4.GRecipe? favoriteRecipe,
+    $0.GRecipe? favoriteRecipe,
     $core.bool? favoriteRecipeHasValue,
     GKnife? favoriteKnife,
     $core.bool? favoriteKnifeHasValue,
-    $1.GApplianceType? favoriteApplianceType,
+    $6.GApplianceType? favoriteApplianceType,
     $core.Iterable<$core.String>? favoriteWords,
     $fixnum.Int64? birthdate,
     $core.double? shelfLife,
@@ -580,9 +580,9 @@ class GChef extends $pb.GeneratedMessage {
   static GChef? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $4.GRecipe get favoriteRecipe => $_getN(0);
+  $0.GRecipe get favoriteRecipe => $_getN(0);
   @$pb.TagNumber(1)
-  set favoriteRecipe($4.GRecipe v) {
+  set favoriteRecipe($0.GRecipe v) {
     setField(1, v);
   }
 
@@ -591,7 +591,7 @@ class GChef extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearFavoriteRecipe() => clearField(1);
   @$pb.TagNumber(1)
-  $4.GRecipe ensureFavoriteRecipe() => $_ensure(0);
+  $0.GRecipe ensureFavoriteRecipe() => $_ensure(0);
 
   @$pb.TagNumber(2)
   $core.bool get favoriteRecipeHasValue => $_getBF(1);
@@ -632,9 +632,9 @@ class GChef extends $pb.GeneratedMessage {
   void clearFavoriteKnifeHasValue() => clearField(4);
 
   @$pb.TagNumber(5)
-  $1.GApplianceType get favoriteApplianceType => $_getN(4);
+  $6.GApplianceType get favoriteApplianceType => $_getN(4);
   @$pb.TagNumber(5)
-  set favoriteApplianceType($1.GApplianceType v) {
+  set favoriteApplianceType($6.GApplianceType v) {
     setField(5, v);
   }
 
@@ -752,7 +752,7 @@ class GInventory extends $pb.GeneratedMessage {
         entryClassName: 'GInventory.NumberOfThingsEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.O3)
-    ..m<$core.String, $4.GRecipe>(
+    ..m<$core.String, $0.GRecipe>(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
@@ -760,7 +760,7 @@ class GInventory extends $pb.GeneratedMessage {
         entryClassName: 'GInventory.RecipesByNameEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $4.GRecipe.create)
+        valueCreator: $0.GRecipe.create)
     ..a<$core.double>(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
@@ -777,7 +777,7 @@ class GInventory extends $pb.GeneratedMessage {
   GInventory._() : super();
   factory GInventory({
     $core.Map<$core.String, $core.int>? numberOfThings,
-    $core.Map<$core.String, $4.GRecipe>? recipesByName,
+    $core.Map<$core.String, $0.GRecipe>? recipesByName,
     $core.double? timeSpan,
     $core.bool? timeSpanHasValue,
   }) {
@@ -826,7 +826,7 @@ class GInventory extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.int> get numberOfThings => $_getMap(0);
 
   @$pb.TagNumber(2)
-  $core.Map<$core.String, $4.GRecipe> get recipesByName => $_getMap(1);
+  $core.Map<$core.String, $0.GRecipe> get recipesByName => $_getMap(1);
 
   @$pb.TagNumber(3)
   $core.double get timeSpan => $_getN(2);

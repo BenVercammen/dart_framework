@@ -12,22 +12,22 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class GRecipeTypes extends $pb.ProtobufEnum {
   static const GRecipeTypes G_RECIPE_TYPES_COOK = GRecipeTypes._(
       0,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_RECIPE_TYPES_COOK');
   static const GRecipeTypes G_RECIPE_TYPES_GRILL = GRecipeTypes._(
       1,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_RECIPE_TYPES_GRILL');
   static const GRecipeTypes G_RECIPE_TYPES_FRY = GRecipeTypes._(
       2,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_RECIPE_TYPES_FRY');
   static const GRecipeTypes G_RECIPE_TYPES_STEW = GRecipeTypes._(
       3,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_RECIPE_TYPES_STEW');
 

@@ -10,28 +10,28 @@ import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
 @$core.Deprecated('Use gCalcParametersDescriptor instead')
-const GCalcParameters$json = {
+const GCalcParameters$json = const {
   '1': 'GCalcParameters',
-  '2': [
-    {'1': 'parameter1', '3': 2, '4': 1, '5': 5, '10': 'parameter1'},
-    {'1': 'parameter2', '3': 1, '4': 1, '5': 5, '10': 'parameter2'},
-    {'1': 'parameter3', '3': 3, '4': 1, '5': 5, '10': 'parameter3'},
-    {
+  '2': const [
+    const {'1': 'parameter1', '3': 2, '4': 1, '5': 5, '10': 'parameter1'},
+    const {'1': 'parameter2', '3': 1, '4': 1, '5': 5, '10': 'parameter2'},
+    const {'1': 'parameter3', '3': 3, '4': 1, '5': 5, '10': 'parameter3'},
+    const {
       '1': 'parameter3_has_value',
       '3': 4,
       '4': 1,
       '5': 8,
       '10': 'parameter3HasValue'
     },
-    {'1': 'parameter4', '3': 5, '4': 1, '5': 5, '10': 'parameter4'},
-    {
+    const {'1': 'parameter4', '3': 5, '4': 1, '5': 5, '10': 'parameter4'},
+    const {
       '1': 'parameter4_has_value',
       '3': 6,
       '4': 1,
       '5': 8,
       '10': 'parameter4HasValue'
     },
-    {'1': 'parameter5', '3': 9, '4': 1, '5': 5, '10': 'parameter5'},
+    const {'1': 'parameter5', '3': 9, '4': 1, '5': 5, '10': 'parameter5'},
   ],
 };
 
@@ -39,10 +39,10 @@ const GCalcParameters$json = {
 final $typed_data.Uint8List gCalcParametersDescriptor = $convert.base64Decode(
     'Cg9HQ2FsY1BhcmFtZXRlcnMSHgoKcGFyYW1ldGVyMRgCIAEoBVIKcGFyYW1ldGVyMRIeCgpwYXJhbWV0ZXIyGAEgASgFUgpwYXJhbWV0ZXIyEh4KCnBhcmFtZXRlcjMYAyABKAVSCnBhcmFtZXRlcjMSMAoUcGFyYW1ldGVyM19oYXNfdmFsdWUYBCABKAhSEnBhcmFtZXRlcjNIYXNWYWx1ZRIeCgpwYXJhbWV0ZXI0GAUgASgFUgpwYXJhbWV0ZXI0EjAKFHBhcmFtZXRlcjRfaGFzX3ZhbHVlGAYgASgIUhJwYXJhbWV0ZXI0SGFzVmFsdWUSHgoKcGFyYW1ldGVyNRgJIAEoBVIKcGFyYW1ldGVyNQ==');
 @$core.Deprecated('Use gListOfCalcParametersDescriptor instead')
-const GListOfCalcParameters$json = {
+const GListOfCalcParameters$json = const {
   '1': 'GListOfCalcParameters',
-  '2': [
-    {
+  '2': const [
+    const {
       '1': 'items',
       '3': 1,
       '4': 3,

@@ -2,7 +2,7 @@ import 'package:map_mapper_generator_test/map_mapper_generator_test.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('datetime precision tests', () {
+  group('datetime representation tests', () {
     test('default dt', () {
       var sub = DefaultDt(
         prop1: DateTime(2022, 1, 14, 10, 34, 7, 13, 17),

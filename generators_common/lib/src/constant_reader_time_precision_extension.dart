@@ -5,12 +5,12 @@ extension ConstantReaderTimePrecisionExtension on ConstantReader {
   TimePrecision? getTimePrecision(String propertyName) {
     final constant = read(propertyName);
     if (constant.isNull) return null;
-    final List<String> keys =
-        List.of((constant.objectValue as dynamic).fields.keys);
-    if (keys.contains('microseconds')) {
+    final accessor = constant.revive().accessor;
+
+    if (accessor.endsWith('microseconds')) {
       return TimePrecision.microseconds;
     }
-    if (keys.contains('milliseconds')) {
+    if (accessor.endsWith('milliseconds')) {
       return TimePrecision.milliseconds;
     }
     throw UnimplementedError();

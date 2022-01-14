@@ -28,9 +28,9 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
   ProtoMapperGenerator(this.options) {
     var config = options.config;
     _prefix = config['prefix'] as String? ?? 'G';
-    _dateTimePrecision = TimePrecisionConversions.fromString(
+    _dateTimePrecision = _getTimePrecision(
         config['dateTimePrecision'] as String? ?? 'microseconds');
-    _durationPrecision = TimePrecisionConversions.fromString(
+    _durationPrecision = _getTimePrecision(
         config['durationPrecision'] as String? ?? 'microseconds');
   }
 
@@ -256,4 +256,12 @@ class RenderMapperBuffers {
     required this.fromProtoFieldBuffer,
     required this.constructorFieldBuffer,
   });
+}
+
+TimePrecision _getTimePrecision(String value) {
+  final values = TimePrecision.values.where((tp) => tp.name == value);
+  if (values.isEmpty) {
+    throw UnimplementedError();
+  }
+  return values.first;
 }

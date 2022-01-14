@@ -5,15 +5,15 @@ extension ConstantReaderDateTimeRepresentationExtension on ConstantReader {
   DateTimeRepresentation? getDateTimeRepresentation(String propertyName) {
     final constant = read(propertyName);
     if (constant.isNull) return null;
-    final List<String> keys =
-        List.of((constant.objectValue as dynamic).fields.keys);
-    if (keys.contains('microsecondsSinceEpoch')) {
+    final accessor = constant.revive().accessor;
+
+    if (accessor.endsWith('microsecondsSinceEpoch')) {
       return DateTimeRepresentation.microsecondsSinceEpoch;
     }
-    if (keys.contains('millisecondsSinceEpoch')) {
+    if (accessor.endsWith('millisecondsSinceEpoch')) {
       return DateTimeRepresentation.millisecondsSinceEpoch;
     }
-    if (keys.contains('iso8601String')) {
+    if (accessor.endsWith('iso8601String')) {
       return DateTimeRepresentation.iso8601String;
     }
     throw UnimplementedError();

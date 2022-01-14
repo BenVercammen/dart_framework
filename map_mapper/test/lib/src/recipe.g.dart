@@ -24,9 +24,10 @@ class $RecipeMapMapper extends MapMapper<Recipe> {
       category: const $CategoryMapMapper().fromMap(map['category']),
       ingredients: List<Ingredient>.unmodifiable(map['ingredients']
           .map((e) => const $IngredientMapMapper().fromMap(e))),
-      publishDate: DateTime.parse(map['publishDate']),
-      expiryDate:
-          map['expiryDate'] == null ? null : DateTime.parse(map['expiryDate']),
+      publishDate: DateTime.fromMicrosecondsSinceEpoch(map['publishDate']),
+      expiryDate: map['expiryDate'] == null
+          ? null
+          : DateTime.fromMicrosecondsSinceEpoch(map['expiryDate']),
       preparationDuration: Duration(microseconds: map['preparationDuration']),
       totalDuration: map['totalDuration'] == null
           ? null
@@ -59,8 +60,8 @@ class $RecipeMapMapper extends MapMapper<Recipe> {
     map['ingredients'] = instance.ingredients
         .map((e) => const $IngredientMapMapper().toMap(e))
         .toList();
-    map['publishDate'] = instance.publishDate.toIso8601String();
-    map['expiryDate'] = instance.expiryDate?.toIso8601String();
+    map['publishDate'] = instance.publishDate.microsecondsSinceEpoch;
+    map['expiryDate'] = instance.expiryDate?.microsecondsSinceEpoch;
     map['preparationDuration'] = instance.preparationDuration.inMicroseconds;
     map['totalDuration'] = instance.totalDuration?.inMicroseconds;
     map['isPublished'] = instance.isPublished;

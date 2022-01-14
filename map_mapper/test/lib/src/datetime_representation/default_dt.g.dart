@@ -12,8 +12,10 @@ class $DefaultDtMapMapper extends MapMapper<DefaultDt> {
   @override
   DefaultDt fromMap(Map<String, dynamic> map) {
     return DefaultDt(
-      prop1: DateTime.parse(map['prop1']),
-      prop2: map['prop2'] == null ? null : DateTime.parse(map['prop2']),
+      prop1: DateTime.fromMicrosecondsSinceEpoch(map['prop1']),
+      prop2: map['prop2'] == null
+          ? null
+          : DateTime.fromMicrosecondsSinceEpoch(map['prop2']),
       someOther: map['someOther'] as String,
     );
   }
@@ -22,8 +24,8 @@ class $DefaultDtMapMapper extends MapMapper<DefaultDt> {
   Map<String, dynamic> toMap(DefaultDt instance) {
     final map = <String, dynamic>{};
 
-    map['prop1'] = instance.prop1.toIso8601String();
-    map['prop2'] = instance.prop2?.toIso8601String();
+    map['prop1'] = instance.prop1.microsecondsSinceEpoch;
+    map['prop2'] = instance.prop2?.microsecondsSinceEpoch;
     map['someOther'] = instance.someOther;
 
     return map;

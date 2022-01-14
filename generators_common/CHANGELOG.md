@@ -1,3 +1,11 @@
+## 2.1.3
+
+- Updated dependencies
+
+## 2.1.2
+
+- Fixed ConstantReader extensions
+
 ## 2.1.1
 
 - Added support for DateTimeRepresentation

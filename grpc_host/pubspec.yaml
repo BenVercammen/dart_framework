@@ -2,7 +2,7 @@ name: grpc_host
 description: Hosts gRPC services
 homepage: https://github.com/squarealfa/dart_framework/tree/main/grpc_host
 repository: https://github.com/squarealfa/dart_framework
-version: 3.0.5
+version: 3.0.7
 
 
 environment:
@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   nosql_repository: ^2.0.0
-  squarealfa_entity_adapter: ^2.0.0
+  squarealfa_entity_adapter: ^3.0.5
   squarealfa_security: ^2.0.0
   grpc: ^3.0.0
   yaml: ^3.1.0
