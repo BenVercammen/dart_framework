@@ -14,7 +14,8 @@ class ArangoRepositoryTestHandler extends RepositoryTestHandler {
   Future<Repository<Recipe>> createRepositoryForCleanCollection() async {
     final testDbClient = await _connectTestDb();
     await _ensureEmptyTestCollection(testDbClient, 'recipes');
-    final repository = ArangoDbRepository<Recipe>(testDbClient, 'recipes');
+    final repository =
+        ArangoDbRepositoryIso8601RevDate<Recipe>(testDbClient, 'recipes');
     return repository;
   }
 

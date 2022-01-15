@@ -12,17 +12,17 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class GKnifeType extends $pb.ProtobufEnum {
   static const GKnifeType G_KNIFE_TYPE_CHEFS_KNIFE = GKnifeType._(
       0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_KNIFE_TYPE_CHEFS_KNIFE');
   static const GKnifeType G_KNIFE_TYPE_PARING_KNIFE = GKnifeType._(
       1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_KNIFE_TYPE_PARING_KNIFE');
   static const GKnifeType G_KNIFE_TYPE_BREAD_KNIFE = GKnifeType._(
       2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_KNIFE_TYPE_BREAD_KNIFE');
 
@@ -42,22 +42,22 @@ class GKnifeType extends $pb.ProtobufEnum {
 class GChefType extends $pb.ProtobufEnum {
   static const GChefType G_CHEF_TYPE_SENIOR_CHEF = GChefType._(
       0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_CHEF_TYPE_SENIOR_CHEF');
   static const GChefType G_CHEF_TYPE_SOUS_CHEF = GChefType._(
       1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_CHEF_TYPE_SOUS_CHEF');
   static const GChefType G_CHEF_TYPE_PASTRY_CHEF = GChefType._(
       2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_CHEF_TYPE_PASTRY_CHEF');
   static const GChefType G_CHEF_TYPE_FISH_CHEF = GChefType._(
       3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'G_CHEF_TYPE_FISH_CHEF');
 

@@ -1,7 +1,7 @@
 import 'package:arango_driver/arango_driver.dart';
-import 'package:arangodb_repository/arangodb_repository.dart';
 import 'package:nosql_repository/nosql_repository.dart';
 
+import 'example_repository.dart';
 import 'ingredient.dart';
 import 'principal.dart';
 import 'recipe.dart';
@@ -16,7 +16,7 @@ void main(List<String> args) async {
   final db = await _connectArangoDb();
 
   // now, we create a repository on that connection to the recipes collection.
-  final repository = ArangoDbRepository<Recipe>(db, colName);
+  final repository = ExampleRepository<Recipe>(db, colName);
 
   // first we need to create a principal to represent the
   // user performing the operations to the database

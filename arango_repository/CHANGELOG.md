@@ -1,3 +1,12 @@
+## 2.0.5
+
+- Restored adding revision on update
+
+
+## 2.0.4
+
+- More modular implementation of ArangoDBRepository
+
 ## 2.0.3
 
 - Fixed example
