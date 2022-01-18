@@ -1,0 +1,26 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+      
+
+
+
+
+
+
+  
+message GCar
+{
+  int32 weight = 1;
+  int32 number_of_doors = 2;
+
+}   
+
+message GListOfCar
+{
+  repeated GCar items = 1;
+}

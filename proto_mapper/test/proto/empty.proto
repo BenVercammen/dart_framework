@@ -10,8 +10,12 @@ syntax = "proto3";
 
 
 
+
+
+  
 message GEmpty
 {
+
 }   
 
 message GListOfEmpty

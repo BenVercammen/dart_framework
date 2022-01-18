@@ -1,0 +1,26 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+      
+
+
+
+
+
+
+  
+message GBicycle
+{
+  int32 weight = 1;
+  string wheel_diamater = 2;
+
+}   
+
+message GListOfBicycle
+{
+  repeated GBicycle items = 1;
+}

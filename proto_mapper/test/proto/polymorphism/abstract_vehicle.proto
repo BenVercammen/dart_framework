@@ -1,0 +1,31 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+      
+import "polymorphism/bicycle.proto";
+import "polymorphism/scooter.proto";
+
+
+
+
+
+
+  
+message GAbstractVehicle
+{
+  oneof props {
+    GBicycle bicycle = 1;
+    GScooter scooter = 2;
+
+  }
+    
+}   
+
+message GListOfAbstractVehicle
+{
+  repeated GAbstractVehicle items = 1;
+}

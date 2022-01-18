@@ -1,3 +1,12 @@
+## 3.0.4
+
+- Support for polymorphism.
+
+Now ```@MapMapped()``` has a new property called ```knownSubClasses```. This is a list of types of subclasses of the type to which the annotation
+is applied. Each of these subclasses much also have the ```@MapMapped()``` annotation.
+
+By identifying the known subclasses, ```toMap()``` and ```fromMap()``` methods become polymorphic.
+
 ## 3.0.3
 
 - Updated dependencies

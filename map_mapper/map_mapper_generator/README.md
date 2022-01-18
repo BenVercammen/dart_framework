@@ -52,6 +52,68 @@ Instead, because the generated code adds an extension to ```Recipe``` and ```Map
 
 ```
 
+## Polymorphism
+Polymorphism is the feature that allows us to have a variable of a super-class type referencing a sub-class and having it serialize the object in such a way that the serialized map contains all the sub-class properties as well as a type identifier. This enables us to deserialize the sub-class object again knowing beforehand only the super-class type. This package supports polymorphism with a caveat: All supported subclass types must be known during generation time, and registered with [MapMapped()] annotation's ```knownSubClasses``` property. 
+
+Here's an example:
+
+```dart
+
+@mapMapped
+class Car extends Vehicle {
+  Car({
+    required this.numberOfDoors,
+    required int weight,
+  }) : super(weight: weight);
+
+  final int numberOfDoors;
+}
+
+@mapMapped
+class Airplane extends Vehicle {
+  Airplane({
+    required int weight,
+    required this.wingspan,
+  }) : super(weight: weight);
+
+  final int wingspan;
+}
+
+// note that we are identifying all the
+// known subclasses
+@MapMapped(knownSubClasses: [
+  Car,
+  Airplane,
+])
+abstract class Vehicle { // can be non-abstract as well
+  final int weight;
+  Vehicle({
+    required this.weight,
+  });
+}
+
+void main() {
+  final car = Car(numberOfDoors: 4, weight: 1500);
+  final Vehicle airplane = Airplane(wingspan: 13, weight: 1500);
+
+  final vehicles = <Vehicle>[car, airplane];
+  // from here we will get a list of maps containing
+  // a serialization of each Vehicle
+  final maps = vehicles.map((v) => v.toMap()).toList();
+
+  // not that we call .toVehicle because we know 
+  // they are all vehicles
+  final deserVehicles = maps.map((m) => m.toVehicle()).toList();
+
+  final deserCar = deserVehicles[0] as Car; // it is really a car
+  final deserAirplane = deserVehicles[1] as Airplane; // and it is really an airplane
+
+  print(deserCar.numberOfDoors); // should print 4
+  print(deserAirplane.wingspan); // should print 13
+
+}
+
+```
 
 ## Getting started
 

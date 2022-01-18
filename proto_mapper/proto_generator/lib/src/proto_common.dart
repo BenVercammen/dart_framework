@@ -13,8 +13,9 @@ import 'proto/field_code_generators/external_proto_name.dart';
 
 String createFieldDeclarations(
   Iterable<protofield.FieldDescriptor> fieldDescriptors,
-  List<String> externalProtoNames,
-) {
+  List<String> externalProtoNames, [
+  String indent = '  ',
+]) {
   final fieldBuffer = StringBuffer();
   final lineNumbers = fieldDescriptors
       .where((fd) =>
@@ -26,25 +27,21 @@ String createFieldDeclarations(
       .toList();
 
   for (var fieldDescriptor in fieldDescriptors) {
-    // final num = fieldDescriptor.number ?? _nextAvailable(lineNumbers);
-    // lineNumbers.add(num);
-    // final hasValueNum = null as int?;
-
     var fieldCodeGenerator =
         FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor, lineNumbers);
 
     var fieldLine = fieldCodeGenerator.fieldLine;
     fieldBuffer.writeln(
-        '  ${fieldDescriptor.isRepeated ? 'repeated ' : ''}$fieldLine');
+        '$indent${fieldDescriptor.isRepeated ? 'repeated ' : ''}$fieldLine');
     if (fieldDescriptor.isNullable) {
       fieldBuffer.writeln('  ${fieldCodeGenerator.hasValueLine}');
     }
 
     if (fieldCodeGenerator is! ExternalProtoNames) continue;
-    var externalProtoNames2 =
+    var fieldExternalProtoNames =
         (fieldCodeGenerator as ExternalProtoNames).externalProtoNames;
-    if (externalProtoNames2 != null) {
-      for (String externalProtoName in externalProtoNames2) {
+    if (fieldExternalProtoNames != null) {
+      for (String externalProtoName in fieldExternalProtoNames) {
         if (!externalProtoNames.contains(externalProtoName)) {
           externalProtoNames.add(externalProtoName);
         }

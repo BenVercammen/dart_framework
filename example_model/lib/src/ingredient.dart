@@ -32,6 +32,7 @@ class MapEntity implements Proto, MapProto, MapMapped {
     this.packageName = '',
     this.useDefaultsProvider = false,
     this.includeFieldsByDefault = true,
+    this.knownSubClasses,
   });
 
   @override
@@ -45,6 +46,9 @@ class MapEntity implements Proto, MapProto, MapMapped {
 
   @override
   DateTimeRepresentation? get dateTimeRepresentation => null;
+
+  @override
+  final List<Type>? knownSubClasses;
 }
 
 const mapEntity = MapEntity();

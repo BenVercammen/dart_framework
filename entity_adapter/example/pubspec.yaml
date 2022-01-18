@@ -6,7 +6,7 @@ environment:
 dependencies:
   decimal: ^2.1.0
   fixnum: ^1.0.0
-  squarealfa_entity_adapter: ^3.0.5
+  squarealfa_entity_adapter: ^3.0.6
 
 dev_dependencies:
   
@@ -19,3 +19,5 @@ dev_dependencies:
 dependency_overrides:
   squarealfa_entity_adapter:
     path: ../entity_adapter
+  squarealfa_entity_adapter_generator:
+    path: ../entity_adapter_generator

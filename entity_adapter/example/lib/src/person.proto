@@ -6,15 +6,19 @@
 
 syntax = "proto3";
       
-import 'asset.proto';
+import "asset.proto";
 
 
 
 
+
+
+  
 message GPerson
 {
   repeated GAsset assets = 1;
   string name = 2;
+
 }   
 
 message GListOfPerson

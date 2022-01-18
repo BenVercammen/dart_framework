@@ -23,5 +23,5 @@ dev_dependencies:
 ## We need to consider implementing a mongodb driver over RestHeart (Rest API for Dart) instead of 
 ## depending on mongo_dart. With RestHeart we will get MongoDB transaction support.
 
-# dependency_overrides:
-#   map_mapper_generator: 2.0.0
+dependency_overrides:
+  map_mapper_generator: 2.0.0

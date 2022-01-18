@@ -54,6 +54,7 @@ class AdaptedEntity
     this.durationPrecision,
     this.dateTimeRepresentation,
     this.useProtoFieldNamingConventions = true,
+    this.knownSubClasses,
   });
 
   @override
@@ -88,4 +89,7 @@ class AdaptedEntity
 
   @override
   final DateTimeRepresentation? dateTimeRepresentation;
+
+  @override
+  final List<Type>? knownSubClasses;
 }

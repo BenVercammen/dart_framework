@@ -11,6 +11,9 @@ import "component.proto";
 
 
 
+
+
+  
 message GIngredient
 {
   string description = 1;
@@ -23,6 +26,7 @@ message GIngredient
   bool alternative_component_has_value = 8;
   repeated GComponent secondary_components = 9;
   bool secondary_components_has_value = 10;
+
 }   
 
 message GListOfIngredient

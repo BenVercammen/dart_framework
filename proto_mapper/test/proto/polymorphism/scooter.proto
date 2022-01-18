@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// ProtoGenerator
+// **************************************************************************
+
+syntax = "proto3";
+      
+
+
+
+
+
+
+  
+message GScooter
+{
+  int32 weight = 1;
+
+}   
+
+message GListOfScooter
+{
+  repeated GScooter items = 1;
+}

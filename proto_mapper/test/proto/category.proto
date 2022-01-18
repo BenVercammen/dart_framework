@@ -11,6 +11,9 @@ import "component.proto";
 
 
 
+
+
+  
 message GCategory
 {
   string title = 1;
@@ -20,6 +23,7 @@ message GCategory
   repeated GComponent other_components = 5;
   repeated GComponent secondary_components = 6;
   bool secondary_components_has_value = 7;
+
 }   
 
 message GListOfCategory

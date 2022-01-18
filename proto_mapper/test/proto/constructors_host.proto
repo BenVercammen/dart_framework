@@ -10,10 +10,14 @@ syntax = "proto3";
 
 
 
+
+
+  
 message GConstructObject1
 {
   string name = 1;
   int32 number = 2;
+
 }   
 
 message GListOfConstructObject1
@@ -25,6 +29,7 @@ message GConstructObject2
 {
   string name = 1;
   int32 number = 2;
+
 }   
 
 message GListOfConstructObject2
@@ -36,6 +41,7 @@ message GConstructObject3
 {
   string name = 1;
   int32 number = 2;
+
 }   
 
 message GListOfConstructObject3
@@ -47,6 +53,7 @@ message GConstructObject4
 {
   string name = 1;
   int32 number = 2;
+
 }   
 
 message GListOfConstructObject4
@@ -58,6 +65,7 @@ message GConstructObject5
 {
   string name = 1;
   int32 number = 2;
+
 }   
 
 message GListOfConstructObject5
@@ -71,6 +79,7 @@ message GConstructObject6
   bool name_has_value = 2;
   int32 number = 3;
   bool number_has_value = 4;
+
 }   
 
 message GListOfConstructObject6
@@ -83,6 +92,7 @@ message GConstructObject7
   int32 number = 1;
   bool number_has_value = 2;
   string name = 3;
+
 }   
 
 message GListOfConstructObject7
@@ -95,6 +105,7 @@ message GConstructObject8
   int32 number = 1;
   bool number_has_value = 2;
   string name = 3;
+
 }   
 
 message GListOfConstructObject8

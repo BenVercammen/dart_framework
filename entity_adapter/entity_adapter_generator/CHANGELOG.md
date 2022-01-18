@@ -1,3 +1,7 @@
+## 3.0.6
+
+- Added support for polymorphism
+
 ## 3.0.5
 
 - Updated dependencies

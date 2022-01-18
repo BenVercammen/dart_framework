@@ -11,6 +11,9 @@ import "appliance_type.proto";
 
 
 
+
+
+  
 message GListsHost
 {
   repeated bool vbools = 1;
@@ -37,6 +40,7 @@ message GListsHost
   repeated GApplianceType vappliance_types = 22;
   repeated GApplianceType nvappliance_types = 23;
   bool nvappliance_types_has_value = 24;
+
 }   
 
 message GListOfListsHost

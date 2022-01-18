@@ -72,6 +72,7 @@ class EntityAdapted
     this.durationPrecision = TimePrecision.milliseconds,
     this.dateTimeRepresentation = DateTimeRepresentation.iso8601String,
     this.useProtoFieldNamingConventions = true,
+    this.knownSubClasses,
   });
 
   @override
@@ -106,4 +107,7 @@ class EntityAdapted
 
   @override
   final bool? useProtoFieldNamingConventions;
+
+  @override
+  final List<Type>? knownSubClasses;
 }

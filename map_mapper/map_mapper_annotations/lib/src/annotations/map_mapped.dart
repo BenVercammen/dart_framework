@@ -10,6 +10,7 @@ class MapMapped {
     this.useDefaultsProvider = false,
     this.durationPrecision,
     this.dateTimeRepresentation,
+    this.knownSubClasses,
   });
 
   /// Determines whether to include all fields by default.
@@ -32,6 +33,8 @@ class MapMapped {
   final TimePrecision? durationPrecision;
 
   final DateTimeRepresentation? dateTimeRepresentation;
+
+  final List<Type>? knownSubClasses;
 }
 
 const mapMapped = MapMapped();

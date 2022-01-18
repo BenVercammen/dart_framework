@@ -162,4 +162,47 @@ mkdir ./lib/grpc
 protoc --dart_out=grpc:lib/grpc/ -Ilib/src ./lib/src/*.proto
 ```
 
+## Polymorphism
+
+This package supports polymorphism for both serialization to maps and 
+to protobuffer. For instance, with the following class definitions,
+a list of ```Vehicle``` may contain aircraft and cars, which can be
+sent over gRPC or serialized to a ```Map<String, dynamic>``` for persistency:
+
+```dart
+
+@AdaptedEntity()
+class Car extends Vehicle {
+  Car({
+    required this.numberOfDoors,
+    required int weight,
+  }) : super(weight: weight);
+
+  final int numberOfDoors;
+}
+
+@AdaptedEntity()
+class Airplane extends Vehicle {
+  Airplane({
+    required int weight,
+    required this.wingspan,
+  }) : super(weight: weight);
+
+  final int wingspan;
+}
+
+
+@AdaptedEntity(knownSubClasses: [
+  Car,
+  Airplane,
+])
+class Vehicle {
+  final int weight;
+  Vehicle({
+    required this.weight,
+  });
+}
+
+```
+
 After running the previous commands, add all the missing imports and voilá, you have full-blown entities ready to be used in gRPC communications, ready to be persisted into a NoSQL database, ready to be validated, and so on.

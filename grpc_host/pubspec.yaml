@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   nosql_repository: ^2.0.0
-  squarealfa_entity_adapter: ^3.0.5
+  squarealfa_entity_adapter: ^3.0.6
   squarealfa_security: ^2.0.0
   grpc: ^3.0.0
   yaml: ^3.1.0

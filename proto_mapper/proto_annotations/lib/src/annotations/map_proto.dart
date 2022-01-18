@@ -7,6 +7,7 @@ class MapProto {
     this.includeFieldsByDefault = true,
     this.dateTimePrecision,
     this.durationPrecision,
+    this.knownSubClasses,
   });
 
   final String? packageName;
@@ -14,6 +15,7 @@ class MapProto {
   final bool includeFieldsByDefault;
   final TimePrecision? dateTimePrecision;
   final TimePrecision? durationPrecision;
+  final List<Type>? knownSubClasses;
 }
 
 const mapProto = MapProto();

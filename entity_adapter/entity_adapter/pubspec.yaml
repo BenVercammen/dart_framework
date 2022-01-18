@@ -4,15 +4,15 @@ description: Provides the annotations and a facade to several SquareAlfa
 homepage: https://github.com/squarealfa/dart_framework/tree/main/entity_adapter/entity_adapter
 repository: https://github.com/squarealfa/dart_framework/
 
-version: 3.0.5
+version: 3.0.6
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   defaults_provider_annotations: ^2.0.0
-  map_mapper_annotations: ^3.0.3
-  proto_annotations: ^2.0.6
+  map_mapper_annotations: ^3.0.4
+  proto_annotations: ^2.0.7
   squarealfa_entity_annotations: ^2.0.0
   squarealfa_common_types: ^1.0.1
   grpc: ^3.0.0

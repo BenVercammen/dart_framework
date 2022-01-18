@@ -1,9 +1,11 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:proto_annotations/proto_annotations.dart';
+import 'package:proto_generator/src/proto_mapper/map_proto_reflected.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_common_types/squarealfa_common_types.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
+import 'package:recase/recase.dart';
 
 import 'field_code_generator.dart';
 import 'field_descriptor.dart';
@@ -40,27 +42,29 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    var readAnnotation = _hydrateAnnotation(
+    final mapProtoReflected = _hydrateAnnotation(
       annotation,
       prefix: _prefix,
       dateTimePrecision: _dateTimePrecision,
       durationPrecision: _durationPrecision,
     );
-    if (readAnnotation == null) return '';
-    _prefix = readAnnotation.prefix ?? _prefix;
+    final mapProto = mapProtoReflected.mapProto;
+    _prefix = mapProto.prefix ?? _prefix;
 
     _classElement = element.asClassElement();
     if (_classElement!.kind == ElementKind.ENUM) return renderEnumMapper();
 
-    RenderMapperBuffers renderParms = _createRenderBuffers(readAnnotation);
+    RenderMapperBuffers renderParms = _createRenderBuffers(mapProtoReflected);
 
     final mapper = _renderMapper(renderParms);
     return mapper;
   }
 
-  RenderMapperBuffers _createRenderBuffers(MapProto readAnnotation) {
-    final fieldDescriptors =
-        _getFieldDescriptors(_classElement!, readAnnotation);
+  RenderMapperBuffers _createRenderBuffers(
+    MapProtoReflected mapProtoReflected,
+  ) {
+    final mapProto = mapProtoReflected.mapProto;
+    final fieldDescriptors = _getFieldDescriptors(_classElement!, mapProto);
     final fromFieldDescriptors = [...fieldDescriptors];
 
     final toProtoFieldBuffer = StringBuffer();
@@ -105,11 +109,16 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     final constructorName =
         constructor.name.isNotEmpty ? ".${constructor.name}" : constructor.name;
 
+    final toKnownSubClasses = _generateToKnownSubclassses(mapProtoReflected);
+    final fromKnownSubClasses = _generateFromKnownSubclasses(mapProtoReflected);
+
     final renderParms = RenderMapperBuffers(
       constructorName: constructorName,
-      toProtoFieldBuffer: toProtoFieldBuffer,
-      fromProtoFieldBuffer: fromProtoFieldBuffer,
-      constructorFieldBuffer: constructorFieldBuffer,
+      toProtoFieldBuffer: toProtoFieldBuffer.toString(),
+      fromProtoFieldBuffer: fromProtoFieldBuffer.toString(),
+      constructorFieldBuffer: constructorFieldBuffer.toString(),
+      toKnownSubclasses: toKnownSubClasses,
+      fromKnownSubclasses: fromKnownSubClasses,
     );
     return renderParms;
   }
@@ -140,8 +149,61 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
     }
   }
 
+  String? _generateToKnownSubclassses(MapProtoReflected mapProtoReflected) {
+    final kscs = mapProtoReflected.knownSubClasses;
+    if (kscs == null) return null;
+
+    final ret = kscs.map((ksc) {
+      final className = ksc.getDisplayString(withNullability: false);
+      final camelClassName = className.camelCase;
+      final expression = '''
+      if (instance is $className) {
+        uproto.$camelClassName = (const \$${className}ProtoMapper()).toProto(instance);
+        return uproto;
+      }
+    ''';
+      return expression;
+    }).join('\n');
+    return ret;
+  }
+
   String _renderMapper(RenderMapperBuffers renderParms) {
-    var prefix = _prefix;
+    final prefix = _prefix;
+    final toVar = renderParms.toKnownSubclasses == null ? 'proto' : 'uproto';
+
+    final toReturn = _classElement!.isAbstract
+        ? 'throw UnimplementedError();'
+        : '''
+            ${renderParms.toKnownSubclasses == null ? '' : 'final proto = uproto.vehicle = ${prefix}FieldsOf$className();'}
+
+        ${renderParms.toProtoFieldBuffer}
+        
+        return $toVar;
+    ''';
+
+    final fromProto = renderParms.fromKnownSubclasses != null
+        ? '''
+           $className _\$${className}FromProto($prefix$className sInstance) {
+             ${renderParms.fromKnownSubclasses}
+
+          ${classElement!.isAbstract ? '''
+            throw UnimplementedError();
+          ''' : '''
+            final instance = sInstance.${className!.camelCase};
+            final ret = $className${renderParms.constructorName}(${renderParms.constructorFieldBuffer})
+          ${renderParms.fromProtoFieldBuffer};
+
+            return ret;          
+          '''}
+
+           }    
+          '''
+        : '''
+           $className _\$${className}FromProto($prefix$className instance) =>
+        $className${renderParms.constructorName}(${renderParms.constructorFieldBuffer})
+          ${renderParms.fromProtoFieldBuffer};
+
+     ''';
 
     return '''
   
@@ -170,16 +232,14 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
 
       $prefix$className _\$${className}ToProto($className instance) 
       {
-        var proto = $prefix$className();
+        var $toVar = $prefix$className();
         
-        ${renderParms.toProtoFieldBuffer}
-        
-        return proto;
+        ${renderParms.toKnownSubclasses ?? ''}
+
+        $toReturn
       }
 
-      $className _\$${className}FromProto($prefix$className instance) =>
-        $className${renderParms.constructorName}(${renderParms.constructorFieldBuffer})
-          ${renderParms.fromProtoFieldBuffer};
+      $fromProto
 
       extension \$${className}ProtoExtension on $className {
         $prefix$className toProto() => _\$${className}ToProto(this);
@@ -220,9 +280,26 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
 
   ''';
   }
+
+  String? _generateFromKnownSubclasses(MapProtoReflected mapProtoReflected) {
+    final kscs = mapProtoReflected.knownSubClasses;
+    if (kscs == null) return null;
+
+    final ret = kscs.map((ksc) {
+      final className = ksc.getDisplayString(withNullability: false);
+      final camelClassName = className.camelCase;
+      final expression = '''
+      if (sInstance.has$className()) {
+        return sInstance.$camelClassName.to$className();
+      }
+      ''';
+      return expression;
+    }).join('\n');
+    return ret;
+  }
 }
 
-MapProto? _hydrateAnnotation(
+MapProtoReflected _hydrateAnnotation(
   ConstantReader reader, {
   String? prefix,
   required TimePrecision dateTimePrecision,
@@ -234,27 +311,40 @@ MapProto? _hydrateAnnotation(
   final annotatedDurationPrecision =
       reader.getTimePrecision('durationPrecision') ?? durationPrecision;
 
-  var ret = MapProto(
+  var mapProto = MapProto(
     prefix: reader.read('prefix').literalValue as String? ?? prefix,
     packageName: reader.read('packageName').literalValue as String,
     dateTimePrecision: annotatedDateTimePrecision,
     durationPrecision: annotatedDurationPrecision,
   );
 
+  final kscReader = reader.read('knownSubClasses');
+  final kscs = kscReader.isNull
+      ? null
+      : kscReader.listValue.map((ksc) {
+          return ksc.toTypeValue()!;
+        }).toList();
+
+  final ret = MapProtoReflected(mapProto, kscs);
+
   return ret;
 }
 
 class RenderMapperBuffers {
   final String constructorName;
-  final StringBuffer toProtoFieldBuffer;
-  final StringBuffer fromProtoFieldBuffer;
-  final StringBuffer constructorFieldBuffer;
+  final String toProtoFieldBuffer;
+  final String fromProtoFieldBuffer;
+  final String constructorFieldBuffer;
+  final String? toKnownSubclasses;
+  final String? fromKnownSubclasses;
 
   RenderMapperBuffers({
     required this.constructorName,
     required this.toProtoFieldBuffer,
     required this.fromProtoFieldBuffer,
     required this.constructorFieldBuffer,
+    this.toKnownSubclasses,
+    this.fromKnownSubclasses,
   });
 }
 

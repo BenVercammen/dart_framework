@@ -1,6 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:map_mapper_annotations/map_mapper_annotations.dart';
+import 'package:map_mapper_generator/src/map_mapped_reflected.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:squarealfa_generators_common/squarealfa_generators_common.dart';
 import 'package:squarealfa_common_types/squarealfa_common_types.dart';
@@ -44,7 +45,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
     _className = element.name;
 
     if (_classElement!.kind == ElementKind.ENUM) {
-      return renderEnumMapper();
+      return _renderEnumMapper();
     }
 
     var toMapFieldBuffer = StringBuffer();
@@ -52,9 +53,13 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
     var constructorFieldBuffer = StringBuffer();
     var fieldNamesBuffer = StringBuffer();
 
-    var fieldDescriptors = _getFieldDescriptors(_classElement!, readAnnotation);
-    var defaultsProviderClassName =
-        getDefaultsProvider(_classElement, readAnnotation, fieldDescriptors);
+    var fieldDescriptors =
+        _getFieldDescriptors(_classElement!, readAnnotation.mapMapped);
+    var defaultsProviderClassName = _getDefaultsProvider(
+      _classElement,
+      readAnnotation.mapMapped,
+      fieldDescriptors,
+    );
     var hasDefaultsProvider = defaultsProviderClassName != null;
     var declareKh = false;
 
@@ -78,27 +83,29 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
       fieldNamesBuffer.writeln(fieldCodeGenerator.fieldNamesClassGetter);
     }
 
-    var ret = renderMapper(
-      defaultsProviderClassName,
-      toMapFieldBuffer,
-      fromMapFieldBuffer,
-      constructorFieldBuffer,
-      fieldNamesBuffer,
-      declareKh,
+    var ret = _renderMapper(
+      defaultsProviderClassName: defaultsProviderClassName,
+      toMapFieldBuffer: toMapFieldBuffer,
+      fromMapFieldBuffer: fromMapFieldBuffer,
+      constructorFieldBuffer: constructorFieldBuffer,
+      fieldNamesBuffer: fieldNamesBuffer,
+      declareKh: declareKh,
+      mapMappedReflected: readAnnotation,
     );
 
     return ret;
   }
 
-  String renderMapper(
-    String? defaultsProviderClassName,
-    StringBuffer toMapFieldBuffer,
-    StringBuffer fromMapFieldBuffer,
-    StringBuffer constructorFieldBuffer,
-    StringBuffer fieldNamesBuffer,
-    bool declareKh,
-  ) {
-    final className = _className;
+  String _renderMapper({
+    required String? defaultsProviderClassName,
+    required StringBuffer toMapFieldBuffer,
+    required StringBuffer fromMapFieldBuffer,
+    required StringBuffer constructorFieldBuffer,
+    required StringBuffer fieldNamesBuffer,
+    required bool declareKh,
+    required MapMappedReflected mapMappedReflected,
+  }) {
+    final className = _className!;
 
     final defaultsProviderDeclaration =
         ((defaultsProviderClassName ?? '') == '')
@@ -106,6 +113,35 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
             : 'final defaultsProvider = $defaultsProviderClassName();';
 
     final kh = declareKh ? 'final \$kh = const $_keyHandler();' : '';
+    final toSubClassMap = _getToSubClasses(mapMappedReflected);
+    final typeMap = mapMappedReflected.knownSubClasses == null
+        ? ''
+        : '''map['\\\$type'] = '$className';''';
+
+    final fromSubClassMap = _getFromSubClasses(mapMappedReflected, className);
+
+    final fromMapMap = '''
+          $kh        
+          $defaultsProviderDeclaration
+          
+          return $className($constructorFieldBuffer)
+              $fromMapFieldBuffer; 
+    ''';
+
+    final fromMapBody = mapMappedReflected.knownSubClasses == null
+        ? fromMapMap
+        : fromSubClassMap;
+
+    final _fromMapMethod =
+        mapMappedReflected.knownSubClasses == null || _classElement!.isAbstract
+            ? ''
+            : '''
+        $className _fromMap(Map<String, dynamic> map) { 
+          $fromMapMap
+        }
+    
+    ''';
+
     return '''
 
       class \$${className}MapMapper extends MapMapper<$className> {
@@ -114,18 +150,21 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
 
         @override
         $className fromMap(Map<String, dynamic> map) { 
-          $kh        
-          $defaultsProviderDeclaration
-          
-          return $className($constructorFieldBuffer)
-              $fromMapFieldBuffer; 
+          $fromMapBody
         }
+
+        $_fromMapMethod
 
         @override
         Map<String, dynamic> toMap($className instance) {
+
+            $toSubClassMap
+            
             $kh
             final map = <String, dynamic>{};
-        
+            
+            $typeMap
+            
             $toMapFieldBuffer  
               
             return map;
@@ -164,7 +203,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
   ''';
   }
 
-  String renderEnumMapper() {
+  String _renderEnumMapper() {
     var className = _className;
     return '''
     class \$${className}MapMapper
@@ -176,7 +215,7 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
     ''';
   }
 
-  static String? getDefaultsProvider(
+  static String? _getDefaultsProvider(
     ClassElement? classElement,
     MapMapped annotation,
     Iterable<FieldDescriptor> fieldDescriptors,
@@ -188,6 +227,47 @@ class MapMapGenerator extends GeneratorForAnnotation<MapMapped> {
       return null;
     }
     return '\$${classElement!.name}DefaultsProvider';
+  }
+
+  String _getFromSubClasses(MapMappedReflected reflected, String className) {
+    final kscs = reflected.knownSubClasses;
+    if (kscs == null) return '';
+
+    final cases = kscs.map((ksc) {
+      final typeName = ksc.getDisplayString(withNullability: false);
+      return '''case '$typeName':
+        return (const \$${typeName}MapMapper()).fromMap(map);
+      ''';
+    }).join('\n');
+
+    final ret = '''
+        final type = map['\\\$type'] as String?;
+        switch (type) {
+          case null:
+          case '$className':
+            ${_classElement!.isAbstract ? 'throw UnimplementedError();' : 'return _fromMap(map);'} 
+          $cases
+          default:
+            throw UnimplementedError();
+        }
+    ''';
+    return ret;
+  }
+
+  static String _getToSubClasses(MapMappedReflected reflected) {
+    final kscs = reflected.knownSubClasses;
+    if (kscs == null) return '';
+
+    final ret = kscs.map((ksc) {
+      final typeName = ksc.getDisplayString(withNullability: false);
+      final line = '''
+    if (instance is $typeName) {
+      return {'\\\$type': '$typeName', ...const \$${typeName}MapMapper().toMap(instance),};
+    }    
+''';
+      return line;
+    }).join('\n');
+    return ret;
   }
 }
 
@@ -203,7 +283,7 @@ Iterable<FieldDescriptor> _getFieldDescriptors(
   return fieldDescriptors;
 }
 
-MapMapped _hydrateAnnotation(
+MapMappedReflected _hydrateAnnotation(
   ConstantReader reader, {
   required TimePrecision durationPrecision,
   required DateTimeRepresentation dateTimeRepresentation,
@@ -215,7 +295,14 @@ MapMapped _hydrateAnnotation(
       reader.getDateTimeRepresentation('dateTimeRepresentation') ??
           dateTimeRepresentation;
 
-  var ret = MapMapped(
+  final kscReader = reader.read('knownSubClasses');
+  final kscs = kscReader.isNull
+      ? null
+      : kscReader.listValue.map((ksc) {
+          return ksc.toTypeValue()!;
+        }).toList();
+
+  var mm = MapMapped(
     includeFieldsByDefault:
         reader.read('includeFieldsByDefault').literalValue as bool,
     useDefaultsProvider:
@@ -223,6 +310,7 @@ MapMapped _hydrateAnnotation(
     durationPrecision: annotatedDurationPrecision,
     dateTimeRepresentation: annotatedDateTimePrecision,
   );
+  final ret = MapMappedReflected(mm, kscs);
   return ret;
 }
 

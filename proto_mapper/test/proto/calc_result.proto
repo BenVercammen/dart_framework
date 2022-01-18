@@ -10,9 +10,13 @@ syntax = "proto3";
 
 
 
+
+
+  
 message GCalcResult
 {
   int32 result = 1;
+
 }   
 
 message GListOfCalcResult

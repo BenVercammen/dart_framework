@@ -1,3 +1,12 @@
+## 3.0.5
+
+- Support for polymorphism.
+
+Now ```@Proto()``` and ```@MapProto``` have a new property called ```knownSubClasses```. This is a list of types of subclasses of the type to which the annotation
+is applied. Each of these subclasses much also have the ```@Proto()``` and/or ```@MapProto()``` annotations respectively.
+
+By identifying the known subclasses, ```toProto()``` and ```fromProto()``` methods become polymorphic.
+
 ## 3.0.4
 - Updated dependencies
 
