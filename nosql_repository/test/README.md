@@ -1,22 +1,6 @@
-A library for Dart developers.
+# Moving Out
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+This repository has moved to GitLab at https://gitlab.com/squarealfa/dart_framework.
 
-## Usage
 
-A simple usage example:
-
-```dart
-import 'package:nosql_repository_tests/nosql_repository_tests.dart';
-
-main() {
-  var awesome = new Awesome();
-}
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+The change is in protest by this project's initial and main author with what he views as [GitHub's extremely weak response](https://github.blog/2022-03-02-our-response-to-the-war-in-ukraine/) to the carnage going on in Ukraine by Russia. He would have expected at a minimum for any new business in Russia and Belarus to be suspended, which was incidentally [GitLab's course of action](https://about.gitlab.com/blog/2022/03/11/gitlab-actions-to-date-regarding-russian-invasion-of-ukraine/#suspending-new-business-in-russia-and-belarus).

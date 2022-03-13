@@ -1,7 +1,6 @@
-# entity_annotations
+# Moving Out
 
-This package is companion to the [squarealfa_entity_generator](https://pub.dev/packages/squarealfa_entity_generator) package. It defines annotations to be applied to classes to drive validations and other code generators. It also defines classes to represent validation errors.
+This repository has moved to GitLab at https://gitlab.com/squarealfa/dart_framework.
 
-## Context
 
-This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework).
+The change is in protest by this project's initial and main author with what he views as [GitHub's extremely weak response](https://github.blog/2022-03-02-our-response-to-the-war-in-ukraine/) to the carnage going on in Ukraine by Russia. He would have expected at a minimum for any new business in Russia and Belarus to be suspended, which was incidentally [GitLab's course of action](https://about.gitlab.com/blog/2022/03/11/gitlab-actions-to-date-regarding-russian-invasion-of-ukraine/#suspending-new-business-in-russia-and-belarus).

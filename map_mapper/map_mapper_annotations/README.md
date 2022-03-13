@@ -1,12 +1,6 @@
-# map_mapper_annotations
+# Moving Out
 
-Defines annotations used by the [map_mapper_generator](https://pub.dev/packages/map_mapper_generator) package.
-
-## Getting started
-
-In order to get started, look at the example project at https://gitlab.com/squarealfa/dart_framework/-/tree/main/map_mapper/map_mapper_example.
+This repository has moved to GitLab at https://gitlab.com/squarealfa/dart_framework.
 
 
-## Context
-
-This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework).
+The change is in protest by this project's initial and main author with what he views as [GitHub's extremely weak response](https://github.blog/2022-03-02-our-response-to-the-war-in-ukraine/) to the carnage going on in Ukraine by Russia. He would have expected at a minimum for any new business in Russia and Belarus to be suspended, which was incidentally [GitLab's course of action](https://about.gitlab.com/blog/2022/03/11/gitlab-actions-to-date-regarding-russian-invasion-of-ukraine/#suspending-new-business-in-russia-and-belarus).
