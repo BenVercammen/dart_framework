@@ -10,3 +10,5 @@ doc/api/
 pubspec.lock
 
 **/service-account.json
+
+builds/

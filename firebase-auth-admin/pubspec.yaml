@@ -1,8 +1,8 @@
 name: firebase_auth_admin
 description: Firebase Authorization Administration based on the official Firebase Admin GO SDK via Dart FFI.
-repository: https://github.com/squarealfa/dart_framework
-homepage: https://github.com/squarealfa/dart_framework/tree/main/firebase-auth-admin
-version: 0.9.5
+repository: https://gitlab.com/squarealfa/dart_framework
+homepage: https://gitlab.com/squarealfa/dart_framework/-/tree/main/firebase-auth-admin
+version: 0.9.6
 
 
 environment:

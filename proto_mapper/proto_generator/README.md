@@ -89,9 +89,9 @@ void main() {
 
 ## Getting started
 
-In order to get started, look at the example project at https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/example.
+In order to get started, look at the example project at https://gitlab.com/squarealfa/dart_framework/-/tree/main/proto_mapper/example.
 
 
 ## Context
 
-This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://github.com/squarealfa/dart_framework#squarealfa-dart-framework).
+This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework).

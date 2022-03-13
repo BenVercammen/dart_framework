@@ -1,4 +1,3 @@
-[![Dart CI](https://github.com/squarealfa/dart_framework/actions/workflows/dart.yml/badge.svg)](https://github.com/squarealfa/dart_framework/actions/workflows/dart.yml)
 
 # SquareAlfa Dart Framework
 This repository contains SquareAlfa's Dart Framework. 

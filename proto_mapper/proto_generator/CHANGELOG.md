@@ -1,3 +1,14 @@
+## 3.1.0
+
+### Changes
+- Moved source code repository from GitHub to GitLab
+- Adopted Melos and GitLab as CI solution
+- Changed license to MPL
+
+### Rationale for source code hosting change
+
+The change from source code repository is in protest by this project's initial and main author with what he views as [GitHub's extremely week response](https://github.blog/2022-03-02-our-response-to-the-war-in-ukraine/) to the carnage going on in Ukraine by Russia. He would have expected at a minimum for any new business in Russia and Belarus to be suspended, which was incidentally [GitLab's course of action](https://about.gitlab.com/blog/2022/03/11/gitlab-actions-to-date-regarding-russian-invasion-of-ukraine/#suspending-new-business-in-russia-and-belarus).
+
 ## 3.0.5
 
 - Support for polymorphism.
@@ -31,7 +42,7 @@ By identifying the known subclasses, ```toProto()``` and ```fromProto()``` metho
 
 ### Breaking changes
 
-- Previously, fields inside protobuf messages were being generated without following the [proper naming conventions](https://developers.google.com/protocol-buffers/docs/style?csw=1). This version changes that, which means that, unless configured otherwise, generated .proto files from this version of the package will have different field names from previously generated .proto files. In order to restore the previous behaviour, set the ```useProtoFieldNamingConventions``` to false either in the global ```build.yaml``` configuration file or as the new property in the ```@Proto()``` annotation. Check out the example [build.yaml](https://github.com/squarealfa/dart_framework/blob/main/proto_mapper/example/build.yaml) file.
+- Previously, fields inside protobuf messages were being generated without following the [proper naming conventions](https://developers.google.com/protocol-buffers/docs/style?csw=1). This version changes that, which means that, unless configured otherwise, generated .proto files from this version of the package will have different field names from previously generated .proto files. In order to restore the previous behaviour, set the ```useProtoFieldNamingConventions``` to false either in the global ```build.yaml``` configuration file or as the new property in the ```@Proto()``` annotation. Check out the example [build.yaml](https://gitlab.com/squarealfa/dart_framework/blob/main/proto_mapper/example/build.yaml) file.
 
 
 

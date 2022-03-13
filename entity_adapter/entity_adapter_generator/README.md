@@ -2,15 +2,15 @@ Generates a facade to several SquareAlfa framework services that are required to
 
 ## EntityAdapted
 
-This package creates the concept of an *adapted entity*. An adapted entity is an a [PODO](https://github.com/squarealfa/dart_framework#podos) that is augmented by several code generators to expose the required features so that it can be served by a gRPC service and persisted into a NoSQL database.
+This package creates the concept of an *adapted entity*. An adapted entity is an a [PODO](https://gitlab.com/squarealfa/dart_framework#podos) that is augmented by several code generators to expose the required features so that it can be served by a gRPC service and persisted into a NoSQL database.
 
-The purpose is to create a very practical way to combine the services of the following code-generators into one, and expose those services into a simple facade class that can be registered with a DI container (see more about [SquareAlfa Dart Framework](https://github.com/squarealfa/dart_framework#squarealfa-dart-framework)):
+The purpose is to create a very practical way to combine the services of the following code-generators into one, and expose those services into a simple facade class that can be registered with a DI container (see more about [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework)):
 - [map_mapper_generator](https://pub.dev/packages/map_mapper_generator)
 - [proto_generator](https://pub.dev/packages/proto_generator)
 - [defaults_provider_generator](https://pub.dev/packages/defaults_provider_generator)
 - [squarealfa_entity_generator](https://pub.dev/packages/squarealfa_entity_generator)
 
-This package provides a ```EntityAdapted``` annotation that replaces all the annotations required to use all the services provided by the above packages. For instance, without the ```EntityAdapted``` annotation, we would need to add several annotations to a [PODO](https://github.com/squarealfa/dart_framework#podos) to use all the services, as examplified below:
+This package provides a ```EntityAdapted``` annotation that replaces all the annotations required to use all the services provided by the above packages. For instance, without the ```EntityAdapted``` annotation, we would need to add several annotations to a [PODO](https://gitlab.com/squarealfa/dart_framework#podos) to use all the services, as examplified below:
 
 ```dart
 /// Thank goodness we have EntityAdapted, 
@@ -156,7 +156,7 @@ dart run build_runner build
 
 # then we generate the protocol buffer serialization classes
 # see https://pub.dev/packages/proto_generator and 
-# https://github.com/squarealfa/dart_framework/tree/main/proto_mapper/proto_mapper_example
+# https://gitlab.com/squarealfa/dart_framework/-/tree/main/proto_mapper/example
 rm -rf ./lib/grpc/
 mkdir ./lib/grpc
 protoc --dart_out=grpc:lib/grpc/ -Ilib/src ./lib/src/*.proto

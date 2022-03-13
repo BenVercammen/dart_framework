@@ -1,8 +1,8 @@
 name: defaults_provider_example
 description: defaults_provider_annotations and defaults_provider_generator
   packages demonstration project
-homepage: https://github.com/squarealfa/dart_framework/tree/main/defaults_provider/defaults_provider_example
-repository: https://github.com/squarealfa/dart_framework
+homepage: https://gitlab.com/squarealfa/dart_framework/-/tree/main/defaults_provider/example
+repository: https://gitlab.com/squarealfa/dart_framework
 version: 1.0.0
 
 environment:

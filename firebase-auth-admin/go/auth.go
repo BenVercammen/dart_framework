@@ -15,7 +15,7 @@ import (
 	"unsafe"
 
 	"firebase.google.com/go/auth"
-	"github.com/squarealfa/dart_framework/firebase-auth-admin/go/dart_api_dl"
+	"gitlab.com/squarealfa/dart_framework/firebase-auth-admin/go/dart_api_dl"
 )
 
 var client *auth.Client

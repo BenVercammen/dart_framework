@@ -1,3 +1,3 @@
 ## Example
 
-Check out the example project at https://github.com/squarealfa/dart_framework/tree/main/entity/example.
+Check out the example project at https://gitlab.com/squarealfa/dart_framework/-/tree/main/entity/example.

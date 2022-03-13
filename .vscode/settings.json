@@ -10,5 +10,6 @@
         "retrn",
         "squarealfa",
         "validatable"
-    ]
+    ],
+    "dart.runPubGetOnPubspecChanges": false
 }

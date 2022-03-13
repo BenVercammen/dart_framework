@@ -1,7 +1,7 @@
 name: grpc_host
 description: Hosts gRPC services
-homepage: https://github.com/squarealfa/dart_framework/tree/main/grpc_host
-repository: https://github.com/squarealfa/dart_framework
+homepage: https://gitlab.com/squarealfa/dart_framework/-/tree/main/grpc_host
+repository: https://gitlab.com/squarealfa/dart_framework
 version: 3.0.7
 
 

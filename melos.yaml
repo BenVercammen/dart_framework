@@ -1,0 +1,22 @@
+name: dart_framework
+repository: https://gitlab.com/ruicraveiro/dart_framework
+
+packages:
+  - common_types/**
+  - generators_common/**
+  - squarealfa_security/**
+  - proto_mapper/**
+  - map_mapper/**
+  - defaults_provider/**
+  - entity/**
+  - example_model/**
+#  - firebase-auth-admin/**
+
+ignore:
+  - map_mapper/test_mongo/*
+
+scripts:
+  analyze: melos exec -- "dart analyze ."
+
+  test: 
+    melos exec --dir-exists="test" --ignore="*firebase*admin*" --ignore="*mongo*" --ignore="*arango*" -- "dart test"

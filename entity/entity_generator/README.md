@@ -10,7 +10,7 @@ This package includes code generators that augment classes that are meant to be 
 ### Validations
 
 
-Start by adding the ```@validatable```annotation to the [PODO](https://github.com/squarealfa/dart_framework/#podos) class for which you want validation code to be generated:
+Start by adding the ```@validatable```annotation to the [PODO](https://gitlab.com/squarealfa/dart_framework/#podos) class for which you want validation code to be generated:
 
 ```dart
 /// ensure the library has the part statement.
@@ -26,7 +26,7 @@ class Recipe {
 
 ```
 
-This will generate a ```Validator``` class that will contain a validation method for each of the properties of the [PODO](https://github.com/squarealfa/dart_framework/#podos) class. By default each validation method will return null, as examplified:
+This will generate a ```Validator``` class that will contain a validation method for each of the properties of the [PODO](https://gitlab.com/squarealfa/dart_framework/#podos) class. By default each validation method will return null, as examplified:
 
 ```dart
 /// This is an example of a generated validator class.
@@ -106,7 +106,7 @@ class Ingredient {
 
 ### Builder
 
-Add a ```@builder``` annotation to the [PODO](https://github.com/squarealfa/dart_framework/#podos):
+Add a ```@builder``` annotation to the [PODO](https://gitlab.com/squarealfa/dart_framework/#podos):
 
 ```dart
 /// ensure the library has the part statement.
@@ -159,7 +159,7 @@ class RecipeBuilder implements Builder<Recipe> {
 
 ### copyWith
 
-Add a ```@builder``` annotation to the [PODO](https://github.com/squarealfa/dart_framework/#podos):
+Add a ```@builder``` annotation to the [PODO](https://gitlab.com/squarealfa/dart_framework/#podos):
 
 ```dart
 /// ensure the library has the part statement.
@@ -178,7 +178,7 @@ class Recipe {
 }
 ```
 
-This will generate an extension to the [PODO](https://github.com/squarealfa/dart_framework/#podos) that adds the ```copyWith``` method:
+This will generate an extension to the [PODO](https://gitlab.com/squarealfa/dart_framework/#podos) that adds the ```copyWith``` method:
 
 ```dart
 extension RecipeCopyWithExtension on Recipe {
@@ -199,4 +199,4 @@ extension RecipeCopyWithExtension on Recipe {
 
 ## Context
 
-This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://github.com/squarealfa/dart_framework#squarealfa-dart-framework).
+This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework).

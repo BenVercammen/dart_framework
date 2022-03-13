@@ -51,7 +51,7 @@ Next, the defaults_provider_generator and build_runner packages are also to be a
 
 ## Getting started
 
-The best way to get started is by looking at the example project at https://github.com/squarealfa/dart_framework/tree/main/defaults_provider/defaults_provider_example.
+The best way to get started is by looking at the example project at https://gitlab.com/squarealfa/dart_framework/-/tree/main/defaults_provider/example.
 
 ### Annotations
 
@@ -124,4 +124,4 @@ class RecipeDefaults extends RecipeDefaultsProviderBase
 
 ## Context
 
-This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://github.com/squarealfa/dart_framework#squarealfa-dart-framework).
+This package is part of a set of losely integrated packages that constitute the [SquareAlfa Dart Framework](https://gitlab.com/squarealfa/dart_framework#squarealfa-dart-framework).

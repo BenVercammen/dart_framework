@@ -38,7 +38,7 @@ The usage of this package requires a few extra steps than usual:
     * MacOS: ``lib-auth.dylib``
     * Windows ``lib-auth.dll``
 
-Download the correct version of the library from: https://github.com/squarealfa/dart_framework/releases/tag/v0.9.5
+Download lib-auth.so (Linux), lib-auth.dylib (MacOS) or lib-auth.dll (Windows) library from: https://gitlab.com/squarealfa/dart_framework/-/tree/main/firebase-auth-admin/go.
 
 - Generate and download a new private key following the instruction in https://firebase.google.com/docs/admin/setup, under **To generate a private key file for your service account**.
 

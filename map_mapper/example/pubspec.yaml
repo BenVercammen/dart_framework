@@ -1,7 +1,7 @@
 name: map_mapper_example
 description: map_mapper_annotations and map_mapper_generator packages demonstration project
-homepage: https://github.com/squarealfa/dart_framework/tree/main/map_mapper/map_mapper_example
-repository: https://github.com/squarealfa/dart_framework
+homepage: https://gitlab.com/squarealfa/dart_framework/-/tree/main/map_mapper/example
+repository: https://gitlab.com/squarealfa/dart_framework
 version: 1.0.0
 
 publish_to: none

@@ -1,8 +1,0 @@
-# https://github.com/google/mono_repo.dart
-sdk:
-- stable
-
-stages:
-- analyze_format:
-  - group:
-    - format
