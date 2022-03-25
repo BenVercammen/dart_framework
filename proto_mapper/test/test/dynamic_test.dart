@@ -6,6 +6,7 @@ import 'package:proto_generator_test/src/appliance_type.dart';
 import 'package:proto_generator_test/src/component.dart';
 import 'package:proto_generator_test/src/utensils.dart';
 import 'package:test/test.dart';
+import '../lib/grpc/google/protobuf/any.pb.dart';
 
 void main() {
   group('Dynamic fields', ()
@@ -182,6 +183,11 @@ void _runFieldTest(dynamic prop) {
   expect(object.toProto().writeToJson(), equals(deserializedJson.toJson()));
   expect(object.toProto().writeToJson(), equals(deserializedProto.toJson()));
   print(object.toJson());
+  // print
+
+  GDynamicObject()..dynamicProperty = Any()..toProto3Json(typeRegistry: DynamicProtoMapper.typeRegistry);
+  // object.toProto().writeToJson();
+  print(object.toProto().toProto3Json(typeRegistry: DynamicProtoMapper.typeRegistry));
 }
 
 DynamicObject _dynamicObject() {

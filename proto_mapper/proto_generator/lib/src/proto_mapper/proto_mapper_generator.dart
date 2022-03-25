@@ -95,7 +95,7 @@ class ProtoMapperGenerator extends GeneratorForAnnotation<MapProto> {
       fromProtoFieldBuffer.writeln('  ..$fromProtoMap');
     }
 
-    // assing the to proto field assignments
+    // assign the to proto field assignments
     for (var fieldDescriptor in fieldDescriptors) {
       final fieldCodeGenerator =
           FieldCodeGenerator.fromFieldDescriptor(fieldDescriptor);
