@@ -97,7 +97,10 @@ extension ClassElementFieldExtension on ClassElement {
       ..sort();
 
     return fields
-        .map((fs) => fs.field)
+        .map((fs) => includeInherited
+            ? _getTopLevelField(
+                fs.field.enclosingElement as ClassElement, fs.field)
+            : fs.field)
         .where((field) =>
             (field.getter != null &&
                 (field.setter != null ||
@@ -105,5 +108,28 @@ extension ClassElementFieldExtension on ClassElement {
             (field.getter == null && field.setter == null) ||
             field.isEnumConstant)
         .toList();
+  }
+
+  /// Try to find the top-level field definition.
+  /// It is possible that a parent class has first defined this field,
+  /// while a subclass has overridden it (eg: made it required instead of optional).
+  /// In this case, we'll have to look at the properties of the top-level field,
+  /// instead of the overrides.
+  /// This will only work for fields with the same name.
+  /// Private "_" fields are not taken into account.
+  FieldElement _getTopLevelField(
+      ClassElement enclosingClass, FieldElement field) {
+    FieldElement parentField = field;
+    if (null != enclosingClass.supertype) {
+      final parentClass = enclosingClass.supertype!.element;
+      for (FieldElement pField in parentClass.fields) {
+        if (pField.name == field.name) {
+          parentField = pField;
+          break;
+        }
+      }
+      return _getTopLevelField(parentClass, parentField);
+    }
+    return parentField;
   }
 }

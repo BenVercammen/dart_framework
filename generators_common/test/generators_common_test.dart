@@ -154,9 +154,13 @@ void main() {
         expect(fields.any((f) => f.name == 'duration'), false);
 
         expect(fields.any((f) => f.name == 'id'), false);
+        expect(fields.any((f) => f.name == 'key'), false);
         expect(fields.any((f) => f.name == '_key'), false);
         expect(fields.any((f) => f.name == 'rprop'), false);
-        expect(fields.any((f) => f.name == 'key'), false);
+
+        expect(fields.any((f) => f.name == 'optional'), false);
+        expect(fields.any((f) => f.name == 'optional2'), false);
+        expect(fields.any((f) => f.name == 'optional3'), false);
 
         expect(fields.any((f) => f.name == 'staticProp'), false);
         expect(fields.any((f) => f.name == 'constProp'), false);
@@ -177,9 +181,12 @@ void main() {
 
         expect(fields.any((f) => f.name == 'id'), true);
         expect(fields.any((f) => f.name == 'key'), true);
-
         expect(fields.any((f) => f.name == '_key'), false);
         expect(fields.any((f) => f.name == 'rprop'), false);
+
+        expect(fields.any((f) => f.name == 'optional'), true);
+        expect(fields.any((f) => f.name == 'optional2'), true);
+        expect(fields.any((f) => f.name == 'optional3'), false);
 
         expect(fields.any((f) => f.name == 'staticProp'), false);
         expect(fields.any((f) => f.name == 'constProp'), false);
@@ -195,6 +202,9 @@ const _code = '''
 class Entity {
   final String id;
   String _key = '';
+  final String? optional;
+  String? optional2;
+  String? _optional3;
 
   String get rprop => '';
 
@@ -206,8 +216,10 @@ class Entity {
     if (value == 'invalid') throw Error();
     _key = value;
   }
+  
+  String? get optional3 => _optional3;
 
-  Entity(this.id);
+  Entity(this.id, this.optional);
 }
 
 class Recipe extends Entity {
@@ -225,11 +237,22 @@ class Recipe extends Entity {
   static String staticProp = '';
   static const String constProp = '';
 
+  // Making 
+  @override
+  String get optional => super.optional!;
+  
+  @override
+  String get optional2 => super.optional2!;
+  
+  @override
+  String get optional3 => super.optional3!;
+
   Recipe({
     required String id,
     this.description = '',
     required this.title,
-  }) : super(id);
+    required String optional,
+  }) : super(id, optional);
 }
 
 class Key {
